@@ -1,0 +1,105 @@
+{% if settings.header_strip_hide_mobile %}
+    {% assign on_mobile_hide_strip = "mobile_hide_strip" %}
+
+{% else %}
+{% assign on_mobile_hide_strip = "" %}
+{% endif %}
+
+
+{% if settings.header_strip_hide_right_mobile %}
+    {% assign on_mobile_hide_right_strip = "strip_hide_right_mobile" %}
+    {% assign left_text_center_mobile="left_text_center_mobile" %} 
+
+{% else %}
+
+ {% assign on_mobile_hide_right_strip = "" %}
+ {% assign left_text_center_mobile="" %}
+
+{% endif %}
+
+
+
+
+{% if settings.header_strip %}
+
+    <div class="{{ on_mobile_hide_strip }} grid--full grid--table">
+          <div class="grid__item">
+            <div class="alert alert-success alert-header-strip">
+             
+              <div class="{{ left_text_center_mobile }} top-hedr"><p>{{ settings.header_strip_text }}</p></div>
+             
+              <div class="{{ on_mobile_hide_right_strip }} mng-header">
+                <ul>
+                  <li><a href="{{ settings.header_strip_text_link_url }}"><b>{{ settings.header_strip_text_link_name }}</b></a></li>
+                  <li><a href="#">{{ settings.header_strip_text_contact }}</a></li>
+                  <li><a href="#">{{ settings.header_strip_text_email }}</a></li>
+                  <li>
+                   <ul class="social_header">
+              
+              {% if settings.social_twitter_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+                        <span class="icon icon-twitter" aria-hidden="true"></span>
+                        <span class="fallback-text">Twitter</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if settings.social_facebook_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+                        <span class="icon icon-facebook" aria-hidden="true"></span>
+                        <span class="fallback-text">Facebook</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                    {% if settings.social_youtube_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube">
+                        <span class="icon icon-youtube" aria-hidden="true"></span>
+                        <span class="fallback-text">Youtube</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                   {% if settings.social_instagram_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram">
+                        <span class="icon icon-instagram" aria-hidden="true"></span>
+                        <span class="fallback-text">Instagram</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                     
+                      {% if settings.social_pinterest_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_pinterest_link }}" title="{{ shop.name }} on Pinterest">
+                        <span class="icon icon-pinterest" aria-hidden="true"></span>
+                        <span class="fallback-text">Pinterest</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                
+                
+                {% comment %}
+                <li>
+                  <a href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+
+                  </a>
+                </li>
+                {% endcomment %}
+              </ul>
+            
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            
+      </div>
+    
+    </div>
+
+
+    {% endif %}
+    
+   

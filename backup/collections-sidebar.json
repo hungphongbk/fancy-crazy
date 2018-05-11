@@ -1,0 +1,17 @@
+{
+  "name":"Collection Sidebar",
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "Tags",
+      "settings": [
+        {
+          "id": "header",
+          "type": "text",
+          "label": "Header",
+          "default": "Hello world"
+        }
+      ]
+    }
+  ]
+}

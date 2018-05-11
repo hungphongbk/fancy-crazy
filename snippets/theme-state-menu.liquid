@@ -1,0 +1,37 @@
+[
+{% for link in linklists.main-menu.links %}
+  {% assign child_list_handle = link.title | handleize %}
+  {
+    "title": {{ link.title | upcase | escape | json }},
+    "handle": {{ child_list_handle | json }},
+    "isActive": {{ link.active }},
+    "url": "{{ link.url }}"
+    {% if child_list_handle == 'apparel' %}
+      {% assign child_str = 'Native Culture Tshirt|Animal Spirit Blankets|Leggings' %}
+    {% elsif child_list_handle == '3d-art' %}
+      {% assign child_str = 'Wolf Hoodie|Native Bomber Jacket|Pet Tshirt' %}
+    {% elsif child_list_handle == 'shoes' %}
+      {% assign child_str = 'Boots Shoes|Sneakers|Top Shoes|Low Tops|Slip Ons' %}
+    {% elsif child_list_handle == 'home-decor' %}
+      {% assign child_str = 'Dreamcatcher Beddings|Feather Pillow|Spiritual Hippie Bedding' %}
+    {% elsif child_list_handle == 'accessories' %}
+      {% assign child_str = 'Bag Collections|Car Seat Covers|Jewelry Collections' %}
+    {% else %}
+      {% assign child_str = '' %}
+    {% endif %}
+    {% if child_str %},
+      {% assign children = child_str | split: '|' %}
+      "children":[{% for child in children %}
+        {% assign childHandle = child | handleize %}
+        {% assign childCol = collections[childHandle] %}
+        {
+          "title": {{ childCol.title | json }},
+          "url": "/collections/{{ child | handleize }}",
+          "image": {{ childCol.image | img_url: "large" | replace: '//cdn.shopify.com':'' | json }}
+        }
+        {% unless forloop.last %},{% endunless %}{% endfor %}]
+    {% endif %}
+  }
+  {% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

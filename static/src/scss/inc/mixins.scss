@@ -1,0 +1,78 @@
+@import "pseudo";
+@import "~compass-mixins/lib/compass/css3";
+@import "~compass-mixins/lib/compass/utilities/general/clearfix";
+
+@mixin reset-link {
+  &, &:hover, &:focus, &:active, &:visited {
+    text-decoration: none;
+    @content;
+  }
+}
+
+%_aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    @extend %_aspect-ratio-content;
+  }
+}
+
+$fontmap: (
+  "Black": 900 normal,
+  "BlackItalic": 900 italic,
+  "Bold": 700 normal,
+  "BoldItalic": 700 italic,
+  "Hairline": 100 normal,
+  "HairlineItalic": 100 italic,
+  "Heavy": 800 normal,
+  "HeavyItalic": 800 italic,
+  "Italic": 400 italic,
+  "Regular": 400 normal,
+  "Light": 300 normal,
+  "LightItalic": 300 italic,
+  "Medium": 500 normal,
+  "MediumItalic": 500 italic,
+  "Semibold": 600 normal,
+  "SemiboldItalic": 600 italic,
+  "Thin": 200 normal,
+  "ThinItalic": 200 italic,
+);
+
+@mixin embedFonts($fontName, $ext, $fonts: $fontmap) {
+  @each $suffix, $prop in $fonts {
+    @include font-face($fontName, url("../fonts/#{$fontName}-#{$suffix}#{$ext}"), false, nth($prop, 1), nth($prop, 2));
+  }
+}
+
+@mixin outline($outline-width: 1px,
+               $outline-color: darken(white, 25%),
+               $outline-offset: 6px,
+               $round: true) {
+  position: relative;
+  &:before {
+    position: absolute;
+    content:'';
+    visibility: visible;
+    top: -$outline-offset;
+    left: -$outline-offset;
+    right: -$outline-offset;
+    bottom: -$outline-offset;
+    @if ($round) {
+      border-radius: 50%;
+    }
+    border: $outline-width solid $outline-color;
+  }
+}

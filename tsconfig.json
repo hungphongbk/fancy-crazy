@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "declaration": true,
+    "paths": {
+      "@":[
+        "/static/src"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "/static/src/global.d.ts"
+  ],
+  "files": [
+    "/static/src/global.d.ts"
+  ]
+}

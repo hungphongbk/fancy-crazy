@@ -1,0 +1,235 @@
+{
+ "type": "Block",
+ "nodes": [
+  {
+   "type": "Tag",
+   "name": "div",
+   "selfClosing": false,
+   "block": {
+    "type": "Block",
+    "nodes": [
+     {
+      "type": "Tag",
+      "name": "div",
+      "selfClosing": false,
+      "block": {
+       "type": "Block",
+       "nodes": [
+        {
+         "type": "Tag",
+         "name": "div",
+         "selfClosing": false,
+         "block": {
+          "type": "Block",
+          "nodes": [
+           {
+            "type": "Tag",
+            "name": "div",
+            "selfClosing": false,
+            "block": {
+             "type": "Block",
+             "nodes": [
+              {
+               "type": "Tag",
+               "name": "img",
+               "selfClosing": false,
+               "block": {
+                "type": "Block",
+                "nodes": [],
+                "line": 5
+               },
+               "attrs": [
+                {
+                 "name": ":src",
+                 "val": "\"col.image | shopifyImgUrl\"",
+                 "line": 5,
+                 "column": 23,
+                 "mustEscape": true
+                },
+                {
+                 "name": ":class",
+                 "val": "\"[$bs.imgFluid]\""
+                }
+               ],
+               "attributeBlocks": [],
+               "isInline": true,
+               "line": 5,
+               "column": 9
+              }
+             ],
+             "line": 4
+            },
+            "attrs": [
+             {
+              "name": ":class",
+              "val": "\"[$bs.content]\""
+             }
+            ],
+            "attributeBlocks": [],
+            "isInline": false,
+            "line": 4,
+            "column": 7
+           },
+           {
+            "type": "Tag",
+            "name": "div",
+            "selfClosing": false,
+            "block": {
+             "type": "Block",
+             "nodes": [
+              {
+               "type": "Tag",
+               "name": "div",
+               "selfClosing": false,
+               "block": {
+                "type": "Block",
+                "nodes": [
+                 {
+                  "type": "Tag",
+                  "name": "a",
+                  "selfClosing": false,
+                  "block": {
+                   "type": "Block",
+                   "nodes": [
+                    {
+                     "type": "Tag",
+                     "name": "h4",
+                     "selfClosing": false,
+                     "block": {
+                      "type": "Block",
+                      "nodes": [
+                       {
+                        "type": "Text",
+                        "val": "{{col.title}}",
+                        "line": 9,
+                        "column": 44
+                       }
+                      ],
+                      "line": 9
+                     },
+                     "attrs": [
+                      {
+                       "name": ":class",
+                       "val": "\"[$bs.pb2]\"",
+                       "line": 9,
+                       "column": 21,
+                       "mustEscape": true
+                      }
+                     ],
+                     "attributeBlocks": [],
+                     "isInline": false,
+                     "line": 9,
+                     "column": 13
+                    }
+                   ],
+                   "line": 8
+                  },
+                  "attrs": [
+                   {
+                    "name": ":href",
+                    "val": "\"col.url\"",
+                    "line": 8,
+                    "column": 13,
+                    "mustEscape": true
+                   }
+                  ],
+                  "attributeBlocks": [],
+                  "isInline": true,
+                  "line": 8,
+                  "column": 11
+                 }
+                ],
+                "line": 7
+               },
+               "attrs": [],
+               "attributeBlocks": [],
+               "isInline": false,
+               "line": 7,
+               "column": 9
+              }
+             ],
+             "line": 6
+            },
+            "attrs": [
+             {
+              "name": "class",
+              "val": "'collection-detail'",
+              "line": 6,
+              "column": 15,
+              "mustEscape": false
+             },
+             {
+              "name": ":class",
+              "val": "\"[$bs.content]\""
+             }
+            ],
+            "attributeBlocks": [],
+            "isInline": false,
+            "line": 6,
+            "column": 7
+           }
+          ],
+          "line": 3
+         },
+         "attrs": [
+          {
+           "name": ":class",
+           "val": "\"[$bs.ratio11]\""
+          }
+         ],
+         "attributeBlocks": [],
+         "isInline": false,
+         "line": 3,
+         "column": 5
+        }
+       ],
+       "line": 2
+      },
+      "attrs": [
+       {
+        "name": "class",
+        "val": "'collection-item'",
+        "line": 2,
+        "column": 3,
+        "mustEscape": false
+       },
+       {
+        "name": "v-for",
+        "val": "\"(col,index) in collections\"",
+        "line": 2,
+        "column": 20,
+        "mustEscape": true
+       },
+       {
+        "name": ":class",
+        "val": "\"index<3?'collection-big':'collection-small'\"",
+        "line": 2,
+        "column": 56,
+        "mustEscape": true
+       }
+      ],
+      "attributeBlocks": [],
+      "isInline": false,
+      "line": 2,
+      "column": 3
+     }
+    ],
+    "line": 1
+   },
+   "attrs": [
+    {
+     "name": "class",
+     "val": "'index-collections'",
+     "line": 1,
+     "column": 1,
+     "mustEscape": false
+    }
+   ],
+   "attributeBlocks": [],
+   "isInline": false,
+   "line": 1,
+   "column": 1
+  }
+ ],
+ "line": 0
+}

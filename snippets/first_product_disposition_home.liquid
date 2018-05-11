@@ -1,0 +1,176 @@
+<div class="section-header">
+  <h2 class="h1 section-header__title section-header__left">{{ settings.home_feature_title }}</h2>
+  <hr class="hr--small">
+</div>
+<div class="first_product_disposition" id="container">
+
+    {% for product in collections[settings.home_products].products %}
+  
+  {% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+  
+	{% assign var_count = forloop.index %}
+    <div class="item large--one-quarter">
+      
+      
+        {% if settings.sale_button_option == "sale_button_option_one" %}
+    
+       {% assign sale_box_opt = "sale_wheel" %}
+    
+      {% elsif settings.sale_button_option == "sale_button_option_two" %}
+        
+    {% assign sale_box_opt = "sale_wheel-two" %}
+    
+      {% elsif settings.sale_button_option == "sale_button_option_three" %}
+
+    {% assign sale_box_opt = "sale_wheel-three" %}
+   
+        {% elsif settings.sale_button_option == "sale_button_option_four" %}
+
+    {% assign sale_box_opt = "sale_wheel-four" %}
+    
+    
+    {% endif %} 
+
+    
+    {% if on_sale %}
+    
+   
+          <p class=" {{ sale_box_opt  }} ">  
+      {% if product.price_varies %}
+          <strong>{{ settings.productsale }}</strong>  
+            {% else %}
+        <strong>{{ settings.productsale }}</strong>
+     
+      {% endif %}
+            </p>
+    {% endif %}
+   
+        {% if sold_out %}
+            <p class=" {{ sale_box_opt  }} "> 
+   
+               <strong>{{ settings.productsoldout }}</strong>
+    </p>
+               {% endif %}
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="h_pod">
+        <a href="{{ product.url }}">
+          <img src="{{ product | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="image">
+        </a>
+      </div>
+        <div class="home_prod_info">
+          <h5 class="title">{{ product.title }}</h5>
+          
+          
+          
+          <p class="sale">
+    {% comment %}
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+      if your variants have different prices.
+    {% endcomment %}
+   
+            
+            
+          {% if sold_out %}
+      <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+    {% endif %}
+            
+            
+    {% if on_sale %}
+          
+      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+      <s>
+ 
+             {{ product.compare_at_price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.compare_at_price | money | split: '.' | last }}
+           
+            </sup>
+            
+            </s>        
+   
+  {% endif %}   
+            
+            
+            
+            
+            
+            
+            
+     {% if on_sale %}
+      {% if product.price_varies %}
+        {% assign sale_price = product.price | money %}
+      
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+      {% comment %}  {% endcomment %}
+            
+            {% else %}
+            
+                
+               <strong>{{ 'products.product.on_sale' | t }}</strong>
+               
+            
+            {{ product.price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.price | money | split: '.' | last }}
+           
+            </sup>
+            
+      {% endif %}
+            
+    {% else %}
+            
+      {% if product.price_varies %}
+        {% assign price = product.price | money %}
+        {{ 'products.general.from_text_html' | t: price: price }}
+      {% else %}
+       
+               {{ product.price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.price | money | split: '.' | last }}
+           
+            </sup>
+            
+            
+      {% endif %}
+            
+    {% endif %}
+            
+            
+   
+            
+            
+  </p>
+        </div>
+      
+    </div>
+	{% if var_count == 4 or var_count == 8 or var_count == 12 or var_count == 16 or var_count == 20 or var_count == 24  %}
+    <div class="clear_both"></div>
+    {% endif %}
+
+    {% endfor %}
+  
+</div>

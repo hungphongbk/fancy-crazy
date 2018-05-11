@@ -1,0 +1,81 @@
+
+
+{{ 'style.css' | asset_url | stylesheet_tag }}
+{{ 'reset.css' | asset_url | stylesheet_tag }}
+
+
+<section class="cd-hero">
+		<ul class="cd-hero-slider autoplay">
+			<li class="selected">
+              <img src="{{ 'hero_slide_1.jpg' | asset_url }}" alt="tech 2">
+				<div class="cd-full-width">
+					<h2>Hero slider</h2>
+					<p>A simple, responsive slideshow in CSS &amp; jQuery.</p>
+					<a href="http://codyhouse.co/?p=675" class="cd-btn">Article &amp; Download</a>
+				</div> <!-- .cd-full-width -->
+			</li>
+
+			<li>
+              <img src="{{ 'hero_slide_2.jpg' | asset_url }}" alt="tech 2">
+				<div class="cd-half-width">
+					<h2>Slide title here</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In consequatur cumque natus!</p>
+					<a href="#0" class="cd-btn">Start</a>
+					<a href="#0" class="cd-btn secondary">Learn More</a>
+				</div> <!-- .cd-half-width -->
+
+              
+				
+			</li>
+
+			<li>
+				<img src="{{ 'hero_slide_1.jpg' | asset_url }}" alt="tech 2">
+
+				<div class="cd-half-width">
+					<h2>Slide title here</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In consequatur cumque natus!</p>
+					<a href="#0" class="cd-btn">Start</a>
+					<a href="#0" class="cd-btn secondary">Learn More</a>
+				</div> <!-- .cd-half-width -->
+				
+			</li>
+
+			<li class="cd-bg-video">
+              
+              <img src="{{ 'hero_slide_2.jpg' | asset_url }}" alt="tech 2">
+				<div class="cd-full-width">
+					<h2>Slide title here</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, explicabo.</p>
+					<a href="#0" class="cd-btn">Learn more</a>
+				</div> <!-- .cd-full-width -->
+
+				
+			</li>
+
+			<li>
+              <img src="{{ 'hero_slide_1.jpg' | asset_url }}" alt="tech 2">
+				<div class="cd-full-width">
+					<h2>Slide title here</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, explicabo.</p>
+					<a href="#0" class="cd-btn">Start</a>
+					<a href="#0" class="cd-btn secondary">Learn More</a>
+				</div> <!-- .cd-full-width -->
+			</li>
+		</ul> <!-- .cd-hero-slider -->
+
+		<div class="cd-slider-nav" style="display:none;">
+			<nav>
+				<span class="cd-marker item-1"></span>
+				
+				<ul>
+					<li class="selected"><a href="#0">Slider #1</a></li>
+					<li><a href="#0">Slider #2</a></li>
+					<li><a href="#0">Slider #3</a></li>
+					<li><a href="#0">Slider #4</a></li>
+					<li><a href="#0">Slider #5</a></li>
+				</ul>
+			</nav> 
+		</div> <!-- .cd-slider-nav -->
+	</section> <!-- .cd-hero -->
+
+{{ 'main.js' | asset_url | script_tag }}

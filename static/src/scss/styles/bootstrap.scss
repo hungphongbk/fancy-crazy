@@ -1,0 +1,12 @@
+@import "../inc";
+@import "~bootstrap/scss/bootstrap";
+@import "~vue-transition-css/dist/css/vue-transition.css";
+@import "~slick-carousel/slick/slick.scss";
+
+//@import "bs-4-switch";
+@include embedFonts("Lato", ".woff2");
+//@include embedFonts("OpenSansCondensed", ".woff2", (
+//  "Bold": 700 normal,
+//  "Light": 100 normal
+//))
+@include font-face("Oswald", url("../fonts/Oswald.woff2"));

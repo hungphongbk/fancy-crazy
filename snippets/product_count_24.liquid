@@ -1,0 +1,117 @@
+     {% if settings.enable_timer_model == 'timer_model1' %}
+ 
+
+        <div id="future_date">
+
+        </div>
+
+
+        {{ 'jquery.countdownTimer.js' | asset_url | script_tag }}
+
+
+        <script>
+
+
+          var someDate = new Date();	
+          var dd = someDate.getDate()+ 1;
+          var mm = someDate.getMonth() + 1;
+          var y = someDate.getFullYear();
+
+
+          var nextdayDate = y + '/'+ mm + '/'+ dd;
+          //alert(nextdayDate);
+          var ddate=nextdayDate+" 00:00:00";
+          //	var ddate="2016/09/13 00:00:00";
+
+          $(function(){
+            $('#future_date').countdowntimer({
+              dateAndTime : ddate,
+              size : "lg",
+              regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})",
+              regexpReplaceWith: "<ul class='countdown'><li><span class='days'>$1</span><p class='days_ref'>Days</p></li><li> <span class='hours'>$2</span><p class='hours_ref'>Hours</p> </li><li> <span class='minutes'>$3</span> <p class='minutes_ref'>Minutes</p>   </li> <li> <span class='seconds'>$4</span><p class='seconds_ref'>Seconds</p></li> </ul>"
+            });
+          });
+        </script>
+
+
+
+
+        {% elsif settings.enable_timer_model == 'timer_model2' %}
+
+
+        {{ 'flipclock.js' | asset_url | script_tag }}
+        {{ 'flipclock.css' | asset_url | stylesheet_tag }}
+        <div class="clock"></div>
+
+        <script type="text/javascript">
+
+          var someDate = new Date();	
+          var dd = someDate.getDate()+ 1;
+          var mm = someDate.getMonth() + 1;
+          var y = someDate.getFullYear();
+
+
+          var nextdayDate = y + ','+ mm + ','+ dd;
+
+
+          var date  = new Date(nextdayDate);
+          var now   = new Date();
+          var diff  = date.getTime()/1000 - now.getTime()/1000;
+
+          var clock = $('.clock').FlipClock(diff, {
+            clockFace: 'DailyCounter',
+            countdown: true
+          });
+        </script>
+
+
+     {% elsif settings.enable_timer_model == 'timer_model3' %}
+
+
+        <div id="future_date">
+
+        </div>
+
+
+        {{ 'jquery.countdownTimer.js' | asset_url | script_tag }}
+
+
+        <script>
+
+
+          var someDate = new Date();	
+          var dd = someDate.getDate()+ 1;
+          var mm = someDate.getMonth() + 1;
+          var y = someDate.getFullYear();
+
+
+          var nextdayDate = y + '/'+ mm + '/'+ dd;
+          //alert(nextdayDate);
+           var ddate=nextdayDate+" 00:00:00";
+         //	var ddate="0000/00/00 00:00:00";
+
+          $(function(){
+            $('#future_date').countdowntimer({
+              dateAndTime : ddate,
+              size : "lg",
+              regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})",
+              regexpReplaceWith: "<ul class='countdown model3_24'><li><span class='days'>$1</span><p class='days_ref'>Days</p></li><li> <span class='hours'>$2</span><p class='hours_ref'>Hours</p> </li><li> <span class='minutes'>$3</span> <p class='minutes_ref'>Minutes</p>   </li> <li> <span class='seconds'>$4</span><p class='seconds_ref'>Seconds</p></li> </ul>"
+            });
+          });
+        </script>
+
+
+
+
+     {% elsif settings.enable_timer_model == 'timer_model4' %}
+
+
+     {% elsif settings.enable_timer_model == 'timer_model5' %}
+
+
+     {% elsif settings.enable_timer_model == 'timer_model6' %}
+
+    {% endif %}
+
+
+ 

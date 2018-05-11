@@ -1,0 +1,56 @@
+$theme-red: #db1600;
+
+$animation-time: .16s;
+
+//$body-bg: #f0f0f0;
+
+$body-color: #4d5866;
+
+$font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif !default;
+
+$font-size-base: 1rem;
+
+$grid-gutter-width: 30px;
+
+//$container-large-desktop: 1250px + $grid-gutter-width;
+
+$navbar-height: 100px;
+
+//$border-radius-base: 0;
+
+$navbar-padding-horizontal: $grid-gutter-width;
+
+$sizes: (
+  60: 60%
+);
+
+$spacer: 1rem;
+$spacers: (
+  6: $spacer * 4.5
+);
+
+$link-color: $theme-red;
+$link-color-hover: darken($theme-red, 5%);
+$gray-400: #ced4da;
+$border-color: $gray-400;
+$pagination-border-color: $border-color;
+
+$theme-colors: (
+  'primary': $theme-red,
+  'theme-red': $theme-red
+);
+
+$navbar-light-color: #333;
+$navbar-light-hover-color: darken($theme-red, 5%);
+$navbar-light-active-color: $theme-red;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1300px
+) !default;
+
+$spacers: (
+  6:$spacer*4.5
+)

@@ -1,0 +1,370 @@
+{{ 'jquery.plugin.js' | asset_url | script_tag }}
+{{ 'jquery.countdown.js' | asset_url | script_tag }}
+ {{ 'bootstrap.min.js' | asset_url | script_tag }}
+{%if product.metafields.scarcity.stockbar == '2'%}
+{{ 'progressjs2.css' | asset_url | stylesheet_tag }}
+{{ 'progress2.js' | asset_url | script_tag }}
+{% else %}
+{{ 'progressjs.css' | asset_url | stylesheet_tag }}
+{{ 'progress.js' | asset_url | script_tag }}
+{% endif %}
+
+
+ 
+
+{%if product.metafields.scarcity.timerstyle == '2'%}
+{{ 'timer2.css' | asset_url | stylesheet_tag }}
+{{ 'timer2.js' | asset_url | script_tag }}
+{% else %}
+{{ 'timer.css' | asset_url | stylesheet_tag }}
+{{ 'timer.js' | asset_url | script_tag }}
+
+
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function() { 
+$("#timer").timer(); 
+});
+</script>
+{%endif%}
+
+
+
+
+<script type="text/javascript"> 
+$(document).ready(function() {
+  $("#progress_bar").progressbar(); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+span#hm_timer {
+    font-size: 30px;
+    letter-spacing: 0px;
+    color: #555555;
+    float: left;
+    padding-left: 3px;
+}
+  
+  table#timertwohour {
+    width: 100% !important;
+    margin: 0 auto ;
+}
+  table#timertwohour tr:last-child td {
+    width: 33%;
+}
+
+  
+span#hm_timer>span {
+    /* float: left; */
+       padding-right: 13px;
+    padding-left: 15px;
+}
+  
+  .model6>tbody>tr:first-child>td {
+    padding-left: 0px !important;
+}
+#timertwohour tr td {
+    padding: 0px 10px ;
+    border: 0 !important;
+    font-weight: 600;
+    text-align: center;
+    color: #555555;
+}
+  span#hm_timer {
+    float: left;
+    width: 100%;
+}
+  table#timertwohour.model3 span samp {
+    width: 26%;
+    float: left;
+}
+  table#timertwohour.model3 span>span {
+    width: 10%;
+    float: left;
+}
+  span#hm_timer>span {
+    float: left;
+   padding-right: 13px;
+    padding-left: 13px;
+    width: 8%;
+}
+  span#hm_timer samp {
+    width: 26%;
+    float: left;
+}
+  .model5>tbody>tr>td>#hm_timer>samp {
+    width: 33%;
+}
+.model5>tbody>tr:last-child td {
+    width: 22% !Important;
+}
+  .model6>tbody>tr:last-child td {
+    width: 22% !Important;
+}
+ @font-face {
+    font-family:Segment7Standard;
+    src: url('https://cdn.shopify.com/s/files/1/1475/3640/t/2/assets/Segment7Standard.otf');
+} 
+  
+  
+  table#timertwohour.model3 span, table#timertwohour.model3 samp {
+    font-family: Segment7Standard;
+    font-size: 60px;
+}
+ .model6>tbody>tr:first-child>td>span#hm_timer>i {
+    display: none;
+} 
+  
+  .progressbar div {
+    background: #d95350;
+    border-radius: 7px 7px 7px 7px;
+    height: 11px;
+}
+            
+            ul.countdown {
+                list-style: none;
+               /* margin: 75px 0 0;*/
+                padding: 0;
+                display: block;
+                text-align: center;
+            }
+
+            ul.countdown li {
+                display: inline-block;
+            }
+
+            ul.countdown li span {
+                font-size: 50px;
+                font-weight: 300;
+                line-height: 80px;
+            }
+
+            ul.countdown li.seperator {
+                font-size: 80px;
+                line-height: 70px;
+                vertical-align: top;
+            }
+
+ul.countdown li p {
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
+   /* margin-left: 10px;*/
+    text-align: center;
+    text-transform: capitalize;
+}
+  
+  ul.countdown li span.days, ul.countdown li span.hours, ul.countdown li span.minutes, ul.countdown li span.seconds {
+   /* background: #CA7128 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 36px;
+    width: 87px;
+    */
+    color: #555555;
+    display: inline-block;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px 8px;
+    width: 50px;
+}
+
+.others-bottom1 {
+    display: none;
+}
+  
+  .add_disbale {display: none !important;}
+  .add_enable {display: block !important;}
+
+    #product .progress {
+    height: 11px;
+    background-color: #ffe8e8;
+    border-radius: 7px 7px 7px 7px;
+}      
+  #product .progress-bar-success {
+    background-color: #d95350;
+}
+  
+  
+  table#timertwohour.model3 span {
+    font-family: Segment7Standard !important;
+    font-size: 60px !important;
+    padding-right: 3px;
+    padding-left: 2px;
+}
+  
+  table#timertwohour.model3 td {
+    font-size: 16px !important;
+    font-weight: 100;
+    text-transform: uppercase;
+    padding-right: 25px !important;
+}
+  
+  
+ .model3_24 li p {
+    margin-left: 31px !important;
+   text-transform: uppercase !important;
+}
+  .model3_24 span {
+    font-family: Segment7Standard !important;
+    font-size: 57px !important;
+  }
+  
+  .model3_24 li {
+    margin-left: 19px;
+}
+  
+  
+  
+  /*model 4 csss start*/
+  
+  
+  
+  
+.countdown-container {
+    position: relative;
+    min-height: 160px;
+}
+
+.clock-item .inner {
+	height: 0px;
+	padding-bottom: 100%;
+	position: relative;	
+	width: 100%;
+}
+
+.clock-canvas {
+	background-color: rgba(255, 255, 255, .1);
+	border-radius: 50%;
+	height: 0px;
+	padding-bottom: 100%;
+}
+
+.text {
+	color: #fff;	
+	font-size: 30px;
+	font-weight: bold;	
+	margin-top: -50px;
+	position: absolute;
+	top: 50%;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+	width: 100%;
+}
+
+.text .val {
+    font-size: 40px;
+    margin-top: 18px;
+    color: #3c3c3c;
+    text-shadow: none;
+}
+
+.text .type-time {
+    font-size: 16px;
+    margin-top: 18px;
+    color: #3c3c3c;
+    text-shadow: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.clock-item {
+		margin-bottom: 30px;		
+	}
+}
+
+@media (max-width: 767px) {
+	.clock-item {
+		margin: 0px 30px 30px 30px;
+	}
+  .grid, .grid--rev, .grid--full, .grid-uniform {
+    margin-left: 0px ;
+}
+}
+  
+  
+  /* model 4 css end*/
+  
+ /* model 5 css start*/
+  .model5 tr td span {
+    font-size: 30px;
+    letter-spacing: 0px;
+    color: #ffffff;
+    padding-left: 3px;
+}
+  
+  .model5 tr td span>span {
+    /* float: left; */
+    padding-right: 13px;
+    padding-left: 24px !important; 
+}
+  .model5 tr {
+    border: 1px solid #C0392B;
+}
+  .model5 tr:first-child td:first-child {
+    background-color: #C0392B;
+}
+  .model5 tr:last-child  {
+	border:none;
+}
+  .model5 tr td:last-child span {
+    color: #666 !important;
+}
+  .model5 tr:last-child td {
+    font-weight: 100 !important;
+}
+  
+  /* model 5 css end*/
+  
+  
+   /* model 6 css start*/
+  .model6 tr td span {
+    font-size: 30px;
+    letter-spacing: 0px;
+    color: #80a3ca !important;
+    padding-left: 3px;
+}
+  .model6 tr td {
+    padding: 0px 10px !important;
+    border: 0 !important;
+    font-weight: 100;
+    text-align: center;
+    color: #555555;
+               
+}
+ .model6 span#hm_timer>span {
+    background-image: url(https://cdn.shopify.com/s/files/1/1475/3640/t/2/assets/timer.png);
+    background-size: 100% 100%;
+    padding: 7px 11px;
+   width: 33%;
+} 
+  
+  .model6 tr:first-child td:first-child {
+  	 background-image: url(https://cdn.shopify.com/s/files/1/1475/3640/t/2/assets/timer.png);
+    background-size: 100% 100%;
+  }
+  
+   /* model 6 css end*/
+  
+  
+  .counter_box {
+    text-align: center;
+}
+  
+ 
+  
+    </style>

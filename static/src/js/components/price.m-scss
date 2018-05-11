@@ -1,0 +1,28 @@
+.price{
+  display: inline-block;
+  .sale-percentage{
+    vertical-align: bottom;
+  }
+
+}
+%part{
+  .priceMd & {
+    margin-right: .3rem;
+  }
+  .priceLg & {
+    margin-right: 1.2rem;
+    font-weight: 400;
+  }
+}
+:global(.badge){
+  @extend %part;
+}
+.originalPrice{
+  @extend %part;
+  .sale & {
+    opacity: .65;
+  }
+}
+.salePrice{
+  @extend %part;
+}

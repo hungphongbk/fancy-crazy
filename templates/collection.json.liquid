@@ -1,0 +1,14 @@
+{% layout 'json' %}
+{% paginate collection.products by 24 %}
+{
+  "title": {{ collection.title | json }},
+  "totalPages": {{ paginate.pages | json }},
+  "products": [
+    {% for product in collection.products %}
+    {% include 'product-item-json' %}
+    {% unless forloop.last %},
+    {% endunless %}{% endfor %}
+  ]
+}
+{% endpaginate %}
+

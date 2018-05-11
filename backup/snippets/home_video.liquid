@@ -1,0 +1,55 @@
+
+
+  {% if settings.enable_video_1 and settings.enable_video_2 %}
+<hr>
+<div class="grid product-single">
+
+  <div class="grid__item large--one-half  text-center">
+    <h2 class="section-header__center video_title">{{ settings.video_title_1 }}</h2>
+    <p>{{ settings.video_link_1 }}</p>
+    
+    <h5 class="title">{{ settings.video_text_1 }}</h5>
+  </div>
+  
+  <div class="grid__item large--one-half text-center">
+      <h2 class="section-header__center video_title">{{ settings.video_title_2 }}</h2>
+    <p>{{ settings.video_link_2 }}</p>
+    
+    <h5 class="title">{{ settings.video_text_2 }}</h5>
+  </div>
+  
+</div>
+
+    {% elsif settings.enable_video_1 %}
+<hr>
+<div class="grid product-single">
+
+  <div class="grid__item text-center">
+    <h2 class="section-header__center video_title">{{ settings.video_title_1 }}</h2>
+    <p>{{ settings.video_link_1 }}</p>
+    
+    <h5 class="title">{{ settings.video_text_1 }}</h5>
+  </div>
+  
+ 
+  
+</div>
+
+    {% elsif settings.enable_video_2 %}
+<hr>
+<div class="grid product-single">
+
+  
+  
+  <div class="grid__item text-center">
+      <h2 class="section-header__center video_title">{{ settings.video_title_2 }}</h2>
+    <p>{{ settings.video_link_2 }}</p>
+    
+    <h5 class="title">{{ settings.video_text_2 }}</h5>
+  </div>
+  
+</div>
+
+  {% endif %}
+
+

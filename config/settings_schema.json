@@ -1,0 +1,51 @@
+[
+  {
+    "name": "theme_info",
+    "logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0070\/7032\/files\/2010_6_23_Shopify-Green_256x256.jpg",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shopify Booster"
+      },
+      {
+        "type": "paragraph",
+        "content": "v1.6"
+      },
+      {
+        "type": "paragraph",
+        "content": "Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code."
+      },
+      {
+        "type": "paragraph",
+        "content": "Contact [Shopify Booster Support](https:\/\/shopifybooster.leadpages.co\/contact\/) for any kind of help."
+      }
+    ]
+  },
+  {
+    "name": "Trang chủ - sản phẩm đặc trưng",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Tạo một Collection chứa những sản phẩm sẽ hiện trên phần **sản phẩm đặc trưng** và chọn Collection đó phía dưới đây"
+      },
+      {
+        "type": "collection",
+        "id": "index_featured_products",
+        "label": "Sản phẩm đặc trưng"
+      }
+    ]
+  },
+  {
+    "name": "Cài đặt khác",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cài đặt khác"
+      },
+      {
+        "type": "paragraph",
+        "content": "Truy cập https:\/\/static.letbuynow.com\/settings.html"
+      }
+    ]
+  }
+]

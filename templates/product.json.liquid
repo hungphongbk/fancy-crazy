@@ -1,0 +1,31 @@
+{% layout 'json' %}
+{% assign col = product.collections | first %}
+{% assign variant = product.selected_or_first_available_variant %}
+{
+  "id": {{ product.id }},
+  "handle": {{ product.handle | json }},
+  "title": {{ product.title | upcase | json }},
+  "content": {{ product.content | json }},
+  "collection": {
+    "title": {{ col.title | json }},
+    "url": {{ col.url | json }},
+  },
+  "url": "{{ product.url }}",
+  "images": [{% for img in product.images %}
+    {{ img.src | product_img_url: 'large' | replace: '//cdn.shopify.com':'' | json }}
+    {% unless forloop.last %},{% endunless %}{% endfor %}],
+  "prices": {% include 'prices' with variant %},
+  "options": [{% for op in product.options %}
+    "{{ op }}"
+    {% unless forloop.last %},{% endunless %}
+    {% endfor %}],
+  "variants": [{% for variant in product.variants %}
+    {
+      "id": {{ variant.id }},
+      "title": {{ variant.title | json }},
+      "prices": {% include 'prices' with variant %},
+      "image": {{ variant.image.src | product_img_url : 'small' | replace: '//cdn.shopify.com':'' | json }},
+      "available": {{ variant.available }}
+    }
+    {% unless forloop.last %},{% endunless %}{% endfor %}]
+}

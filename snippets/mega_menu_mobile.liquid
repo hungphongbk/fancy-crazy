@@ -1,0 +1,245 @@
+<nav class="nav-bar mobile_nav" role="navigation"> 
+  <div class="wrapper">
+   
+        <div class="medium-down--hide">
+        
+          <!-- //site-nav -->
+        <ul class="mobile-nav">
+      <li class="mobile-nav__item mobile-nav__search">
+        {% include 'search-bar' %}
+      </li>
+      {% for link in linklists.[settings.menu_primary].links %}
+        {% assign item = link.title | downcase %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+            <div class="mobile-nav__has-sublist">
+              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              <div class="mobile-nav__toggle">
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">
+                  <span class="icon icon-plus" aria-hidden="true"></span>
+                  <span class="fallback-text">See More</span>
+                </button>
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">
+                  <span class="icon icon-minus" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                </button>
+              </div>
+            </div>
+            <ul class="mobile-nav__sublist">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
+                  <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          {% capture megamenu_1 %}megamenu_1_parent{% endcapture %}
+          {% capture megamenu_2 %}megamenu_2_parent{% endcapture %}
+          {% capture megamenu_3 %}megamenu_3_parent{% endcapture %}
+
+          {% if settings[megamenu_1] == item or settings[megamenu_2] == item  or settings[megamenu_3] == item %}
+              {% for i in (1..3) %}
+                  {%capture megamenu%}megamenu_{{i}}_parent{%endcapture%}
+                  {% if settings[megamenu] == item %}
+                      <li class=" mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+
+                          <div class="mobile-nav__has-sublist">
+                              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+                              <div class="mobile-nav__toggle">
+                                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">
+                                  <span class="icon icon-plus" aria-hidden="true"></span>
+                                  <span class="fallback-text">See More</span>
+                                </button>
+                                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">
+                                  <span class="icon icon-minus" aria-hidden="true"></span>
+                                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                                </button>
+                              </div>
+                            </div>
+                          <ul class="mobile-nav__sublist">
+                              <li class="awemenu-megamenu-item">
+                                <div class="grid ">
+                                  {% for j in (1..4) %}
+                                  {% capture mega_title %}megamenu_{{ i }}_column_{{ j }}_title{% endcapture %}
+                                  {% capture mega_col %}megamenu_{{ i }}_column_{{ j }}_menu{% endcapture %}
+
+                                      <div class="grid__item large--one-quarter">
+                                        <h3>{{ settings[mega_title] }}</h3>
+                                        <ul class="super">
+                                              {% for link in linklists[settings[mega_col]].links %}
+                                              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                              {% endfor %}
+                                            </ul>
+                                      </div>
+                                    {% endfor %}
+                                      <div class="grid__item large--one-half">
+                                        {% capture mega_title %}megamenu_{{ i }}_column_5_title{% endcapture %}
+                                        {% capture _image1 %}megamenu_{{ i }}_image_1.jpg{% endcapture %}
+                                        {% capture _url %}megamenu_{{ i }}_image_1_url{% endcapture %}
+                                        {% if settings[mega_title] !="" %}
+                                        <h3>{{ settings[mega_title] }}</h3>
+                                        {% endif %}
+                                        {% if settings[_url] != blank %}
+                                          <a href="{{ settings[_url] }}">
+                                        {% endif %}
+                                          <img src="{{ _image1 | asset_url }}" alt="menu">
+                                        {% if settings[_url] != blank %}
+                                          </a>
+                                        {% endif %}
+                                      </div>
+                                      <div class="grid__item large--one-half">
+                                        {% capture mega_title2 %}megamenu_{{ i }}_column_6_title{% endcapture %}
+                                        {% capture _image2 %}megamenu_{{ i }}_image_2.jpg{% endcapture %}
+                                        {% capture _url2 %}megamenu_{{ i }}_image_2_url{% endcapture %}
+                                        {% if settings[mega_title] !="" %}
+                                        <h3>{{ settings[mega_title] }}</h3>
+                                        {% endif %}
+                                        {% if settings[_url] != blank %}
+                                          <a href="{{ settings[_url2] }}">
+                                        {% endif %}
+                                          <img src="{{ _image2 | asset_url }}" alt="menu">
+                                        {% if settings[_url2] != blank %}
+                                          </a>
+                                        {% endif %}
+                                      </div>
+                                </div>
+                            </li>
+                          </ul>
+                      </li>
+                  {% endif %}
+              {% endfor %}
+          {% else %}
+              <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
+                <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %}
+        If customer accounts are enabled, provide login and create account links
+      {% endcomment %}
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <li class="mobile-nav__item">
+            {% if customer.first_name != blank %}
+              {% capture first_name %}{{ customer.first_name }}{% endcapture %}
+              <a href="/account">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
+            {% else %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+          </li>
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </li>
+        {% else %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_in' | t | customer_login_link }}
+          </li>
+          {% if shop.customer_accounts_optional %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.create_account' | t | customer_register_link }}
+          </li>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </ul>
+   
+        </div>
+        <div class="large--hide medium-down--show">
+          <div class="grid">
+            <div class="grid__item grid--full">
+              <div class="site-nav--mobile mng-srch">
+                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+                </button>
+              </div>
+              <div class="mng-srch">
+              <a href="/account/login">
+                <i class="fa fa-user"></i>
+               
+               </a>
+            </div>
+            
+            <div class="mng-srch">
+              <a href="/cart">
+              <span id="CartCount" class="mobile_cart_item">{{ cart.item_count }}</span>
+               <i class="fa fa-shopping-cart"></i>
+                
+              </a>
+            </div>
+            
+            <div class="mng-srch">
+              <a href="javascript:void(0)" id="flip">
+                <i class="fa fa-search"></i>
+              
+              </a>
+            </div>
+            </div>
+            
+            
+            <div class="grid__item one-half text-right for-nav-menu">
+              <div class="site-nav--mobile">
+                <a href="/cart" class="js-drawer-open-right site-nav__link" aria-controls="CartDrawer" aria-expanded="false">
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-cart" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+    <div id="panel">
+        <!-- /snippets/search-bar.liquid -->
+
+
+<form action="/search" method="get" class="input-group search-bar" role="search">
+  
+  <input type="search" name="q" value="" placeholder="Search our store" class="input-group-field" aria-label="Search our store">
+  <span class="input-group-btn">
+    <button type="submit" class="btn icon-fallback-text">
+      <span class="icon icon-search" aria-hidden="true"></span>
+      <span class="fallback-text">Search</span>
+    </button>
+  </span>
+</form>
+
+       </div>       
+        
+        
+        
+      </div>
+    </nav>
+
+
+
+<script> 
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideToggle("fast");
+    });
+});
+</script>
+
+<style> 
+#panel, #flip {
+  
+}
+
+#panel {
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+}
+</style>
+
+ 
+
+
+

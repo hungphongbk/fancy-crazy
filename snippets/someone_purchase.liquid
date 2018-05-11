@@ -1,0 +1,175 @@
+
+<script>
+		$(function() {
+$('#someone-purchased').show();
+       
+        /*  var poptime= "{{ settings.product_every_interval_time }}";
+    
+           var poptime= poptime*1000;
+          
+           var producttime= "{{ settings.new_product_every_interval_time }}";
+    
+           var producttime= producttime*1000;
+          
+          var sumtime=poptime+producttime-1000;
+          var sumtimenotminus=poptime+producttime;
+          var halftime=sumtime/2;
+           */  
+          var mytimeAgo = ['0 minute', '1 minute', '5 minutes', '10 minutes', '12 minutes', '14 minutes', '16 minutes', '18 minutes', '20 minutes', '25 minutes', '30 minutes', '35 minutes', '40 minutes','42 minutes','45 minutes', '50 minutes', '1 hours'];  
+
+                var randomlytimeAgo = Math.floor(Math.random() * mytimeAgo.length);
+
+                var currentmytimeAgo = mytimeAgo[randomlytimeAgo];
+
+
+                $(".timeAgo").text(currentmytimeAgo+" ago"); 
+            
+          
+          $("#someone-purchased > div:gt(0)").hide();
+
+          
+			setInterval(function() {
+			  $('#someone-purchased > div:first')
+              .fadeOut(500)
+			    .next()
+			    .fadeIn(0)
+			    .end()
+			    .appendTo('#someone-purchased');
+              
+              
+               var mytimeAgo = ['0 minute', '1 minute', '5 minutes', '10 minutes', '12 minutes', '14 minutes', '16 minutes', '18 minutes', '20 minutes', '25 minutes', '30 minutes', '35 minutes', '40 minutes','42 minutes','45 minutes', '50 minutes', '1 hours'];  
+
+                var randomlytimeAgo = Math.floor(Math.random() * mytimeAgo.length);
+
+                var currentmytimeAgo = mytimeAgo[randomlytimeAgo];
+
+
+                $(".timeAgo").text(currentmytimeAgo+" ago");
+     
+     
+			},  20000);
+          
+          
+          
+          	setInterval(function() {
+			             
+              
+          $('#someone-purchased').fadeIn(function() {    $(this).removeClass("fade-out"); }).delay(5000).fadeIn( function() {  $(this).addClass("fade-out"); }).delay(15000); 
+
+              
+          // $('#someone-purchased').fadeIn(function() {    $(this).removeClass("fade-out"); }).delay(5000).fadeIn("slow", function() {  $(this).addClass("fade-out"); }).delay(5000); 
+                   
+          // $('#someone-purchased').addClass('fade-in',5000).removeClass('fade-out').addClass('fade-out',5000).removeClass('fade-in');
+        
+            }, 5000);
+          
+
+		});
+	</script>
+   
+
+
+
+{{ 'buttom_popup.scss.css' | asset_url | stylesheet_tag }}
+
+
+{% assign randomly_collection = collections[settings.popup_randomly_collection] %}
+
+
+
+{% if settings.popup_enable %}
+
+
+
+<div id="someone-purchased" class="customized fade-in" 
+     style="display:none;">
+ 
+  
+  
+  
+ 
+     {% capture index %}{{ 'now' | date: '%S' | times: randomly_collection.products.size | divided_by: 60 }}{% endcapture %}
+{% for product in randomly_collection.products offset:index limit:1000 %}
+
+ 
+
+ <div>
+  
+        <img src="{{ product | img_url: '120x85' }}">
+         <p>
+
+        {{ settings.buttom_message }}
+        <a href="{{ product.url }}">
+         {{ product.title }}</a>
+           
+           {% if settings.popup_ago_custom_time %}
+          <small class="timeAgo"></small>
+           
+             {% endif %}
+        </p>
+  </div>
+
+    {% endfor %}
+    
+  </div>
+
+  
+
+
+
+
+{% endif %}
+
+
+
+<!--
+
+<script>
+  
+  
+         
+  var mytimeAgo = ['0 minute', '1 minute', '5 minutes', '10 minutes', '12 minutes', '14 minutes', '16 minutes', '18 minutes', '20 minutes', '25 minutes', '30 minutes', '35 minutes', '40 minutes','42 minutes','45 minutes', '50 minutes', '1 hours'];  
+
+var randomlytimeAgo = Math.floor(Math.random() * mytimeAgo.length);
+
+var currentmytimeAgo = mytimeAgo[randomlytimeAgo];
+  
+document.getElementsByClassName("timeAgo").innerHTML=currentmytimeAgo+"  ago";
+   
+   
+  
+  
+  
+  
+ 
+//var myMinute = ['30', '35', '40', '45','55', '60','70', '90','120','150','180'];  
+
+var myMinute = ['300','300'];  
+
+var randMinute = Math.floor(Math.random() * myMinute.length);
+
+var currentMinute = myMinute[randMinute];
+
+var get_secound = currentMinute*1000;
+
+    var nIntervId;
+ 
+  nIntervId = setInterval(flashText, get_secound);
+ 
+    function flashText() {
+      
+
+    var oElem1 = document.getElementById("someone-purchased");
+    oElem1.style.display = oElem1.style.display == "none" ? "block" : "none";
+     }
+ 
+    function stopTextColor() {
+      clearInterval(nIntervId);
+    }
+  </script>
+-->
+
+
+
+
+

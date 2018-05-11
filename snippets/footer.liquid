@@ -1,0 +1,296 @@
+       <div class="wrapper">  
+       <div class="clear:both;"></div>
+        <div class="grid">
+          
+            <div class="grid__item large--one-quarter medium--one-half">
+                                 
+              {%comment%}
+              {% if settings.footer_newsletter_enable %}
+              {% if settings.newsletter_form_action != blank %}
+              {% assign form_action = settings.newsletter_form_action %}
+              {% else %}
+              {% assign form_action = '#' %}
+              {% endif %}
+              <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                </span>
+              </form>
+              {% endif %}
+              
+              {% endcomment %}
+              
+              <h4>{{ settings.footer-4-heading }}</h4>
+               <p>{{ settings.footer-4-content}}</p>
+
+              {% if settings.footer_social_enable %}
+               <h5>Follow Us</h5>
+              <ul class="social_footer">
+              {% if settings.social_twitter_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+                        <span class="icon icon-twitter" aria-hidden="true"></span>
+                        <span class="fallback-text">Twitter</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if settings.social_facebook_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+                        <span class="icon icon-facebook" aria-hidden="true"></span>
+                        <span class="fallback-text">Facebook</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                    {% if settings.social_youtube_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube">
+                        <span class="icon icon-youtube" aria-hidden="true"></span>
+                        <span class="fallback-text">Youtube</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                   {% if settings.social_instagram_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram">
+                        <span class="icon icon-instagram" aria-hidden="true"></span>
+                        <span class="fallback-text">Instagram</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                
+                
+                   {% if settings.social_pinterest_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_pinterest_link }}" title="{{ shop.name }} on Pinterest">
+                        <span class="icon icon-pinterest" aria-hidden="true"></span>
+                        <span class="fallback-text">Pinterest</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                
+                
+                {% comment %}
+                <li>
+                  <a href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+
+                  </a>
+                </li>
+                {% endcomment %}
+              </ul>
+              {% endif %}
+              
+            </div>
+          
+          
+          
+            <div class="grid__item large--one-half medium--one-half">
+            
+              
+                <div class="grid__item large--one-third medium--one-half">
+              
+                {% if linklists[settings.footer].links.size > 0  %}   
+                  <h4>{{ settings.footer_2_heading }}</h4>
+                <ul class="inline-list">
+                  
+                {% for link in linklists[settings.footer].links %}
+
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+
+                {% endfor %}
+                </ul>
+           
+               {% endif %}   
+              </div>
+              
+               <div class="grid__item large--one-third medium--one-half">
+              {% if linklists[settings.footer-1].links.size > 0  %}
+
+                <h4>{{ settings.footer_3_heading }}</h4>
+                    <ul class="inline-list">
+                    {% for link in linklists[settings.footer-1].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+              {% endif %}
+              </div>
+          
+          
+              
+                <div class="grid__item large--one-third medium--one-half">
+              {% if linklists[settings.footer-2].links.size > 0  %}
+
+                <h4>{{ settings.footer_4_heading }}</h4>
+                    <ul class="inline-list">
+                    {% for link in linklists[settings.footer-2].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+              {% endif %}
+              </div>
+          
+              
+          
+          </div>
+          
+          <div class="clear"></div>
+          
+
+          
+            <div class="grid__item large--one-quarter medium--one-half">
+            {% if settings.footer_logo_enable %}
+              
+              <img src="{{ 'footer_logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+            {% endif %}
+              
+              
+              {% if settings.footer_newsletter_enable %}
+              <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
+              {% if settings.newsletter_form_action != blank %}
+                {% assign form_action = settings.newsletter_form_action %}
+              {% else %}
+                {% assign form_action = '#' %}
+              {% endif %}
+              <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                </span>
+              </form>
+             
+              {% endif %}
+              
+              {% comment %}
+              {% if settings.footer_newsletter_enable %}
+              {% if settings.newsletter_form_action != blank %}
+                {% assign form_action = settings.newsletter_form_action %}
+              {% else %}
+                {% assign form_action = '#' %}
+              {% endif %}
+              <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                </span>
+              </form>
+              {% endif %}
+              {% endcomment %}
+             
+            </div>
+          <div class="clear"></div>
+          
+          <div class="grid__item text-center">
+            
+            <hr>
+            
+            {% comment %}
+              Loop through available payment methods and show their icons.
+            {% endcomment %}
+            {% unless shop.enabled_payment_types == empty %}
+             <!-- <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>-->
+              <ul class="inline-list payment-icons">
+                {% if settings.pay_visa %}
+                {% assign pay_visa = 'visa' %}
+                {% endif %}
+                {% if settings.pay_master %}
+                {% assign pay_master = 'master' %}
+                {% endif %}
+                {% if settings.pay_american_express %}
+                {% assign pay_american_express = 'american_express' %}
+                {% endif %}
+                {% if settings.pay_paypal %}
+                {% assign pay_paypal = 'paypal' %}
+                {% endif %}
+                {% if settings.pay_diners_club %}
+                {% assign pay_diners_club = 'diners_club' %}
+                {% endif %}
+                {% if settings.pay_discover %}
+                {% assign pay_discover = 'discover' %}
+                {% endif %}
+                {% for type in shop.enabled_payment_types %}
+                {% if pay_visa == type %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+                {% if type == pay_master %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+                {% if type == pay_american_express %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+                {% if type == pay_paypal %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+                {% if type == pay_diners_club %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+           
+                {% if type == pay_discover %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                    </span>
+                  </li>
+                {% endif %}
+                
+                {% endfor %}
+              </ul>
+            {% endunless %}
+           <a href="https://www.shopify.in" title="Shopify.com" class="owner">{{ settings.buttom-footer-4-heading }}</a><br>
+            <small class="owner">
+           <a target="_blank" rel="nofollow" href="https://www.shopify.com">{{ settings.buttom-footer-4-content}}</a>            
+            </small>
+          </div>
+          <div class="clear"></div>          
+        </div>
+  
+  
+  
+  {% comment %}
+  {% if settings.footer_show_methods_of_payment %}
+        {% unless shop.enabled_payment_types == empty %}
+        <div class="grid">
+           <div class="grid__item text-center">
+             <ul class="inline-list payment-icons">
+               {% for type in shop.enabled_payment_types %}
+                 <li>
+                   <span class="icon-fallback-text">
+                     <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                     <span class="fallback-text">{{ type | replace: '_', ' ' }}</span>
+                   </span>
+                 </li>
+               {% endfor %}
+             </ul>
+           </div>
+         </div>
+         {% endunless %}
+       {% endif %}
+  {% endcomment %}
+      </div>

@@ -1,0 +1,142 @@
+<div class="section-header">
+  <h2 class="h1 section-header__title section-header__left">{{ settings.home_feature_title }}</h2>
+  <hr class="hr--small">
+</div>
+<div class="third_product_disposition" id="container">
+  
+
+ {% for product in collections[settings.home_products].products %}
+  
+  {% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+  
+	{% assign var_count = forloop.index %}
+  
+  
+  
+  {% if var_count == 1 or var_count == 4 or var_count == 7 or var_count == 10 or var_count == 13 or var_count == 16 or var_count == 19 or var_count == 22 or var_count == 25 or var_count == 28 or var_count == 31 or var_count == 34 or var_count == 37 or var_count == 40 or var_count == 43 or var_count == 46 or var_count == 49 or var_count == 52 or var_count == 55 %}
+<div class="grid__item collage-grid__row">
+  
+  {% endif %}
+ 
+  
+  
+   {% if var_count == 1 or var_count == 5 or var_count == 7 or var_count == 11 or var_count == 13 or var_count == 17 or var_count == 19 or var_count == 23 or var_count == 25 or var_count == 29 or var_count == 31 or var_count == 35 or var_count == 37 or var_count == 41 or var_count == 43 or var_count == 47 or var_count == 49 or var_count == 53 or var_count == 55 %}
+<div alt="{{ var_count }}" class="item large--two-thirds">
+  
+ {% else %}
+  
+  <div alt="{{ var_count }}" class="item large--one-third">
+  
+  {% endif %}
+  
+   
+  
+          
+            {% comment %}
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+      if your variants have different prices.
+    {% endcomment %}
+   
+
+
+    
+    {% if on_sale %}
+    
+   
+    
+          <p class=" {{ sale_box_opt  }} ">  
+      {% if product.price_varies %}
+              <strong>{{ 'products.product.on_sale' | t }}</strong> 
+            {% else %}
+        <strong>{{ 'products.product.on_sale' | t }}</strong>
+     
+      {% endif %}
+            </p>
+    {% endif %}
+   
+        {% if sold_out %}
+            <p class=" {{ sale_box_opt  }} "> 
+   
+               <strong>{{ 'products.product.sold_out' | t }}</strong>
+    </p>
+               {% endif %}
+
+  
+          
+         
+   
+      
+      
+      <a href="{{ product.url }}">
+      <div class="h_pod">
+        
+          <img src="{{ product | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="image">
+        
+      </div>
+        <div class="home_prod_info-act">
+          <h5 class="title">{{ product.title }}</h5>
+         
+     
+          
+          -
+          
+          
+          <p class="sale">
+    {% comment %}
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+      if your variants have different prices.
+    {% endcomment %}
+    {% if on_sale %}
+      {% if product.price_varies %}
+        {% assign sale_price = product.price | money %}
+        {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+            
+    {% else %}
+      {% if product.price_varies %}
+        {% assign price = product.price | money %}
+        {{ 'products.general.from_text_html' | t: price: price }}
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    {% endif %}
+   
+            {% if sold_out %}
+    {% endif %}
+    {% if on_sale %}
+      <s>{{ product.compare_at_price | money }}</s>
+    {% endif %}
+          
+  </p>
+        </div></a>
+      
+    </div>
+	
+
+  {% if var_count == 3 or var_count == 6 or var_count == 9 or var_count == 12 or var_count == 15 or var_count == 18 or var_count == 21 or var_count == 24 or var_count == 27 or var_count == 21 or var_count == 24 or var_count == 27 or var_count == 21 or var_count == 24 or var_count == 27  %}
+  </div> 
+ 
+
+  
+  {% endif %}
+
+
+    {% endfor %}
+  
+</div>

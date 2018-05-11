@@ -1,0 +1,29 @@
+
+{% for i in (1..4) %}
+  {% capture featured_row_enable %}home_featured_row{{ i }}_enable{% endcapture %}
+  {% capture featured_row %}home_featured_row{{ i }}{% endcapture %}
+  {% capture row_limit_setting %}home_featured_row{{ i }}_number{% endcapture %}
+
+  {% if settings[featured_row_enable] and settings[featured_row] != blank %}
+    {% if forloop.first %}
+      {% if settings.home_featured_collections_enable %}<hr>{% endif %}
+    {% else %}
+      <hr>
+    {% endif %}
+
+    {% assign featured_row = settings[featured_row] %}
+    {% assign row_limit_setting = settings[row_limit_setting] %}
+
+    {% unless collections[featured_row].all_products_count == 0 %}
+      {% include 'featured-row-fifth' %}
+    {% else %}
+   
+{% endunless %}
+  {% endif %}
+{% endfor %}
+
+
+
+
+
+

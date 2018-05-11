@@ -1,0 +1,73 @@
+
+
+{{ 'flexslider.css' | asset_url | stylesheet_tag }}
+{{ 'demo.css' | asset_url | stylesheet_tag }}
+
+<div id="container" class="cf cd-hero">
+  
+
+	
+      <section class="slider">
+        <div class="flexslider">
+          <ul class="slides">
+            <li>
+  	    	    <img src="{{ 'hero_slide_1.jpg' | asset_url }}" alt="tech 2">
+              <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+  	    		</li>
+  	    		<li>
+  	    	    <img src="{{ 'hero_slide_2.jpg' | asset_url }}" alt="tech 2">
+              <p class="flex-caption">Adventurer Lemon</p>
+  	    		</li>
+  	    		<li>
+  	    	    <img src="{{ 'hero_slide_3.jpg' | asset_url }}" alt="tech 2">
+              <p class="flex-caption">Adventurer Donut</p>
+  	    		</li>
+  	    		<li>
+  	    	    <img src="{{ 'hero_slide_1.jpg' | asset_url }}" alt="tech 2">
+              <p class="flex-caption">Adventurer Caramel</p>
+  	    		</li>
+          </ul>
+        </div>
+      </section>
+      
+   
+
+  </div>
+
+
+ 
+  <!-- FlexSlider -->
+  
+{{ 'jquery.flexslider.js' | asset_url | script_tag }}
+
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
+
+
+<style type="text/css">
+    .flex-caption {
+      width: 96%;
+      padding: 2%;
+      left: 0;
+      bottom: 0;
+      background: rgba(0,0,0,.5);
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+      font-size: 14px;
+      line-height: 18px;
+    }
+    li.css a {
+      border-radius: 0;
+    }
+  </style>

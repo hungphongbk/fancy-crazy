@@ -1,0 +1,116 @@
+
+
+      {% assign randomly_collection = collections[settings.popup_randomly_collection] %}
+
+
+
+{% if settings.popup_enable %}
+
+
+
+<div id="someone-purchased" class="customized fade-in" 
+     style="display: block;">
+ 
+  
+  
+    {% capture index %}{{ 'now' | date: '%S' | times: randomly_collection.products.size | divided_by: 60 }}{% endcapture %}
+  
+  
+{% for product in randomly_collection.products offset:index limit:1 %}
+
+  
+  <img src="{{ product | img_url: 'grande' }}">
+  <p>
+    {{ settings.buttom_message }}
+    <a href="{{ product.url }}">
+     {{ product.title }}</a> <small id="timeAgo"></small></p>
+
+
+    {% endfor %}
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+<script>
+  
+  
+         
+  var mytimeAgo = ['0 minute', '1 minute', '5 minutes', '10 minutes', '12 minutes', '14 minutes', '16 minutes', '18 minutes', '20 minutes', '25 minutes', '30 minutes', '35 minutes', '40 minutes','42 minutes','45 minutes', '50 minutes', '1 hours'];  
+
+var randomlytimeAgo = Math.floor(Math.random() * mytimeAgo.length);
+
+var currentmytimeAgo = mytimeAgo[randomlytimeAgo];
+  
+document.getElementById("timeAgo").innerHTML=currentmytimeAgo+"  ago";
+   
+   
+  
+ 
+//var myMinute = ['30', '35', '40', '45','55', '60','70', '90','120','150','180'];  
+
+var myMinute = ['2', '4', '3'];  
+
+var randMinute = Math.floor(Math.random() * myMinute.length);
+
+var currentMinute = myMinute[randMinute];
+
+var get_secound = currentMinute*1000;
+
+    var nIntervId;
+ 
+  nIntervId = setInterval(flashText, get_secound);
+ 
+    function flashText() {
+      
+      
+      
+       
+  var mytimeAgo = ['0 minute', '1 minute', '5 minutes', '10 minutes', '12 minutes', '14 minutes', '16 minutes', '18 minutes', '20 minutes', '25 minutes', '30 minutes', '35 minutes', '40 minutes','42 minutes','45 minutes', '50 minutes', '1 hours'];  
+
+var randomlytimeAgo = Math.floor(Math.random() * mytimeAgo.length);
+
+var currentmytimeAgo = mytimeAgo[randomlytimeAgo];
+  
+document.getElementById("timeAgo").innerHTML=currentmytimeAgo+"  ago";
+   
+      
+      
+
+    var oElem1 = document.getElementById("someone-purchased");
+    oElem1.style.display = oElem1.style.display == "none" ? "block" : "none";
+     }
+ 
+    function stopTextColor() {
+      clearInterval(nIntervId);
+    }
+  </script>
+
+
+
+<style>@import url(//fonts.googleapis.com/css?family=Raleway:300,700);
+#someone-purchased{background:#fff;border:0;display:none;
+border-radius:0;bottom:20px;left:20px;top:auto !important;right:auto !important;padding:0;position:fixed;text-align:left;width:auto;z-index:99999;font-family:Raleway,sans-serif;-webkit-box-shadow:0 0 4px 0 rgba(0,0,0,.4);-moz-box-shadow:0 0 4px 0 rgba(0,0,0,.4);box-shadow:0 0 4px 0 rgba(0,0,0,.4);}
+
+#someone-purchased img{cursor:pointer;float:left;max-height:85px;
+  max-width:120px;width:auto}#someone-purchased p{color:{{ settings.popup_message }};float:left;font-size:13px;margin:0 0 0 13px;width:auto;padding:10px 10px 0 0;line-height:20px}
+
+  #someone-purchased p a{padding-right: 51px; color:{{ settings.popup_product_title_olor }} !important; display:block;font-size:15px;font-weight:700}
+  #someone-purchased p a:hover{color:#000}#someone-purchased p small{text-align: right; display:block;font-size:10px;margin-bottom:8px;}
+
+@media screen and (max-width:767px){#someone-purchased{bottom: 0 !important;left: 0 !important;top:auto !important;width:100%;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;max-width:auto !important;}#someone-purchased img{ max-width: 20%; max-height:auto;}
+
+#someone-purchased p{font-size:11px; width:70%;}#someone-purchased p a{font-size:13px;}}
+
+@keyframes nFadeIn {from {opacity: 0;transform: translate3d(0, 100%, 0);}to {opacity: 1;transform: none;}}#someone-purchased.fade-in {opacity: 0; animation-name: nFadeIn; animation-duration: 1s;animation-fill-mode: both;}
+
+@media screen and (max-width:767px){@keyframes nFadeIn {from {opacity: 0;transform: translate3d(0, 100%, 0);}to {opacity: 1;transform: none;}}}@keyframes nFadeOut {from {opacity: 1;}to {opacity: 0;transform: translate3d(0, 100%, 0);bottom:0;}}#someone-purchased.fade-out {opacity: 0; animation-name: nFadeOut; animation-duration: 1s;animation-fill-mode: both;}
+
+
+@media screen and (max-width:767px){@keyframes nFadeOut {from {opacity: 1;}to {opacity: 0;transform: translate3d(0, 100%, 0);bottom:0}}}</style>

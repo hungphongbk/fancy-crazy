@@ -1,0 +1,58 @@
+<!--
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+
+{{ 'normalize.css' | asset_url | stylesheet_tag }}-->
+{{ 'main.css' | asset_url | stylesheet_tag }}
+
+<div id="container">
+  <div class="item-wrap">
+
+		<div class="grid-sizer"></div>
+
+  {% for product in collections[settings.home_products].products %}
+    
+		<div class="item">
+          <div class="item_main">
+            <a href="{{ product.url }}">
+			<img src="{{ product | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="image">
+			
+            </a>
+            
+              <div class="home_prod_info">
+                <h5 class="title"><a href="{{product.url}}">{{ product.title }}</a></h5>
+				<div class="description">
+					
+						{{ product.price | money }}
+					
+				</div>
+              </div>
+          </div>
+		</div>
+		
+			
+  
+{% endfor %}
+  </div>
+		</div>
+
+
+{{ 'masonry.js' | asset_url | script_tag }}
+
+<!--
+<script src="js/masonry.js"></script>
+<script src="js/main.js"></script>
+-->
+
+
+<script>
+  $(window).load( function() {
+
+    $('#container').masonry({
+        "itemSelector": ".item",
+        "columnWidth": ".grid-sizer",
+    });
+
+});
+</script>

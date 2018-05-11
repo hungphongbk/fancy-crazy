@@ -1,0 +1,302 @@
+
+{% if settings.enable_timer_model == 'timer_model1' %}
+ 
+
+        
+ {{ 'jquery.countdownTimer_2hours.js' | asset_url | script_tag }}
+
+          <script>
+            
+            
+            var time_minute={{ settings.enable_timer_stg_custom }}/60 ;
+         //   alert(time_minute);
+            var hours = Math.floor( time_minute / 60);          
+            var minutes = Math.floor(time_minute % 60);     
+
+            
+            $(function(){
+              $('#hm_timer').countdowntimer({
+                hours : hours,
+                minutes :minutes,
+                seconds :00,
+                size : "lg"
+              });
+            });
+          </script>
+
+          <table id="timertwohour">
+
+            <tr>
+              <td colspan="3"><span id="hm_timer"></span></td>
+            </tr>
+
+            <tr>
+          
+              <td >Hours</td>
+              <td >Minutes</td>
+              <td >Seconds</td>
+            </tr>
+          </table>
+
+
+
+     {% elsif settings.enable_timer_model == 'timer_model2' %}
+
+
+  {{ 'flipclock.js' | asset_url | script_tag }}
+{{ 'flipclock.css' | asset_url | stylesheet_tag }}
+          <div class="clock"></div>
+
+          <script type="text/javascript">
+  
+            var time_minute={{ settings.enable_timer_stg_custom }};
+
+            
+            
+            var clock = $('.clock').FlipClock(time_minute, {
+              countdown: true
+            });
+          </script>
+
+
+     {% elsif settings.enable_timer_model == 'timer_model3' %}
+
+
+
+
+
+        
+ {{ 'jquery.countdownTimer_2hours.js' | asset_url | script_tag }}
+
+           <script>
+            
+            
+            var time_minute={{ settings.enable_timer_stg_custom }}/60 ;
+         //   alert(time_minute);
+            var hours = Math.floor( time_minute / 60);          
+            var minutes = Math.floor(time_minute % 60);   
+
+            
+            $(function(){
+              $('#hm_timer').countdowntimer({
+                hours : hours,
+                minutes :minutes,
+                seconds :00,
+                size : "lg"
+              });
+            });
+          </script>
+
+
+
+          <table class="model3" id="timertwohour">
+
+            <tr>
+              <td colspan="3"><span id="hm_timer"></span></td>
+            </tr>
+
+            <tr>
+              <td >Hours</td>
+              <td >Minutes</td>
+              <td >Seconds</td>
+            </tr>
+          </table>
+
+
+
+
+
+
+
+
+     {% elsif settings.enable_timer_model == 'timer_model4' %}
+
+{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+
+
+<div id="model4" class="countdown countdown-container container model44">
+    <div class="clock row">
+        <div class="clock-item clock-days countdown-time-value grid__item large--one-quarter medium--one-half">
+            <div class="wrap">
+                <div class="inner">
+                    <div id="canvas-days" class="clock-canvas"></div>
+
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type-days type-time">DAYS</p>
+                    </div><!-- /.text -->
+                </div><!-- /.inner -->
+            </div><!-- /.wrap -->
+        </div><!-- /.clock-item -->
+
+        <div class="clock-item clock-hours countdown-time-value grid__item large--one-quarter medium--one-half">
+            <div class="wrap">
+                <div class="inner">
+                    <div id="canvas-hours" class="clock-canvas"></div>
+
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type-hours type-time">HOURS</p>
+                    </div><!-- /.text -->
+                </div><!-- /.inner -->
+            </div><!-- /.wrap -->
+        </div><!-- /.clock-item -->
+
+        <div class="clock-item clock-minutes countdown-time-value grid__item large--one-quarter medium--one-half">
+            <div class="wrap">
+                <div class="inner">
+                    <div id="canvas-minutes" class="clock-canvas"></div>
+
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type-minutes type-time">MINUTES</p>
+                    </div><!-- /.text -->
+                </div><!-- /.inner -->
+            </div><!-- /.wrap -->
+        </div><!-- /.clock-item -->
+
+        <div class="clock-item clock-seconds countdown-time-value grid__item large--one-quarter medium--one-half">
+            <div class="wrap">
+                <div class="inner">
+                    <div id="canvas-seconds" class="clock-canvas"></div>
+
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type-seconds type-time">SECONDS</p>
+                    </div><!-- /.text -->
+                </div><!-- /.inner -->
+            </div><!-- /.wrap -->
+        </div><!-- /.clock-item -->
+    </div><!-- /.clock -->
+</div><!-- /.countdown-wrapper -->
+
+
+
+
+
+{{ 'kinetic.js' | asset_url | script_tag }}
+ {{ 'jquery.final-countdown.js' | asset_url | script_tag }}
+
+
+<script type="text/javascript">  
+   var time_minute={{ settings.enable_timer_stg_custom }};
+
+var todayDate = '2016/09/14 00:00:00';
+
+var todayDdate  = new Date(todayDate);
+
+var today_time  = todayDdate.getTime()/1000;
+
+var target_time=todayDdate.getTime()+time_minute*1000;
+var target_time=target_time/1000;
+
+    $('document').ready(function() {
+        'use strict'; 
+    	$('.countdown').final_countdown({
+            'start': today_time,
+            'end': target_time,
+            'now': today_time        
+        });
+    });
+</script>
+
+
+
+
+
+     {% elsif settings.enable_timer_model == 'timer_model5' %}
+
+
+
+
+{{ 'jquery.countdownTimer_2hmodel5.js' | asset_url | script_tag }}
+
+           <script>
+            
+            
+            var time_minute={{ settings.enable_timer_stg_custom }}/60 ;
+         //   alert(time_minute);
+            var hours = Math.floor( time_minute / 60);          
+             var minutes = Math.floor(time_minute % 60);     
+
+            
+            $(function(){
+              $('#hm_timer').countdowntimer({
+                hours : hours,
+                minutes :minutes,
+                seconds :00,
+                size : "lg"
+              });
+            });
+          </script>
+
+
+
+          <table class="model5" id="timertwohour">
+
+            <tr><td ><span>00</span></td>
+              <td colspan="3"><span id="hm_timer"></span></td>
+            </tr>
+
+            <tr>
+              <td >Days</td>
+              <td >Hours</td>
+              <td >Minutes</td>
+              <td >Seconds</td>
+            </tr>
+          </table>
+
+
+
+
+
+     {% elsif settings.enable_timer_model == 'timer_model6' %}
+
+
+
+
+{{ 'jquery.countdownTimer_2hmodel6.js' | asset_url | script_tag }}
+
+           <script>
+            
+            
+            var time_minute={{ settings.enable_timer_stg_custom }}/60 ;
+         //   alert(time_minute);
+            var hours = Math.floor( time_minute / 60);          
+             var minutes = Math.floor(time_minute % 60);     
+
+            
+            $(function(){
+              $('#hm_timer').countdowntimer({
+                hours : hours,
+                minutes :minutes,
+                seconds :00,
+                size : "lg"
+              });
+            });
+          </script>
+
+
+
+          <table class="model6" id="timertwohour">
+
+            <tr><td ><span>00</span></td>
+              <td colspan="3"><span id="hm_timer"></span></td>
+            </tr>
+
+            <tr>
+              <td >Days</td>
+              <td >Hours</td>
+              <td >Minutes</td>
+              <td >Seconds</td>
+            </tr>
+          </table>
+
+
+
+
+
+    {% endif %}
+
+
+ 

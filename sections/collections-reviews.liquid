@@ -1,0 +1,54 @@
+<script>
+  window.__state__.pageCollections.reviews = {
+    items:[
+      {% for block in section.blocks %}
+      {
+      {% assign product = all_products[block.settings.product] %}
+        title: {{ block.settings.title | json }},
+        product: {% include 'product-item-json' %},
+        name: {{ block.settings.name | json }},
+        content: {{ block.settings.content | json }},
+        point: {{ block.settings.point }}
+      }
+      {% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+  }
+</script>
+{% schema %}
+  {
+    "name": "Collection Review",
+    "blocks": [
+      {
+        "type": "review",
+        "name": "Reviews",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Reviewed product"
+          },
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Customer's name"
+          },
+          {
+            "id": "content",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "point",
+            "type": "text",
+            "label": "Points (5th grade)"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,9 @@
+.index-collections
+  .collection-item(v-for="(col,index) in collections" :class="index<3?'collection-big':'collection-small'")
+    div(:class="[$bs.ratio11]")
+      div(:class="[$bs.content]")
+        img(:src="col.image | shopifyImgUrl" :class="[$bs.imgFluid]")
+      .collection-detail(:class="[$bs.content]")
+        div
+          a(:href="col.url")
+            h4(:class="[$bs.pb2]") {{col.title}}

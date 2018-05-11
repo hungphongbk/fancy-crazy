@@ -1,0 +1,620 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/4YQSveRiBO25dC5MBNbCZ5XOk4m2pFpcj9qDBtK7/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+  {{ 'social-buttons.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'social-buttons.js' | asset_url | script_tag }}
+   
+   {{ 'jquery.min.js' | asset_url | script_tag }}
+  {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+  {{ 'bootstrap.min.js' | asset_url | script_tag }}
+  
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'mega_menu.scss.css' | asset_url | stylesheet_tag }}
+   {{ 'font-awesome.css' | asset_url | stylesheet_tag }}
+  <!-- Header hook for plugins ================================================== -->
+  {% include 'buddha-megamenu-before' %}
+  {% include 'buddha-megamenu' %}
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+
+  
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+   <script>
+   $(document).ready(function(){
+      $(".desk_menu").click(function(){
+        $(".supports-js").toggleClass("js-drawer-open js-drawer-open-left");
+        $("body").toggleClass("js-drawer-open js-drawer-open-left");
+      });
+      
+    }); 
+  </script>
+  
+<link href="https://fonts.googleapis.com/css?family=Anton|Arimo|Arvo|Baloo+Bhai|Baloo+Bhaina|Bitter|Bree+Serif|Cabin|Catamaran|David+Libre|Dosis|Droid+Sans|Droid+Serif|Ek+Mukta|Fjalla+One|Hind|Inconsolata|Indie+Flower|Lato|Libre+Baskerville|Lobster|Lora|Merriweather|Modak|Montserrat|Muli|Noto+Sans|Noto+Serif|Nunito|Open+Sans|Open+Sans+Condensed:300|Oswald|Oxygen|PT+Sans|PT+Sans+Narrow|PT+Serif|Pavanam|Playfair+Display|Poppins|Raleway|Roboto|Roboto+Condensed|Roboto+Slab|Slabo+27px|Source+Sans+Pro|Teko|Titillium+Web|Ubuntu|Yanone+Kaffeesatz|Yatra+One" rel="stylesheet">
+
+  
+</head>
+{% include 'someone_purchase' %}
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="{% if template != 'index' %}not_index {% endif %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+  {% include 'buddha-megamenu-wireframe' %}
+<div id="as-root"></div><script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;
+r=e.createElement(t);r.id=n;r.src="//button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
+  <div id="NavDrawer" class="drawer drawer--left">
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'layout.drawers.close_menu' | t }}</span>
+        </button>
+      </div>
+    </div>
+    
+      <ul class="mobile-nav">
+      <li class="mobile-nav__item mobile-nav__search">
+        {% include 'search-bar' %}
+      </li>
+       
+      {% for link in linklists.[settings.menu_primary].links %}
+        {% assign item = link.title | downcase %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+            <div class="mobile-nav__has-sublist">
+              <!--<a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>-->
+              <div class="mobile-nav__toggle">
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">{{ link.title }}
+                  <span class="icon icon-plus" aria-hidden="true"></span>
+                  <span class="fallback-text">See More</span>
+                </button>
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">{{ link.title }}
+                  <span class="icon icon-minus" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                </button>
+              </div>
+            </div>
+            <ul class="mobile-nav__sublist">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
+                  <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          {% capture megamenu_1 %}megamenu_1_parent{% endcapture %}
+          {% capture megamenu_2 %}megamenu_2_parent{% endcapture %}
+          {% capture megamenu_3 %}megamenu_3_parent{% endcapture %}
+
+          {% if settings[megamenu_1] == item or settings[megamenu_2] == item  or settings[megamenu_3] == item %}
+              {% for i in (1..3) %}
+                  {%capture megamenu%}megamenu_{{i}}_parent{%endcapture%}
+                  
+                    {% if settings[megamenu] == item %}
+        {% if settings.mega_menu_enable_1 %}              
+        
+        <li class=" mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+
+                          <div class="mobile-nav__has-sublist">
+                              <!--a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a-->
+                              <div class="mobile-nav__toggle">
+                                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">{{ link.title }}
+                                  <span class="icon icon-plus" aria-hidden="true"></span>
+                                  <span class="fallback-text">See More</span>
+                                </button>
+                                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">{{ link.title }}
+                                  <span class="icon icon-minus" aria-hidden="true"></span>
+                                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                                </button>
+                              </div>
+                            </div>
+                          <ul class="mobile-nav__sublist">
+                              <li class="awemenu-megamenu-item">
+                                <div class="grid ">
+                                  {% for j in (1..4) %}
+                                  {% capture mega_title %}megamenu_{{ i }}_column_{{ j }}_title{% endcapture %}
+                                  {% capture mega_col %}megamenu_{{ i }}_column_{{ j }}_menu{% endcapture %}
+
+                                      <div class="grid__item large--one-fifth">
+                                        <h3>{{ settings[mega_title] }}</h3>
+                                        <ul class="super">
+                                              {% for link in linklists[settings[mega_col]].links %}
+                                              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                                              {% endfor %}
+                                            </ul>
+                                      </div>
+                                    {% endfor %}
+                                      <div class="grid__item large--one-fifth">
+                                        {% capture mega_title %}megamenu_{{ i }}_column_5_title{% endcapture %}
+                                        {% capture _image1 %}megamenu_{{ i }}_image_1.jpg{% endcapture %}
+                                        {% capture _url %}megamenu_{{ i }}_image_1_url{% endcapture %}
+                                        {% if settings[mega_title] !="" %}
+                                        <h3>{{ settings[mega_title] }}</h3>
+                                        {% endif %}
+                                        {% if settings[_url] != blank %}
+                                          <a href="{{ settings[_url] }}">
+                                        {% endif %}
+                                          <img src="{{ _image1 | asset_url }}" alt="menu">
+                                        {% if settings[_url] != blank %}
+                                          </a>
+                                        {% endif %}
+                                      </div>
+                                     
+                                </div>
+                            </li>
+                          </ul>
+                      </li>
+               {% else %}
+        
+                    <li class=" mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+
+                          <div class="mobile-nav__has-sublist">
+                              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+                        </div>
+                    </li>
+        
+        
+                    {% endif %}        
+        
+        {% endif %}
+        
+             
+        
+              {% endfor %}
+          {% else %}
+              <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
+                <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% comment %}
+        If customer accounts are enabled, provide login and create account links
+      {% endcomment %}
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <li class="mobile-nav__item">
+            {% if customer.first_name != blank %}
+              {% capture first_name %}{{ customer.first_name }}{% endcapture %}
+              <a href="/account">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
+            {% else %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+          </li>
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </li>
+        {% else %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_in' | t | customer_login_link }}
+          </li>
+          {% if shop.customer_accounts_optional %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.create_account' | t | customer_register_link }}
+          </li>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </ul>
+   
+   
+  </div>
+  {%comment%}
+  <div id="CartDrawer" class="drawer drawer--right">
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="CartContainer"></div>
+  </div>
+  {%endcomment%}
+  <div id="PageContainer" class="is-moved-by-drawer">
+ 
+    {% include 'header_strip' %}
+  {% comment %}
+    {% include 'nav_mobile' %}
+   {% endcomment %}
+    
+      
+    <div class="header_main">
+  
+      
+      <header class="site-header" role="banner">
+      <div class="wrapper">
+
+        <div class="grid--full grid--table">
+          <div class="grid__item large--one-half">
+            {% comment %}
+              Use the uploaded logo from theme settings if enabled.
+              Site name gets precedence with H1 tag on homepage, div on other pages.
+            {% endcomment %}
+            {% if template == 'index' %}
+              <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
+            {% else %}
+              <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
+            {% endif %}
+              {% if settings.logo_use_image %}
+                <a href="/" itemprop="url" class="site-header__logo-link">
+                  <img class="nav-bar mobile_nav" src="{{ 'logo_mobile.png' | asset_url }}" id="mobile_logo" alt="{{ shop.name }}" itemprop="logo">
+                <img class="nav-bar desktop_nav" src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+                </a>
+              {% else %}
+                <a href="/" itemprop="url">{{ shop.name }}</a>
+              {% endif %}
+            {% if template == 'index' %}
+              </h1>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="grid__item large--one-half large--text-right medium-down--hide">
+            {% comment %}
+              Show number of items in the cart and total cost in the /cart link
+
+              Ajax Cart Notes:
+                - #cartCount updates the total number of items in the cart
+                - #cartCost updates the total cost of the cart
+                - Documentation:  http://shopify.com/timber#ajax-cart
+            {% endcomment %}
+            <div class="account">
+              
+              {% if shop.customer_accounts_enabled %}
+             <div class='login_reg_box'>
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                {% else %}
+                  {{ 'layout.customer.log_in' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
+                {% endif %}
+              
+            </div>
+            {% endif %}
+           
+               
+              <div class="site-header_cart"> 
+          
+              <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                <span class="icon icon-cart" aria-hidden="true"></span>
+              {% comment %}    {{ 'layout.cart.title' | t }}  {% endcomment %}  
+                <span id="CartCount">{{ cart.item_count }}</span>
+                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                - <span id="CartCost">{{ cart.total_price | money }}</span>
+              </a>
+              
+              </div>
+              <div class="site-header__search">
+                 
+               <form action="/search" method="get" id="search-form" role="search" class="large--right">
+                 
+                  <button type="submit" value="" name="submit" id="search-submit" class="icon-fallback-text icon-fallback-text_site">
+            <span class="icon icon-search" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+                 {% if settings.search_products_only %}
+         
+                 <input type="hidden" name="type" value="product">{% endif %}
+          {% if template == "search" and search.performed and search.terms != "" %}
+          <input type="text" name="q" id="search-field" class="hint" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}"/>
+          {% else %}
+          <input name="q" type="text" id="search-field" placeholder="{{ 'general.search.placeholder' | t }}" class="hint">
+          {% endif %}
+      
+        </form>
+         
+                 
+            </div>
+              
+              
+             {% comment %}  
+              
+                  <p id="cart-count" class="large--right">
+          <a class="no-underline" href="/cart">{{ cart.item_count}} {{ 'layout.cart.items_count' | t: count: cart.item_count }}<span id="cart-total-small">({{ cart.total_price | money }})</span></a> ·
+          <a href="/cart">{{ 'layout.cart.checkout' | t }}</a>
+        </p>
+
+        <form action="/search" method="get" id="search-form" role="search" class="large--right">{% if settings.search_products_only %}
+          <input type="hidden" name="type" value="product">{% endif %}
+          {% if template == "search" and search.performed and search.terms != "" %}
+          <input type="text" name="q" id="search-field" class="hint" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}"/>
+          {% else %}
+          <input name="q" type="text" id="search-field" placeholder="{{ 'general.search.placeholder' | t }}" class="hint">
+          {% endif %}
+          <button type="submit" value="" name="submit" id="search-submit" class="icon-fallback-text">
+            <span class="icon icon-search" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+        </form>
+
+        <a href="/cart" id="cart-total">
+          {% if shop.money_format == '${{amount}}' %}
+          <span id="cart-price">{{ cart.total_price | money | replace: '.00', '' }}</span>
+          {% else %}
+          <span id="cart-price">{{ cart.total_price | money  }}</span>
+          {% endif %}
+        </a>
+              
+             {% endcomment %}  
+
+            </div>
+
+            {% comment %}
+              If customer accounts are enabled, provide login and create account links
+            
+            {% if shop.customer_accounts_enabled %}
+              <div class="account">
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                {% else %}
+                  {{ 'layout.customer.log_in' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+			{% endcomment %}
+            
+            {% comment %}{% endcomment %}
+           
+            
+            
+          </div>
+        </div>
+
+      </div>
+    </header>
+    {% include 'mega_menu_mobile' %}  
+      
+    {% comment %}
+      {% include 'nav_desktop' %}
+     
+    {% endcomment %}
+       {% include 'mega_menu_desktop' %}
+
+      
+	{% comment %} 
+    <nav class="nav-bar" role="navigation">
+      <div class="wrapper">
+        <div class="medium-down--hide">
+          {% comment %}
+            List out your main-menu linklist (default)
+
+            More info on linklists:
+              - http://docs.shopify.com/themes/liquid-variables/linklists
+          {% endcomment %}
+          <!-- begin site-nav -->
+          <ul class="site-nav" id="AccessibleNav">
+            {% for link in linklists.main-menu.links %}
+              {% comment %}
+                Create a dropdown menu by naming a linklist the same as a link in the parent nav
+
+                More info on dropdowns:
+                  - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+              {% endcomment %}
+              {% assign child_list_handle = link.title | handleize %}
+              {% if linklists[child_list_handle].links != blank %}
+                <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+                  <a href="{{ link.url }}" class="site-nav__link">
+                    {{ link.title }}
+                    <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                  </a>
+                  <ul class="site-nav__dropdown">
+                    {% for childlink in linklists[child_list_handle].links %}
+                      <li{% if childlink.active %} class="site-nav--active"{% endif %}>
+                        <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li {% if link.active %}class="site-nav--active"{% endif %}>
+                  <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <!-- //site-nav -->
+        </div>
+        <div class="large--hide medium-down--show">
+          <div class="grid">
+            <div class="grid__item one-half">
+              <div class="site-nav--mobile">
+                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+                </button>
+              </div>
+            </div>
+            <div class="grid__item one-half text-right">
+              <div class="site-nav--mobile">
+                <a href="/cart" class="js-drawer-open-right site-nav__link" aria-controls="CartDrawer" aria-expanded="false">
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-cart" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+     
+       {% endcomment %}
+      
+      
+    </div>
+    
+    
+    {% if template == 'index' %}
+    {% include 'flex' %}
+    {% endif %}
+    
+    
+    <main class="wrapper main-content" role="main">
+
+      {{ content_for_layout }}
+
+    </main>
+ 
+    
+    <!-- begin site-footer -->
+    <div class="site-footer small--text-center foot_above" role="contentinfo">
+      <div class="wrapper">
+        {% if settings.footer_above_enable %}
+        {% include 'footer_above' %}
+        {% endif %}
+      </div>
+    </div>
+    
+    <footer class="site-footer small--text-center" role="contentinfo">
+      {% include 'new_footer' %}
+    </footer>
+    <!-- //site-footer -->
+  </div>
+
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
+  {{ 'timber.js' | asset_url | script_tag }}
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if resetPassword %}
+      $(function() {
+        timber.resetPasswordSuccess();
+      });
+    {% endif %}
+  </script>
+
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.ajax_cart_method == "drawer" %}
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {% include 'ajax-cart-template' %}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
+    <script>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: '#AddToCartForm',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '#AddToCart',
+          cartCountSelector: '#CartCount',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+      });
+
+      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
+      });
+    </script>
+  {% endif %}
+  
+  
+  
+ 
+   
+  <!-- pop up code start -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+          
+        </div>
+        <div class="modal-body">
+          
+         <h2 class="upsell-headline">{{ settings.upsell_headline_text }}</h2>
+          <button type="submit" name="add" id="yes_button_text" class="btn">           
+          {{ settings.yes_button_text }}
+           
+          </button>
+          
+          <h3 id="no_button_text"><a class='no_button' href="javascript:"> {{ settings.not_button_text }}</a></h3>
+      
+        </div>
+      
+      </div>
+      
+    </div>
+  </div>
+  
+    <!-- pop up code end -->
+  
+  
+<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
+<script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+</body>
+</html>

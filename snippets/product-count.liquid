@@ -1,0 +1,203 @@
+<!--prouct-count-->
+  
+  {{ 'jquery.downCount.js' | asset_url | script_tag }}
+{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+
+ 
+ {% if settings.enable_timer_top_message %}
+  
+ 
+<div id="progress_bar1" class="progress-container items-count">
+ 
+
+      <p class="">{{ settings.timer_top_message_value_before }} <span id="counter_left" class="count" style="color: #a94442; border-radius: 5px; background-color: #ffffff;">{{ settings.timer_top_message_value_num }}</span> {{ settings.timer_top_message_value_after }}</p>
+ 
+</div>
+
+
+  {% endif %}
+
+ {% if settings.enable_product_progressbar %}
+
+<div id="progressBar" class="progress progress-striped active progress-bar-success">
+    <div class="progress-bar progress-bar-success" style="padding: 0px 6px;width: 100%;font-size: 0px;"></div>
+  </div>
+
+
+<div id="progressBar_back" class="progress progress-striped active">
+  <div class="progressBar_back progress-bar progress-bar-success" style="width: 100%;"></div>
+ 
+</div>
+
+{% endif %}
+
+
+<div class="counter_box">
+
+     {% if settings.enable_timer_stg_on == 'enable_timer_stg_on' %}
+        
+                  {% if settings.enable_timer_stg == 'enable_timer_stg_24m' %}
+                                    
+
+                             {% include 'product_count_24m' %}
+  
+     <input type="hidden" class="timer_time" value="{{ settings.enable_timer_stg_custom }}" />
+     <input type="hidden" id="stock_left_num" class="stock_left_num" value="{{ settings.timer_top_message_value_num }}" />
+             
+  
+  
+  
+                       {% elsif settings.enable_timer_stg == 'enable_timer_stg_2' %}
+  
+          
+                             {% include 'product_count_2' %}
+   
+  <input type="hidden" class="timer_time" value="7200" />                 
+    
+  <input type="hidden" id="stock_left_num" class="stock_left_num" value="{{ settings.timer_top_message_value_num }}" />
+
+       
+                        {% else %} 
+     
+   
+       <input type="hidden" id="myMinute" class="timer_time" value="" />
+       <input type="hidden" id="myLeftnum" class="stock_left_num" value="" />
+  
+ 
+  <script>
+    
+    // for minute
+var myMinute = ['15', '20', '25', '30', '45','60','90','120','180','300','420','600','900','1200','1440'];    
+
+var randMinute = Math.floor(Math.random() * myMinute.length);
+
+var currentMinute = myMinute[randMinute];
+document.getElementById("myMinute").value = currentMinute*60;
+    
+           // for stock left number
+var myLeftnum = ['3','4', '5', '6', '7', '8','9','10','11','12'];    
+
+var randLeftnum = Math.floor(Math.random() * myLeftnum.length);
+
+var currentLeftnum = myLeftnum[randLeftnum];
+    document.getElementById("myLeftnum").value= currentLeftnum;
+
+    document.getElementById("counter_left").innerHTML= currentLeftnum;
+   
+</script>
+
+
+  
+   {% include 'product_count_random' %}
+  
+                     {% endif %}
+      
+          
+                   
+                
+          {% endif %}
+
+</div>
+
+<!-- enable random number-->
+
+{% if settings.product_left_type == 'product_left_random' %}
+
+<script>
+
+
+        // for stock left number
+var myLeftnum = ['3','4', '5', '6', '7', '8','9','10','11','12'];    
+
+var randLeftnum = Math.floor(Math.random() * myLeftnum.length);
+
+var currentLeftnum = myLeftnum[randLeftnum];
+ 
+     document.getElementById("stock_left_num").value= currentLeftnum;
+    document.getElementById("counter_left").innerHTML= currentLeftnum;
+ //alert(currentLeftnum);
+ 
+
+</script>
+
+
+{% endif %}
+
+
+
+
+
+
+ {% if settings.enable_progressbar_text %}
+  
+ 
+<div id="progress_bar_text" class="progress-container items-count">
+ 
+
+      <p class="progressbar_text">{{ settings.enable_progressbar_text_value }}</p>
+ 
+</div>
+        {% endif %}                    
+
+
+
+
+
+<script type="text/javascript">
+  
+ setTimeout(function() {
+   
+   
+   
+  var second_db=$(".timer_time").val()-4;
+   var left_number=$(".stock_left_num").val();
+  
+   var counter_number=second_db/left_number;
+  
+  var counter_number_sec=counter_number*1000;
+ console.log(counter_number);
+ console.log(counter_number_sec);
+  
+  var stop = 1;
+
+function decrease(){
+    var percent = Number($('#counter_left').text());
+    if(percent > stop){
+        $('#counter_left').text(--percent);
+        var t = setTimeout(decrease,counter_number_sec);
+    }
+}
+setTimeout(decrease,counter_number_sec); // mini seconds
+
+
+  
+  function progress(timeleft, timetotal, $element) {
+    var progressBarWidth = timeleft * $element.width() / timetotal;
+    $element.find('div').animate({ width: progressBarWidth }, 500).html(timeleft);
+    if(timeleft > counter_number) {
+        setTimeout(function() {
+            progress(timeleft - counter_number, timetotal, $element);
+        }, counter_number_sec);
+    }
+};
+
+  
+ 
+  
+progress(second_db, second_db, $('#progressBar'));
+  $("#progressBar").removeClass("progress-bar-success");
+   
+    }, 2000);
+  
+</script>
+
+
+
+<script type="text/javascript">
+  $(window).load(function(){    }); 
+    $(".progressBar_back").animate({
+      width: 137.5
+    }, 1000);
+   
+
+</script>

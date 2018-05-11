@@ -1,0 +1,11 @@
+{
+  "product.bundle.js": "ee546b7e4212b2731909",
+  "collections.bundle.js": "e902c912775c7aaa480b",
+  "index.bundle.js": "b9c3a1a4e4f64a6ee810",
+  "desktop.bundle.js": "7d02aba13b978c5bec78",
+  "mobile.bundle.js": "0d29b8e6dfcec8a8f5a8",
+  "vendor.js": "da947bd3f6a51529c41d",
+  "frontend.js": "96ea78cb575be62cc55b",
+  "frontend.css": "ba53dea378b35e8f0a49527df8d76465",
+  "inline.js": "79942d3c24e14869292a"
+}

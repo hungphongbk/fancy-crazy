@@ -1,0 +1,53 @@
+<script>
+  window.__state__.pageCollections.sidebar = {
+    items:[
+      {% for block in section.blocks %}
+      {
+        type: {{ block.type | json }},
+        {% if block.type == 'categories' %}
+          {% assign col = collections[block.settings.cat] %}
+          title: {{ col.title |json }},
+          url: {{ col.url | replace:'/collections/','' | json }},
+        {% else %}
+          title: {{ block.settings.label |json }},
+          url: {{ block.settings.tag | json }}
+        {% endif %}
+      }
+      {% unless forloop.last %},{% endunless %}{% endfor %}
+    ]
+  }
+</script>
+{% schema %}
+  {
+    "name": "Collection Sidebar",
+    "blocks": [
+      {
+        "type": "tags",
+        "name": "Tags",
+        "settings": [
+          {
+            "id": "label",
+            "type": "text",
+            "label": "Label"
+          },
+          {
+            "id": "tag",
+            "type": "text",
+            "label": "Product Tag"
+          }
+        ]
+      },
+      {
+        "type": "categories",
+        "name": "Categories",
+        "settings": [
+          {
+            "id": "cat",
+            "type": "collection",
+            "label": "Category"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,133 @@
+
+
+
+<!--prouct-count-->
+  
+  {{ 'jquery.downCount.js' | asset_url | script_tag }}
+{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+
+hhhh
+
+<div id="progress_bar1" class="progress-container items-count">
+  <p class="">Hurry! Only <span class="count" style="color: #a94442; border-radius: 5px; background-color: #ffffff;">{{ settings.def_timer_text1 }}</span> left in stock.</p>
+  <div class="progress progress-striped active">
+    <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+  </div>
+</div>
+
+<ul class="countdown">
+  <li>
+    <span class="days">00</span>
+    <p class="days_ref">Days</p>
+  </li>
+  <li>
+    <span class="hours">00</span>
+    <p class="hours_ref">Hours</p>
+  </li>
+  <li>
+    <span class="minutes">00</span>
+    <p class="minutes_ref">Minutes</p>
+  </li>
+  <li>
+    <span class="seconds">00</span>
+    <p class="seconds_ref">Seconds</p>
+  </li>
+</ul>
+
+<script class="" type="text/javascript">
+  $('.countdown').downCount({
+    date: {{ settings.def_timer_1 }},
+    offset: +10
+  }, function () {
+    $(".btn.add-to-cart.float-left").addClass("add_disbale");
+    $(".others-bottom1").addClass("add_enable");
+  });
+</script>
+
+<style type="text/css">
+  .progressbar div {
+    background: #d95350;
+    border-radius: 7px 7px 7px 7px;
+    height: 11px;
+}
+            
+            ul.countdown {
+                list-style: none;
+               /* margin: 75px 0 0;*/
+                padding: 0;
+                display: block;
+                text-align: center;
+            }
+
+            ul.countdown li {
+                display: inline-block;
+            }
+
+            ul.countdown li span {
+                font-size: 50px;
+                font-weight: 300;
+                line-height: 80px;
+            }
+
+            ul.countdown li.seperator {
+                font-size: 80px;
+                line-height: 70px;
+                vertical-align: top;
+            }
+
+ul.countdown li p {
+    color: #555555;
+    font-size: 14px;
+    font-weight: bold;
+   /* margin-left: 10px;*/
+    text-align: center;
+    text-transform: capitalize;
+}
+  
+  ul.countdown li span.days, ul.countdown li span.hours, ul.countdown li span.minutes, ul.countdown li span.seconds {
+   /* background: #CA7128 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 36px;
+    width: 87px;
+    */
+    color: #555555;
+    display: inline-block;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px 8px;
+    width: 50px;
+}
+
+.others-bottom1 {
+    display: none;
+}
+  
+  .add_disbale {display: none !important;}
+  .add_enable {display: block !important;}
+
+    #product .progress {
+    height: 11px;
+    background-color: #ffe8e8;
+    border-radius: 7px 7px 7px 7px;
+}      
+  #product .progress-bar-success {
+    background-color: #d95350;
+}
+  .progress-bar-success {
+    background-color: #ca0000 !important;
+}
+ 
+    </style>
+
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $(".progress-bar").animate({
+      width: {{ settings.def_timer_progress_1 }}
+    }, 8000);
+    });
+
+</script>

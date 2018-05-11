@@ -1,0 +1,426 @@
+ 
+    {% if settings.header_strip %}
+    
+
+<style>
+ 
+  nav.menu {
+	background: coral;
+	position: relative;
+	min-height: 45px;
+	height: 100%;
+}
+
+.menu > ul > li {
+	list-style: none;
+	display: inline-block;
+	color: #fff;
+	line-height: 45px;
+	
+}
+.menu > ul li a, .xs-menu li a {
+	text-decoration: none;
+	color: #fff;
+	 display:block;
+	 padding: 0px 24px;
+}
+.menu > ul li a:hover {
+	background:#444;
+	color: #fff;
+	transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+}
+ 
+.displaynone{
+	display: none;
+}
+.xs-menu-cont{
+display:none;
+}
+.xs-menu-cont > a {
+    background: none repeat scroll 0 0 #ff7f50;
+    border-radius: 3px;
+    padding: 3px 6px;
+	display: block;
+	border-bottom:1px solid #E67248;
+	    box-shadow: 0 1px 2px #e67248;
+		-webkit-box-shadow: 0 1px 2px #e67248;
+		-moz-box-shadow: 0 1px 2px #e67248;
+}
+.xs-menu-cont > a:hover{
+ cursor: pointer;
+}
+  
+.xs-menu li {
+color: #fff;
+padding: 14px 30px;
+border-bottom: 1px solid #ccc;
+background: #FF7F50;
+
+}
+.xs-menu  a{
+text-decoration:none;
+}
+
+.mega-menu {
+   background: none repeat scroll 0 0 #888;
+    left: 0;
+    margin-top: 3px;
+    position: absolute;
+    width: 100%;
+	padding:15px;
+	display:none;
+	 transition-duration: 0.9s;
+    
+}
+#menutoggle i {
+    color: #fff;
+    font-size: 33px;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*--column--*/
+.mm-6column:after, .mm-6column:before, .mm-3column:after, .mm-3column:before{
+content:"";
+display:table;
+clear:both;
+
+
+}
+.mm-6column, .mm-3column {
+ float: left;
+ position: relative;
+ }
+.mm-6column {
+    width: 50%;
+}
+.mm-3column {
+        width: 25%;
+}
+.responsive-img {
+    display: block;
+    max-width: 100%;
+
+}
+.left-images{
+margin-right:25px;
+}
+ .left-images, .left-categories-list {
+   float: left;
+}
+.categories-list li {
+    display: block;
+    line-height: normal;
+    margin: 0;
+    padding: 5px 0;
+}
+.categories-list li :hover{
+		background:inherit !important;
+}
+.left-images > p {
+    background: none repeat scroll 0 0 #ff7f50;
+    display: block;
+    font-size: 18px;
+    line-height: normal;
+    margin: 0;
+    padding: 5px 14px;
+}
+.categories-list span {
+    font-size: 18px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+.mm-view-more{
+	background: none repeat scroll 0 0 #ff7f50;
+    color: #fff;
+    display: inline !important;
+    line-height: normal;
+    padding: 5px 8px !important;
+	margin-top:10px;
+}
+.display-on{
+display:block;
+ transition-duration: 0.9s;
+}
+.drop-down > a:after{
+content:"\f103";
+color:#fff;
+font-family: FontAwesome;
+font-style: normal;
+margin-left: 5px;
+ 
+
+}
+  
+ @media (max-width: 600px) {
+.menu {
+ display:none;
+ }
+ .xs-menu li a {
+
+	 padding:0px;
+}
+ .xs-menu-cont{
+ display:block ;
+ }
+ }
+
+
+/*Animation--*/
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}  
+</style>
+
+<div class="grid--full grid--table">
+          <div class="grid__item">
+            <div class="alert alert-success alert-header-strip">
+              
+              
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <div class="top-hedr"><p>{{ settings.header_strip_text }}</p></div>
+              <div class="mng-header">
+                <ul>
+                  <li><a href"#"><b>Contact</b></a></li>
+                  <li><a href"#">{{ settings.header_strip_text_contact }}</a></li>
+                  <li><a href"#">{{ settings.header_strip_text_email }}</a></li>
+                  <li>
+                   <ul class="social_header">
+              
+              {% if settings.social_twitter_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+                        <span class="icon icon-twitter" aria-hidden="true"></span>
+                        <span class="fallback-text">Twitter</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if settings.social_facebook_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+                        <span class="icon icon-facebook" aria-hidden="true"></span>
+                        <span class="fallback-text">Facebook</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                    {% if settings.social_youtube_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube">
+                        <span class="icon icon-youtube" aria-hidden="true"></span>
+                        <span class="fallback-text">Youtube</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                   {% if settings.social_instagram_link != blank %}
+                    <li>
+                      <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram">
+                        <span class="icon icon-instagram" aria-hidden="true"></span>
+                        <span class="fallback-text">Instagram</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                
+                {% comment %}
+                <li>
+                  <a href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+
+                  </a>
+                </li>
+                {% endcomment %}
+              </ul>
+            
+              
+                    
+              </li>
+                  
+                </ul>
+              </div>
+            </div>
+            
+      </div>
+    
+</div>
+
+
+<div class="xs-menu-cont">
+			<a id="menutoggle"><i class="fa fa-align-justify"></i> </a>
+				<nav class="xs-menu displaynone">
+					<ul>
+						<li class="active">
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">About</a>
+						</li>
+						<li>
+							<a href="#">Services</a>
+						</li>
+						<li>
+							<a href="#">Team</a>
+						</li>
+						<li>
+							<a href="#">Portfolio</a>
+						</li>
+						<li>
+							<a href="#">Blog</a>
+						</li>
+						<li>
+							<a href="#">Contact</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
+			<nav class="menu">
+				<ul>
+					<li class="active">
+						<a href="#">Home</a>
+					</li>
+					<li class="drop-down">
+						<a href="#">Products</a>
+					 
+						<div class="mega-menu fadeIn animated">
+							
+							<div class="mm-3column">
+						<span class="categories-list">
+						<ul>
+							 <span>TV & Video</span>
+								<li>LED TVs
+								<li>Plasma TVs
+								<li>3D TVs
+								<li>DVD & Blu-ray Players
+								<li>Home Theater Systems
+								<li>Cell Phones
+								<li>Apple iPhone
+								<li><a class="mm-view-more" href="#">View more →</a></li>
+							</ul>
+						</span>							
+							</div>
+							<div class="mm-3column">
+								<span class="categories-list">
+						<ul>
+							<span>Car Electronics</span>
+							<li>GPS & Navigation</li>
+							<li>In-Dash Stereos</li>
+							<li>Speakers</li>
+							<li>Subwoofers</li>
+							<li>Amplifiers</li>
+						    <li>MP3 Players</li>
+							<li>iPods</li>
+						   	<li><a class="mm-view-more" href="#">View more →</a></li>
+						</ul>
+					</span>
+						</div>
+                          
+                          <div class="mm-3column">
+						<span class="categories-list">
+						<ul>
+							 <span>TV & Video</span>
+								<li>LED TVs
+								<li>Plasma TVs
+								<li>3D TVs
+								<li>DVD & Blu-ray Players
+								<li>Home Theater Systems
+								<li>Cell Phones
+								<li>Apple iPhone
+								<li><a class="mm-view-more" href="#">View more →</a></li>
+							</ul>
+						</span>							
+							</div>
+                          <div class="mm-3column">
+								<span class="left-images">
+								<img  src="https://cdn.shopify.com/s/files/1/1712/5595/t/2/assets/promo1.jpg?12614995443463090002">
+								<p>Most Popular Styles </p>
+				</span>
+								
+							
+							</div>
+					</div>
+			 
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">Team</a>
+					</li>
+					<li>
+						<a href="#">Portfolio</a>
+					</li>
+					<li>
+						<a href="#">Blog</a>
+
+					</li>
+					<li>
+						<a target="_blank" href="http://www.mywebtricks.com/">Contact</a>
+					</li>
+         <li style="float:right;">
+           <a href="http://www.mywebtricks.com/">Go my Blog</a>
+          </li>
+
+				</ul>
+			</nav>
+
+
+
+
+<script>
+  
+			$(document).ready(function() {
+				//responsive menu toggle
+				$("#menutoggle").click(function() {
+					$('.xs-menu').toggleClass('displaynone');
+
+					});
+				//add active class on menu
+				$('ul li').click(function(e) {
+					e.preventDefault();
+					$('li').removeClass('active');
+					$(this).addClass('active');
+				});
+			//drop down menu	
+					$(".drop-down").hover(function() {
+						$('.mega-menu').addClass('display-on');
+					});
+					$(".drop-down").mouseleave(function() {
+						$('.mega-menu').removeClass('display-on');
+					});
+			
+			});
+
+</script>
+
+    {% endif %}
+    

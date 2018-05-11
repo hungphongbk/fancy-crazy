@@ -1,0 +1,8 @@
+{
+{% if prices.compare_at_price > prices.price %}
+"original": {{ prices.compare_at_price | json }},
+  "sale": {{ prices.price | json }}
+    {% else %}
+      "original": {{ prices.price | json }}
+    {% endif %}
+}

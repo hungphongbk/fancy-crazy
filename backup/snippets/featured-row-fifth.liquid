@@ -1,0 +1,182 @@
+{% assign header_title = collections[featured_row].title %}
+{% assign more_link = collections[featured_row].url %}
+
+{% capture row_limit %}{{ row_limit_setting | times: 4 }}{% endcapture %}
+
+<div class="section-header">
+  {% if header_title %}
+    <p class="{% if more_link %} section-header__left{% endif %}">  <a href="{{ more_link }}"> {{ header_title }} </a> </p>
+  
+  {% endif %}
+  {% if more_link %}
+    <div class="section-header__right">
+      {% assign header_title = header_title | downcase %}
+      <a href="{{ more_link }}">more {{ header_title }} &rsaquo;</a>
+    </div>
+  {% endif %}
+</div>
+
+<!----------------------
+fifth product style
+------------------------>
+
+<div class="first_product_disposition" id="container">
+
+  {% for product in collections[featured_row].products limit: row_limit %}
+  
+ 
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+  
+	{% assign var_count = forloop.index %}
+    <div class="item large--one-quarter">
+      
+ 
+       {% if on_sale %}
+    
+   
+          <p class=" {{ sale_box_opt  }} ">  
+          
+      {% if product.price_varies %}
+          <strong>{{ settings.productsale }}</strong>  
+            {% else %}
+        <strong>{{ settings.productsale }}</strong>
+     
+      {% endif %}
+            </p>
+    {% endif %}
+      
+      
+   
+        {% if sold_out %}
+            <p class=" {{ sale_box_opt  }} "> 
+   
+               <strong>{{ settings.productsoldout }}</strong>
+    </p>
+               {% endif %}
+      
+      
+    
+      
+      <div class="h_pod">
+        <a href="{{ product.url }}">
+          <img src="{{ product | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class="image">
+        </a>
+      </div>
+        <div class="home_prod_info">
+          <h5 class="title">  
+            <a href="{{ product.url }}">
+            {{ product.title }}
+            </a>
+            </h5>
+          
+          
+          
+          <p class="sale">
+
+            
+            
+          {% if sold_out %}
+      <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+    {% endif %}
+            
+            
+    {% if on_sale %}
+          
+      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+      <s>
+ 
+             {{ product.compare_at_price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.compare_at_price | money | split: '.' | last }}
+           
+            </sup>
+            
+            </s>        
+   
+  {% endif %}   
+            
+         
+            
+     {% if on_sale %}
+      {% if product.price_varies %}
+        {% assign sale_price = product.price | money %}
+     {% comment %}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+        {% endcomment %}
+            
+            {{ product.price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.price | money | split: '.' | last }}
+           
+            </sup>
+            
+            {% else %}
+            
+                {% comment %}
+              <strong>{{ 'products.product.on_sale' | t }}</strong>
+               {% endcomment %}
+         
+            
+            {{ product.price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.price | money | split: '.' | last }}
+           
+            </sup>
+            
+           
+            
+      {% endif %}
+            
+    {% else %}
+            
+      {% if product.price_varies %}
+        {% assign price = product.price | money %}
+     {{ 'products.general.from_text_html' | t: price: price }}
+      {% else %}
+       
+               {{ product.price | money | split: '.' | first}}
+            <sup>
+           
+           {{ product.price | money | split: '.' | last }}
+           
+            </sup>
+            
+            
+      {% endif %}
+            
+    {% endif %}
+            
+            
+   
+       
+            
+  </p>     {% if product.compare_at_price > product.price %}
+           <span id="salePrice" class="sale-tag large"> 
+              Save ${{ product.compare_at_price | minus: product.price |  money_without_currency | split: '.' | first  }}
+            </span> 
+          
+              {% endif %}
+        </div>
+      
+    </div>
+	{% if var_count == 4 or var_count == 8 or var_count == 12 or var_count == 16 or var_count == 20 or var_count == 24  %}
+    <div class="clear_both"></div>
+    {% endif %}
+
+    {% endfor %}
+  
+</div>

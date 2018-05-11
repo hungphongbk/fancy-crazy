@@ -1,0 +1,3 @@
+{% comment %}
+  {{ content_for_header }}
+{% endcomment %}{% capture rendered %}{{ content_for_layout }}{% endcapture %}{{ rendered | strip_newlines | replace: "  ","" | replace: ": ",":" }}

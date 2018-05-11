@@ -1,0 +1,2840 @@
+[
+  {
+    "name": "theme_info",
+    "logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0070\/7032\/files\/2010_6_23_Shopify-Green_256x256.jpg",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shopify Booster"
+      },
+      {
+        "type": "paragraph",
+        "content": "v1.6"
+      },
+      {
+        "type": "paragraph",
+        "content": "Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code."
+      },
+      {
+        "type": "paragraph",
+        "content": "Contact [Shopify Booster Support](https:\/\/shopifybooster.leadpages.co\/contact\/) for any kind of help."
+      }
+    ]
+  },
+  {
+    "name": "Theme Font Family",
+    "settings": [
+      {
+        "type": "header",
+        "content": "[Google font family link](https:\/\/fonts.google.com\/)"
+      },
+      {
+        "type": "select",
+        "id": "menu_font_family",
+        "label": "Menu Font",
+        "options": [
+          {
+            "value": "Arial",
+            "label": "default theme font family"
+          },
+          {
+            "value": "Anton",
+            "label": "Anton"
+          },
+          {
+            "value": "Arimo",
+            "label": "Arimo"
+          },
+          {
+            "value": "Arvo",
+            "label": "Arvo"
+          },
+          {
+            "value": "Baloo Bhai",
+            "label": "Baloo Bhai"
+          },
+          {
+            "value": "Baloo Bhaina",
+            "label": "Baloo Bhaina"
+          },
+          {
+            "value": "Bitter",
+            "label": "Bitter"
+          },
+          {
+            "value": "Bree Serif",
+            "label": "Bree Serif"
+          },
+          {
+            "value": "Cabin",
+            "label": "Cabin"
+          },
+          {
+            "value": "Catamaran",
+            "label": "Catamaran"
+          },
+          {
+            "value": "David Libre",
+            "label": "David Libre"
+          },
+          {
+            "value": "Dosis",
+            "label": "Dosis"
+          },
+          {
+            "value": "Droid Sans",
+            "label": "Droid Sans"
+          },
+          {
+            "value": "Droid Serif",
+            "label": "Droid Serif"
+          },
+          {
+            "value": "Ek Mukta",
+            "label": "Ek Mukta"
+          },
+          {
+            "value": "Fjalla One",
+            "label": "Fjalla One"
+          },
+          {
+            "value": "Hind",
+            "label": "Hind"
+          },
+          {
+            "value": "Inconsolata",
+            "label": "Inconsolata"
+          },
+          {
+            "value": "Indie Flower",
+            "label": "Indie Flower"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Libre Baskerville",
+            "label": "Libre Baskerville"
+          },
+          {
+            "value": "Lobster",
+            "label": "Lobster"
+          },
+          {
+            "value": "Lora",
+            "label": "Lora"
+          },
+          {
+            "value": "Merriweather",
+            "label": "Merriweather"
+          },
+          {
+            "value": "Modak",
+            "label": "Modak"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Muli",
+            "label": "Muli"
+          },
+          {
+            "value": "Noto Sans",
+            "label": "Noto Sans"
+          },
+          {
+            "value": "Noto Serif",
+            "label": "Noto Serif"
+          },
+          {
+            "value": "Nunito",
+            "label": "Nunito"
+          },
+          {
+            "value": "Open Sans Condensed",
+            "label": "Open Sans Condensed"
+          },
+          {
+            "value": "Oswald",
+            "label": "Oswald"
+          },
+          {
+            "value": "Oxygen",
+            "label": "Oxygen"
+          },
+          {
+            "value": "PT Sans",
+            "label": "PT Sans"
+          },
+          {
+            "value": "PT Sans Narrow",
+            "label": "PT Sans Narrow"
+          },
+          {
+            "value": "PT Serif",
+            "label": "PT Serif"
+          },
+          {
+            "value": "Pavanam",
+            "label": "Pavanam"
+          },
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          },
+          {
+            "value": "Raleway",
+            "label": "Raleway"
+          },
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Roboto Condensed",
+            "label": "Roboto Condensed"
+          },
+          {
+            "value": "Roboto Slab",
+            "label": "Roboto Slab"
+          },
+          {
+            "value": "Slabo",
+            "label": "Slabo"
+          },
+          {
+            "value": "Source Sans Pro",
+            "label": "Source Sans Pro"
+          },
+          {
+            "value": "Teko",
+            "label": "Teko"
+          },
+          {
+            "value": "Titillium Web",
+            "label": "Titillium Web"
+          },
+          {
+            "value": "Ubuntu",
+            "label": "Ubuntu"
+          },
+          {
+            "value": "Yanone Kaffeesatz",
+            "label": "Yanone Kaffeesatz"
+          },
+          {
+            "value": "Yatra One",
+            "label": "Yatra One"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "description_font_family",
+        "label": "Description Font",
+        "options": [
+          {
+            "value": "Arial",
+            "label": "default theme font family"
+          },
+          {
+            "value": "Anton",
+            "label": "Anton"
+          },
+          {
+            "value": "Arimo",
+            "label": "Arimo"
+          },
+          {
+            "value": "Arvo",
+            "label": "Arvo"
+          },
+          {
+            "value": "Baloo Bhai",
+            "label": "Baloo Bhai"
+          },
+          {
+            "value": "Baloo Bhaina",
+            "label": "Baloo Bhaina"
+          },
+          {
+            "value": "Bitter",
+            "label": "Bitter"
+          },
+          {
+            "value": "Bree Serif",
+            "label": "Bree Serif"
+          },
+          {
+            "value": "Cabin",
+            "label": "Cabin"
+          },
+          {
+            "value": "Catamaran",
+            "label": "Catamaran"
+          },
+          {
+            "value": "David Libre",
+            "label": "David Libre"
+          },
+          {
+            "value": "Dosis",
+            "label": "Dosis"
+          },
+          {
+            "value": "Droid Sans",
+            "label": "Droid Sans"
+          },
+          {
+            "value": "Droid Serif",
+            "label": "Droid Serif"
+          },
+          {
+            "value": "Ek Mukta",
+            "label": "Ek Mukta"
+          },
+          {
+            "value": "Fjalla One",
+            "label": "Fjalla One"
+          },
+          {
+            "value": "Hind",
+            "label": "Hind"
+          },
+          {
+            "value": "Inconsolata",
+            "label": "Inconsolata"
+          },
+          {
+            "value": "Indie Flower",
+            "label": "Indie Flower"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Libre Baskerville",
+            "label": "Libre Baskerville"
+          },
+          {
+            "value": "Lobster",
+            "label": "Lobster"
+          },
+          {
+            "value": "Lora",
+            "label": "Lora"
+          },
+          {
+            "value": "Merriweather",
+            "label": "Merriweather"
+          },
+          {
+            "value": "Modak",
+            "label": "Modak"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Muli",
+            "label": "Muli"
+          },
+          {
+            "value": "Noto Sans",
+            "label": "Noto Sans"
+          },
+          {
+            "value": "Noto Serif",
+            "label": "Noto Serif"
+          },
+          {
+            "value": "Nunito",
+            "label": "Nunito"
+          },
+          {
+            "value": "Open Sans Condensed",
+            "label": "Open Sans Condensed"
+          },
+          {
+            "value": "Oswald",
+            "label": "Oswald"
+          },
+          {
+            "value": "Oxygen",
+            "label": "Oxygen"
+          },
+          {
+            "value": "PT Sans",
+            "label": "PT Sans"
+          },
+          {
+            "value": "PT Sans Narrow",
+            "label": "PT Sans Narrow"
+          },
+          {
+            "value": "PT Serif",
+            "label": "PT Serif"
+          },
+          {
+            "value": "Pavanam",
+            "label": "Pavanam"
+          },
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          },
+          {
+            "value": "Raleway",
+            "label": "Raleway"
+          },
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Roboto Condensed",
+            "label": "Roboto Condensed"
+          },
+          {
+            "value": "Roboto Slab",
+            "label": "Roboto Slab"
+          },
+          {
+            "value": "Slabo",
+            "label": "Slabo"
+          },
+          {
+            "value": "Source Sans Pro",
+            "label": "Source Sans Pro"
+          },
+          {
+            "value": "Teko",
+            "label": "Teko"
+          },
+          {
+            "value": "Titillium Web",
+            "label": "Titillium Web"
+          },
+          {
+            "value": "Ubuntu",
+            "label": "Ubuntu"
+          },
+          {
+            "value": "Yanone Kaffeesatz",
+            "label": "Yanone Kaffeesatz"
+          },
+          {
+            "value": "Yatra One",
+            "label": "Yatra One"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "title_font_family",
+        "label": "Title Font",
+        "options": [
+          {
+            "value": "Arial",
+            "label": "default theme font family"
+          },
+          {
+            "value": "Anton",
+            "label": "Anton"
+          },
+          {
+            "value": "Arimo",
+            "label": "Arimo"
+          },
+          {
+            "value": "Arvo",
+            "label": "Arvo"
+          },
+          {
+            "value": "Baloo Bhai",
+            "label": "Baloo Bhai"
+          },
+          {
+            "value": "Baloo Bhaina",
+            "label": "Baloo Bhaina"
+          },
+          {
+            "value": "Bitter",
+            "label": "Bitter"
+          },
+          {
+            "value": "Bree Serif",
+            "label": "Bree Serif"
+          },
+          {
+            "value": "Cabin",
+            "label": "Cabin"
+          },
+          {
+            "value": "Catamaran",
+            "label": "Catamaran"
+          },
+          {
+            "value": "David Libre",
+            "label": "David Libre"
+          },
+          {
+            "value": "Dosis",
+            "label": "Dosis"
+          },
+          {
+            "value": "Droid Sans",
+            "label": "Droid Sans"
+          },
+          {
+            "value": "Droid Serif",
+            "label": "Droid Serif"
+          },
+          {
+            "value": "Ek Mukta",
+            "label": "Ek Mukta"
+          },
+          {
+            "value": "Fjalla One",
+            "label": "Fjalla One"
+          },
+          {
+            "value": "Hind",
+            "label": "Hind"
+          },
+          {
+            "value": "Inconsolata",
+            "label": "Inconsolata"
+          },
+          {
+            "value": "Indie Flower",
+            "label": "Indie Flower"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Libre Baskerville",
+            "label": "Libre Baskerville"
+          },
+          {
+            "value": "Lobster",
+            "label": "Lobster"
+          },
+          {
+            "value": "Lora",
+            "label": "Lora"
+          },
+          {
+            "value": "Merriweather",
+            "label": "Merriweather"
+          },
+          {
+            "value": "Modak",
+            "label": "Modak"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Muli",
+            "label": "Muli"
+          },
+          {
+            "value": "Noto Sans",
+            "label": "Noto Sans"
+          },
+          {
+            "value": "Noto Serif",
+            "label": "Noto Serif"
+          },
+          {
+            "value": "Nunito",
+            "label": "Nunito"
+          },
+          {
+            "value": "Open Sans Condensed",
+            "label": "Open Sans Condensed"
+          },
+          {
+            "value": "Oswald",
+            "label": "Oswald"
+          },
+          {
+            "value": "Oxygen",
+            "label": "Oxygen"
+          },
+          {
+            "value": "PT Sans",
+            "label": "PT Sans"
+          },
+          {
+            "value": "PT Sans Narrow",
+            "label": "PT Sans Narrow"
+          },
+          {
+            "value": "PT Serif",
+            "label": "PT Serif"
+          },
+          {
+            "value": "Pavanam",
+            "label": "Pavanam"
+          },
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          },
+          {
+            "value": "Raleway",
+            "label": "Raleway"
+          },
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Roboto Condensed",
+            "label": "Roboto Condensed"
+          },
+          {
+            "value": "Roboto Slab",
+            "label": "Roboto Slab"
+          },
+          {
+            "value": "Slabo",
+            "label": "Slabo"
+          },
+          {
+            "value": "Source Sans Pro",
+            "label": "Source Sans Pro"
+          },
+          {
+            "value": "Teko",
+            "label": "Teko"
+          },
+          {
+            "value": "Titillium Web",
+            "label": "Titillium Web"
+          },
+          {
+            "value": "Ubuntu",
+            "label": "Ubuntu"
+          },
+          {
+            "value": "Yanone Kaffeesatz",
+            "label": "Yanone Kaffeesatz"
+          },
+          {
+            "value": "Yatra One",
+            "label": "Yatra One"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "button_font_family",
+        "label": "Button Font",
+        "options": [
+          {
+            "value": "Arial",
+            "label": "default theme font family"
+          },
+          {
+            "value": "Anton",
+            "label": "Anton"
+          },
+          {
+            "value": "Arimo",
+            "label": "Arimo"
+          },
+          {
+            "value": "Arvo",
+            "label": "Arvo"
+          },
+          {
+            "value": "Baloo Bhai",
+            "label": "Baloo Bhai"
+          },
+          {
+            "value": "Baloo Bhaina",
+            "label": "Baloo Bhaina"
+          },
+          {
+            "value": "Bitter",
+            "label": "Bitter"
+          },
+          {
+            "value": "Bree Serif",
+            "label": "Bree Serif"
+          },
+          {
+            "value": "Cabin",
+            "label": "Cabin"
+          },
+          {
+            "value": "Catamaran",
+            "label": "Catamaran"
+          },
+          {
+            "value": "David Libre",
+            "label": "David Libre"
+          },
+          {
+            "value": "Dosis",
+            "label": "Dosis"
+          },
+          {
+            "value": "Droid Sans",
+            "label": "Droid Sans"
+          },
+          {
+            "value": "Droid Serif",
+            "label": "Droid Serif"
+          },
+          {
+            "value": "Ek Mukta",
+            "label": "Ek Mukta"
+          },
+          {
+            "value": "Fjalla One",
+            "label": "Fjalla One"
+          },
+          {
+            "value": "Hind",
+            "label": "Hind"
+          },
+          {
+            "value": "Inconsolata",
+            "label": "Inconsolata"
+          },
+          {
+            "value": "Indie Flower",
+            "label": "Indie Flower"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Libre Baskerville",
+            "label": "Libre Baskerville"
+          },
+          {
+            "value": "Lobster",
+            "label": "Lobster"
+          },
+          {
+            "value": "Lora",
+            "label": "Lora"
+          },
+          {
+            "value": "Merriweather",
+            "label": "Merriweather"
+          },
+          {
+            "value": "Modak",
+            "label": "Modak"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Muli",
+            "label": "Muli"
+          },
+          {
+            "value": "Noto Sans",
+            "label": "Noto Sans"
+          },
+          {
+            "value": "Noto Serif",
+            "label": "Noto Serif"
+          },
+          {
+            "value": "Nunito",
+            "label": "Nunito"
+          },
+          {
+            "value": "Open Sans Condensed",
+            "label": "Open Sans Condensed"
+          },
+          {
+            "value": "Oswald",
+            "label": "Oswald"
+          },
+          {
+            "value": "Oxygen",
+            "label": "Oxygen"
+          },
+          {
+            "value": "PT Sans",
+            "label": "PT Sans"
+          },
+          {
+            "value": "PT Sans Narrow",
+            "label": "PT Sans Narrow"
+          },
+          {
+            "value": "PT Serif",
+            "label": "PT Serif"
+          },
+          {
+            "value": "Pavanam",
+            "label": "Pavanam"
+          },
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          },
+          {
+            "value": "Raleway",
+            "label": "Raleway"
+          },
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Roboto Condensed",
+            "label": "Roboto Condensed"
+          },
+          {
+            "value": "Roboto Slab",
+            "label": "Roboto Slab"
+          },
+          {
+            "value": "Slabo",
+            "label": "Slabo"
+          },
+          {
+            "value": "Source Sans Pro",
+            "label": "Source Sans Pro"
+          },
+          {
+            "value": "Teko",
+            "label": "Teko"
+          },
+          {
+            "value": "Titillium Web",
+            "label": "Titillium Web"
+          },
+          {
+            "value": "Ubuntu",
+            "label": "Ubuntu"
+          },
+          {
+            "value": "Yanone Kaffeesatz",
+            "label": "Yanone Kaffeesatz"
+          },
+          {
+            "value": "Yatra One",
+            "label": "Yatra One"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "body_font_family",
+        "label": "All body other Font",
+        "options": [
+          {
+            "value": "Arial",
+            "label": "default theme font family"
+          },
+          {
+            "value": "Anton",
+            "label": "Anton"
+          },
+          {
+            "value": "Arimo",
+            "label": "Arimo"
+          },
+          {
+            "value": "Arvo",
+            "label": "Arvo"
+          },
+          {
+            "value": "Baloo Bhai",
+            "label": "Baloo Bhai"
+          },
+          {
+            "value": "Baloo Bhaina",
+            "label": "Baloo Bhaina"
+          },
+          {
+            "value": "Bitter",
+            "label": "Bitter"
+          },
+          {
+            "value": "Bree Serif",
+            "label": "Bree Serif"
+          },
+          {
+            "value": "Cabin",
+            "label": "Cabin"
+          },
+          {
+            "value": "Catamaran",
+            "label": "Catamaran"
+          },
+          {
+            "value": "David Libre",
+            "label": "David Libre"
+          },
+          {
+            "value": "Dosis",
+            "label": "Dosis"
+          },
+          {
+            "value": "Droid Sans",
+            "label": "Droid Sans"
+          },
+          {
+            "value": "Droid Serif",
+            "label": "Droid Serif"
+          },
+          {
+            "value": "Ek Mukta",
+            "label": "Ek Mukta"
+          },
+          {
+            "value": "Fjalla One",
+            "label": "Fjalla One"
+          },
+          {
+            "value": "Hind",
+            "label": "Hind"
+          },
+          {
+            "value": "Inconsolata",
+            "label": "Inconsolata"
+          },
+          {
+            "value": "Indie Flower",
+            "label": "Indie Flower"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Libre Baskerville",
+            "label": "Libre Baskerville"
+          },
+          {
+            "value": "Lobster",
+            "label": "Lobster"
+          },
+          {
+            "value": "Lora",
+            "label": "Lora"
+          },
+          {
+            "value": "Merriweather",
+            "label": "Merriweather"
+          },
+          {
+            "value": "Modak",
+            "label": "Modak"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Muli",
+            "label": "Muli"
+          },
+          {
+            "value": "Noto Sans",
+            "label": "Noto Sans"
+          },
+          {
+            "value": "Noto Serif",
+            "label": "Noto Serif"
+          },
+          {
+            "value": "Nunito",
+            "label": "Nunito"
+          },
+          {
+            "value": "Open Sans Condensed",
+            "label": "Open Sans Condensed"
+          },
+          {
+            "value": "Oswald",
+            "label": "Oswald"
+          },
+          {
+            "value": "Oxygen",
+            "label": "Oxygen"
+          },
+          {
+            "value": "PT Sans",
+            "label": "PT Sans"
+          },
+          {
+            "value": "PT Sans Narrow",
+            "label": "PT Sans Narrow"
+          },
+          {
+            "value": "PT Serif",
+            "label": "PT Serif"
+          },
+          {
+            "value": "Pavanam",
+            "label": "Pavanam"
+          },
+          {
+            "value": "Playfair Display",
+            "label": "Playfair Display"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          },
+          {
+            "value": "Raleway",
+            "label": "Raleway"
+          },
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Roboto Condensed",
+            "label": "Roboto Condensed"
+          },
+          {
+            "value": "Roboto Slab",
+            "label": "Roboto Slab"
+          },
+          {
+            "value": "Slabo",
+            "label": "Slabo"
+          },
+          {
+            "value": "Source Sans Pro",
+            "label": "Source Sans Pro"
+          },
+          {
+            "value": "Teko",
+            "label": "Teko"
+          },
+          {
+            "value": "Titillium Web",
+            "label": "Titillium Web"
+          },
+          {
+            "value": "Ubuntu",
+            "label": "Ubuntu"
+          },
+          {
+            "value": "Yanone Kaffeesatz",
+            "label": "Yanone Kaffeesatz"
+          },
+          {
+            "value": "Yatra One",
+            "label": "Yatra One"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Use class=\"color\" on a an input tag to bring up the color picker. Only a few colors have been included here as an example."
+      },
+      {
+        "type": "header",
+        "content": "General colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary",
+        "default": "#204a80",
+        "info": "Used for text links, and primary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary",
+        "default": "#dcdcdc",
+        "info": "Used for secondary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Borders",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "color",
+        "id": "header_bg",
+        "label": "Header Background",
+        "default": "#204a80"
+      },
+      {
+        "type": "color",
+        "id": "menu_bg",
+        "label": "Navigation Background",
+        "default": "#ccc"
+      },
+      {
+        "type": "color",
+        "id": "menu_color_primary",
+        "label": "Menu",
+        "default": "#204a80",
+        "info": "Home Page Menu color"
+      },
+      {
+        "type": "color",
+        "id": "menu_other_color_primary",
+        "label": "Menu",
+        "default": "#204a80",
+        "info": "Othere Page Menu color"
+      },
+      {
+        "type": "color",
+        "id": "menu_submenu_color",
+        "label": "Submenu color",
+        "default": "#204a80",
+        "info": "mega menu sub menu color"
+      },
+      {
+        "type": "color",
+        "id": "menu_submenu_color_hover",
+        "label": "Submenu color hover",
+        "default": "#204a80",
+        "info": "mega menu sub menu hover, focus color"
+      },
+      {
+        "type": "header",
+        "content": "Body"
+      },
+      {
+        "type": "color",
+        "id": "color_body_bg",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "home_product_bg_color",
+        "label": "Home Product Background Color"
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Background Color",
+        "default": "#f2f2f2"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_text",
+        "label": "Text  Color",
+        "default": "#636363"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_text_heading",
+        "label": "Text Heading Color",
+        "default": "#636363"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_social_link",
+        "label": "Social Media Icons  Color",
+        "default": "#bbbbbb"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_share_icon",
+        "label": "Share Icons  Color",
+        "default": "#ED1C24"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart button color"
+      },
+      {
+        "type": "color",
+        "id": "cart_button_bg",
+        "label": "Cart Button Background",
+        "info": "with search icon color change"
+      },
+      {
+        "type": "color",
+        "id": "cart_button_color",
+        "label": "Cart Button Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "logo_use_image",
+        "label": "Use custom logo"
+      },
+      {
+        "type": "image",
+        "id": "logo.png",
+        "label": "Custom logo",
+        "max-width": 450,
+        "max-height": 200,
+        "info": "Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints."
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Max logo width",
+        "default": "450",
+        "info": "Defined in pixels. Do not add the 'px' unit."
+      },
+      {
+        "type": "header",
+        "content": "Favicon"
+      },
+      {
+        "type": "checkbox",
+        "id": "favicon_enable",
+        "label": "Use custom icon"
+      },
+      {
+        "type": "image",
+        "id": "favicon.png",
+        "label": "16 x 16px png",
+        "max-width": 16,
+        "max-height": 16
+      },
+      {
+        "type": "header",
+        "content": "Font Size"
+      },
+      {
+        "type": "number",
+        "id": "menu_font_size",
+        "label": "Navigation Menu font Size",
+        "info": "Defined in pixels. Do not add the 'px' unit."
+      }
+    ]
+  },
+  {
+    "name": "Header mobile",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mobile header settings"
+      },
+      {
+        "type": "image",
+        "id": "logo_mobile.png",
+        "label": "Custom mobile logo",
+        "max-width": 360,
+        "max-height": 100,
+        "info": "Maximum logo dimensions are 360px wide by 100px high. The uploaded file will be resized to fit within those constraints."
+      },
+      {
+        "type": "select",
+        "id": "mobile_logo_size",
+        "label": "Logo size in %",
+        "options": [
+          {
+            "value": "35%",
+            "label": "35"
+          },
+          {
+            "value": "50%",
+            "label": "50"
+          },
+          {
+            "value": "60%",
+            "label": "60"
+          },
+          {
+            "value": "70%",
+            "label": "70"
+          },
+          {
+            "value": "75%",
+            "label": "75"
+          },
+          {
+            "value": "90%",
+            "label": "90"
+          },
+          {
+            "value": "100%",
+            "label": "100"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "header_background_mobile",
+        "label": "mobile Header background",
+        "default": "#ff0000"
+      },
+      {
+        "type": "color",
+        "id": "user_mobile_color",
+        "label": "Custom user icon color"
+      },
+      {
+        "type": "color",
+        "id": "checkout_mobile_color",
+        "label": "Custom checkout  icon color"
+      },
+      {
+        "type": "color",
+        "id": "search_mobile_color",
+        "label": "Custom search icon color"
+      },
+      {
+        "type": "color",
+        "id": "bar_mobile_icon",
+        "label": "Custom bar icon color"
+      },
+      {
+        "type": "color",
+        "id": "cartcount_mobile_color",
+        "label": "Custom cart count color"
+      },
+      {
+        "type": "color",
+        "id": "cartcount_bg_mobile_color",
+        "label": "Custom cart count background"
+      }
+    ]
+  },
+  {
+    "name": "Header Strip",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header Top Text Strip"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_strip",
+        "label": "Show Strip"
+      },
+      {
+        "type": "color",
+        "id": "header_strip_bg",
+        "label": "Strip Background"
+      },
+      {
+        "type": "color",
+        "id": "header_strip_color",
+        "label": "Strip Text Color"
+      },
+      {
+        "type": "text",
+        "id": "header_strip_text",
+        "label": "Strip Text(Left)"
+      },
+      {
+        "type": "text",
+        "id": "header_strip_text_contact",
+        "label": "Strip contect Phone no."
+      },
+      {
+        "type": "text",
+        "id": "header_strip_text_email",
+        "label": "Strip email"
+      },
+      {
+        "type": "text",
+        "id": "header_strip_text_link_name",
+        "label": "Strip link title"
+      },
+      {
+        "type": "text",
+        "id": "header_strip_text_link_url",
+        "label": "Strip link"
+      },
+      {
+        "type": "header",
+        "content": "header strip setting for mobile"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_strip_hide_mobile",
+        "label": "header strip hide in mobile"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_strip_hide_right_mobile",
+        "label": "right section hide in mobile"
+      }
+    ]
+  },
+  {
+    "name": "Menu",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_primary",
+        "label": "Menu Primary"
+      }
+    ]
+  },
+  {
+    "name": "MegaMenu",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Mega Menu 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "mega_menu_enable_1",
+        "label": "Mega menu enable 1"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_parent",
+        "label": "Parent name of dropdown menu",
+        "info": "Menu name only use lowercase eg: For 'Summer Sale' use menu name eg: 'summer-sale'. The name you'll put here need to be the same as the one you want to replace. It will replace the current element of the standard link for the Mega Menu"
+      },
+      {
+        "type": "header",
+        "content": "Column 1"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_column_1_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "megamenu_1_column_1_menu",
+        "label": "Menu column 1"
+      },
+      {
+        "type": "header",
+        "content": "Column 2"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_column_2_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "megamenu_1_column_2_menu",
+        "label": "Menu column 2"
+      },
+      {
+        "type": "header",
+        "content": "Column 3"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_column_3_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "megamenu_1_column_3_menu",
+        "label": "Menu column 3"
+      },
+      {
+        "type": "header",
+        "content": "Column 4"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_column_4_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "megamenu_1_column_4_menu",
+        "label": "Menu column 4"
+      },
+      {
+        "type": "header",
+        "content": "Image 1"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_column_5_title",
+        "label": "Title"
+      },
+      {
+        "type": "image",
+        "id": "megamenu_1_image_1.jpg",
+        "label": "Image 1"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_1_image_1_url",
+        "label": "URL Image 1"
+      }
+    ]
+  },
+  {
+    "name": "Notification Pop up",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Buttom pop up setting"
+      },
+      {
+        "type": "checkbox",
+        "id": "popup_enable",
+        "label": "Pop up enable"
+      },
+      {
+        "type": "checkbox",
+        "id": "popup_ago_custom_time",
+        "label": "Enable Ago time"
+      },
+      {
+        "type": "checkbox",
+        "id": "popup_disable_mobile",
+        "label": "Pop up disable on mobile"
+      },
+      {
+        "type": "collection",
+        "id": "popup_randomly_collection",
+        "label": "Collection"
+      },
+      {
+        "type": "textarea",
+        "id": "buttom_message",
+        "label": "change the message"
+      },
+      {
+        "type": "color",
+        "id": "popup_message",
+        "label": "Message color"
+      },
+      {
+        "type": "color",
+        "id": "popup_product_title_olor",
+        "label": "Product title color"
+      }
+    ]
+  },
+  {
+    "name": "UpSell Popup",
+    "settings": [
+      {
+        "type": "header",
+        "content": "UpSell Popup"
+      },
+      {
+        "type": "checkbox",
+        "id": "upsell_popup_enable",
+        "label": "Enable Upsell Popup"
+      },
+      {
+        "type": "product",
+        "id": "free_product",
+        "label": "Select free product"
+      },
+      {
+        "type": "text",
+        "id": "upsell_headline_text",
+        "label": "Headline Text"
+      },
+      {
+        "type": "text",
+        "id": "yes_button_text",
+        "label": "Button Yes Text"
+      },
+      {
+        "type": "text",
+        "id": "not_button_text",
+        "label": "Button No Text"
+      },
+      {
+        "type": "select",
+        "id": "quantity_upsell",
+        "label": "Quantity",
+        "options": [
+          {
+            "value": "2",
+            "label": "quantity 2"
+          },
+          {
+            "value": "3",
+            "label": "quantity 3"
+          },
+          {
+            "value": "4",
+            "label": "quantity 4"
+          },
+          {
+            "value": "5",
+            "label": "quantity 5"
+          },
+          {
+            "value": "6",
+            "label": "quantity 6"
+          },
+          {
+            "value": "7",
+            "label": "quantity 7"
+          },
+          {
+            "value": "8",
+            "label": "qunatity 8"
+          },
+          {
+            "value": "9",
+            "label": "quantity 9"
+          },
+          {
+            "value": "10",
+            "label": "quantity 10"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "upsell_popup_color",
+        "label": "Upsell Popup Background"
+      },
+      {
+        "type": "color",
+        "id": "upsell_headline_color",
+        "label": "Headline Color"
+      },
+      {
+        "type": "color",
+        "id": "button_yes_color",
+        "label": "Button Yes background"
+      },
+      {
+        "type": "color",
+        "id": "button_no_color",
+        "label": "Button No Color"
+      }
+    ]
+  },
+  {
+    "name": "Home Page Slider",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Desktop And Mobile Slider Settings"
+      },
+      {
+        "type": "header",
+        "content": "slider setting"
+      },
+      {
+        "type": "text",
+        "id": "slideshowSpeed",
+        "label": "Slide Show Speed",
+        "info": "Setting speed is in milliseconds eg: 2000"
+      },
+      {
+        "type": "text",
+        "id": "animationSpeed",
+        "label": "Animation Speed",
+        "info": "Setting speed is in milliseconds eg: 800"
+      },
+      {
+        "type": "header",
+        "content": "Slider 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "slider_enable1",
+        "label": "Slider 1 Enable"
+      },
+      {
+        "type": "text",
+        "id": "slider_link1",
+        "label": "Slider 1 link"
+      },
+      {
+        "type": "image",
+        "id": "hero_slide_1.png",
+        "label": "Silder 1 Image"
+      },
+      {
+        "type": "image",
+        "id": "m_hero_slide_1.png",
+        "label": "Mobile Silder 1 Image"
+      },
+      {
+        "type": "header",
+        "content": "slider 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "slider_enable2",
+        "label": "Slider 2 Enable"
+      },
+      {
+        "type": "text",
+        "id": "slider_link2",
+        "label": "Slider 2 link"
+      },
+      {
+        "type": "image",
+        "id": "hero_slide_2.png",
+        "label": "Silder 2 Image"
+      },
+      {
+        "type": "image",
+        "id": "m_hero_slide_2.png",
+        "label": "Mobile Silder 2 Image"
+      },
+      {
+        "type": "header",
+        "content": "Slider 3"
+      },
+      {
+        "type": "checkbox",
+        "id": "slider_enable3",
+        "label": "Slider 3 Enable"
+      },
+      {
+        "type": "text",
+        "id": "slider_link3",
+        "label": "Slider 3 link"
+      },
+      {
+        "type": "image",
+        "id": "hero_slide_3.png",
+        "label": "Silder 3 Image"
+      },
+      {
+        "type": "image",
+        "id": "m_hero_slide_3.png",
+        "label": "Mobile Silder 3 Image"
+      },
+      {
+        "type": "header",
+        "content": "Slider 4"
+      },
+      {
+        "type": "checkbox",
+        "id": "slider_enable4",
+        "label": "Slider 4 Enable"
+      },
+      {
+        "type": "text",
+        "id": "slider_link4",
+        "label": "Slider 4 link"
+      },
+      {
+        "type": "image",
+        "id": "hero_slide_4.png",
+        "label": "Silder 4 Image"
+      },
+      {
+        "type": "image",
+        "id": "m_hero_slide_4.png",
+        "label": "Mobile Silder 4 Image"
+      }
+    ]
+  },
+  {
+    "name": "Home page - Featured Collections",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "featured_coll_enb",
+        "label": "feature collection enable"
+      },
+      {
+        "type": "text",
+        "id": "feature_collection_title",
+        "label": "Feature collection title"
+      },
+      {
+        "type": "radio",
+        "id": "home_featured_collections_sort",
+        "label": "Choose collections",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Automatically"
+          },
+          {
+            "value": "manual",
+            "label": "Manually:"
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "id": "collection_1"
+      },
+      {
+        "type": "collection",
+        "id": "collection_2"
+      },
+      {
+        "type": "collection",
+        "id": "collection_3"
+      },
+      {
+        "type": "collection",
+        "id": "collection_4"
+      },
+      {
+        "type": "collection",
+        "id": "collection_5"
+      },
+      {
+        "type": "collection",
+        "id": "collection_6"
+      }
+    ]
+  },
+  {
+    "name": "Home page - Collection rows",
+    "settings": [
+      {
+        "type": "header",
+        "content": "This setting is only working with style 5 in the home page product setting"
+      },
+      {
+        "type": "checkbox",
+        "id": "home_featured_row1_enable",
+        "label": "Enable row 1"
+      },
+      {
+        "type": "collection",
+        "id": "home_featured_row1",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "home_featured_row1_number",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ],
+        "info": "4 per line"
+      },
+      {
+        "type": "checkbox",
+        "id": "home_featured_row2_enable",
+        "label": "Enable row 2"
+      },
+      {
+        "type": "collection",
+        "id": "home_featured_row2",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "home_featured_row2_number",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ],
+        "info": "4 per line"
+      },
+      {
+        "type": "checkbox",
+        "id": "home_featured_row3_enable",
+        "label": "Enable row 3"
+      },
+      {
+        "type": "collection",
+        "id": "home_featured_row3",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "home_featured_row3_number",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ],
+        "info": "4 per line"
+      },
+      {
+        "type": "checkbox",
+        "id": "home_featured_row4_enable",
+        "label": "Enable row 4"
+      },
+      {
+        "type": "collection",
+        "id": "home_featured_row4",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "home_featured_row4_number",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ],
+        "info": "4 per line"
+      }
+    ]
+  },
+  {
+    "name": "Home Page Products",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Select Home Collection Display "
+      },
+      {
+        "type": "collection",
+        "id": "home_products",
+        "label": "Home Page Products"
+      },
+      {
+        "type": "text",
+        "id": "home_feature_title",
+        "label": "Feature product title"
+      },
+      {
+        "type": "header",
+        "content": "Product disposition"
+      },
+      {
+        "type": "radio",
+        "id": "product_disposition_style",
+        "info": "Style 5 (collection row): This style is working with the home page - collection row setting",
+        "options": [
+          {
+            "value": "product_disposition_style_one",
+            "label": "Style 1"
+          },
+          {
+            "value": "product_disposition_style_two",
+            "label": "Style 2"
+          },
+          {
+            "value": "product_disposition_style_three",
+            "label": "Style 3"
+          },
+          {
+            "value": "product_disposition_style_four",
+            "label": "Style 4"
+          },
+          {
+            "value": "product_disposition_style_five",
+            "label": "Style 5 (collection row)"
+          }
+        ],
+        "label": "Product disposition Style"
+      },
+      {
+        "type": "header",
+        "content": "Product Sale Title"
+      },
+      {
+        "type": "text",
+        "id": "productsale",
+        "label": "On sale"
+      },
+      {
+        "type": "text",
+        "id": "productsoldout",
+        "label": "Sold out"
+      },
+      {
+        "type": "header",
+        "content": "Sale Button Style option"
+      },
+      {
+        "type": "radio",
+        "id": "sale_button_option",
+        "options": [
+          {
+            "value": "sale_button_option_one",
+            "label": "Option 1"
+          },
+          {
+            "value": "sale_button_option_two",
+            "label": "Option 2"
+          },
+          {
+            "value": "sale_button_option_three",
+            "label": "Option 3"
+          },
+          {
+            "value": "sale_button_option_four",
+            "label": "Option 4"
+          }
+        ],
+        "label": "Sale Button Style Option"
+      },
+      {
+        "type": "color",
+        "id": "sale_button_option_one_color",
+        "label": "Sale Button Background Color"
+      },
+      {
+        "type": "color",
+        "id": "sale_button_option__text_one_color",
+        "label": "Sale Button Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "buy_button_color",
+        "label": "Buy Button Background Color (style 4)"
+      },
+      {
+        "type": "color",
+        "id": "buy_button_text_color",
+        "label": "Buy Button Text Color (style 4)",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "comparePriceColor",
+        "label": "Compare Price button border & color"
+      }
+    ]
+  },
+  {
+    "name": "Home page - Video setting",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Video setting"
+      },
+      {
+        "type": "color",
+        "id": "video_title_color",
+        "label": "Video Title color",
+        "info": "Both video title color"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_video_1",
+        "label": "Enable video #1"
+      },
+      {
+        "type": "text",
+        "id": "video_title_1",
+        "label": "Video title #1"
+      },
+      {
+        "type": "textarea",
+        "id": "video_link_1",
+        "label": "Video Iframe #1"
+      },
+      {
+        "type": "textarea",
+        "id": "video_text_1",
+        "label": "Video description #1"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_video_2",
+        "label": "Enable video #2"
+      },
+      {
+        "type": "text",
+        "id": "video_title_2",
+        "label": "Video title #2"
+      },
+      {
+        "type": "textarea",
+        "id": "video_link_2",
+        "label": "Video Iframe #2"
+      },
+      {
+        "type": "textarea",
+        "id": "video_text_2",
+        "label": "Video description #2"
+      }
+    ]
+  },
+  {
+    "name": "Product page",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Progress bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_progressbar",
+        "label": "Enable Product Progress bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_progressbar_text",
+        "label": "Enable Progress Bar Text"
+      },
+      {
+        "type": "text",
+        "id": "enable_progressbar_text_value",
+        "label": "Progress Bar Text"
+      },
+      {
+        "type": "color",
+        "id": "ProgressBar_bg_color",
+        "label": "Progress Bar Color"
+      },
+      {
+        "type": "color",
+        "id": "ProgressBar_timer_bg_color",
+        "label": "Progress Bar timer Color"
+      },
+      {
+        "type": "header",
+        "content": "Add To Cart Button"
+      },
+      {
+        "type": "color",
+        "id": "add_to_cart_bg_color",
+        "label": "Add To Cart",
+        "info": "add To Cart Button Color"
+      },
+      {
+        "type": "color",
+        "id": "add_to_cart_bg_color_zero",
+        "label": "FREE + SHIP Button",
+        "info": "FREE + SHIP Add To Cart Button Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_cart_skip",
+        "label": "Skip Cart",
+        "info": "Skip Cart And go Directly to Checkout"
+      },
+      {
+        "type": "text",
+        "id": "add_to_cart_button_text",
+        "label": "Add To Cart Text",
+        "info": "Add To Cart Button text"
+      },
+      {
+        "type": "text",
+        "id": "add_to_cart_button_text_zero_price",
+        "label": "Add To Cart Text for 0$ item",
+        "info": "Add To Cart Button text for 0$ Item"
+      },
+      {
+        "type": "header",
+        "content": "Visitors Counter"
+      },
+      {
+        "type": "color",
+        "id": "counter_visitor_bg",
+        "label": "Background Color",
+        "default": "#f2f2f2"
+      },
+      {
+        "type": "color",
+        "id": "counter_visitor_color",
+        "label": "Text  Color",
+        "default": "#636363"
+      },
+      {
+        "type": "text",
+        "id": "visitor_counter_text_before",
+        "label": "Visitor Counter Before text",
+        "default": "Real Time"
+      },
+      {
+        "type": "text",
+        "id": "visitor_counter_text_after",
+        "label": "Visitor Counter After text",
+        "default": "Visitor Right Now"
+      },
+      {
+        "type": "checkbox",
+        "id": "visitor_counter_enable",
+        "label": "Visitor Counter Enable"
+      },
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_image_zoom",
+        "label": "Enable image zoom"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_image_carousel",
+        "label": "Enable image carousel on desktop"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_quantity_dropdown",
+        "label": "Show quantity selector"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_saved_amount",
+        "label": "Show saved amount"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_compare_price",
+        "label": "Show compare at price"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_related_products",
+        "label": "Show related products",
+        "default": true,
+        "info": "Only visible within a collection"
+      },
+      {
+        "type": "header",
+        "content": "Product description"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_description",
+        "label": "Product description"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_read_more",
+        "label": "Enable Read More"
+      },
+      {
+        "type": "radio",
+        "id": "move_product_desc",
+        "info": "Which place show product description",
+        "options": [
+          {
+            "value": "move_product_desc_quantity",
+            "label": "Quantity"
+          },
+          {
+            "value": "move_product_desc_addtocart",
+            "label": "Add to cart"
+          },
+          {
+            "value": "move_product_desc_timer",
+            "label": "Timer"
+          }
+        ],
+        "label": "Allow to move product description after"
+      },
+      {
+        "type": "header",
+        "content": "Product variant image On Mobile"
+      },
+      {
+        "type": "checkbox",
+        "id": "variant_on_mobile",
+        "label": "Show image variant"
+      },
+      {
+        "type": "header",
+        "content": "Social media sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_products",
+        "label": "Enable product sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_count",
+        "label": "Show shared count",
+        "info": "Only available for Facebook, Twitter, and Pinterest"
+      },
+      {
+        "type": "select",
+        "id": "social_sharing_style",
+        "label": "Button style",
+        "options": [
+          {
+            "value": "",
+            "label": "Normal"
+          },
+          {
+            "value": "is-large",
+            "label": "Large"
+          },
+          {
+            "value": "is-clean",
+            "label": "Clean"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_fancy",
+        "label": "Add to Fancy"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_google",
+        "label": "+1 on Google Plus"
+      },
+      {
+        "type": "image",
+        "id": "product_desc_below.png",
+        "label": "Image Display Below the Description"
+      }
+    ]
+  },
+  {
+    "name": "Product page Timer",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "enable_timer_stg_on",
+        "options": [
+          {
+            "value": "enable_timer_stg_on",
+            "label": "ON timer"
+          },
+          {
+            "value": "enable_timer_stg_off",
+            "label": "OFF timer"
+          }
+        ],
+        "label": "Timer Setting ON\/OFF"
+      },
+      {
+        "type": "radio",
+        "id": "enable_timer_stg",
+        "info": "Randomly pick an hour from 15 minutes to 24hours , and a random number left in stock from 3 to 12",
+        "options": [
+          {
+            "value": "enable_timer_stg_2",
+            "label": "Enable timer  for 2 hours"
+          },
+          {
+            "value": "enable_timer_stg_24m",
+            "label": "Enable timer  for custom minutes"
+          },
+          {
+            "value": "enable_timer_randomly",
+            "label": "Enable timer randomly"
+          }
+        ],
+        "label": "Timer Setting Option"
+      },
+      {
+        "type": "header",
+        "content": "Timer and Progressbar"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_timer_top_message",
+        "label": "Enable To Message"
+      },
+      {
+        "type": "number",
+        "id": "enable_timer_stg_custom",
+        "label": "Enable timer  for custom minutes",
+        "info": "Example: 1500 second left = 25 minutes left"
+      },
+      {
+        "type": "text",
+        "id": "timer_top_message_value_before",
+        "label": "Top Message Text Before Number",
+        "default": "HURRY! ONLY [num] LEFT!",
+        "info": "HURRY! ONLY"
+      },
+      {
+        "type": "radio",
+        "id": "product_left_type",
+        "info": "random number left in stock from 3 to 12",
+        "options": [
+          {
+            "value": "product_left_custom",
+            "label": "Left number custom"
+          },
+          {
+            "value": "product_left_random",
+            "label": "Left numer random"
+          }
+        ],
+        "label": "Product Left Number Type"
+      },
+      {
+        "type": "number",
+        "id": "timer_top_message_value_num",
+        "label": "Top Message LEFT Number",
+        "info": "Use number Example:1  ,where you want the product left qty to appear"
+      },
+      {
+        "type": "text",
+        "id": "timer_top_message_value_after",
+        "label": "Top Message Text After Number",
+        "default": "LEFT!",
+        "info": "LEFT IN STOCK!"
+      },
+      {
+        "type": "header",
+        "content": "Timer Model"
+      },
+      {
+        "type": "radio",
+        "id": "enable_timer_model",
+        "options": [
+          {
+            "value": "timer_model1",
+            "label": "Model 1"
+          },
+          {
+            "value": "timer_model2",
+            "label": "Model 2"
+          },
+          {
+            "value": "timer_model3",
+            "label": "Model 3"
+          },
+          {
+            "value": "timer_model5",
+            "label": "Model 4"
+          },
+          {
+            "value": "timer_model6",
+            "label": "Model 5"
+          }
+        ],
+        "label": "Timer Model Type"
+      }
+    ]
+  },
+  {
+    "name": "Footer Above Setting",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Footer text section"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_above_enable",
+        "label": "Show Footer Shipping Section"
+      },
+      {
+        "type": "image",
+        "id": "footer_above_logo1.png",
+        "label": "Footer Above image #1"
+      },
+      {
+        "type": "text",
+        "id": "footer_above_header1",
+        "label": "Header #1"
+      },
+      {
+        "type": "text",
+        "id": "footer_above_text1",
+        "label": "Text #1"
+      },
+      {
+        "type": "image",
+        "id": "footer_above_logo2.png",
+        "label": "Footer Above image #2"
+      },
+      {
+        "type": "text",
+        "id": "footer_above_header2",
+        "label": "Header #2"
+      },
+      {
+        "type": "text",
+        "id": "footer_above_text2",
+        "label": "Text #2"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Footer Menu Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "footer-0-content",
+        "label": "Footer  contact"
+      },
+      {
+        "type": "text",
+        "id": "footer-0-content_email",
+        "label": "Footer  contact email"
+      },
+      {
+        "type": "text",
+        "id": "footer-4-heading",
+        "label": "Footer #1 Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "footer-4-content",
+        "label": "Footer #1 content"
+      },
+      {
+        "type": "text",
+        "id": "footer_2_heading",
+        "label": "footer #2 menu Heading"
+      },
+      {
+        "type": "link_list",
+        "id": "footer",
+        "label": "Footer #2"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_newsletter_enable",
+        "label": "Show newsletter field"
+      },
+      {
+        "type": "color",
+        "id": "newletterbtncolor",
+        "label": "Newsletter button color"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_form_action",
+        "label": "MailChimp form action URL",
+        "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
+      },
+      {
+        "type": "header",
+        "content": "Footer logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_logo_enable",
+        "label": "enable footer logo"
+      },
+      {
+        "type": "image",
+        "id": "footer_logo.png",
+        "label": "Footer Logo"
+      },
+      {
+        "type": "header",
+        "content": "Payment icons"
+      },
+      {
+        "type": "hidden",
+        "id": "footer_show_methods_of_payment",
+        "label": "Show methods of paymemt"
+      },
+      {
+        "type": "checkbox",
+        "id": "pay_visa",
+        "label": "Show Visa"
+      },
+      {
+        "type": "checkbox",
+        "id": "pay_master",
+        "label": "Show Mastercard"
+      },
+      {
+        "type": "checkbox",
+        "id": "pay_american_express",
+        "label": "Show American Express"
+      },
+      {
+        "type": "checkbox",
+        "id": "pay_paypal",
+        "label": "Show PayPal"
+      },
+      {
+        "type": "hidden",
+        "id": "pay_diners_club",
+        "label": "Show Diners Club"
+      },
+      {
+        "type": "hidden",
+        "id": "pay_discover",
+        "label": "Show Discover"
+      },
+      {
+        "type": "header",
+        "content": "Footer buttom text"
+      },
+      {
+        "type": "text",
+        "id": "buttom-footer-4-heading",
+        "label": "buttom Heading"
+      },
+      {
+        "type": "text",
+        "id": "buttom-footer-4-heading_link",
+        "label": "buttom Heading link",
+        "info": "eg:https:\/\/www.shopify.in"
+      },
+      {
+        "type": "text",
+        "id": "buttom-footer-4-content",
+        "label": "buttom content"
+      },
+      {
+        "type": "text",
+        "id": "buttom-footer-4-content_link",
+        "label": "buttom content",
+        "info": "eg:https:\/\/www.shopify.in"
+      }
+    ]
+  },
+  {
+    "name": "Cart page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_vendor_enable",
+        "label": "Show product vendor"
+      },
+      {
+        "type": "select",
+        "id": "ajax_cart_method",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Cart Page Timer"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_enable",
+        "label": "Cart Enable"
+      },
+      {
+        "type": "text",
+        "id": "cart_title",
+        "label": "Cart Title"
+      },
+      {
+        "type": "number",
+        "id": "cart_timer_minute",
+        "label": "Cart Timer Minute",
+        "info": "Example: 1500 second left = 25 minutes left"
+      },
+      {
+        "type": "color",
+        "id": "cart_timer_color",
+        "label": "Cart Timer Color"
+      },
+      {
+        "type": "header",
+        "content": "cart page images setting"
+      },
+      {
+        "type": "text",
+        "id": "cart_left_title",
+        "label": "Cart Left Title"
+      },
+      {
+        "type": "image",
+        "id": "cart_left_image.png",
+        "label": "Left image",
+        "max-width": 500,
+        "max-height": 100,
+        "info": "Maximum logo dimensions are 500px wide by 100px high. The uploaded file will be resized to fit within those constraints."
+      },
+      {
+        "type": "text",
+        "id": "cart_right_title",
+        "label": "Cart Right Title"
+      },
+      {
+        "type": "image",
+        "id": "cart_right_image.png",
+        "label": "Right image",
+        "max-width": 500,
+        "max-height": 100,
+        "info": "Maximum logo dimensions are 500px wide by 100px high. The uploaded file will be resized to fit within those constraints."
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "twittercard_handle",
+        "label": "Twitter handle",
+        "info": "Example: @shopify"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_social_enable",
+        "label": "Show social media icons"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter URL",
+        "info": "Example: https:\/\/twitter.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "info": "Example: https:\/\/www.facebook.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube URL",
+        "info": "Example: https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "info": "Example: https:\/\/www.instagram.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL",
+        "info": "Example: https:\/\/www.pinterest.com\/shopify"
+      }
+    ]
+  }
+]

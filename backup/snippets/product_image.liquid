@@ -1,0 +1,109 @@
+
+{% if settings.variant_on_mobile %}
+{% assign on_mobile="" %}
+
+{% else %}
+
+{% assign on_mobile="nav-bar desktop_nav" %}
+{% endif %}
+
+
+<!-- image enable_image_carousel -->
+{% if settings.enable_image_carousel %}
+
+      {% assign carousel_enable="flexsliderproduct flexslider" %}
+
+{% else %}
+
+      {% assign carousel_enable="non_carousel flexsliderproduct flexslider" %}
+
+{% endif %}
+
+
+        {{ 'flexslider.css' | asset_url | stylesheet_tag }}
+   
+        <div class="zoom product-single__photos" id="ProductPhoto">
+        {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+        <img  width="480" src="{{ featured_image | img_url: '480x' }}" data-zoom-image="{{ featured_image | img_url: '1024x1024' }}"  alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+      </div>
+
+      {% comment %}
+        Create thumbnails if we have more than one product image
+      {% endcomment %}
+      {% if product.images.size > 1 %}
+       
+<section class="{{ on_mobile }} slider">
+        <div  class="{{ carousel_enable }} carousel">
+
+        <ul class="slides product-single__thumbnails grid-uniform" id="ProductThumbs">
+
+          {% for image in product.images %}
+            <li class="grid__item one-quarter">
+              <a href="{{ image.src | img_url: '1024x1024' }}"  class="product-single__thumbnail">
+                <img  src="{{ image.src | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </li>
+          {% endfor %}
+
+        </ul>
+        
+  </div> 
+
+      
+
+</section> 
+          
+      {% endif %}
+
+
+	<style>
+			.zoom {
+			display:inline-block;
+			position: relative;
+		}
+		
+		/* magnifying glass icon */
+		.zoom:after {
+			content:'';
+			display:block; 
+			width:33px; 
+			height:33px; 
+			position:absolute; 
+			top:0;
+			right:0;
+			background:url(icon.png);
+		}
+
+		.zoom img {
+			display: block;
+		}
+
+		.zoom img::selection { background-color: transparent; }
+
+		#ProductPhoto img:hover { cursor: crosshair; }
+		#ProductPhoto img:active { cursor: crosshair; }
+	</style>
+	
+<style>
+
+ /*Change the colour*/
+ .active img{border:2px solid #333 !important;}
+
+</style>
+
+	<style>
+
+.flexslider .flex-direction-nav a.flex-prev,
+.flexslider .flex-direction-nav a.flex-next {
+    display: block;
+    opacity: 1;
+}
+.flexslider .flex-direction-nav a.flex-prev {
+    left: 0;
+}
+.flexslider .flex-direction-nav a.flex-next {
+    right: 0;
+}
+  .flex-pauseplay a{ opacity:0; }
+
+</style>
