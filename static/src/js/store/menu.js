@@ -1,33 +1,33 @@
+import $bs from '@/scss/styles.m-scss'
+
 class MenuItem {
   children: Array;
   url: string;
+  hasDropdown: boolean;
 
   constructor(item) {
     Object.assign(this, item);
-  }
-
-  get hasDropdown() {
-    return (Array.isArray(this.children) && this.children.length > 0)
+    this.hasDropdown = (Array.isArray(this.children) && this.children.length > 0);
   }
 
   get aAttrs() {
     const obj = {
       attrs: {href: this.url}
-    }
+    };
     if (this.hasDropdown) {
       obj.attrs = Object.assign({}, obj.attrs, {
         'href': 'javascript:void(0)',
-        'data-toggle': 'dropdown',
+        // 'data-toggle': 'dropdown',
         'aria-haspopup': true,
         'aria-expanded': false
-      })
-      obj.class = 'dropdown-toggle'
+      });
+      obj.class = $bs.dropdownToggle;
     }
     return obj;
   }
 }
 
-const wrap = item => new MenuItem(item)
+const wrap = item => new MenuItem(item);
 
 export default {
   namespaced: true,
@@ -36,7 +36,7 @@ export default {
   }),
   getters: {
     list(state) {
-      return state.list.map(wrap)
+      return state.list.map(wrap);
     }
   }
-}
+};

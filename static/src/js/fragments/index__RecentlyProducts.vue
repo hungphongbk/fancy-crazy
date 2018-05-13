@@ -1,15 +1,5 @@
 <style lang="scss" scoped>
   @import '../../scss/inc';
-
-  a {
-    @include reset-link;
-  }
-
-  .index-featured-products {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .product- {
     &item {
       width: percentage(1/4);
@@ -20,33 +10,31 @@
         width: 100%;
       }
     }
-    &detail {
-
-    }
   }
+</style>
+<style lang="scss" module>
+  @import '../../scss/inc';
 
-  .ratio-3-4 {
-    @include aspect-ratio(3, 4)
-  }
-
-  a {
-    @include reset-link {
-      display: inline-block;
+  .recently-products {
+    a {
+      @include reset-link {
+        display: inline-block;
+      }
+      color: inherit;
     }
-    color: inherit;
   }
 </style>
 <template lang="pug">
-  div
+  div(:class="$style.recentlyProducts")
     .text-center
       h3 RECENTLY VIEWED PRODUCTS
       hr
-    .index-featured-products
+    .d-flex.flex-wrap
       .product-item(v-for="product in products", @mouseover="()=>product.mouseEnter()", @mouseleave="()=>product.mouseLeave()")
         .inner
           .ratio-3-4
             .content.text-center.d-flex.align-items-end
-              img.img-fluid(:src="product.currentImage | shopifyImgUrl")
+              image-pair(:srcset="product.images | shopifyImgUrls")
           .product-detail.text-center
             a(:href="product.url")
               h5.product-title {{product.title}}
@@ -54,18 +42,13 @@
                 price(:prices="product.prices")
 </template>
 <script>
-  import wrap from '@/js/components/ProductItemWrap'
-  import deepClone from 'lodash/cloneDeep'
+  import {ImagePair} from "@/js/components";
 
   export default {
+    components: {ImagePair},
     data() {
       return {
-        products$: deepClone(this.$store.state.recently)
-      }
-    },
-    computed:{
-      products(){
-        return this.products$.map(wrap);
+        products: this.$store.state.recently
       }
     }
   }

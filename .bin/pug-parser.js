@@ -44,7 +44,6 @@ const new_ast = walk(ast, function before(node, replace) {
         cls = isNew ? {name: ':class', val: '""'} : node.attrs[index];
 
       if (classList.findIndex(c => c === clazz) === -1) return;
-      removeClass(node, classNode);
 
       // remove all whitespace from attr value
       let val;
@@ -70,6 +69,7 @@ const new_ast = walk(ast, function before(node, replace) {
         node.attrs.push(cls);
       else
         node.attrs.splice(index, 1, cls);
+      removeClass(node, classNode);
     };
 
   if (node.type === 'Tag') {

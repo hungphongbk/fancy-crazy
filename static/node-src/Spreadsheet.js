@@ -11,7 +11,6 @@ export default class Spreadsheet {
     const polyfill = apiFn => {
       return (...args) => apiFn.apply(null, args)
         .then(result => {
-          console.log(result);
           if (typeof result.values === 'undefined')
             result.values = result.data.values;
           return result;
@@ -19,7 +18,7 @@ export default class Spreadsheet {
     };
 
     this.spreadsheetId = '1_j1hz8PerZEGG7pe-wRXwtOfJH8suBLZ6DcSC606_vM';
-    this.rowOffset = 1;
+    this.rowOffset = 2;
     this.columnLastIndex = 'K';
     this.spreadsheets = {
       values: {
@@ -88,7 +87,7 @@ export default class Spreadsheet {
         };
 
       const params = await this._params({
-        range: `A${start}:K`,
+        range: `A2:K`,
         majorDimension: 'ROWS'
       });
 
@@ -106,7 +105,7 @@ export default class Spreadsheet {
           });
 
           resolve(rs);
-        });
+        })
     });
   }
 

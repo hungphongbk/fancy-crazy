@@ -26,7 +26,6 @@ module.exports = function (source, testClass) {
             cls = isNew ? {name: ':class', val: '""'} : node.attrs[index];
 
           if (!testClass(clazz)) return;
-          removeClass(node, classNode);
 
           // remove all whitespace from attr value
           let val = constantinople.toConstant(cls.val).replace(/\s/g, '');
@@ -47,6 +46,7 @@ module.exports = function (source, testClass) {
             node.attrs.push(cls);
           else
             node.attrs.splice(index, 1, cls);
+          removeClass(node, classNode);
         };
 
       if (node.type === 'Tag') {

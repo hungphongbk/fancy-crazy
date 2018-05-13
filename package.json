@@ -7,7 +7,7 @@
     "test": "$NODE_DEBUG_OPTIONS node .bin/pug-parser.js /Users/hungphongbk/Projects/NodeJS/fancy-crazy/.bin/form.pug form.transformed.pug",
     "theme:watch": "shopify_theme watch",
     "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem",
-    "app:build": "cross-env NODE_ENV=production webpack --hide-modules",
+    "app:build": "cross-env NODE_ENV=production webpack --hide-modules $NODE_DEBUG_OPTIONS",
     "app:deploy": "cross-env NODE_ENV=production webpack --hide-modules; firebase deploy",
     "node:dev": "cross-env NODE_ENV=development webpack --config webpack-node.config.babel.js --hide-modules --color --watch",
     "node:run": "node static/node/app.js",
@@ -98,6 +98,7 @@
     "query-string": "^5.1.1",
     "raw-loader": "^0.5.1",
     "readmore-js": "^2.1.0",
+    "regex-combiner": "^1.0.1",
     "responsive-loader": "^1.1.0",
     "sass-loader": "^6.0.7",
     "select2": "^4.0.6-rc.1",
@@ -157,6 +158,8 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.0.10",
-    "googleapis": "^30.0.0"
+    "googleapis": "^30.0.0",
+    "shopify-api-node": "^2.14.0",
+    "shopify-token": "^3.0.2"
   }
 }

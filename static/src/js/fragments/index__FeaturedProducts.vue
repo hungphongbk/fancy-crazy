@@ -28,7 +28,7 @@
     data() {
       return {
         products: this.$store.state.pageIndex.featuredProducts[this.index],
-        classes: ['col-md-' + (this.columns === 4 ? 3 : 4)]
+        classes: [this.$bs['colMd' + (this.columns === 4 ? 3 : 4)]]
       }
     }
   }

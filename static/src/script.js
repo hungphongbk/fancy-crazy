@@ -6,9 +6,10 @@ import '@/js/pages';
 import '@/js/plugins';
 import App     from './App';
 
-import '@/scss/styles.scss';
+// import '@/scss/styles.scss';
 import $bs     from '@/scss/styles.m-scss';
 import mqStore from '@/js/store/mq';
+
 Object.defineProperties(Vue.prototype, {
   $appStore: {
     get: () => store
@@ -17,6 +18,8 @@ Object.defineProperties(Vue.prototype, {
     get: () => $bs
   }
 });
+if (process.env.NODE_ENV !== 'production')
+  window.$bs = $bs;
 const app = new Vue({
   el: '#app',
   render: h => h(App),

@@ -3,21 +3,24 @@
 <template lang="pug" functional>
   footer
     .footer-mobile(v-if="parent.$mq.tablet")
-    .footer-desktop.container(v-else)
-      .row
-        .col-sm-6
+    .footer-desktop(v-else, :class="parent.$bs.container")
+      div(:class="parent.$bs.row")
+        div(:class="parent.$bs.colSm4")
           .footer-brand
             slot(name="brand")
-        .col-sm-3
-          h4 Information
-          slot(name="info")
-        .col-sm-3
-          h4 Vibe with us
-          p
-            strong 1-800-417-6562
-            br
-            strong Support@yeswevibe.com
-        .col-sm-12
+        div(:class="parent.$bs.colSm8")
+          div(:class="parent.$bs.row")
+            div(:class="parent.$bs.colSm4")
+              h4 Information
+              slot(name="info")
+            div(:class="parent.$bs.colSm4")
+              h4 Vibe with us
+              p
+                strong +1 914-598-8976
+                br
+                strong support@fancycrazy.com
+            div(:class="parent.$bs.colSm4")
+        div(:class="parent.$bs.colSm12")
           hr
-          p.mt-2 © 2018 Copyright YesWeVibe Inc. All Right Reserved.
+          p(:class="parent.$bs.mt2") © 2018 Copyright FancyCrazy Inc. All Right Reserved.
 </template>

@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss" module>
   .logo {
     width: 60%;
     margin-right: 40%;
@@ -8,7 +8,7 @@
   .site-footer.mt-5
     wrapper
       div(slot="brand")
-        img.img-fluid.logo(src="@/images/logo.png")
+        img.img-fluid(:class="$style.logo", src="@/images/logo.png")
       div(slot="info")
         dl
           dd(v-for="{title,url} in infoList")

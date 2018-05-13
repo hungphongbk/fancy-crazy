@@ -42,7 +42,7 @@ export default merge(base, {
               ]
             }
           },
-          "remove-hashbag-loader"
+          // "remove-hashbag-loader"
         ]
       }
     ]
@@ -53,7 +53,7 @@ export default merge(base, {
   },
   resolveLoader: {
     alias: {
-      "remove-hashbag-loader": path.join(__dirname, "./webpack/remove-hashbag-loader")
+      // "remove-hashbag-loader": path.join(__dirname, "./webpack/remove-hashbag-loader")
     }
   },
   externals: Object.keys(require('./package.json').dependencies),

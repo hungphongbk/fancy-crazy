@@ -55,6 +55,7 @@
   import {spreadModuleProps} from "@/js/plugins/helpers";
   import {ImagePair, Slider, ProductItem} from "@/js/components";
   import StarRating from 'vue-star-rating';
+  import FragmentReviews from '@/js/fragments/app__Review'
 
   export default {
     storeModule: ['pageCollections', collectionModule],
@@ -64,16 +65,18 @@
       Slider,
       StarRating,
       ProductItem,
+      FragmentReviews,
       PageLink: {
         functional: true,
-        render: (h, {props: {isCurrent = false, isDisabled = false}, listeners, children}) => {
-          const inner = (() => {
+        render: (h, {props: {isCurrent = false, isDisabled = false}, listeners, children, parent}) => {
+          const $bs = parent.$bs,
+            inner = (() => {
             if (isCurrent || isDisabled)
-              return <span class="page-link">{children}</span>;
+              return <span class={$bs.pageLink}>{children}</span>;
             else
-              return <a class="page-link" href="javascript:void(0)">{children}</a>;
+              return <a class={$bs.pageLink} href="javascript:void(0)">{children}</a>;
           })();
-          return <li class={{'page-item': true, 'disabled': isDisabled, 'active': isCurrent}}
+          return <li class={{ [$bs.pageItem]: true, [$bs.disabled]: isDisabled, [$bs.active]: isCurrent}}
                      onClick={listeners.click}>{inner}</li>;
         }
       }
@@ -96,13 +99,13 @@
     created() {
       this.$store.commit('pageCollections/cache');
     },
-    mounted() {
+    async mounted() {
       this.$store.subscribe(mutation => {
-        console.log(mutation.type);
         if (mutation.type === 'pageCollections/goToPage') {
           this.$refs['anchor'].scrollIntoView({behavior: 'smooth'});
         }
       });
+      await this.$appStore.dispatch('pageCollections/fetch');
     }
   };
 </script>

@@ -8,11 +8,15 @@
     .mt-5
       fragment-reviews(:items="reviews.group1")
     .container
+      fragment-featured-products(:index="1", :columns="3").mt-4
+    .container
       fragment-featured-products(:index="2", :columns="3").mt-4
     .mt-5
       fragment-reviews(:items="reviews.group2")
     .container
       fragment-featured-products(:index="3", :columns="3").mt-4
+    .mt-5
+      fragment-reviews(:items="reviews.group3")
 </template>
 <script>
   import indexModule from '@/js/store/page-index'

@@ -2,11 +2,10 @@
   @import '../../scss/inc';
 
   .index-collections {
-    display: flex;
-    flex-wrap: wrap;
-
     a {
-      @include reset-link;
+      @include reset-link{
+        display: block;
+      }
     }
   }
 
@@ -62,16 +61,19 @@
       width: percentage(1/4);
     }
   }
+  .image{
+    width: 100%;
+  }
 </style>
 <template lang="pug">
-  div(:class="$style.indexCollections")
+  .d-flex.flex-wrap(:class="$style.indexCollections")
     div(v-for="(col,index) in collections", :class="[ $style.collectionItem, index<3?$style.collectionBig:$style.collectionSmall]")
-      .ratio-1-1
-        .content
-          img.img-fluid(:src="col.image | shopifyImgUrl")
-        .content(:class="$style.collectionDetail")
-          div
-            a(:href="col.url")
+      a(:href="col.url")
+        .ratio-1-1
+          .content
+            img.img-fluid(:class="$style.image", :src="col.image | shopifyImgUrl('grande')")
+          .content(:class="$style.collectionDetail")
+            div
               h4.pb-2(:class="$style.title") {{col.title}}
 </template>
 <script>

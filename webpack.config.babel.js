@@ -7,11 +7,13 @@ import merge             from 'webpack-merge';
 import base              from './build/webpack-base.config.babel';
 import incstr            from 'incstr';
 import combine           from 'webpack-combine-loaders';
+import regexCombiner     from 'regex-combiner';
 
 const src = './static/src',
   dist = './static/dist',
   isProduction = process.env.NODE_ENV === 'production',
-  publicPath = isProduction ? 'https://static.fancycrazy.com/' : 'https://localhost:8080/';
+  publicPath = isProduction ? 'https://static.fancycrazy.com/' : 'https://localhost:8080/',
+  nameCache = {};
 const extractCss = new ExtractTextPlugin({
   filename: "[name].css?[contenthash]"
 });
@@ -71,7 +73,7 @@ const cssLoader = (modules = false) => ({
 
 module.exports = merge(base, {
   entry: {
-    vendor: ['vue', 'vuex', 'vuex-router-sync', 'vue-i18n', 'vue-lazyload', 'vue-slick', 'vue-match-media', 'slick', 'vue-responsive', 'mobile-detect'],
+    vendor: ['vue', 'vuex', 'vuex-router-sync', 'vue-i18n', 'vue-lazyload', 'vue-match-media', 'vue-responsive', 'mobile-detect', 'flickity', 'vue-flickity', 'flickity-imagesloaded'],
     frontend: src + '/script.js'
   },
   output: {
@@ -104,7 +106,7 @@ module.exports = merge(base, {
             i18n: '@kazupon/vue-i18n-loader',
             js: 'babel-loader?cacheDirectory',
           },
-          preLoaders:{
+          preLoaders: {
             pug: combine([
               {
                 loader: 'pug-transform-loader',
@@ -119,14 +121,7 @@ module.exports = merge(base, {
       {
         test: /\.css$/,
         use: isProduction ? extractCss.extract({
-          use: [{
-            loader: "css-loader",
-            options: {
-              localIdentName: '[hash:base64:7]',
-              importLoaders: 2,
-              camelCase: 'only'
-            }
-          }, 'postcss-loader'],
+          use: [cssLoader(false), 'postcss-loader'],
           // use style-loader in development
           fallback: "style-loader"
         }) : [
@@ -246,7 +241,10 @@ if (process.env.NODE_ENV === 'production') {
     //   analyzerMode: 'static'
     // }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
+      minimize: true,
+      getLocalIdent: (context, localIdentName, localName) => {
+        return generateScopedName(localName, context.resourcePath);
+      }
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -268,9 +266,22 @@ if (process.env.NODE_ENV === 'production') {
     new UglifyJSPlugin({
       test: /\.js($|\?)/i,
       cache: true,
-      parallel: true,
+      parallel: false,
       uglifyOptions: {
-        ie8: false
+        ie8: false,
+        mangle: {
+          properties: {
+            regex: regexCombiner([
+              /^([A-Z]+_)([A-Z]+_?)+$/,
+              /^\$(style|createElement)$/
+            ])
+          }
+        },
+        nameCache: nameCache
+      },
+      extractComments: {
+        banner: false,
+        file: 'js.LICENSE'
       }
     }),
   ]);

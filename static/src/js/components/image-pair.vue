@@ -12,13 +12,13 @@
     right: 0;
     bottom: 0;
 
-    img{
+    img {
       width: 100%;
     }
   }
 </style>
 <template lang="pug">
-  div(:class="$style.imagePair" @mouseover="()=>hover=true", @mouseleave="()=>hover=false")
+  div(:class="$style.imagePair" @mouseover="over", @mouseleave="leave")
     transition(name="fade")
       .d-flex.align-items-end(:class="$style.pair", v-if="!hover", :key="loadeds[0]")
         img.img-fluid(:src="loadeds[0]")
@@ -55,6 +55,14 @@
           })
         },
         default: ['', '']
+      }
+    },
+    methods: {
+      over() {
+        this.hover = true;
+      },
+      leave() {
+        this.hover = false;
       }
     }
   }

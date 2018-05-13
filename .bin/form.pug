@@ -1,9 +1,6 @@
-.index-collections
-  .collection-item(v-for="(col,index) in collections", :class="index<3?'collection-big':'collection-small'")
-    .ratio-1-1
-      .content
-        img.img-fluid(:src="col.image | shopifyImgUrl")
-      .content.collection-detail
-        div
-          a(:href="col.url")
-            h4.pb-2(:class="$style.title") {{col.title}}
+div(:class="$style.imagePair" @mouseover="hover", @mouseleave="leave")
+  transition(name="fade")
+    .d-flex.align-items-end(:class="$style.pair", v-if="!hover", :key="loadeds[0]")
+      img.img-fluid(:src="loadeds[0]")
+    .d-flex.align-items-end(:class="$style.pair", v-else, :key="loadeds[1]")
+      img.img-fluid(:src="loadeds[1]")

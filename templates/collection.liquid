@@ -13,7 +13,8 @@
       ],
       current: {{ paginate.current_page | minus: 1 | json }},
       perPage: 24,
-      __cache__: []
+      __cache__: [],
+      reviewUrl: {{ collection.id | prepend: "https://static.fancycrazy.com/reviews-collection-" | append: ".json" | json }}
     };
   </script>
 {% section 'collections-sidebar' %}

@@ -1,6 +1,3 @@
-import wrap from '@/js/components/ProductItemWrap';
-import {get} from "@/js/plugins/ajax";
-
 export default {
   namespaced: true,
   state: () => ({
@@ -15,11 +12,12 @@ export default {
     sidebar: {
       items: []
     },
-    reviews: []
+    reviews: [],
+    reviewUrl: ''
   }),
   getters: {
     url: ({handle, tag = ''}) => handle + ((tag && tag.length) > 0 ? ('/' + tag) : ''),
-    products: ({products}) => products.map(wrap),
+    products: ({products}) => products,
     current: (state) => state.current + 1,
     totalPages: state => state.totalPages,
     pages: ({totalPages}) => Array(totalPages).fill().map((_, index) => ({
@@ -47,6 +45,9 @@ export default {
     }
   },
   mutations: {
+    fetchReview(state, reviews) {
+      state.reviews = reviews;
+    },
     cache(state, {products = [], page = state.current, totalPages = 0, force = false, title = ''} = {}) {
       state.__cache__[page] = (products.length === 0 && !force) ? state.products : products;
 
@@ -71,6 +72,17 @@ export default {
     }
   },
   actions: {
+    async fetch({commit, state}) {
+      const reviews = await $.get(state.reviewUrl),
+        obj = {};
+      for (const r of reviews) {
+        const group = r.group.replace(/\s/, '');
+        if (!obj[group])
+          obj[group] = [];
+        obj[group].push(r);
+      }
+      commit('fetchReview', obj);
+    },
     async _navigate({commit, getters}) {
       window.history.pushState('string', '', '/collections/' + getters.url);
       const {totalPages, products, title} = await $.get(`/collections/${getters.url}?view=json`);

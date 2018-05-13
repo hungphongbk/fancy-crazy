@@ -14,34 +14,48 @@
 
   .nav {
     position: relative;
-    :global .nav-link {
-      font-family: "OpenSansCondensed", sans-serif;
+    .nav-link {
       font-weight: bold;
       font-size: 1.1rem;
-    }
-    :global {
-      .dropdown-menu {
-        display: block;
-        opacity: 0;
-        visibility: hidden;
-      }
-      .dropdown:hover > .dropdown-menu {
-        visibility: visible;
-        :local {
-          animation: fadeIn .3s ease-in {
-            fill-mode: forwards;
-          }
-        }
-      }
+      font-family: Oswald, sans-serif;
+      @include font-size-with-line-height($font-size-base*1.3);
 
-      .dropdown > .dropdown-toggle:active {
-        /*Without this, clicking will make it sticky*/
-        pointer-events: none;
+      position: relative;
+      &:before {
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: $gray-600;
+        content: '';
+        visibility: visible;
+
+        transform: scaleX(0);
+        opacity: 0;
+        transition: all $animation-time ease;
       }
-      .nav-link {
-        font-family: Oswald,sans-serif;
-        @include font-size-with-line-height($font-size-base*1.3)
+    }
+    .nav-item:hover .nav-link:before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .dropdown-menu {
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .dropdown:hover > .dropdown-menu {
+      visibility: visible;
+      animation: fadeIn .3s ease-in {
+        fill-mode: forwards;
       }
+    }
+
+    .dropdown > .dropdown-toggle:active {
+      /*Without this, clicking will make it sticky*/
+      pointer-events: none;
     }
   }
 
@@ -69,8 +83,7 @@
     input {
       -webkit-appearance: none;
       background-color: transparent;
-      border-width: unset;
-      border-style: unset;
+      border: unset;
       font-size: 1.3rem;
       &:focus {
         outline: none;
@@ -78,7 +91,7 @@
     }
   }
 
-  .custom:global(.nav-item){
+  .custom {
     position: unset;
   }
 </style>
@@ -89,9 +102,9 @@
         img.img-fluid(style="height: 70px;", src="@/images/logo-soa.png")
       .navbar-collapse.collapse.d-flex.justify-content-center
         ul.navbar-nav
-          li.nav-item(v-for="menuItem in menuList", :class="{'active': menuItem.isActive, 'dropdown':menuItem.hasDropdown, [$style.custom]: true}")
+          li.nav-item(v-for="menuItem in menuList", :class="{[$bs.active]: menuItem.isActive, [$bs.dropdown]:menuItem.hasDropdown, [$style.dropdown]:menuItem.hasDropdown, [$style.custom]: true, [$style.navItem]: true}")
             nav-link(:item="menuItem") {{menuItem.title}}
-            menu-header-dropdown(v-if="menuItem.hasDropdown", :children="menuItem.children")
+            menu-header-dropdown(:class="$style.dropdownMenu", v-if="menuItem.hasDropdown", :children="menuItem.children")
       .navbar-collapse.collapse.mr-5.justify-content-end(:class="$style.searchGroup")
         transition(name="fade")
           div(v-if="isSearchMode", :class="$style.searchPanel")
@@ -117,7 +130,9 @@
       NavLink: {
         functional: true,
         render(h, {props: {item}, data, children, parent}) {
-          return (<a class={['nav-link py-4']} {...item.aAttrs}>{children}</a>);
+          const $style = parent.$style,
+            $bs = parent.$bs;
+          return (<a class={[$style.navLink, $bs.navLink, $bs.py4]} {...item.aAttrs}>{children}</a>);
         }
       },
       MenuHeaderDropdown

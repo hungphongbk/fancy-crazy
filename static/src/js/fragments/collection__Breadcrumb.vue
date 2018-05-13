@@ -3,6 +3,7 @@
 
   $item-padding-x: .4rem;
   .breadcrumb {
+    @include font-size-with-line-height($font-size-base*0.9);
     margin-left: -$item-padding-x;
     a {
       &, &:hover {

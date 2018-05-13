@@ -15,7 +15,7 @@
       {% unless forloop.last %},{% endunless %}{% endfor %}
     ],
     featuredProducts: [
-      {% assign collectionList = 'Bed|Native Apparel|Dreamcatcher Legging|Hippe Car Seat Covers' | split: '|' %}
+      {% assign collectionList = 'Bed|Native Apparel|Dreamcatcher Legging|Hippe Car Seat Cover' | split: '|' %}
       {% for col_handle in collectionList %}
       {% assign handle = col_handle | handleize %}
       {% assign col = collections[handle] %}

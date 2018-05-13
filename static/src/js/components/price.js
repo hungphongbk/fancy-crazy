@@ -1,4 +1,5 @@
 import $style     from './price.m-scss';
+import $bs        from '@/scss/styles.m-scss';
 import {usd}      from "@/js/plugins/filters";
 import capitalize from 'lodash/capitalize';
 
@@ -24,7 +25,8 @@ export default {
         </span>
       ];
       if (props.hasSale)
-        innerHTML.unshift(<span class={[$style.salePercentage, 'badge badge-primary']}>SALE {salePercentage}%</span>);
+        innerHTML.unshift(<span
+          class={[$style.salePercentage, $style.badge, $bs.badge, $bs.badgePrimary]}>SALE {salePercentage}%</span>);
     }
     return (<span class={[$style.price, isSale ? $style.sale : null, $style['price' + size]]}>{innerHTML}</span>);
   },
