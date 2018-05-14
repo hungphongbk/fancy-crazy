@@ -13,7 +13,7 @@
   .d-flex.flex-wrap
     span.product-variants-label.mr-3 {{ type | uppercase }}:
     span(v-for="item in items")
-      .btn.btn-sm.mr-2.mb-2(:class="item.title===value.title?'btn-outline-theme-red':'btn-outline-secondary'", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
+      .btn.btn-sm.mr-2.mb-2(:class="item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
 </template>
 <script>
   import mixin from './product__Variants-Multiple-Items-mixins';

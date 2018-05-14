@@ -96,7 +96,7 @@ module.exports = merge(base, {
           loaders: {
             scss: isProduction ? ExtractTextPlugin.extract({
               use: [
-                'cache-loader',
+                // 'cache-loader',
                 'css-loader',
                 'postcss-loader',
                 'sass-loader',
@@ -130,10 +130,10 @@ module.exports = merge(base, {
         ]
       },
       {
-        test: /\.m-s[ac]ss$/,
+        test: /\.m-s[ac]ss($|\?)/,
         use: isProduction ? extractCss.extract({
           use: [
-            'cache-loader',
+            // 'cache-loader',
             cssLoader(true),
             'postcss-loader',
             'sass-loader'
@@ -151,7 +151,7 @@ module.exports = merge(base, {
         test: /\.s[ac]ss$/,
         use: isProduction ? extractCss.extract({
           use: [
-            'cache-loader',
+            // 'cache-loader',
             cssLoader(false),
             'postcss-loader',
             'sass-loader'],

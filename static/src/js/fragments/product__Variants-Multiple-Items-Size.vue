@@ -11,7 +11,7 @@
           fa-icon.ml-1(:icon="AngleRight", size="lg")
     dl.d-flex.flex-wrap
       div(v-for="item in items")
-        .btn.mr-2.mb-2(:class="item.title===value.title?'btn-outline-theme-red':'btn-outline-secondary'", @click="$emit('input', item)") {{item.title}}
+        .btn.mr-2.mb-2(:class="item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary", @click="$emit('input', item)") {{item.title}}
     vue-gallery(:images="sizeCharts | shopifyImgUrls('master')", :index="currentSizeChart", @close="currentSizeChart = null")
 </template>
 <script>

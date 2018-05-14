@@ -1,18 +1,20 @@
-<style lang="scss" scoped>
-  .add-to-cart {
-    border-radius: unset;
-  }
-</style>
 <style lang="scss" module>
   @import "../../scss/inc";
+
+  .add-to-cart {
+    border-radius: unset;
+    font-family: Oswald, sans-serif;
+    @include font-size-with-line-height($font-size-base*1.7);
+  }
 
   .content {
     border-top: 1px solid $gray-300;
   }
+
   .product-name {
     @include font-size-with-line-height($h2-font-size);
     font-weight: 600;
-    font-family: Oswald,serif;
+    font-family: Oswald, serif;
   }
 </style>
 <template lang="pug">
@@ -24,10 +26,10 @@
       .col-sm-5
         h1(:class="$style.productName") {{product.title}}
         hr
-        h2.prices
+        h2
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
-        .btn.btn-primary.btn-lg.rounded-bottom.add-to-cart.w-100(:class="!isVariantAvailable?'rounded-top mt-2':''", @click="addToCart(selectedVariant.id)") BUY IT NOW!
+        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") BUY IT NOW!
         img.w-100(:src="imgSecurePayment")
         .pt-4.my-2(:class="$style.content", v-html="product.content")
 </template>
@@ -63,7 +65,15 @@
         isVariantAvailable: 'pageProduct/isVariantAvailable',
         isSale: 'pageProduct/isSale',
         salePercentage: 'pageProduct/salePercentage'
-      })
+      }),
+      ADD_TO_CART_CLASSES(){
+        const bs=this.$bs,
+          cls=[this.$style.addToCart];
+        if(!this.isVariantAvailable){
+          cls.push(...[bs.roundedTop, bs.mt2]);
+        }
+        return cls;
+      }
     },
     async created() {
       await Promise.all([

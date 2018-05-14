@@ -35,18 +35,8 @@
                 page-link(:is-disabled="!canNext", @click="nextPage") Next
     .row.mt-6
       .col-sm-12
-        slider
-          div(v-for="review in reviews.item")
-            star-rating(:rating="review.point", :round-start-rating="false", :star-size="20", :show-rating="false", :read-only="true")
-            h5.text-theme
-              strong {{review.title}}
-            .d-flex.align-items-start
-              .w-25
-                img.img-fluid(:src="review.product.images[0] | shopifyImgUrl('small')")
-              .w-75
-                i {{review.content}}
-                br
-                h6 {{review.name}}
+        fragment-reviews(:items="reviews.group1")
+        fragment-reviews(:items="reviews.group2")
 </template>
 <script>
   import collectionModule from '@/js/store/page-collections';

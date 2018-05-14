@@ -46,9 +46,6 @@
         type: Array,
         required: true
       }
-    },
-    created() {
-      console.log(this.children);
     }
   }
 </script>

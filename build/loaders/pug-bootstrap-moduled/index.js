@@ -12,6 +12,8 @@ module.exports = function (source, map, meta) {
     cb = self.async(),
     {scssFiles, cacheFile = path.resolve(__dirname, 'classes.json')} = utils.getOptions(self);
   // self.cacheable();
+  // if (!fs.existsSync(cacheFile))
+  //   await classes({scssFiles, cache: cacheFile});
   fs.readFile(cacheFile, 'utf8', (err, obj) => {
     if (err) return cb(err);
     const newSource = parse(source, cls => obj.indexOf(cls) !== -1);

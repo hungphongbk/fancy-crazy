@@ -76,6 +76,11 @@ export default {
       const reviews = await $.get(state.reviewUrl),
         obj = {};
       for (const r of reviews) {
+        if (typeof r.rating !== 'undefined') {
+          const rating = r.rating.replace(/\s*sao/g, '');
+          r.rating = rating * 1.0;
+        }
+
         const group = r.group.replace(/\s/, '');
         if (!obj[group])
           obj[group] = [];

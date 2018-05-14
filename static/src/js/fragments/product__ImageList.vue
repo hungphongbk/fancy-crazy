@@ -18,7 +18,7 @@
   }
 </style>
 <template lang="pug">
-  slick(:options="options")
+  slider
     a(v-for="image in images", :key="image", :class="$style.imgThumbnail")
       .ratio-1-1
         .content
@@ -26,10 +26,10 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import Slick from 'vue-slick';
+  import {Slider} from "@/js/components";
 
   export default {
-    components: {Slick},
+    components: {Slider},
     data: () => ({
       options: {
         slidesToShow: 3

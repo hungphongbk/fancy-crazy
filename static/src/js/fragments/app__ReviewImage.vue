@@ -6,7 +6,7 @@
 </style>
 <template lang="pug">
   slider(type="flickity", :opts="opts")
-    img(v-for="{image_url} in items", :class="$style.image", :src="image_url | secure", @load="imgLoad($event)")
+    img(v-for="{image_url} in items", :class="$style.image", :src="image_url | secure")
 </template>
 <script>
   import {Slider} from "@/js/components";
@@ -24,15 +24,6 @@
         infinite: true,
         variableWidth: true
       }
-    }),
-    methods: {
-      imgLoad({target}) {
-        // const {clientWidth, clientHeight} = target,
-        //   ratio = clientWidth * 1.0 / clientHeight;
-        // // console.log(target.parentNode);
-        // $(target.parentNode).width(300 * ratio);
-        // $(target.parentNode.parentNode).width(300 * ratio);
-      }
-    }
+    })
   }
 </script>

@@ -3,7 +3,7 @@ import ImageWithText from './app__ReviewImageText';
 
 const types = {
   'image-only': Image,
-  'image-with-text': ImageWithText
+  'image-with-data': ImageWithText
 };
 
 export default {
