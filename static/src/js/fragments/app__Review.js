@@ -10,7 +10,7 @@ export default {
   functional: true,
   render(h, {props}) {
     const items = props.items;
-    if (!items) return (<div/>);
+    if (!items || items.length === 0) return (<div/>);
 
     const Component = types[items[0].type];
     return (<Component items={items}/>);

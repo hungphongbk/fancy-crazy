@@ -1,12 +1,16 @@
 <style lang="scss" module>
   @import "../../scss/inc";
+
+  .sidebar {
+    font-size: .9em;
+  }
 </style>
 <template lang="pug">
   .container-fluid.pt-3(:class="$style.collections")
     div(ref="anchor")
     fragment-breadcrumb.mb-3
     .row
-      .col-sm-2.border-right.pl-3
+      .col-sm-2.border-right.pl-3(:class="$style.sidebar")
         template(v-if="filteredCollection || filteredTag")
           h5.mb-2 Filtered by
           ul.list-group
@@ -16,11 +20,21 @@
             a.list-group-item.list-group-item-action(v-if="filteredTag", href="javascript:void(0)")
               strong {{filteredTag.title}}
               button.close(@click="goToTag()") <span aria-hidden="true">&times;</span>
-        h5.mt-4.mb-2 PRODUCTS
-        .list-group
-          a.list-group-item.list-group-item-action(v-for="col in sidebarCollections", @click="goToCollection(col.url)") {{col.title}}
+        h5.mt-4.mb-4 PRODUCTS
+        .list-group#products
+          template(v-for="(col,index) in sidebarCollections")
+            template(v-if="col.children")
+              a.list-group-item.list-group-item-action.d-flex.justify-content-between
+                span(@click="goToCollection(col.url)") {{col.title}}
+                span(@click="toggleMenu(index)")
+                  fa-icon(:icon="faChevronUp", :rotation="toggle[index]?180:null")
+              transition(v-if="toggle[index]", name="fade")
+                div
+                  a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="goToCollection(childCol.url)") {{childCol.title}}
+            a.list-group-item.list-group-item-action(v-else, @click="goToCollection(col.url)") {{col.title}}
         h5.mt-4.mb-2 INTERESTS
         .list-group
+          //
           a.list-group-item.list-group-item-action(v-for="col in sidebarTags", @click="goToTag(col.url)") {{col.title}}
       .col-sm-10.pr-3
         .row.no-gutter
@@ -35,8 +49,8 @@
                 page-link(:is-disabled="!canNext", @click="nextPage") Next
     .row.mt-6
       .col-sm-12
-        fragment-reviews(:items="reviews.group1")
-        fragment-reviews(:items="reviews.group2")
+        fragment-reviews(:items="group1")
+        fragment-reviews(:items="group2")
 </template>
 <script>
   import collectionModule from '@/js/store/page-collections';
@@ -46,6 +60,7 @@
   import {ImagePair, Slider, ProductItem} from "@/js/components";
   import StarRating from 'vue-star-rating';
   import FragmentReviews from '@/js/fragments/app__Review'
+  import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp'
 
   export default {
     storeModule: ['pageCollections', collectionModule],
@@ -61,30 +76,38 @@
         render: (h, {props: {isCurrent = false, isDisabled = false}, listeners, children, parent}) => {
           const $bs = parent.$bs,
             inner = (() => {
-            if (isCurrent || isDisabled)
-              return <span class={$bs.pageLink}>{children}</span>;
-            else
-              return <a class={$bs.pageLink} href="javascript:void(0)">{children}</a>;
-          })();
-          return <li class={{ [$bs.pageItem]: true, [$bs.disabled]: isDisabled, [$bs.active]: isCurrent}}
+              if (isCurrent || isDisabled)
+                return <span class={$bs.pageLink}>{children}</span>;
+              else
+                return <a class={$bs.pageLink} href="javascript:void(0)">{children}</a>;
+            })();
+          return <li class={{[$bs.pageItem]: true, [$bs.disabled]: isDisabled, [$bs.active]: isCurrent}}
                      onClick={listeners.click}>{inner}</li>;
         }
       }
     },
+    data() {
+      return {
+        toggle: Array(50).fill(false),
+        faChevronUp
+      }
+    },
     computed: {
-      reviews() {
-        return this.$store.state.pageCollections.reviews;
-      },
       ...mapGetters(spreadModuleProps('pageCollections', [
         'products', 'current', 'pages', 'canNext', 'canPrev',
         'sidebarCollections', 'sidebarTags',
-        'filteredCollection', 'filteredTag'
+        'filteredCollection', 'filteredTag',
+        'group1', 'group2'
       ]))
     },
     methods: {
       ...mapActions(spreadModuleProps('pageCollections', [
         'goToPage', 'nextPage', 'prevPage', 'goToCollection', 'goToTag'
-      ]))
+      ])),
+      toggleMenu(index) {
+        // console.log(this.toggle);
+        this.$set(this.toggle, index, !this.toggle[index])
+      }
     },
     created() {
       this.$store.commit('pageCollections/cache');

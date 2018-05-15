@@ -1,0 +1,2 @@
+export const COLLECTION_GETTER_REVIEWS_GROUP1 = 'group1';
+export const COLLECTION_GETTER_REVIEWS_GROUP2 = 'group2';

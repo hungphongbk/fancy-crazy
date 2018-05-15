@@ -272,8 +272,9 @@ if (process.env.NODE_ENV === 'production') {
         mangle: {
           properties: {
             regex: regexCombiner([
-              /^([A-Z]+_)([A-Z]+_?)+$/,
-              /^\$(style|createElement)$/
+              /^([A-Z][A-Z0-9]*_)([A-Z0-9]+_?)*$/,
+              /^\$(style|createElement)$/,
+              /^(align|offset|justify|d[A-Z]|btn[A-Z])/
             ])
           }
         },

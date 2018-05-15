@@ -1,4 +1,4 @@
-import 'bootstrap';
+// import 'bootstrap';
 import Vue     from 'vue';
 import '@/js/components';
 import store   from '@/js/store';

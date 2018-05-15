@@ -1,6 +1,7 @@
 {% layout 'json' %}
 {% paginate collection.products by 24 %}
 {
+  "id": {{ collection.id }},
   "title": {{ collection.title | json }},
   "totalPages": {{ paginate.pages | json }},
   "products": [

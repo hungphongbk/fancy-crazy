@@ -46,7 +46,7 @@ const store = new Vuex.Store({
     async addToRecently({commit, state}, handle) {
       let product = state.recently.find(product => product.handle === handle);
       if (typeof product === 'undefined' || product === null)
-        product = JSON.parse(await $.get(`//veteranthing.com/products/${handle}?view=item-json`));
+        product = JSON.parse(await $.get(`//fancycrazy.com/products/${handle}?view=item-json`));
       commit('addToRecently', {product});
     }
   },

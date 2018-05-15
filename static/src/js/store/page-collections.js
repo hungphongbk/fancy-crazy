@@ -1,4 +1,7 @@
-import reviews from './reviews';
+import reviews                                                              from './reviews';
+import {COLLECTION_GETTER_REVIEWS_GROUP1, COLLECTION_GETTER_REVIEWS_GROUP2} from "@/js/store/types";
+import defaultTo                                                            from 'lodash/defaultTo';
+import keyBy                                                                from 'lodash/keyBy';
 
 export default {
   namespaced: true,
@@ -28,7 +31,32 @@ export default {
     })),
     canNext: state => state.current < state.totalPages - 1,
     canPrev: state => state.current > 0,
-    sidebarCollections: ({sidebar}) => sidebar.items.filter(({type}) => type === 'categories'),
+    sidebarCollections: ({sidebar}) => {
+      const items = keyBy(sidebar.items.filter(({type}) => type === 'categories'), i => i.url),
+        mapping = {
+          'apparel': 'tshirt,hooded-blanket,leggings,hat,bomber-jacket',
+          '3d-art': '3d-hoodie,3d-tshirt,3d-dress,3d-skirt',
+          'shoes': 'boots-shoes,top-shoes,low-tops,sneakers,slip-ons',
+          'car-seat-covers': '',
+          'bed': '',
+          'pillow': 'feather-pillow,canvas,mug,clock-wall',
+          'jewelry': 'jewelry-1,watch,phone-cases,luggage-covers',
+          'bag-1': 'saddle-bag,leather-bag,tote-bag',
+          'native-handmade': ''
+        };
+      const rs = [];
+      for (const [parent, children] of Object.entries(mapping)) {
+        const p = items[parent];
+        for (const child of children.split(',')) if (child.length > 0) {
+          if (!p.children) p.children = [];
+          p.children.push(items[child]);
+        }
+
+        rs.push(p);
+      }
+
+      return rs;
+    },
     sidebarTags: ({sidebar}) => sidebar.items.filter(({type}) => type === 'tags'),
     filteredCollection(state) {
       if (state.handle === 'all') return null;
@@ -44,6 +72,11 @@ export default {
       return {
         title: tag.title
       };
+    },
+    [COLLECTION_GETTER_REVIEWS_GROUP1]: state => defaultTo(state.reviews.group1, []),
+    [COLLECTION_GETTER_REVIEWS_GROUP2]: state => {
+      const group2 = defaultTo(state.reviews.group2, []);
+      return group2.filter(review => review.type === 'image-only');
     }
   },
   mutations: {
@@ -71,8 +104,8 @@ export default {
     }
   },
   actions: {
-    async fetch({commit, state}) {
-      const reviews = await $.get(state.reviewUrl),
+    async fetch({commit, state}, url = null) {
+      const reviews = await $.get(url || state.reviewUrl),
         obj = {};
       for (const r of reviews) {
         if (typeof r.rating !== 'undefined') {
@@ -85,11 +118,14 @@ export default {
           obj[group] = [];
         obj[group].push(r);
       }
-      commit('pageCollections/reviews/fetch', obj, {root: true});
+      for (const key of Object.keys(obj))
+        if (obj[key].length === 0)
+          delete obj[key];
+      commit('fetchReview', obj);
     },
-    async _navigate({commit, getters}) {
+    async _navigate({commit, dispatch, getters}) {
       window.history.pushState('string', '', '/collections/' + getters.url);
-      const {totalPages, products, title} = await $.get(`/collections/${getters.url}?view=json`);
+      const {id, totalPages, products, title} = JSON.parse(await $.get(`/collections/${getters.url}?view=json`));
       commit('clearCache');
       commit('cache', {
         products,
@@ -98,6 +134,7 @@ export default {
         title,
         force: true
       });
+      await dispatch('fetch', `https://static.fancycrazy.com/reviews-collection-${id}.json`);
       commit('toggleLoading', {isLoading: false}, {root: true});
       commit('goToPage', {page: 0});
     },
