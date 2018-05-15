@@ -1,5 +1,8 @@
+import reviews from './reviews';
+
 export default {
   namespaced: true,
+  modules: {reviews},
   state: () => ({
     handle: '',
     tag: '',
@@ -12,7 +15,6 @@ export default {
     sidebar: {
       items: []
     },
-    reviews: [],
     reviewUrl: ''
   }),
   getters: {
@@ -45,9 +47,6 @@ export default {
     }
   },
   mutations: {
-    fetchReview(state, reviews) {
-      state.reviews = reviews;
-    },
     cache(state, {products = [], page = state.current, totalPages = 0, force = false, title = ''} = {}) {
       state.__cache__[page] = (products.length === 0 && !force) ? state.products : products;
 
@@ -86,7 +85,7 @@ export default {
           obj[group] = [];
         obj[group].push(r);
       }
-      commit('fetchReview', obj);
+      commit('pageCollections/reviews/fetch', obj, {root: true});
     },
     async _navigate({commit, getters}) {
       window.history.pushState('string', '', '/collections/' + getters.url);

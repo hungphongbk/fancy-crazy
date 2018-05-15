@@ -95,6 +95,7 @@
           this.$refs['anchor'].scrollIntoView({behavior: 'smooth'});
         }
       });
+      console.log(this.$appStore);
       await this.$appStore.dispatch('pageCollections/fetch');
     }
   };

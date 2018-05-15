@@ -5,6 +5,7 @@ import groupBy     from 'lodash/groupBy';
 import clone       from 'lodash/clone';
 import omit        from 'lodash/omit';
 import flatten     from 'lodash/flatten';
+import random      from 'lodash/random';
 import Shopify     from 'shopify-api-node';
 
 const s = new Spreadsheet(path.resolve(__dirname, '../dist/reviews.json')),
@@ -16,25 +17,32 @@ const s = new Spreadsheet(path.resolve(__dirname, '../dist/reviews.json')),
 
 const timeout = ms => new Promise(res => setTimeout(res, ms));
 
-const cols = [];
+const cols = [], products = [];
+
+async function getRandonlyProduct(collection_id) {
+  if (!cols[collection_id]) {
+    cols[collection_id] = await shopify.collect.list({collection_id, fields: 'collection_id,product_id'});
+  }
+  console.log(`id = ${collection_id} has ${cols[collection_id].length} collects`);
+  // else console.log('cached');
+  const collects = cols[collection_id];
+  if (collects.length === 0) return null;
+  let product_id;
+  do {
+    const index = random(collects.length - 1);
+    product_id = collects[index].product_id;
+  } while (typeof product_id === 'undefined');
+  if (!products[product_id]) {
+    products[product_id] = await shopify.product.get(product_id);
+  }
+
+  const i = random(products[product_id].images.length - 1);
+  return products[product_id].images[i].src.replace('//cdn.shopify.com', '');
+}
 
 async function transformItem(item) {
   if (item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id)) {
-    //console.log(item.collection_id);
-    let col = cols[item.collection_id];
-    if (!col)
-      try {
-        // console.log('new collection id, ' + item.collection_id);
-        col = await shopify.customCollection.get(item.collection_id * 1);
-      } catch (e) {
-        col = await shopify.smartCollection.get(item.collection_id * 1);
-      } finally {
-        cols[item.collection_id] = col;
-        if (!col.image) {
-          console.log(`Collection "${col.title}" has no image`);
-        }
-      }
-    item.image_url = col.image ? col.image.src : '';
+    item.image_url = await getRandonlyProduct(item.collection_id);
   }
   return omit(item, ['position', 'collection_id']);
 }
@@ -42,8 +50,8 @@ async function transformItem(item) {
 async function getAllCollections() {
   const fields = 'id,title';
   const [custom, smart] = await Promise.all([
-    shopify.customCollection.list({fields}),
-    shopify.smartCollection.list({fields})
+    shopify.customCollection.list({fields, limit: 250}),
+    shopify.smartCollection.list({fields, limit: 250})
   ]);
   return [].concat(custom, smart);
 }
@@ -58,12 +66,9 @@ s.readSheetData()
           collections.splice(index, 1);
         }
       };
+    console.log(`fetch ${collections.length} collections`);
 
     let filesObj_ = {};
-    // const filesObj = groupBy(arr, item => {
-    //   if (item.position === 'index') return 'index';
-    //   return 'collection-' + item.collection_id;
-    // });
     for (const item of arr) {
       if (typeof item.collection_id !== 'undefined' && item.collection_id.length > 0) {
         for (const id of item.collection_id.split(',')) if (id.length > 0) {

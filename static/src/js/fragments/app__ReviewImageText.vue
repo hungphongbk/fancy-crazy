@@ -28,7 +28,7 @@
         .d-flex.mt-2
           .ratio-1-1(:class="$style.thumbnail")
             .content
-              img.img-fluid(:src="item.image_url")
+              img.img-fluid(:src="item.image_url | shopifyImgUrl")
           .pl-2.pr-4(:class="$style.content")
             p
               i.text-muted {{item.review_content}}
