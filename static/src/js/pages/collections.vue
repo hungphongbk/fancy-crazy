@@ -4,6 +4,13 @@
   .sidebar {
     font-size: .9em;
   }
+  .active{
+    font-weight: 700;
+  }
+  .children{
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+  }
 </style>
 <template lang="pug">
   .container-fluid.pt-3(:class="$style.collections")
@@ -12,7 +19,7 @@
     .row
       .col-sm-2.border-right.pl-3(:class="$style.sidebar")
         template(v-if="filteredCollection || filteredTag")
-          h5.mb-2 Filtered by
+          h5.mb-3 Filtered by
           ul.list-group
             a.list-group-item.list-group-item-action(v-if="filteredCollection")
               strong {{filteredCollection.title}}
@@ -24,18 +31,17 @@
         .list-group#products
           template(v-for="(col,index) in sidebarCollections")
             template(v-if="col.children")
-              a.list-group-item.list-group-item-action.d-flex.justify-content-between
-                span(@click="goToCollection(col.url)") {{col.title}}
-                span(@click="toggleMenu(index)")
-                  fa-icon(:icon="faChevronUp", :rotation="toggle[index]?180:null")
+              a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="toggleMenu(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
+                span {{col.title}}
+                fa-icon(:icon="faChevronUp", :rotation="toggle[index]?null:180")
               transition(v-if="toggle[index]", name="fade")
-                div
+                div(:class="$style.children")
                   a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="goToCollection(childCol.url)") {{childCol.title}}
             a.list-group-item.list-group-item-action(v-else, @click="goToCollection(col.url)") {{col.title}}
-        h5.mt-4.mb-2 INTERESTS
+        h5.mt-4.mb-4 INTERESTS
         .list-group
           //
-          a.list-group-item.list-group-item-action(v-for="col in sidebarTags", @click="goToTag(col.url)") {{col.title}}
+          a.list-group-item.list-group-item-action(v-for="col in sidebarTags", href="javascript:void(0)" :class="{ [$bs.active]:col.title===filteredTag.title, [$style.active]:col.title===filteredTag.title }", @click="goToTag(col.url)") {{col.title}}
       .col-sm-10.pr-3
         .row.no-gutter
           .col-sm-3.product-item(v-for="product in products")

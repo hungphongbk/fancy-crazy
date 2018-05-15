@@ -273,8 +273,7 @@ if (process.env.NODE_ENV === 'production') {
           properties: {
             regex: regexCombiner([
               /^([A-Z][A-Z0-9]*_)([A-Z0-9]+_?)*$/,
-              /^\$(style|createElement)$/,
-              /^(align|offset|justify|d[A-Z]|btn[A-Z])/
+              /^\$(style|createElement)$/
             ])
           }
         },
@@ -287,7 +286,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
   ]);
 } else {
-  module.exports.devtool = 'source-map';
+  module.exports.devtool = '#eval-source-map';
   plugins = plugins.concat([
     new webpack.NamedModulesPlugin(),
     new webpack.SourceMapDevToolPlugin({

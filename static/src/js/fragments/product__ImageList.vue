@@ -2,10 +2,11 @@
   @import "../../scss/inc";
   .imgThumbnail {
     padding: .3rem;
-    :global(.ratio-1-1){
+    width: percentage(1/3);
+    .inner{
       border: 2px solid $gray-200;
     }
-    :global(.content) {
+    .content {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -20,8 +21,8 @@
 <template lang="pug">
   slider
     a(v-for="image in images", :key="image", :class="$style.imgThumbnail")
-      .ratio-1-1
-        .content
+      .ratio-1-1(:class="$style.inner")
+        .content(:class="$style.content")
           img(:src="image | shopifyImgUrl", :class="$style.img")
 </template>
 <script>

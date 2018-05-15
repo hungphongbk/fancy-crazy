@@ -10,3 +10,9 @@
 //  "Light": 100 normal
 //))
 @include font-face("Oswald", url("../fonts/Oswald.woff2"));
+
+//region Bootstrap 4
+.list-group-item{
+  margin-bottom: .5rem;
+}
+//endregion
