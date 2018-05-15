@@ -41,7 +41,7 @@
         h5.mt-4.mb-4 INTERESTS
         .list-group
           //
-          a.list-group-item.list-group-item-action(v-for="col in sidebarTags", href="javascript:void(0)" :class="{ [$bs.active]:col.title===filteredTag.title, [$style.active]:col.title===filteredTag.title }", @click="goToTag(col.url)") {{col.title}}
+          a.list-group-item.list-group-item-action(v-for="col in sidebarTags", href="javascript:void(0)" :class="{ [$bs.active]:(filteredTag && (col.title=== filteredTag.title)), [$style.active]: (filteredTag && (col.title=== filteredTag.title)) }", @click="goToTag(col.url)") {{col.title}}
       .col-sm-10.pr-3
         .row.no-gutter
           .col-sm-3.product-item(v-for="product in products")

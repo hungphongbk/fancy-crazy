@@ -8,6 +8,7 @@ import base              from './build/webpack-base.config.babel';
 import incstr            from 'incstr';
 import combine           from 'webpack-combine-loaders';
 import regexCombiner     from 'regex-combiner';
+import CssoWebpackPlugin from 'csso-webpack-plugin';
 
 const src = './static/src',
   dist = './static/dist',
@@ -41,19 +42,27 @@ const createUniqueIdGenerator = () => {
     } while (/^[0-9]/.test(nextId));
 
     index[name] = generateNextId();
+    // console.log(`${name} has id = ${index[name]}`);
 
     return index[name];
   };
 };
 
-const idLocal = createUniqueIdGenerator();
-
+const idLocal = createUniqueIdGenerator(), idComponent = createUniqueIdGenerator();
+const components = {};
 const generateScopedName = (localName, resourcePath) => {
-  const componentName = resourcePath.split('/').slice(-2, -1);
+  const componentName = resourcePath.split('/').slice(-2).join('/');
+  if (!components[componentName]) {
+    components[componentName] = true;
+    // console.log(componentName[0]+' '+resourcePath);
+  }
   if (/^col-/.test(localName))
     return 'col-' + idLocal(localName);
-  return idLocal(componentName).toUpperCase() + idLocal(localName);
+  return idComponent(componentName).toUpperCase() + idLocal(localName);
 };
+
+const getLocalIdent = (context, localIdentName, localName) => generateScopedName(localName, context.resourcePath);
+global.getLocalIdent = getLocalIdent;
 //endregion
 
 const cssLoader = (modules = false) => ({
@@ -62,9 +71,7 @@ const cssLoader = (modules = false) => ({
     autoprefixer: true,
     minimize: true,
     // localIdentName: isProduction ? '[hash:base64:7]' : '[name]__[local]___[hash:base64:5]',
-    getLocalIdent: (context, localIdentName, localName) => {
-      return generateScopedName(localName, context.resourcePath);
-    },
+    getLocalIdent,
     importLoaders: 2,
     camelCase: 'only',
     modules
@@ -224,7 +231,6 @@ module.exports = merge(base, {
 });
 
 let plugins = [
-  extractCss,
   new webpack.IgnorePlugin(/(locale)/, /node_modules.+(moment)/),
   new webpack.ProvidePlugin({
     $: 'jquery',
@@ -240,6 +246,10 @@ if (process.env.NODE_ENV === 'production') {
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static'
     // }),
+    extractCss,
+    // new CssoWebpackPlugin({
+    //   forceMediaMerge: true
+    // }, file => /\.css($|\?[a-z0-9]+)/.test(file)),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       getLocalIdent: (context, localIdentName, localName) => {
