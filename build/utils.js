@@ -9,7 +9,8 @@ const createUniqueIdGenerator = () => {
   const generateNextId = incstr.idGenerator({
     // Removed "d" letter to avoid accidental "ad" construct.
     // @see https://medium.com/@mbrevda/just-make-sure-ad-isnt-being-used-as-a-class-name-prefix-or-you-might-suffer-the-wrath-of-the-558d65502793
-    alphabet: 'abcefghijklmnopqrstuvwxyz0123456789'
+    // NOTE: allow "d" letter due to combination of UPPERCASES-lowercases
+    alphabet: 'abcdefghijklmnopqrstuvwxyz0123456789_-'
   });
 
   return (name) => {
@@ -22,7 +23,7 @@ const createUniqueIdGenerator = () => {
     do {
       // Class name cannot start with a number.
       nextId = generateNextId();
-    } while (/^[0-9]/.test(nextId));
+    } while (/^[0-9_-]/.test(nextId));
 
     index[name] = generateNextId();
     // console.log(`${name} has id = ${index[name]}`);

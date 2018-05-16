@@ -10,23 +10,25 @@
 }
 
 %_aspect-ratio-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-@mixin aspect-ratio($width, $height) {
-  position: relative;
-  &:before {
+  position:relative;
+  >.content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &:before{
     display: block;
     content: "";
     width: 100%;
-    padding-top: ($height / $width) * 100%;
   }
-  > .content {
-    @extend %_aspect-ratio-content;
+}
+
+@mixin aspect-ratio($width, $height) {
+  @extend %_aspect-ratio-content;
+  &:before {
+    padding-top: ($height / $width) * 100%;
   }
 }
 
