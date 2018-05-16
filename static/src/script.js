@@ -8,6 +8,7 @@ import App     from './App';
 
 // import '@/scss/styles.scss';
 import $bs     from '@/scss/styles.m-scss';
+import 'vue-transition-css/src/sass/fade.scss';
 import mqStore from '@/js/store/mq';
 
 Object.defineProperties(Vue.prototype, {

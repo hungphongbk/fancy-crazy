@@ -22,12 +22,14 @@
   }
 
   .light :global .flickity-prev-next-button {
-    background: rgba(#fff, .9);
+    background: rgba(#fff, .9) !important;
+
     @include hover(rgba(lighten($theme-red, 7%), .65))
   }
 
   .dark :global .flickity-prev-next-button {
-    background: rgba($theme-red, .85);
+    background: rgba($theme-red, .85) !important;
+
     @include hover(lighten($theme-red, 45%));
     .flickity-button-icon {
       fill: white;

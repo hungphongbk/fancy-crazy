@@ -36,8 +36,11 @@ async function getRandonlyProduct(collection_id) {
     products[product_id] = await shopify.product.get(product_id);
   }
 
-  const i = random(products[product_id].images.length - 1);
-  return products[product_id].images[i].src.replace('//cdn.shopify.com', '');
+  let i;
+  do {
+    i = random(products[product_id].images.length - 1);
+  } while (/sizechart/.test(products[product_id].images[i].src));
+  return products[product_id].images[i].src.replace('https://cdn.shopify.com', '');
 }
 
 async function transformItem(item) {
