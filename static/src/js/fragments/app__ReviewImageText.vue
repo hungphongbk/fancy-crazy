@@ -3,6 +3,7 @@
 
   .item {
     width: percentage(1/3);
+    height: 28vh
   }
 
   .title {
@@ -21,7 +22,7 @@
 </style>
 <template lang="pug">
   .mx-3
-    slider(type="flickity", :opts="opts")
+    slider(type="flickity", :opts="opts", theme="dark")
       .px-2(:class="$style.item", v-for="item in items")
         star-rating.mb-2(:rating="item.rating", :star-size="40", :show-rating="false")
         h5(:class="$style.title") {{item.review_title}}
