@@ -5,10 +5,9 @@ import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
 // import {WebpackCloudFlareSync} from "hungphongbk-utils";
 import merge             from 'webpack-merge';
 import base              from './build/webpack-base.config.babel';
-import incstr            from 'incstr';
 import combine           from 'webpack-combine-loaders';
 import regexCombiner     from 'regex-combiner';
-import CssoWebpackPlugin from 'csso-webpack-plugin';
+import _                 from './build/utils';
 
 const src = './static/src',
   dist = './static/dist',
@@ -19,51 +18,7 @@ const extractCss = new ExtractTextPlugin({
   filename: "[name].css?[contenthash]"
 });
 
-//region CSS Minimize Scoping
-const createUniqueIdGenerator = () => {
-  const index = {};
-
-  const generateNextId = incstr.idGenerator({
-    // Removed "d" letter to avoid accidental "ad" construct.
-    // @see https://medium.com/@mbrevda/just-make-sure-ad-isnt-being-used-as-a-class-name-prefix-or-you-might-suffer-the-wrath-of-the-558d65502793
-    alphabet: 'abcefghijklmnopqrstuvwxyz0123456789'
-  });
-
-  return (name) => {
-    if (index[name]) {
-      return index[name];
-    }
-
-    let nextId;
-
-    do {
-      // Class name cannot start with a number.
-      nextId = generateNextId();
-    } while (/^[0-9]/.test(nextId));
-
-    index[name] = generateNextId();
-    // console.log(`${name} has id = ${index[name]}`);
-
-    return index[name];
-  };
-};
-
-const idLocal = createUniqueIdGenerator(), idComponent = createUniqueIdGenerator();
-const components = {};
-const generateScopedName = (localName, resourcePath) => {
-  const componentName = resourcePath.split('/').slice(-2).join('/');
-  if (!components[componentName]) {
-    components[componentName] = true;
-    // console.log(componentName[0]+' '+resourcePath);
-  }
-  if (/^col-/.test(localName))
-    return 'col-' + idLocal(localName);
-  return idComponent(componentName).toUpperCase() + idLocal(localName);
-};
-
-const getLocalIdent = (context, localIdentName, localName) => generateScopedName(localName, context.resourcePath);
-global.getLocalIdent = getLocalIdent;
-//endregion
+global.getLocalIdent = _.getLocalIdent;
 
 const cssLoader = (modules = false) => ({
   loader: "css-loader",
@@ -71,12 +26,14 @@ const cssLoader = (modules = false) => ({
     autoprefixer: true,
     minimize: true,
     // localIdentName: isProduction ? '[hash:base64:7]' : '[name]__[local]___[hash:base64:5]',
-    getLocalIdent,
+    getLocalIdent: _.getLocalIdent,
     importLoaders: 2,
     camelCase: 'only',
     modules
   }
 });
+
+// console.log(_.cssLoaders(['postcss-loader', 'sass-loader'], false))
 
 module.exports = merge(base, {
   entry: {
@@ -128,7 +85,7 @@ module.exports = merge(base, {
       {
         test: /\.css$/,
         use: isProduction ? extractCss.extract({
-          use: [cssLoader(false), 'postcss-loader'],
+          use: _.cssLoaders(['postcss-loader'], false),
           // use style-loader in development
           fallback: "style-loader"
         }) : [
@@ -139,12 +96,7 @@ module.exports = merge(base, {
       {
         test: /\.m-s[ac]ss($|\?)/,
         use: isProduction ? extractCss.extract({
-          use: [
-            // 'cache-loader',
-            cssLoader(true),
-            'postcss-loader',
-            'sass-loader'
-          ],
+          use: _.cssLoaders(['postcss-loader', 'sass-loader'], true),
           fallback: 'style-loader'
         }) : [
           {loader: 'style-loader'},
@@ -157,11 +109,7 @@ module.exports = merge(base, {
       {
         test: /\.s[ac]ss$/,
         use: isProduction ? extractCss.extract({
-          use: [
-            // 'cache-loader',
-            cssLoader(false),
-            'postcss-loader',
-            'sass-loader'],
+          use: _.cssLoaders(['postcss-loader', 'sass-loader'], false),
           fallback: "style-loader"
         }) : [
           {loader: 'style-loader'},

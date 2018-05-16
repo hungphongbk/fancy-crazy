@@ -42,6 +42,7 @@
     "bootstrap": "^4.1.1",
     "cache-loader": "^1.2.2",
     "circular-json": "^0.5.4",
+    "clean-css-loader": "^1.0.1",
     "collections": "^5.1.2",
     "compass": "^0.1.1",
     "compass-importer": "^0.4.1",
