@@ -43,7 +43,8 @@
           'cardinal red': '#C41E3A',
           'antique cherry red': '#a61f34',
           'royal': '#4169e1',
-          'dark chocolate': '#340912'
+          'dark chocolate': '#340912',
+          purple: '#5f2d9e'
         }
       }
     }

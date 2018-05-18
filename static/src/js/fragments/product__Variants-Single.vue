@@ -2,7 +2,7 @@
   @import "../../scss/inc";
 </style>
 <template lang="pug">
-  div.product-variants(v-show="isVariantAvailable")
+  div.product-variants(v-show="IS_VARIANT_AVAILABLE")
     p
       span.text-theme-red {{value.title}}
     ul
@@ -18,13 +18,14 @@
         list: state => state.pageProduct.product.variants,
         value: state => state.pageProduct.selected
       }),
-      isVariantAvailable() {
+      IS_VARIANT_AVAILABLE() {
         return this.$store.getters['pageProduct/isVariantAvailable'];
       }
     },
     methods: {
       select(item) {
-        this.$store.commit('pageProduct/select', {variantId: item.id});
+        // noinspection JSIgnoredPromiseFromCall
+        this.$appStore.dispatch('pageProduct/select', {variantId: item.id});
       }
     }
   };

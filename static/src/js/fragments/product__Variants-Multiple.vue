@@ -89,7 +89,8 @@
                 )
               //title.includes(opt1.title) && title.includes(opt2.title)
             );
-          this.$store.commit('pageProduct/select', {variantId: value.id});
+          // noinspection JSIgnoredPromiseFromCall
+          this.$appStore.dispatch('pageProduct/select', {variantId: value.id});
         },
         deep: true
       }
