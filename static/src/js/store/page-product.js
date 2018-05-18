@@ -1,5 +1,5 @@
 const filterImg = (images, onlySizeCharts = false) =>
-  images.filter(url => /sizechart_.*?\./.test(url) === onlySizeCharts);
+  images.filter(url => /sizechart_/g.test(url) === onlySizeCharts);
 
 export default {
   namespaced: true,
@@ -15,7 +15,8 @@ export default {
         original: 0,
         sale: 0
       }
-    }
+    },
+    selectedImage: 0
   }),
   getters: {
     images: (state) => {
@@ -34,11 +35,15 @@ export default {
         const {original, sale} = selected.prices;
         return Math.round((original - sale) * 100 / original);
       } else return 0;
-    }
+    },
+    selectedImage: ({product, selectedImage}) => product.images[selectedImage]
   },
   mutations: {
     select(state, {variantId}) {
       state.selected = state.product.variants.find(({id}) => id === variantId);
+    },
+    selectImage(state, {index}) {
+      state.selectedImage = index;
     }
   },
   actions: {

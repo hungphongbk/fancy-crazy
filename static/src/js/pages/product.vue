@@ -21,7 +21,7 @@
   .container.pt-5
     .row
       .col-sm-7
-        magnifier(:thumb-src="images[0] | shopifyImgUrl('master')", :large-src="images[0] | shopifyImgUrl('master')")
+        magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
         fragment-image-list
       .col-sm-5
         h1(:class="$style.productName") {{product.title}}
@@ -29,7 +29,7 @@
         h2
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
-        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") BUY IT NOW!
+        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{title}}
         img.w-100(:src="imgSecurePayment")
         .pt-4.my-2(:class="$style.content", v-html="product.content")
 </template>
@@ -52,7 +52,8 @@
     },
     data() {
       return {
-        imgSecurePayment
+        imgSecurePayment,
+        title: 'BUY IT NOW!'
       };
     },
     computed: {
@@ -64,15 +65,28 @@
         images: 'pageProduct/images',
         isVariantAvailable: 'pageProduct/isVariantAvailable',
         isSale: 'pageProduct/isSale',
-        salePercentage: 'pageProduct/salePercentage'
+        salePercentage: 'pageProduct/salePercentage',
+        SELECTED_IMAGE: 'pageProduct/selectedImage'
       }),
-      ADD_TO_CART_CLASSES(){
-        const bs=this.$bs,
-          cls=[this.$style.addToCart];
-        if(!this.isVariantAvailable){
+      ADD_TO_CART_CLASSES() {
+        const bs = this.$bs,
+          cls = [this.$style.addToCart];
+        if (!this.isVariantAvailable) {
           cls.push(...[bs.roundedTop, bs.mt2]);
         }
+        if(/^ADD/.test(this.title))
+          cls.push(bs.disabled);
         return cls;
+      }
+    },
+    methods:{
+      async addToCart(id) {
+        this.title='ADDING TO CART...';
+        await this.$store.dispatch('cart/addToCart', {id});
+        this.title='ADDED TO CART!';
+        setTimeout(()=>{
+          this.title='BUY IT NOW!';
+        }, 1000)
       }
     },
     async created() {

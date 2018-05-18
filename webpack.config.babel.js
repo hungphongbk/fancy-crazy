@@ -2,7 +2,7 @@ import path              from "path";
 import webpack           from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
-// import {WebpackCloudFlareSync} from "hungphongbk-utils";
+import DuplicateCheck from 'duplicate-package-checker-webpack-plugin'
 import merge             from 'webpack-merge';
 import base              from './build/webpack-base.config.babel';
 import combine           from 'webpack-combine-loaders';
@@ -86,6 +86,17 @@ module.exports = merge(base, {
         test: /\.css$/,
         use: isProduction ? extractCss.extract({
           use: _.cssLoaders(['postcss-loader'], false),
+          // use style-loader in development
+          fallback: "style-loader"
+        }) : [
+          {loader: 'style-loader'},
+          {loader: 'css-loader'}
+        ]
+      },
+      {
+        test: /\.m-css$/,
+        use: isProduction ? extractCss.extract({
+          use: _.cssLoaders(['postcss-loader'], true),
           // use style-loader in development
           fallback: "style-loader"
         }) : [
@@ -195,9 +206,7 @@ if (process.env.NODE_ENV === 'production') {
     //   analyzerMode: 'static'
     // }),
     extractCss,
-    // new CssoWebpackPlugin({
-    //   forceMediaMerge: true
-    // }, file => /\.css($|\?[a-z0-9]+)/.test(file)),
+    new DuplicateCheck(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       getLocalIdent: (context, localIdentName, localName) => {

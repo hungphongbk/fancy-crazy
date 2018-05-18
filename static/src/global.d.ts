@@ -17,6 +17,12 @@ import {Store} from "vuex";
 
 declare module "vue/types/vue" {
   interface Vue {
-    $appStore?: Store<RootState>;
+    $appStore?: Store<RootState>
+    $bs: {
+      [key: string]: string
+    }
+    $style: {
+      [key: string]: string
+    }
   }
 }

@@ -1,4 +1,5 @@
 // import 'bootstrap';
+import $bs     from '@/scss/styles.m-scss';
 import Vue     from 'vue';
 import '@/js/components';
 import store   from '@/js/store';
@@ -6,8 +7,6 @@ import '@/js/pages';
 import '@/js/plugins';
 import App     from './App';
 
-// import '@/scss/styles.scss';
-import $bs     from '@/scss/styles.m-scss';
 import 'vue-transition-css/src/sass/fade.scss';
 import mqStore from '@/js/store/mq';
 

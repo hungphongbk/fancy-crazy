@@ -188,6 +188,6 @@ templates/product.item-json.liquid:
 templates/product.json.liquid:
   development: 2018-05-07T20:25:35-07:00   1a300db27d564dad84a54dc0f40085db
 templates/product.liquid:
-  development: 2018-05-07T20:25:35-07:00   41975b20b5a76d4ed1b1fb1854f7139d
+  development: 2018-05-18T05:45:29-07:00   086ffa482e974e114801be741cd0477f
 templates/search.liquid:
   development: 2018-05-07T20:25:35-07:00   f990402d63a2657b663ee5fc24eb8556

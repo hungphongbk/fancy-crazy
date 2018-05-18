@@ -35,9 +35,16 @@
       fill: white;
     }
   }
+
+  .narrow :global .flickity-viewport {
+    margin: {
+      left: $size*3/4;
+      right: $size*3/4;
+    }
+  }
 </style>
 <template lang="pug">
-  div(:class="[$style.slider, $style[theme]]")
+  div(:class="[$style.slider, $style[theme], narrow?$style.narrow:'']")
     flickity(ref="slick", :options="options")
       slot
 </template>
@@ -55,6 +62,10 @@
       theme: {
         type: String,
         default: 'light'
+      },
+      narrow: {
+        type: Boolean,
+        default: false
       }
     },
     data() {

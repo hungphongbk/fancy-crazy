@@ -1,12 +1,16 @@
 <style lang="scss" module>
   @import "../../scss/inc";
+
   .imgThumbnail {
     padding: .3rem;
     width: percentage(1/3);
-    .inner{
+    @at-root .inner {
       border: 2px solid $gray-200;
+      &.selected{
+        border-color: $theme-red;
+      }
     }
-    .content {
+    @at-root .content {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -19,15 +23,17 @@
   }
 </style>
 <template lang="pug">
-  slider
-    a(v-for="image in images", :key="image", :class="$style.imgThumbnail")
-      .ratio-1-1(:class="$style.inner")
+  slider(:narrow="true", theme="dark")
+    a(v-for="(image,index) in images", :key="image", :class="$style.imgThumbnail")
+      .ratio-1-1(:class="{ [$style.inner]:true, [$style.selected]: (SELECTED_IMAGE===image) }", @click="select(index)")
         .content(:class="$style.content")
           img(:src="image | shopifyImgUrl", :class="$style.img")
 </template>
 <script>
-  import {mapState} from 'vuex';
+  import {createNamespacedHelpers} from 'vuex';
   import {Slider} from "@/js/components";
+
+  const {mapGetters} = createNamespacedHelpers('pageProduct');
 
   export default {
     components: {Slider},
@@ -37,9 +43,15 @@
       }
     }),
     computed: {
-      ...mapState({
-        images: state => state.pageProduct.product.images
+      ...mapGetters({
+        images: 'images',
+        SELECTED_IMAGE: 'selectedImage'
       })
+    },
+    methods: {
+      select(index) {
+        this.$appStore.commit('pageProduct/selectImage', {index})
+      }
     }
   };
 </script>

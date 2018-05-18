@@ -36,7 +36,7 @@
           img(:id="id", :src="thumbSrc", style="width: 100%;", @load="init")
     .ratio-4-5.magnifier-preview-wrapper
       .content
-        .magnifier-preview(:id="previewId")
+        .magnifier-preview(:id="PREVIEW_ID")
 </template>
 <script>
   import {Magnifier} from "@/js/plugins";
@@ -61,37 +61,55 @@
     data() {
       return {
         id: '',
-        previewId: '',
+        internalId: 0,
+        PREVIEW_ID: '',
         m: null,
         cw: 0,
         ch: 0
       }
     },
+    watch: {
+      largeSrc(value) {
+        this.generateId();
+        this.$nextTick(() => {
+          this.attach();
+        })
+      }
+    },
     methods: {
+      generateId() {
+        this.internalId++;
+        this.id = `magnifier-thumb-${instances}-${this.internalId}`;
+        this.PREVIEW_ID = `magnifier-preview-${instances}-${this.internalId}`;
+      },
       init({target}) {
         const {clientHeight, clientWidth} = target;
         this.cw = clientWidth;
         this.ch = clientHeight;
+      },
+      attach() {
+        const {m, id, largeSrc, PREVIEW_ID, zoom} = this;
+        this.$nextTick(() => {
+          m.attach({
+            thumb: '#' + id,
+            large: largeSrc,
+            largeWrapper: PREVIEW_ID,
+            zoom,
+            onthumbenter: () => {
+              const {cw, ch} = this;
+              $(this.$el).find('.magnifier-lens').css({'background-size': `${cw}px ${ch}px`})
+            }
+          })
+        })
       }
     },
     created() {
       instances++;
-      this.id = 'magnifier-thumb-' + instances;
-      this.previewId = 'magnifier-preview-' + instances;
+      this.generateId();
     },
     mounted() {
       this.m = Magnifier();
-      const {m, id, largeSrc, previewId, zoom} = this;
-      m.attach({
-        thumb: '#' + id,
-        large: largeSrc,
-        largeWrapper: previewId,
-        zoom,
-        onthumbenter: () => {
-          const {cw, ch} = this;
-          $(this.$el).find('.magnifier-lens').css({'background-size': `${cw}px ${ch}px`})
-        }
-      })
+      this.attach();
     }
   }
 </script>
