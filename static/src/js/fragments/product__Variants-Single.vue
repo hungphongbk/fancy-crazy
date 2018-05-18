@@ -1,8 +1,5 @@
-<style lang="scss" scoped>
-  @import "../../scss/inc";
-</style>
 <template lang="pug">
-  div.product-variants(v-show="IS_VARIANT_AVAILABLE")
+  div.product-variants(v-if="IS_VARIANT_AVAILABLE")
     p
       span.text-theme-red {{value.title}}
     ul

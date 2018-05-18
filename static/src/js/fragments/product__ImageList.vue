@@ -6,7 +6,7 @@
     width: percentage(1/3);
     @at-root .inner {
       border: 2px solid $gray-200;
-      &.selected{
+      &.selected {
         border-color: $theme-red;
       }
     }
@@ -23,8 +23,8 @@
   }
 </style>
 <template lang="pug">
-  slider(:narrow="true", theme="dark")
-    a(v-for="(image,index) in images", :key="image", :class="$style.imgThumbnail")
+  slider(:narrow="true", theme="dark", ref="slider")
+    a(v-for="(image,index) in PRODUCT_IMAGES", :key="image", :class="$style.imgThumbnail")
       .ratio-1-1(:class="{ [$style.inner]:true, [$style.selected]: (SELECTED_IMAGE===image) }", @click="select(index)")
         .content(:class="$style.content")
           img(:src="image | shopifyImgUrl", :class="$style.img")
@@ -44,14 +44,22 @@
     }),
     computed: {
       ...mapGetters({
-        images: 'images',
+        PRODUCT_IMAGES: 'images',
         SELECTED_IMAGE: 'selectedImage'
       })
     },
     methods: {
       select(index) {
-        this.$appStore.commit('pageProduct/selectImage', {index})
+        this.$appStore.commit('pageProduct/selectImage', {index});
       }
+    },
+    mounted() {
+      this.$appStore.subscribe(mutation => {
+        if (mutation.type === 'pageProduct/selectImage') {
+          const index = this.PRODUCT_IMAGES.findIndex(i => i === this.SELECTED_IMAGE);
+          this.$refs.slider.select(index)
+        }
+      })
     }
   };
 </script>

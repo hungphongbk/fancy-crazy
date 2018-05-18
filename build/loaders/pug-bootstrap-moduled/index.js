@@ -12,15 +12,20 @@ module.exports = function (source, map, meta) {
     cb = self.async(),
     {scssFiles, cacheFile = path.resolve(__dirname, 'classes.json')} = utils.getOptions(self);
   // self.cacheable();
-  // if (!fs.existsSync(cacheFile))
-  //   await classes({scssFiles, cache: cacheFile});
-  fs.readFile(cacheFile, 'utf8', (err, obj) => {
-    if (err) return cb(err);
-    const newSource = parse(source, cls => obj.indexOf(cls) !== -1);
+  function next(){
+    fs.readFile(cacheFile, 'utf8', (err, obj) => {
+      if (err) return cb(err);
+      const newSource = parse(source, cls => obj.indexOf(cls) !== -1);
 
-    //console.log(newSource + "\n-------");
-    cb(null, newSource, map, meta);
-  });
+      //console.log(newSource + "\n-------");
+      cb(null, newSource, map, meta);
+    });
+  }
+  // if (!fs.existsSync(cacheFile))
+  //   classes({scssFiles, cache: cacheFile}).then(next);
+  // else
+    next();
+
   // self.callback(null,source);
   // return source;
 };

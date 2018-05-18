@@ -18,7 +18,7 @@
   }
 </style>
 <template lang="pug">
-  .container.pt-5
+  .container.pt-2.px-6
     .row
       .col-sm-7
         magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
@@ -29,8 +29,8 @@
         h2
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
-        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{title}}
-        img.w-100(:src="imgSecurePayment")
+        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
+        img.w-100(:src="IMG_SECURE_PAYMENT")
         .pt-4.my-2(:class="$style.content", v-html="product.content")
 </template>
 <script>
@@ -38,7 +38,7 @@
   import Magnifier from '@/js/components/magnifier';
   import FragmentVariants from '@/js/fragments/product__Variants';
   import FragmentImageList from '@/js/fragments/product__ImageList';
-  import imgSecurePayment from '@/images/mcafee.png';
+  import IMG_SECURE_PAYMENT from '@/images/mcafee.png';
   import {addToCart} from "@/js/components/mixins/addToCart";
   import {mapGetters, mapState} from 'vuex';
 
@@ -52,8 +52,8 @@
     },
     data() {
       return {
-        imgSecurePayment,
-        title: 'BUY IT NOW!'
+        IMG_SECURE_PAYMENT,
+        BTN_TITLE: 'BUY IT NOW!'
       };
     },
     computed: {
@@ -62,8 +62,7 @@
         product: state => state.pageProduct.product
       }),
       ...mapGetters({
-        images: 'pageProduct/images',
-        isVariantAvailable: 'pageProduct/isVariantAvailable',
+        IS_VARIANT_AVAILABLE: 'pageProduct/isVariantAvailable',
         isSale: 'pageProduct/isSale',
         salePercentage: 'pageProduct/salePercentage',
         SELECTED_IMAGE: 'pageProduct/selectedImage'
@@ -71,21 +70,21 @@
       ADD_TO_CART_CLASSES() {
         const bs = this.$bs,
           cls = [this.$style.addToCart];
-        if (!this.isVariantAvailable) {
+        if (!this.IS_VARIANT_AVAILABLE) {
           cls.push(...[bs.roundedTop, bs.mt2]);
         }
-        if(/^ADD/.test(this.title))
+        if(/^ADD/.test(this.BTN_TITLE))
           cls.push(bs.disabled);
         return cls;
       }
     },
     methods:{
       async addToCart(id) {
-        this.title='ADDING TO CART...';
+        this.BTN_TITLE='ADDING TO CART...';
         await this.$store.dispatch('cart/addToCart', {id});
-        this.title='ADDED TO CART!';
+        this.BTN_TITLE='ADDED TO CART!';
         setTimeout(()=>{
-          this.title='BUY IT NOW!';
+          this.BTN_TITLE='BUY IT NOW!';
         }, 1000)
       }
     },

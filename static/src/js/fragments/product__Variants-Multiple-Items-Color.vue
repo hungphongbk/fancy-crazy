@@ -1,7 +1,8 @@
-<style lang="scss" scoped>
+<style lang="scss" module>
   @import "../../scss/inc";
 
-  .product-variants-item {
+  .item {
+    composes: item from './product__Variants-Multiple-Items__share.m-scss';
     height: 2.3rem;
     width: 2.3rem;
     display: inline-block;
@@ -15,25 +16,26 @@
     }
   }
 
-  .product-variants-label {
+  .label {
+    composes: label from './product__Variants-Multiple-Items__share.m-scss';
     line-height: 2.3;
   }
 </style>
 <template lang="pug">
   .d-flex
-    p.product-variants-label.mr-3 COLOR:
+    p.mr-3(:class="$style.label") COLOR:
     dl.clearfix
-      dd.product-variants-item.rounded-circle.mr-4.float-left(v-for="item in items",
-      :class="{'selected': item.title===value.title}",
+      dd.rounded-circle.mr-4.float-left(v-for="item in items",
+      :class="{ [$style.item]:true, [$style.selected]: item.title===value.title}",
       @click="$emit('input', item)",
       :style="{'background-color': colors[item.title.toLowerCase()]}",
       v-tooltip="item.title")
 </template>
 <script>
-  import mixin from './product__Variants-Multiple-Items-mixins'
+  import mixins from './product__Variants-Multiple-Items-mixins'
 
   export default {
-    mixins: [mixin],
+    mixins: [mixins],
     data() {
       return {
         colors: {

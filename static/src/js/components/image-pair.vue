@@ -20,7 +20,7 @@
 <template lang="pug">
   div(:class="$style.imagePair" @mouseover="over", @mouseleave="leave")
     transition(name="fade")
-      .d-flex.align-items-end(:class="$style.pair", v-if="!hover", :key="loadeds[0]")
+      .d-flex.align-items-end(:class="$style.pair", v-if="!MOUSE_OVER", :key="loadeds[0]")
         img.img-fluid(:src="loadeds[0]")
       .d-flex.align-items-end(:class="$style.pair", v-else, :key="loadeds[1]")
         img.img-fluid(:src="loadeds[1]")
@@ -35,7 +35,7 @@
     },
     data() {
       return {
-        hover: false
+        MOUSE_OVER: false
       }
     },
     asyncComputed: {
@@ -59,10 +59,10 @@
     },
     methods: {
       over() {
-        this.hover = true;
+        this.MOUSE_OVER = true;
       },
       leave() {
-        this.hover = false;
+        this.MOUSE_OVER = false;
       }
     }
   }

@@ -1,30 +1,30 @@
 [
   {
-    "title": "Privacy Policy",
-    "url": "https://fancycrazy.com/pages/privacy-policy"
+    "FOOTER_TITLE": "Privacy Policy",
+    "FOOTER_URL": "https://fancycrazy.com/pages/privacy-policy"
   },
   {
-    "title": "Terms of Service",
-    "url": "https://fancycrazy.com/pages/terms-of-service"
+    "FOOTER_TITLE": "Terms of Service",
+    "FOOTER_URL": "https://fancycrazy.com/pages/terms-of-service"
   },
   {
-    "title": "Help Center",
-    "url": "https://fancycrazy.com/apps/help-center"
+    "FOOTER_TITLE": "Help Center",
+    "FOOTER_URL": "https://fancycrazy.com/apps/help-center"
   },
   {
-    "title": "Blog",
-    "url": "https://fancycrazy.com/blogs/news"
+    "FOOTER_TITLE": "Blog",
+    "FOOTER_URL": "https://fancycrazy.com/blogs/news"
   },
   {
-    "title": "Track your order",
-    "url": "http://fancycrazy.aftership.com"
+    "FOOTER_TITLE": "Track your order",
+    "FOOTER_URL": "http://fancycrazy.aftership.com"
   },
   {
-    "title": "Size Chart",
-    "url": "https://fancycrazy.com/pages/size-chart"
+    "FOOTER_TITLE": "Size Chart",
+    "FOOTER_URL": "https://fancycrazy.com/pages/size-chart"
   },
   {
-    "title": "About Us",
-    "url": "https://fancycrazy.com/pages/about-us"
+    "FOOTER_TITLE": "About Us",
+    "FOOTER_URL": "https://fancycrazy.com/pages/about-us"
   }
 ]

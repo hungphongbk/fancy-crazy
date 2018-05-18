@@ -11,8 +11,8 @@
         img.img-fluid(:class="$style.logo", src="@/images/logo.png")
       div(slot="info")
         dl
-          dd(v-for="{title,url} in infoList")
-            a(:href="url") {{title}}
+          dd(v-for="{FOOTER_TITLE,FOOTER_URL} in infoList")
+            a(:href="FOOTER_URL") {{FOOTER_TITLE}}
 </template>
 <script>
   import Wrapper from './footer-wrapper'

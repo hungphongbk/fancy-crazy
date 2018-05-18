@@ -5,7 +5,7 @@
       "page": "Página {{ page }}"
     },
     "404": {
-      "title": "404 Página no encontrada",
+      "BTN_TITLE": "404 Página no encontrada",
       "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"\/collections\/all\">aquí<\/a> para continuar la compra."
     },
     "breadcrumbs": {
@@ -19,7 +19,7 @@
     "search": {
       "no_results_html": "Su búsqueda de \"{{ terms }}\" no tuvo resultados.",
       "results_for_html": "Su búsqueda de \"{{ terms }}\" muestra lo siguiente:",
-      "title": "Buscar productos en nuestro sitio",
+      "BTN_TITLE": "Buscar productos en nuestro sitio",
       "placeholder": "buscar en nuestra tienda",
       "submit": "Buscar"
     }
@@ -34,7 +34,7 @@
       "read_more": "Leer más"
     },
     "comments": {
-      "title": "Dejar un comentario",
+      "BTN_TITLE": "Dejar un comentario",
       "name": "Nombre",
       "email": "Correo electrónico",
       "message": "Mensaje",
@@ -54,7 +54,7 @@
   },
   "cart": {
     "general": {
-      "title": "Carrito de compra",
+      "BTN_TITLE": "Carrito de compra",
       "remove": "Quitar",
       "note": "Instrucciones especiales para el vendedor",
       "subtotal": "Subtotal",
@@ -88,7 +88,7 @@
       "tags": "Etiquetas"
     },
     "sorting": {
-      "title": "Ordenar por",
+      "BTN_TITLE": "Ordenar por",
       "featured": "Destacados",
       "best_selling": "Más vendidos",
       "az": "Alfabéticamente, A-Z",
@@ -116,13 +116,13 @@
   },
   "customer": {
     "account": {
-      "title": "Mi cuenta",
+      "BTN_TITLE": "Mi cuenta",
       "details": "Detalles de la cuenta",
       "view_addresses": "Ver direcciones",
       "return": "Volver a detalles de la cuenta"
     },
     "activate_account": {
-      "title": "Activar cuenta",
+      "BTN_TITLE": "Activar cuenta",
       "subtext": "Cree su contraseña para activar su cuenta.",
       "password": "Contraseña",
       "password_confirm": "Confirmar contraseña",
@@ -130,7 +130,7 @@
       "cancel": "Rechazar invitación"
     },
     "addresses": {
-      "title": "Sus direcciones",
+      "BTN_TITLE": "Sus direcciones",
       "default": "Por defecto",
       "add_new": "Agregar una nueva dirección",
       "edit_address": "Editar dirección",
@@ -152,7 +152,7 @@
       "delete": "Eliminar"
     },
     "login": {
-      "title": "Ingresar",
+      "BTN_TITLE": "Ingresar",
       "email": "Correo electrónico",
       "password": "Contraseña",
       "forgot_password": "¿Olvidó su contraseña?",
@@ -162,7 +162,7 @@
       "guest_continue": "Continuar"
     },
     "orders": {
-      "title": "Historial de pedidos",
+      "BTN_TITLE": "Historial de pedidos",
       "order_number": "Pedido",
       "date": "Fecha",
       "payment_status": "Estado del pago",
@@ -171,7 +171,7 @@
       "none": "No ha realizado algún pedido aún."
     },
     "order": {
-      "title": "Pedido {{ name }}",
+      "BTN_TITLE": "Pedido {{ name }}",
       "date": "Realizado en {{ date }}",
       "cancelled": "Pedido cancelado en {{ date }}",
       "cancelled_reason": "Motivo: {{ reason }}",
@@ -191,7 +191,7 @@
       "subtotal": "Subtotal"
     },
     "recover_password": {
-      "title": "Restablecer su contraseña",
+      "BTN_TITLE": "Restablecer su contraseña",
       "email": "Correo electrónico",
       "submit": "Enviar",
       "cancel": "Cancelar",
@@ -199,14 +199,14 @@
       "success": "Hemos enviado un correo electrónico con un enlace para actualizar su contraseña."
     },
     "reset_password": {
-      "title": "Restablecer contraseña de cuenta",
+      "BTN_TITLE": "Restablecer contraseña de cuenta",
       "subtext": "Ingrese una nueva contraseña para {{ email }}",
       "password": "Contraseña",
       "password_confirm": "Confirmar contraseña",
       "submit": "Restablecer contraseña"
     },
     "register": {
-      "title": "Crear cuenta",
+      "BTN_TITLE": "Crear cuenta",
       "first_name": "Nombre",
       "last_name": "Apellido",
       "email": "Correo electrónico",
@@ -240,7 +240,7 @@
       "close_menu": "Cerrar menú"
     },
     "cart": {
-      "title": "Carrito",
+      "BTN_TITLE": "Carrito",
       "items_count": {
         "one": "artículo",
         "other": "artículos"
@@ -279,7 +279,7 @@
   },
   "gift_cards": {
     "issued": {
-      "title": "¡Aquí está su tarjeta de regalo de {{ value }} para {{ shop }}!",
+      "BTN_TITLE": "¡Aquí está su tarjeta de regalo de {{ value }} para {{ shop }}!",
       "subtext": "¡Aquí está su tarjeta de regalo!",
       "disabled": "Inhabilitada",
       "expired": "Expiró en {{ expiry }}",

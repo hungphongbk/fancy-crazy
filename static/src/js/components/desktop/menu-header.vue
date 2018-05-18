@@ -113,13 +113,13 @@
                 input.w-100(type="text", placeholder="type something here")
         a.ratio-1-1(:class="$style.searchThumb", @click="isSearchMode = !isSearchMode")
           .content.d-flex.justify-content-center.align-items-center
-            fa-icon(:icon="SearchToggleIcon", size="large")
+            fa-icon(:icon="SEARCH_TOGGLE_ICON", size="large")
         cart
 </template>
 <script>
   import menuMixin from '@/js/components/menu-header-mixins';
-  import SearchIcon from '@fortawesome/fontawesome-free-solid/faSearch';
-  import TimesIcon from '@fortawesome/fontawesome-free-solid/faTimes';
+  import SEARCH_ICON from '@fortawesome/fontawesome-free-solid/faSearch';
+  import TIMES_ICON from '@fortawesome/fontawesome-free-solid/faTimes';
   import Cart from './cart';
   import MenuHeaderDropdown from './menu-header-dropdown'
 
@@ -139,15 +139,15 @@
     },
     data() {
       return {
-        SearchIcon,
-        TimesIcon,
+        SEARCH_ICON,
+        TIMES_ICON,
         isSearchMode: false
       };
     },
     computed: {
-      SearchToggleIcon() {
+      SEARCH_TOGGLE_ICON() {
         const self = this;
-        return self.isSearchMode ? self.TimesIcon : self.SearchIcon;
+        return self.isSearchMode ? self.TIMES_ICON : self.SEARCH_ICON;
       }
     }
   };

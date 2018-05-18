@@ -65,7 +65,7 @@ s.readSheetData()
       remove = id => {
         const index = collections.findIndex(col => col.id * 1 === id * 1);
         if (index > -1) {
-          console.log(`remove collection "${collections[index].title}"`);
+          console.log(`remove collection "${collections[index].BTN_TITLE}"`);
           collections.splice(index, 1);
         }
       };

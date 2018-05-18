@@ -37,15 +37,15 @@
   }
 
   .narrow :global .flickity-viewport {
-    margin: {
-      left: $size*3/4;
-      right: $size*3/4;
-    }
+    //margin: {
+    //  left: $size*5/4;
+    //  right: $size*5/4;
+    //}
   }
 </style>
 <template lang="pug">
   div(:class="[$style.slider, $style[theme], narrow?$style.narrow:'']")
-    flickity(ref="slick", :options="options")
+    flickity(ref="flkty", :options="options")
       slot
 </template>
 <script>
@@ -81,6 +81,11 @@
     computed: {
       options() {
         return Object.assign({}, this.slickOpts, this.opts);
+      }
+    },
+    methods: {
+      select(index) {
+        this.$refs.flkty.select(index);
       }
     }
   }

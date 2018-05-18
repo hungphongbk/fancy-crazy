@@ -1,18 +1,12 @@
-<style lang="scss" scoped>
+<style lang="scss" module>
   @import "../../scss/inc";
 
   .product-variants {
     background-color: lighten(#6c757d, 45%);
-    /deep/ &-label {
-      font-weight: 700;
-    }
-    /deep/ &-item {
-      cursor: pointer;
-    }
   }
 </style>
 <template lang="pug">
-  div.product-variants.py-4.px-3.mt-3
+  div.py-4.px-3.mt-3(:class="$style.productVariants")
     div(v-for="(_,index) in opts")
       variant-items(:type="options[index]", :items="optLists[index]", v-model="opts[index]")
       br

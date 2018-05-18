@@ -30,11 +30,11 @@
 </style>
 <template lang="pug">
   .magnifier-component
-    .ratio-4-5
+    .ratio-6-7
       .content
-        .magnifier-thumb-wrapper
+        .magnifier-thumb-wrapper.pr-5
           img(:id="id", :src="thumbSrc", style="width: 100%;", @load="init")
-    .ratio-4-5.magnifier-preview-wrapper
+    .ratio-6-7.magnifier-preview-wrapper
       .content
         .magnifier-preview(:id="PREVIEW_ID")
 </template>

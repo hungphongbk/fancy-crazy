@@ -5,7 +5,7 @@
       "page": "Page {{ page }}"
     },
     "404": {
-      "title": "404 Page Not Found",
+      "BTN_TITLE": "404 Page Not Found",
       "subtext_html": "The page you requested does not exist. Click <a href=\"\/collections\/all\">here<\/a> to continue shopping."
     },
     "breadcrumbs": {
@@ -19,7 +19,7 @@
     "search": {
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
       "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
-      "title": "Search for products on our site",
+      "BTN_TITLE": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search"
     }
@@ -34,7 +34,7 @@
       "read_more": "Read more"
     },
     "comments": {
-      "title": "Leave a comment",
+      "BTN_TITLE": "Leave a comment",
       "name": "Name",
       "email": "Email",
       "message": "Message",
@@ -54,7 +54,7 @@
   },
   "cart": {
     "general": {
-      "title": "Shopping Cart",
+      "BTN_TITLE": "Shopping Cart",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
@@ -88,7 +88,7 @@
       "tags": "Tags"
     },
     "sorting": {
-      "title": "Sort by",
+      "BTN_TITLE": "Sort by",
       "featured": "Featured",
       "best_selling": "Best Selling",
       "az": "Alphabetically, A-Z",
@@ -116,13 +116,13 @@
   },
   "customer": {
     "account": {
-      "title": "My Account",
+      "BTN_TITLE": "My Account",
       "details": "Account Details",
       "view_addresses": "View Addresses",
       "return": "Return to Account Details"
     },
     "activate_account": {
-      "title": "Activate Account",
+      "BTN_TITLE": "Activate Account",
       "subtext": "Create your password to activate your account.",
       "password": "Password",
       "password_confirm": "Confirm Password",
@@ -130,7 +130,7 @@
       "cancel": "Decline Invitation"
     },
     "addresses": {
-      "title": "Your Addresses",
+      "BTN_TITLE": "Your Addresses",
       "default": "Default",
       "add_new": "Add a New Address",
       "edit_address": "Edit address",
@@ -152,7 +152,7 @@
       "delete": "Delete"
     },
     "login": {
-      "title": "Login",
+      "BTN_TITLE": "Login",
       "email": "Email",
       "password": "Password",
       "forgot_password": "Forgot your password?",
@@ -162,7 +162,7 @@
       "guest_continue": "Continue"
     },
     "orders": {
-      "title": "Order History",
+      "BTN_TITLE": "Order History",
       "order_number": "Order",
       "date": "Date",
       "payment_status": "Payment Status",
@@ -171,7 +171,7 @@
       "none": "You haven't placed any orders yet."
     },
     "order": {
-      "title": "Order {{ name }}",
+      "BTN_TITLE": "Order {{ name }}",
       "date": "Placed on {{ date }}",
       "cancelled": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}",
@@ -191,7 +191,7 @@
       "subtotal": "Subtotal"
     },
     "recover_password": {
-      "title": "Reset your password",
+      "BTN_TITLE": "Reset your password",
       "email": "Email",
       "submit": "Submit",
       "cancel": "Cancel",
@@ -199,14 +199,14 @@
       "success": "We've sent you an email with a link to update your password."
     },
     "reset_password": {
-      "title": "Reset account password",
+      "BTN_TITLE": "Reset account password",
       "subtext": "Enter a new password for {{ email }}",
       "password": "Password",
       "password_confirm": "Confirm Password",
       "submit": "Reset Password"
     },
     "register": {
-      "title": "Create Account",
+      "BTN_TITLE": "Create Account",
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
@@ -240,7 +240,7 @@
       "close_menu": "Close menu"
     },
     "cart": {
-      "title": "Cart",
+      "BTN_TITLE": "Cart",
       "items_count": {
         "one": "item",
         "other": "items"
@@ -279,7 +279,7 @@
   },
   "gift_cards": {
     "issued": {
-      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "BTN_TITLE": "Here's your {{ value }} gift card for {{ shop }}!",
       "subtext": "Here's your gift card!",
       "disabled": "Disabled",
       "expired": "Expired on {{ expiry }}",

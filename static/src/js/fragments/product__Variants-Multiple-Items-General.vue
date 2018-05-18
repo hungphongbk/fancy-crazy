@@ -1,22 +1,23 @@
-<style lang="scss" scoped>
+<style lang="scss" module>
   @import "../../scss/inc";
 
-  .product-variants-label {
+  .label {
     line-height: 2.2;
+    composes: item from './product__Variants-Multiple-Items__share.m-scss'
   }
 
-  .btn-outline-theme-red {
+  .btn {
     font-weight: 700;
   }
 </style>
 <template lang="pug">
   .d-flex.flex-wrap
-    span.product-variants-label.mr-3 {{ type | uppercase }}:
+    span.mr-3(:class="$style.label") {{ type | uppercase }}:
     span(v-for="item in items")
-      .btn.btn-sm.mr-2.mb-2(:class="item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
+      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
 </template>
 <script>
-  import mixin from './product__Variants-Multiple-Items-mixins';
+  import mixins from './product__Variants-Multiple-Items-mixins';
 
   function sharedStart(array) {
     let A = array.concat().sort(),
@@ -26,7 +27,7 @@
   }
 
   export default {
-    mixins: [mixin],
+    mixins: [mixins],
     computed: {
       commonStartTitle() {
         if (this.items.length === 1) return '';

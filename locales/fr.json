@@ -5,7 +5,7 @@
       "page": "Page {{ page }}"
     },
     "404": {
-      "title": "404 - Page non trouvée",
+      "BTN_TITLE": "404 - Page non trouvée",
       "subtext_html": "Cette page n'est pas disponible. <a href=\"\/collections\/all\">Retourner au magasinage<\/a>"
     },
     "breadcrumbs": {
@@ -19,7 +19,7 @@
     "search": {
       "no_results_html": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
       "results_for_html": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
-      "title": "Effectuez une recherche",
+      "BTN_TITLE": "Effectuez une recherche",
       "placeholder": "Rechercher dans la boutique",
       "submit": "Recherche"
     }
@@ -34,7 +34,7 @@
       "read_more": "Plus"
     },
     "comments": {
-      "title": "Laissez un commentaire",
+      "BTN_TITLE": "Laissez un commentaire",
       "name": "Nom",
       "email": "Courriel",
       "message": "Message",
@@ -54,7 +54,7 @@
   },
   "cart": {
     "general": {
-      "title": "Panier",
+      "BTN_TITLE": "Panier",
       "remove": "Retirer",
       "note": "Instructions spéciales pour la commande",
       "subtotal": "Sous-total",
@@ -88,7 +88,7 @@
       "tags": "Filtres"
     },
     "sorting": {
-      "title": "Trier par",
+      "BTN_TITLE": "Trier par",
       "featured": "En vedette",
       "best_selling": "Meilleurs vendeurs",
       "az": "A-Z",
@@ -116,13 +116,13 @@
   },
   "customer": {
     "account": {
-      "title": "Mon compte",
+      "BTN_TITLE": "Mon compte",
       "details": "Détails du compte",
       "view_addresses": "Voir les adresses",
       "return": "Retour au détails du compte"
     },
     "activate_account": {
-      "title": "Activer le compte",
+      "BTN_TITLE": "Activer le compte",
       "subtext": "Créez votre mot de passe pour activer le compte.",
       "submit": "Activer le compte",
       "cancel": "Refuser l'invitation",
@@ -130,7 +130,7 @@
       "password_confirm": "Confirmer le mot de passe"
     },
     "addresses": {
-      "title": "Votre adresse",
+      "BTN_TITLE": "Votre adresse",
       "default": "Par défaut",
       "add_new": "Ajouter une nouvelle adresse",
       "edit_address": "Éditer l'adresse",
@@ -152,7 +152,7 @@
       "delete": "Supprimer"
     },
     "login": {
-      "title": "Connexion",
+      "BTN_TITLE": "Connexion",
       "email": "Courriel",
       "password": "Mot de passe",
       "forgot_password": "Mot de passe oublié?",
@@ -162,7 +162,7 @@
       "guest_continue": "Continuer"
     },
     "orders": {
-      "title": "Historique des commandes",
+      "BTN_TITLE": "Historique des commandes",
       "order_number": "Commande",
       "date": "Date",
       "payment_status": "Statut du paiement",
@@ -171,7 +171,7 @@
       "none": "Vous n'avez pas placé de commande à ce jour."
     },
     "order": {
-      "title": "Commande {{ name }}",
+      "BTN_TITLE": "Commande {{ name }}",
       "date": "Placée le {{ date }}",
       "cancelled": "Commande annulée le {{ date }}",
       "cancelled_reason": "Motif: {{ reason }}",
@@ -191,7 +191,7 @@
       "subtotal": "Sous-total"
     },
     "recover_password": {
-      "title": "Réinitialiser votre mot de passe",
+      "BTN_TITLE": "Réinitialiser votre mot de passe",
       "email": "Courriel",
       "submit": "Soumettre",
       "cancel": "Annuler",
@@ -199,14 +199,14 @@
       "success": "Nous vous avons fait parvenir un courriel pour réinitialiser votre mot de passe."
     },
     "reset_password": {
-      "title": "Réinitialiser le mot de passe du compte",
+      "BTN_TITLE": "Réinitialiser le mot de passe du compte",
       "subtext": "Entrez un nouveau mot de passe pour {{ email }}",
       "submit": "Réinitialiser le mot de passe",
       "password": "Mot de passe",
       "password_confirm": "Confirmer le mot de passe"
     },
     "register": {
-      "title": "Créer un compte",
+      "BTN_TITLE": "Créer un compte",
       "first_name": "Prénom",
       "last_name": "Nom",
       "email": "Courriel",
@@ -240,7 +240,7 @@
       "close_menu": "Fermer le menu"
     },
     "cart": {
-      "title": "Panier",
+      "BTN_TITLE": "Panier",
       "items_count": {
         "one": "item",
         "other": "items"
@@ -279,7 +279,7 @@
   },
   "gift_cards": {
     "issued": {
-      "title": "Votre carte-cadeau {{ shop }} d'une valeur de {{ value }}!",
+      "BTN_TITLE": "Votre carte-cadeau {{ shop }} d'une valeur de {{ value }}!",
       "subtext": "Voici votre carte-cadeau!",
       "disabled": "Désactivée",
       "expired": "Expirée le {{ expiry }}",
