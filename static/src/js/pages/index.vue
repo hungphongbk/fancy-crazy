@@ -1,5 +1,3 @@
-<style lang="scss">
-</style>
 <template lang="pug">
   div
     fragment-collections

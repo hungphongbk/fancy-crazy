@@ -11,6 +11,7 @@
       }
     }
   }
+
   .item {
     margin-right: $item-padding-x;
     margin-left: $item-padding-x;
@@ -23,33 +24,43 @@
         a(href="#") HOME
       span /
       span(:class="$style.item")
-        a(href="javascript:void(0)", @click="()=>goToTag()") {{collection.title | uppercase}}
+        a(href="javascript:void(0)", @click="() => GO_TO_TAG()") {{BR_COLLECTION.title | uppercase}}
       span /
-      template(v-if="filteredTag")
+      template(v-if="BR_FILTERED_TAG")
         span(:class="$style.item")
-          a(href="javascript:void(0)") {{filteredTag.title | uppercase}}
+          a(href="javascript:void(0)") {{BR_FILTERED_TAG.title | uppercase}}
         span /
-      span(:class="$style.item") Page {{current}} of {{totalPages}}
+      span(:class="$style.item") Page {{BR_CURRENT}} of {{BR_TOTAL_PAGES}}
 </template>
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {createNamespacedHelpers} from 'vuex'
   import {spreadModuleProps} from "@/js/plugins/helpers"
+
+  const {mapGetters, mapActions} = createNamespacedHelpers('pageCollections');
 
   export default {
     computed: {
-      ...mapGetters(spreadModuleProps('pageCollections', [
-        'totalPages', 'current', 'filteredCollection', 'filteredTag'
-      ])),
-      collection() {
-        if (!this.filteredCollection) return {
+      ...mapGetters({
+        BR_TOTAL_PAGES: 'totalPages',
+        BR_CURRENT: 'current',
+        BR_FILTERED_COLLECTION: 'filteredCollection',
+        BR_FILTERED_TAG: 'filteredTag'
+      }),
+      /**
+       * @return {object}
+       */
+      BR_COLLECTION() {
+        if (!this.BR_FILTERED_COLLECTION) return {
           title: 'all products',
           url: 'all'
-        }
-        return this.filteredCollection;
+        };
+        return this.BR_FILTERED_COLLECTION;
       }
     },
     methods: {
-      ...mapActions(spreadModuleProps('pageCollections', ['goToTag']))
+      ...mapActions({
+        GO_TO_TAG: 'goToTag'
+      })
     }
   }
 </script>

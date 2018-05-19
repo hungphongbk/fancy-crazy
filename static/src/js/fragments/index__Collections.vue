@@ -67,7 +67,7 @@
 </style>
 <template lang="pug">
   .d-flex.flex-wrap(:class="$style.indexCollections")
-    div(v-for="(col,index) in collections", :class="[ $style.collectionItem, index<3?$style.collectionBig:$style.collectionSmall]")
+    div(v-for="(col,index) in INDEX_COLLECTIONS", :class="[ $style.collectionItem, index<3?$style.collectionBig:$style.collectionSmall]")
       a(:href="col.url")
         .ratio-1-1
           .content
@@ -82,7 +82,7 @@
   export default {
     computed: {
       ...mapState({
-        collections: state => state.pageIndex.collections
+        INDEX_COLLECTIONS: state => state.pageIndex.collections
       })
     }
   };
