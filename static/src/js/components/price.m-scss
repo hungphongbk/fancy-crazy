@@ -1,3 +1,4 @@
+@import "../../scss/inc";
 .price{
   display: inline-block;
   .sale-percentage{
@@ -17,6 +18,9 @@
 }
 .badge{
   @extend %part;
+  .priceMd & {
+    display: none;
+  }
 }
 .originalPrice{
   @extend %part;
@@ -26,4 +30,10 @@
 }
 .salePrice{
   @extend %part;
+}
+
+@include media-breakpoint-down(sm){
+  .priceMd{
+    font-size: .8rem;
+  }
 }

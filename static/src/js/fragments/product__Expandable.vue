@@ -46,7 +46,7 @@
       }
     },
     data: () => ({
-      IS_TOGGLE: true,
+      IS_TOGGLE: false,
       FA_CHEVRON_DOWN,
       FA_CHEVRON_UP
     })

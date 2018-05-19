@@ -1,8 +1,6 @@
 <style lang="scss" module>
   @import "../../scss/inc";
 
-  $size: 4rem;
-
   @mixin hover($color) {
     box-shadow: 0 0 0 0 $color;
     &:hover, &:focus {
@@ -13,8 +11,10 @@
 
   .slider :global {
     .flickity-prev-next-button {
-      width: $size;
-      height: $size;
+      @include size(4rem);
+      @include media-breakpoint-down(sm){
+        @include size(2.3rem);
+      }
       border-radius: 50%;
 
       transition: all $animation-time ease;
@@ -37,10 +37,6 @@
   }
 
   .narrow :global .flickity-viewport {
-    //margin: {
-    //  left: $size*5/4;
-    //  right: $size*5/4;
-    //}
   }
 </style>
 <template lang="pug">
