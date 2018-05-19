@@ -31,8 +31,22 @@
         fragment-variants.rounded-top
         .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
         img.w-100(:src="IMG_SECURE_PAYMENT")
-        //.pt-4.my-2(:class="$style.content", v-html="product.content")
-        fragment-expandable.pt-4.my-2(:content="product.content")
+        .text-center.px-6
+          p <b>All our products are custom printed and designed with love just for you!</b>
+          p You can expect the following delivery times to receive your personalized shirt:
+          p
+            | US Orders: 1 - 2 weeks
+            br
+            | INT Orders: 2 - 3 weeks
+        fragment-expandable.pt-2.my-2(:content="product.content")
+        .text-center.px-6.pt-4
+          h5 Good Fancy Crazy Guaranteed
+          p <i>Melts in Your Heart, Not in Your Eyes</i>
+          p Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!
+          p Not fully Fancy Crazy with your products?
+            br
+            |No worries! We've got it covered.
+          p +1 914-598-8976 | support@fancycrazy.com
 </template>
 <script>
   import productModule from '@/js/store/page-product';

@@ -33,7 +33,7 @@
             template(v-if="col.children")
               a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="toggleMenu(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
                 span {{col.title}}
-                fa-icon(:icon="faChevronUp", :rotation="toggle[index]?null:180")
+                fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle[index]?null:180")
               transition(v-if="toggle[index]", name="fade")
                 div(:class="$style.children")
                   a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="goToCollection(childCol.url)") {{childCol.title}}
@@ -66,7 +66,7 @@
   import {ImagePair, Slider, ProductItem} from "@/js/components";
   import StarRating from 'vue-star-rating';
   import FragmentReviews from '@/js/fragments/app__Review'
-  import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp'
+  import FA_CHEVRON_UP from '@fortawesome/fontawesome-free-solid/faChevronUp'
 
   export default {
     storeModule: ['pageCollections', collectionModule],
@@ -95,7 +95,7 @@
     data() {
       return {
         toggle: Array(50).fill(false),
-        faChevronUp
+        FA_CHEVRON_UP
       }
     },
     computed: {

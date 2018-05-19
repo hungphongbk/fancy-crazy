@@ -114,7 +114,7 @@
         a.ratio-1-1(:class="$style.searchThumb", @click="isSearchMode = !isSearchMode")
           .content.d-flex.justify-content-center.align-items-center
             fa-icon(:icon="SEARCH_TOGGLE_ICON", size="large")
-        cart
+        cart.ml-2
 </template>
 <script>
   import menuMixin from '@/js/components/menu-header-mixins';

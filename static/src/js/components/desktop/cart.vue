@@ -1,18 +1,23 @@
 <style lang="scss" module>
   @import "../../../scss/inc";
 
+  %transition {
+    transition: all $animation-time ease;
+  }
+
   .cart {
     display: inline-grid;
     position: relative;
   }
 
-  .cartThumb {
+  .cart-thumb {
+    transform: scale(1.36);
     border-radius: 50%;
     //background-color: $gray-200;
     z-index: 1;
     width: 2.2rem;
 
-    .count {
+    @at-root .count {
       position: absolute;
       top: -.3rem;
       right: -.3rem;
@@ -23,11 +28,22 @@
       border-radius: 50%;
       color: white;
       background: #8a96a8;
+      @extend %transition;
+      .cart-thumb:hover & {
+        background: desaturate(lighten($theme-red, 20%), 25%);
+      }
 
       .loading {
         line-height: 1.3;
         vertical-align: baseline;
       }
+    }
+    @at-root .icon {
+      @extend %transition;
+      .cart-thumb:hover & {
+        color: $theme-red;
+      }
+
     }
   }
 
@@ -71,44 +87,45 @@
   div(:class="$style.cart")
     a.ratio-1-1.ml-2(:class="$style.cartThumb", @click="toggle")
       .content.d-flex.justify-content-center.align-items-center
-        fa-icon(:icon="CartIcon", size="large")
+        fa-icon(:icon="CartIcon", size="large", :class="$style.icon")
         span(:class="$style.count")
           fa-icon(v-if="isLoading", :class="$style.loading", :icon="SyncIcon", spin, size="xs")
-          template(v-else) {{cartCount}}
-    modal(:class="$style.cartPanel", :show="showPopup")
-      .media.mb-2(v-for="item in cartItems", :class="$style.cartItem", :key="item.key")
-        img.mr-2(:src="item.image")
-        .media-body
-          h6.d-flex
-            span(:class="$style.title")
-              span {{item.product_title}}
-              br
-              span.small {{item.variant_title}}
-            span
-              price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false")
-              br
-              span.d-flex.flex-row.mt-2
-                counter.input-group-sm(:value="item.quantity", @input="quantity => change({id: item.id, quantity})")
-                .btn.btn-danger.btn-sm.ml-1(:class="$style.remove", @click="remove({id: item.id})")
-                  fa-icon(:icon="TimesIcon" style="color: white", size="xs")
-      hr
-      table(:class="$style.summary")
-        tr
-          td
-            span.text-primary Subtotal
-          td
-            span.text-primary {{totalSub | usd}}
-        tr
-          td
-            span Regular Total
-          td
-            span {{totalRegular | usd}}
-        tr
-          td
-            b.text-success Total Saving
-          td
-            b.text-success {{totalSaving | usd}}
-      .btn.btn-lg.btn-success.w-100.mt-3 PROCEED TO CHECKOUT
+          template(v-else) {{CART_COUNT}}
+    modal(:class="$style.cartPanel", :show="SHOW_POPUP")
+      form(action="/cart" method="post" novalidate)
+        .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
+          img.mr-2(:src="item.image")
+          .media-body
+            h6.d-flex
+              span(:class="$style.title")
+                span {{item.product_title}}
+                br
+                span.small {{item.variant_title}}
+              span
+                price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false")
+                br
+                span.d-flex.flex-row.mt-2
+                  counter.input-group-sm(:value="item.quantity", @input="quantity => change({id: item.id, quantity})")
+                  .btn.btn-danger.btn-sm.ml-1(:class="$style.remove", @click="remove({id: item.id})")
+                    fa-icon(:icon="TimesIcon" style="color: white", size="xs")
+        hr
+        table(:class="$style.summary")
+          tr
+            td
+              span.text-primary Subtotal
+            td
+              span.text-primary {{TOTAL_SUB | usd}}
+          tr
+            td
+              span Regular Total
+            td
+              span {{TOTAL_REGULAR | usd}}
+          tr
+            td
+              b.text-success Total Saving
+            td
+              b.text-success {{TOTAL_SAVING | usd}}
+        input.btn.btn-lg.btn-success.w-100.mt-3(type="submit", name="checkout", value="PROCEED TO CHECKOUT")
       img(:class="$style.secure", :src="imgSecurePayment")
 </template>
 <script>
@@ -117,8 +134,10 @@
   import TimesIcon from '@fortawesome/fontawesome-free-solid/faTimes';
   import SyncIcon from '@fortawesome/fontawesome-free-solid/faSync';
   import Modal from '@/js/components/desktop/modal';
-  import {mapActions, mapGetters, mapState} from 'vuex';
+  import {createNamespacedHelpers} from 'vuex';
   import imgSecurePayment from '@/images/mcafee.png';
+
+  const {mapState, mapGetters, mapActions} = createNamespacedHelpers('cart');
 
   export default {
     name: "Cart",
@@ -136,21 +155,21 @@
     },
     computed: {
       ...mapState({
-        cartCount: state => state.cart.count,
-        cartItems: state => state.cart.items,
-        showPopup: state => state.cart.showPopup,
-        isLoading: state => state.cart.isLoading
+        CART_COUNT: state => state.count,
+        CART_ITEMS: state => state.items,
+        SHOW_POPUP: state => state.showPopup,
+        isLoading: state => state.isLoading
       }),
       ...mapGetters({
-        totalRegular: 'cart/totalRegular',
-        totalSub: 'cart/totalSub',
-        totalSaving: 'cart/totalSaving'
+        TOTAL_REGULAR: 'totalRegular',
+        TOTAL_SUB: 'totalSub',
+        TOTAL_SAVING: 'totalSaving'
       })
     },
     methods: {
       ...mapActions({
-        remove: 'cart/removeItem',
-        change: 'cart/changeItem'
+        remove: 'removeItem',
+        change: 'changeItem'
       }),
       toggle() {
         this.$store.commit('cart/togglePopup');

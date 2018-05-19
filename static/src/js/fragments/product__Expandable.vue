@@ -16,7 +16,7 @@
   .anim- {
     &enter-active, &leave-active {
       transition: all $animation-time*2;
-      max-height: 100vh;
+      max-height: 75vh;
       opacity: 1
     }
     &enter, &leave-to {
