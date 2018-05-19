@@ -31,7 +31,8 @@
         fragment-variants.rounded-top
         .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
         img.w-100(:src="IMG_SECURE_PAYMENT")
-        .pt-4.my-2(:class="$style.content", v-html="product.content")
+        //.pt-4.my-2(:class="$style.content", v-html="product.content")
+        fragment-expandable.pt-4.my-2(:content="product.content")
 </template>
 <script>
   import productModule from '@/js/store/page-product';
@@ -41,6 +42,7 @@
   import IMG_SECURE_PAYMENT from '@/images/mcafee.png';
   import {addToCart} from "@/js/components/mixins/addToCart";
   import {mapGetters, mapState} from 'vuex';
+  import FragmentExpandable from "@/js/fragments/product__Expandable";
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -48,7 +50,8 @@
     components: {
       Magnifier,
       FragmentVariants,
-      FragmentImageList
+      FragmentImageList,
+      FragmentExpandable
     },
     data() {
       return {
@@ -73,18 +76,18 @@
         if (!this.IS_VARIANT_AVAILABLE) {
           cls.push(...[bs.roundedTop, bs.mt2]);
         }
-        if(/^ADD/.test(this.BTN_TITLE))
+        if (/^ADD/.test(this.BTN_TITLE))
           cls.push(bs.disabled);
         return cls;
       }
     },
-    methods:{
+    methods: {
       async addToCart(id) {
-        this.BTN_TITLE='ADDING TO CART...';
+        this.BTN_TITLE = 'ADDING TO CART...';
         await this.$store.dispatch('cart/addToCart', {id});
-        this.BTN_TITLE='ADDED TO CART!';
-        setTimeout(()=>{
-          this.BTN_TITLE='BUY IT NOW!';
+        this.BTN_TITLE = 'ADDED TO CART!';
+        setTimeout(() => {
+          this.BTN_TITLE = 'BUY IT NOW!';
         }, 1000)
       }
     },

@@ -3839,139 +3839,648 @@ var _promise = __webpack_require__(55);
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var getRandonlyProduct = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(collection_id) {
-    var collects, product_id, index, i;
-    return _regenerator2.default.wrap(function _callee$(_context) {
+var task1 = function () {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+    var _this = this;
+
+    var getRandonlyProduct = function () {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(collection_id) {
+        var collects, product_id, index, i;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (cols[collection_id]) {
+                  _context.next = 4;
+                  break;
+                }
+
+                _context.next = 3;
+                return shopify.collect.list({ collection_id: collection_id, fields: 'collection_id,product_id' });
+
+              case 3:
+                cols[collection_id] = _context.sent;
+
+              case 4:
+                console.log('id = ' + collection_id + ' has ' + cols[collection_id].length + ' collects');
+                // else console.log('cached');
+                collects = cols[collection_id];
+
+                if (!(collects.length === 0)) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt('return', null);
+
+              case 8:
+                product_id = void 0;
+
+                do {
+                  index = (0, _random2.default)(collects.length - 1);
+
+                  product_id = collects[index].product_id;
+                } while (typeof product_id === 'undefined');
+
+                if (products[product_id]) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.next = 13;
+                return shopify.product.get(product_id);
+
+              case 13:
+                products[product_id] = _context.sent;
+
+              case 14:
+                i = void 0;
+
+                do {
+                  i = (0, _random2.default)(products[product_id].images.length - 1);
+                } while (/sizechart/.test(products[product_id].images[i].src));
+                return _context.abrupt('return', products[product_id].images[i].src.replace('https://cdn.shopify.com', ''));
+
+              case 17:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function getRandonlyProduct(_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    var transformItem = function () {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(item) {
+        return _regenerator2.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id))) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                _context2.next = 3;
+                return getRandonlyProduct(item.collection_id);
+
+              case 3:
+                item.image_url = _context2.sent;
+
+              case 4:
+                return _context2.abrupt('return', (0, _omit2.default)(item, ['position', 'collection_id']));
+
+              case 5:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function transformItem(_x2) {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+
+    var getAllCollections = function () {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+        var fields, _ref5, _ref6, custom, smart;
+
+        return _regenerator2.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                fields = 'id,title';
+                _context3.next = 3;
+                return _promise2.default.all([shopify.customCollection.list({ fields: fields, limit: 250 }), shopify.smartCollection.list({ fields: fields, limit: 250 })]);
+
+              case 3:
+                _ref5 = _context3.sent;
+                _ref6 = (0, _slicedToArray3.default)(_ref5, 2);
+                custom = _ref6[0];
+                smart = _ref6[1];
+                return _context3.abrupt('return', [].concat(custom, smart));
+
+              case 8:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      return function getAllCollections() {
+        return _ref4.apply(this, arguments);
+      };
+    }();
+
+    return _regenerator2.default.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            if (cols[collection_id]) {
-              _context.next = 4;
-              break;
-            }
 
-            _context.next = 3;
-            return shopify.collect.list({ collection_id: collection_id, fields: 'collection_id,product_id' });
+            s.readSheetData().then(function () {
+              var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(arr) {
+                var collections, remove, filesObj_, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _id, newItem, filesObj, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _ref8, _ref9, file, obj, newObj, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, _item, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _ref10, id, title;
 
-          case 3:
-            cols[collection_id] = _context.sent;
+                return _regenerator2.default.wrap(function _callee4$(_context4) {
+                  while (1) {
+                    switch (_context4.prev = _context4.next) {
+                      case 0:
+                        _context4.next = 2;
+                        return getAllCollections();
 
-          case 4:
-            console.log('id = ' + collection_id + ' has ' + cols[collection_id].length + ' collects');
-            // else console.log('cached');
-            collects = cols[collection_id];
+                      case 2:
+                        collections = _context4.sent;
 
-            if (!(collects.length === 0)) {
-              _context.next = 8;
-              break;
-            }
+                        remove = function remove(id) {
+                          var index = collections.findIndex(function (col) {
+                            return col.id * 1 === id * 1;
+                          });
+                          if (index > -1) {
+                            console.log('remove collection "' + collections[index].BTN_TITLE + '"');
+                            collections.splice(index, 1);
+                          }
+                        };
 
-            return _context.abrupt('return', null);
+                        console.log('fetch ' + collections.length + ' collections');
 
-          case 8:
-            product_id = void 0;
+                        filesObj_ = {};
+                        _iteratorNormalCompletion = true;
+                        _didIteratorError = false;
+                        _iteratorError = undefined;
+                        _context4.prev = 9;
+                        _iterator = (0, _getIterator3.default)(arr);
 
-            do {
-              index = (0, _random2.default)(collects.length - 1);
+                      case 11:
+                        if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                          _context4.next = 36;
+                          break;
+                        }
 
-              product_id = collects[index].product_id;
-            } while (typeof product_id === 'undefined');
+                        item = _step.value;
 
-            if (products[product_id]) {
-              _context.next = 14;
-              break;
-            }
+                        if (!(typeof item.collection_id !== 'undefined' && item.collection_id.length > 0)) {
+                          _context4.next = 33;
+                          break;
+                        }
 
-            _context.next = 13;
-            return shopify.product.get(product_id);
+                        _iteratorNormalCompletion4 = true;
+                        _didIteratorError4 = false;
+                        _iteratorError4 = undefined;
+                        _context4.prev = 17;
 
-          case 13:
-            products[product_id] = _context.sent;
+                        for (_iterator4 = (0, _getIterator3.default)(item.collection_id.split(',')); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                          _id = _step4.value;
+                          if (_id.length > 0) {
+                            if (!filesObj_[_id]) filesObj_[_id] = [];
 
-          case 14:
-            i = void 0;
+                            newItem = (0, _clone2.default)(item);
 
-            do {
-              i = (0, _random2.default)(products[product_id].images.length - 1);
-            } while (/sizechart/.test(products[product_id].images[i].src));
-            return _context.abrupt('return', products[product_id].images[i].src.replace('https://cdn.shopify.com', ''));
+                            newItem.collection_id = _id;
+                            filesObj_[_id].push(newItem);
+                          }
+                        }_context4.next = 25;
+                        break;
 
-          case 17:
+                      case 21:
+                        _context4.prev = 21;
+                        _context4.t0 = _context4['catch'](17);
+                        _didIteratorError4 = true;
+                        _iteratorError4 = _context4.t0;
+
+                      case 25:
+                        _context4.prev = 25;
+                        _context4.prev = 26;
+
+                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                          _iterator4.return();
+                        }
+
+                      case 28:
+                        _context4.prev = 28;
+
+                        if (!_didIteratorError4) {
+                          _context4.next = 31;
+                          break;
+                        }
+
+                        throw _iteratorError4;
+
+                      case 31:
+                        return _context4.finish(28);
+
+                      case 32:
+                        return _context4.finish(25);
+
+                      case 33:
+                        _iteratorNormalCompletion = true;
+                        _context4.next = 11;
+                        break;
+
+                      case 36:
+                        _context4.next = 42;
+                        break;
+
+                      case 38:
+                        _context4.prev = 38;
+                        _context4.t1 = _context4['catch'](9);
+                        _didIteratorError = true;
+                        _iteratorError = _context4.t1;
+
+                      case 42:
+                        _context4.prev = 42;
+                        _context4.prev = 43;
+
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                          _iterator.return();
+                        }
+
+                      case 45:
+                        _context4.prev = 45;
+
+                        if (!_didIteratorError) {
+                          _context4.next = 48;
+                          break;
+                        }
+
+                        throw _iteratorError;
+
+                      case 48:
+                        return _context4.finish(45);
+
+                      case 49:
+                        return _context4.finish(42);
+
+                      case 50:
+                        filesObj_ = (0, _flatten2.default)((0, _values2.default)(filesObj_));
+                        filesObj = (0, _groupBy2.default)(filesObj_, function (item) {
+                          if (item.position === 'index') return 'index';
+                          return 'collection-' + item.collection_id;
+                        });
+                        _iteratorNormalCompletion2 = true;
+                        _didIteratorError2 = false;
+                        _iteratorError2 = undefined;
+                        _context4.prev = 55;
+                        _iterator2 = (0, _getIterator3.default)((0, _entries2.default)(filesObj));
+
+                      case 57:
+                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                          _context4.next = 97;
+                          break;
+                        }
+
+                        _ref8 = _step2.value;
+                        _ref9 = (0, _slicedToArray3.default)(_ref8, 2);
+                        file = _ref9[0];
+                        obj = _ref9[1];
+                        newObj = [];
+                        _iteratorNormalCompletion5 = true;
+                        _didIteratorError5 = false;
+                        _iteratorError5 = undefined;
+                        _context4.prev = 66;
+                        _iterator5 = (0, _getIterator3.default)(obj);
+
+                      case 68:
+                        if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+                          _context4.next = 79;
+                          break;
+                        }
+
+                        _item = _step5.value;
+                        _context4.t2 = newObj;
+                        _context4.next = 73;
+                        return transformItem(_item);
+
+                      case 73:
+                        _context4.t3 = _context4.sent;
+
+                        _context4.t2.push.call(_context4.t2, _context4.t3);
+
+                        remove(_item.collection_id);
+
+                      case 76:
+                        _iteratorNormalCompletion5 = true;
+                        _context4.next = 68;
+                        break;
+
+                      case 79:
+                        _context4.next = 85;
+                        break;
+
+                      case 81:
+                        _context4.prev = 81;
+                        _context4.t4 = _context4['catch'](66);
+                        _didIteratorError5 = true;
+                        _iteratorError5 = _context4.t4;
+
+                      case 85:
+                        _context4.prev = 85;
+                        _context4.prev = 86;
+
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                          _iterator5.return();
+                        }
+
+                      case 88:
+                        _context4.prev = 88;
+
+                        if (!_didIteratorError5) {
+                          _context4.next = 91;
+                          break;
+                        }
+
+                        throw _iteratorError5;
+
+                      case 91:
+                        return _context4.finish(88);
+
+                      case 92:
+                        return _context4.finish(85);
+
+                      case 93:
+                        _fs2.default.writeFileSync(_path2.default.resolve(__dirname, '../dist/reviews-' + file + '.json'), (0, _stringify2.default)(newObj), 'utf-8');
+                        // await timeout(500);
+
+                      case 94:
+                        _iteratorNormalCompletion2 = true;
+                        _context4.next = 57;
+                        break;
+
+                      case 97:
+                        _context4.next = 103;
+                        break;
+
+                      case 99:
+                        _context4.prev = 99;
+                        _context4.t5 = _context4['catch'](55);
+                        _didIteratorError2 = true;
+                        _iteratorError2 = _context4.t5;
+
+                      case 103:
+                        _context4.prev = 103;
+                        _context4.prev = 104;
+
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                          _iterator2.return();
+                        }
+
+                      case 106:
+                        _context4.prev = 106;
+
+                        if (!_didIteratorError2) {
+                          _context4.next = 109;
+                          break;
+                        }
+
+                        throw _iteratorError2;
+
+                      case 109:
+                        return _context4.finish(106);
+
+                      case 110:
+                        return _context4.finish(103);
+
+                      case 111:
+
+                        //get collections that doesn't have reviews
+                        _iteratorNormalCompletion3 = true;
+                        _didIteratorError3 = false;
+                        _iteratorError3 = undefined;
+                        _context4.prev = 114;
+                        for (_iterator3 = (0, _getIterator3.default)(collections); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                          _ref10 = _step3.value;
+                          id = _ref10.id, title = _ref10.title;
+
+                          console.log('Collection "' + title + '" - id=' + id + ' has no reviews');
+                        }
+                        _context4.next = 122;
+                        break;
+
+                      case 118:
+                        _context4.prev = 118;
+                        _context4.t6 = _context4['catch'](114);
+                        _didIteratorError3 = true;
+                        _iteratorError3 = _context4.t6;
+
+                      case 122:
+                        _context4.prev = 122;
+                        _context4.prev = 123;
+
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                          _iterator3.return();
+                        }
+
+                      case 125:
+                        _context4.prev = 125;
+
+                        if (!_didIteratorError3) {
+                          _context4.next = 128;
+                          break;
+                        }
+
+                        throw _iteratorError3;
+
+                      case 128:
+                        return _context4.finish(125);
+
+                      case 129:
+                        return _context4.finish(122);
+
+                      case 130:
+                      case 'end':
+                        return _context4.stop();
+                    }
+                  }
+                }, _callee4, _this, [[9, 38, 42, 50], [17, 21, 25, 33], [26,, 28, 32], [43,, 45, 49], [55, 99, 103, 111], [66, 81, 85, 93], [86,, 88, 92], [104,, 106, 110], [114, 118, 122, 130], [123,, 125, 129]]);
+              }));
+
+              return function (_x3) {
+                return _ref7.apply(this, arguments);
+              };
+            }());
+
+          case 1:
           case 'end':
-            return _context.stop();
+            return _context5.stop();
         }
       }
-    }, _callee, this);
+    }, _callee5, this);
   }));
 
-  return function getRandonlyProduct(_x) {
+  return function task1() {
     return _ref.apply(this, arguments);
   };
 }();
 
-var transformItem = function () {
-  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(item) {
-    return _regenerator2.default.wrap(function _callee2$(_context2) {
+var task2 = function () {
+  var _ref11 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+    var findColorOption, colors, count, requestCount, products, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, _ref12, id, title, options, colorOption, _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _val, val;
+
+    return _regenerator2.default.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
-            if (!(item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id))) {
-              _context2.next = 4;
+            findColorOption = function findColorOption(options) {
+              return options.find(function (o) {
+                return o.name.toLowerCase() === 'color';
+              });
+            };
+
+            colors = {};
+            _context6.next = 4;
+            return shopify.product.count();
+
+          case 4:
+            count = _context6.sent;
+            requestCount = Math.ceil(count / 250);
+            _context6.t0 = _flatten2.default;
+            _context6.next = 9;
+            return _promise2.default.all((0, _range2.default)(1, requestCount + 1).map(function (page) {
+              return shopify.product.list({
+                fields: 'id,handle,options',
+                page: page,
+                limit: 250
+              });
+            }));
+
+          case 9:
+            _context6.t1 = _context6.sent;
+            products = (0, _context6.t0)(_context6.t1);
+
+            console.log(count + ' ' + products.length);
+            _iteratorNormalCompletion6 = true;
+            _didIteratorError6 = false;
+            _iteratorError6 = undefined;
+            _context6.prev = 15;
+            _iterator6 = (0, _getIterator3.default)(products);
+
+          case 17:
+            if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
+              _context6.next = 45;
               break;
             }
 
-            _context2.next = 3;
-            return getRandonlyProduct(item.collection_id);
+            _ref12 = _step6.value;
+            id = _ref12.id, title = _ref12.handle, options = _ref12.options;
 
-          case 3:
-            item.image_url = _context2.sent;
+            if (!options) {
+              _context6.next = 42;
+              break;
+            }
 
-          case 4:
-            return _context2.abrupt('return', (0, _omit2.default)(item, ['position', 'collection_id']));
+            colorOption = findColorOption(options);
 
-          case 5:
+            if (!(colorOption && colorOption.values)) {
+              _context6.next = 42;
+              break;
+            }
+
+            _iteratorNormalCompletion7 = true;
+            _didIteratorError7 = false;
+            _iteratorError7 = undefined;
+            _context6.prev = 26;
+
+            for (_iterator7 = (0, _getIterator3.default)(colorOption.values); !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+              _val = _step7.value;
+              val = _val.toLowerCase();
+
+              if (!colors[val]) {
+                console.log(id + ' - ' + title + ' has color ' + val);
+                colors[val] = '';
+              }
+            }
+            _context6.next = 34;
+            break;
+
+          case 30:
+            _context6.prev = 30;
+            _context6.t2 = _context6['catch'](26);
+            _didIteratorError7 = true;
+            _iteratorError7 = _context6.t2;
+
+          case 34:
+            _context6.prev = 34;
+            _context6.prev = 35;
+
+            if (!_iteratorNormalCompletion7 && _iterator7.return) {
+              _iterator7.return();
+            }
+
+          case 37:
+            _context6.prev = 37;
+
+            if (!_didIteratorError7) {
+              _context6.next = 40;
+              break;
+            }
+
+            throw _iteratorError7;
+
+          case 40:
+            return _context6.finish(37);
+
+          case 41:
+            return _context6.finish(34);
+
+          case 42:
+            _iteratorNormalCompletion6 = true;
+            _context6.next = 17;
+            break;
+
+          case 45:
+            _context6.next = 51;
+            break;
+
+          case 47:
+            _context6.prev = 47;
+            _context6.t3 = _context6['catch'](15);
+            _didIteratorError6 = true;
+            _iteratorError6 = _context6.t3;
+
+          case 51:
+            _context6.prev = 51;
+            _context6.prev = 52;
+
+            if (!_iteratorNormalCompletion6 && _iterator6.return) {
+              _iterator6.return();
+            }
+
+          case 54:
+            _context6.prev = 54;
+
+            if (!_didIteratorError6) {
+              _context6.next = 57;
+              break;
+            }
+
+            throw _iteratorError6;
+
+          case 57:
+            return _context6.finish(54);
+
+          case 58:
+            return _context6.finish(51);
+
+          case 59:
+
+            _fs2.default.writeFileSync(_path2.default.resolve(__dirname, '../src/json/colors.json'), (0, _stringify2.default)(colors), 'utf-8');
+
+          case 60:
           case 'end':
-            return _context2.stop();
+            return _context6.stop();
         }
       }
-    }, _callee2, this);
+    }, _callee6, this, [[15, 47, 51, 59], [26, 30, 34, 42], [35,, 37, 41], [52,, 54, 58]]);
   }));
 
-  return function transformItem(_x2) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-var getAllCollections = function () {
-  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
-    var fields, _ref4, _ref5, custom, smart;
-
-    return _regenerator2.default.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            fields = 'id,title';
-            _context3.next = 3;
-            return _promise2.default.all([shopify.customCollection.list({ fields: fields, limit: 250 }), shopify.smartCollection.list({ fields: fields, limit: 250 })]);
-
-          case 3:
-            _ref4 = _context3.sent;
-            _ref5 = (0, _slicedToArray3.default)(_ref4, 2);
-            custom = _ref5[0];
-            smart = _ref5[1];
-            return _context3.abrupt('return', [].concat(custom, smart));
-
-          case 8:
-          case 'end':
-            return _context3.stop();
-        }
-      }
-    }, _callee3, this);
-  }));
-
-  return function getAllCollections() {
-    return _ref3.apply(this, arguments);
+  return function task2() {
+    return _ref11.apply(this, arguments);
   };
 }();
 
@@ -4007,6 +4516,10 @@ var _random = __webpack_require__(338);
 
 var _random2 = _interopRequireDefault(_random);
 
+var _range = __webpack_require__(344);
+
+var _range2 = _interopRequireDefault(_range);
+
 var _shopifyApiNode = __webpack_require__(343);
 
 var _shopifyApiNode2 = _interopRequireDefault(_shopifyApiNode);
@@ -4029,326 +4542,9 @@ var timeout = function timeout(ms) {
 var cols = [],
     products = [];
 
-s.readSheetData().then(function () {
-  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(arr) {
-    var collections, remove, filesObj_, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _id, newItem, filesObj, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _ref7, _ref8, file, obj, newObj, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, _item, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _ref9, id, title;
-
-    return _regenerator2.default.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.next = 2;
-            return getAllCollections();
-
-          case 2:
-            collections = _context4.sent;
-
-            remove = function remove(id) {
-              var index = collections.findIndex(function (col) {
-                return col.id * 1 === id * 1;
-              });
-              if (index > -1) {
-                console.log('remove collection "' + collections[index].title + '"');
-                collections.splice(index, 1);
-              }
-            };
-
-            console.log('fetch ' + collections.length + ' collections');
-
-            filesObj_ = {};
-            _iteratorNormalCompletion = true;
-            _didIteratorError = false;
-            _iteratorError = undefined;
-            _context4.prev = 9;
-            _iterator = (0, _getIterator3.default)(arr);
-
-          case 11:
-            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-              _context4.next = 36;
-              break;
-            }
-
-            item = _step.value;
-
-            if (!(typeof item.collection_id !== 'undefined' && item.collection_id.length > 0)) {
-              _context4.next = 33;
-              break;
-            }
-
-            _iteratorNormalCompletion4 = true;
-            _didIteratorError4 = false;
-            _iteratorError4 = undefined;
-            _context4.prev = 17;
-
-            for (_iterator4 = (0, _getIterator3.default)(item.collection_id.split(',')); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              _id = _step4.value;
-              if (_id.length > 0) {
-                if (!filesObj_[_id]) filesObj_[_id] = [];
-
-                newItem = (0, _clone2.default)(item);
-
-                newItem.collection_id = _id;
-                filesObj_[_id].push(newItem);
-              }
-            }_context4.next = 25;
-            break;
-
-          case 21:
-            _context4.prev = 21;
-            _context4.t0 = _context4['catch'](17);
-            _didIteratorError4 = true;
-            _iteratorError4 = _context4.t0;
-
-          case 25:
-            _context4.prev = 25;
-            _context4.prev = 26;
-
-            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-              _iterator4.return();
-            }
-
-          case 28:
-            _context4.prev = 28;
-
-            if (!_didIteratorError4) {
-              _context4.next = 31;
-              break;
-            }
-
-            throw _iteratorError4;
-
-          case 31:
-            return _context4.finish(28);
-
-          case 32:
-            return _context4.finish(25);
-
-          case 33:
-            _iteratorNormalCompletion = true;
-            _context4.next = 11;
-            break;
-
-          case 36:
-            _context4.next = 42;
-            break;
-
-          case 38:
-            _context4.prev = 38;
-            _context4.t1 = _context4['catch'](9);
-            _didIteratorError = true;
-            _iteratorError = _context4.t1;
-
-          case 42:
-            _context4.prev = 42;
-            _context4.prev = 43;
-
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
-            }
-
-          case 45:
-            _context4.prev = 45;
-
-            if (!_didIteratorError) {
-              _context4.next = 48;
-              break;
-            }
-
-            throw _iteratorError;
-
-          case 48:
-            return _context4.finish(45);
-
-          case 49:
-            return _context4.finish(42);
-
-          case 50:
-            filesObj_ = (0, _flatten2.default)((0, _values2.default)(filesObj_));
-            filesObj = (0, _groupBy2.default)(filesObj_, function (item) {
-              if (item.position === 'index') return 'index';
-              return 'collection-' + item.collection_id;
-            });
-            _iteratorNormalCompletion2 = true;
-            _didIteratorError2 = false;
-            _iteratorError2 = undefined;
-            _context4.prev = 55;
-            _iterator2 = (0, _getIterator3.default)((0, _entries2.default)(filesObj));
-
-          case 57:
-            if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-              _context4.next = 97;
-              break;
-            }
-
-            _ref7 = _step2.value;
-            _ref8 = (0, _slicedToArray3.default)(_ref7, 2);
-            file = _ref8[0];
-            obj = _ref8[1];
-            newObj = [];
-            _iteratorNormalCompletion5 = true;
-            _didIteratorError5 = false;
-            _iteratorError5 = undefined;
-            _context4.prev = 66;
-            _iterator5 = (0, _getIterator3.default)(obj);
-
-          case 68:
-            if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
-              _context4.next = 79;
-              break;
-            }
-
-            _item = _step5.value;
-            _context4.t2 = newObj;
-            _context4.next = 73;
-            return transformItem(_item);
-
-          case 73:
-            _context4.t3 = _context4.sent;
-
-            _context4.t2.push.call(_context4.t2, _context4.t3);
-
-            remove(_item.collection_id);
-
-          case 76:
-            _iteratorNormalCompletion5 = true;
-            _context4.next = 68;
-            break;
-
-          case 79:
-            _context4.next = 85;
-            break;
-
-          case 81:
-            _context4.prev = 81;
-            _context4.t4 = _context4['catch'](66);
-            _didIteratorError5 = true;
-            _iteratorError5 = _context4.t4;
-
-          case 85:
-            _context4.prev = 85;
-            _context4.prev = 86;
-
-            if (!_iteratorNormalCompletion5 && _iterator5.return) {
-              _iterator5.return();
-            }
-
-          case 88:
-            _context4.prev = 88;
-
-            if (!_didIteratorError5) {
-              _context4.next = 91;
-              break;
-            }
-
-            throw _iteratorError5;
-
-          case 91:
-            return _context4.finish(88);
-
-          case 92:
-            return _context4.finish(85);
-
-          case 93:
-            _fs2.default.writeFileSync(_path2.default.resolve(__dirname, '../dist/reviews-' + file + '.json'), (0, _stringify2.default)(newObj), 'utf-8');
-            // await timeout(500);
-
-          case 94:
-            _iteratorNormalCompletion2 = true;
-            _context4.next = 57;
-            break;
-
-          case 97:
-            _context4.next = 103;
-            break;
-
-          case 99:
-            _context4.prev = 99;
-            _context4.t5 = _context4['catch'](55);
-            _didIteratorError2 = true;
-            _iteratorError2 = _context4.t5;
-
-          case 103:
-            _context4.prev = 103;
-            _context4.prev = 104;
-
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-              _iterator2.return();
-            }
-
-          case 106:
-            _context4.prev = 106;
-
-            if (!_didIteratorError2) {
-              _context4.next = 109;
-              break;
-            }
-
-            throw _iteratorError2;
-
-          case 109:
-            return _context4.finish(106);
-
-          case 110:
-            return _context4.finish(103);
-
-          case 111:
-
-            //get collections that doesn't have reviews
-            _iteratorNormalCompletion3 = true;
-            _didIteratorError3 = false;
-            _iteratorError3 = undefined;
-            _context4.prev = 114;
-            for (_iterator3 = (0, _getIterator3.default)(collections); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              _ref9 = _step3.value;
-              id = _ref9.id, title = _ref9.title;
-
-              console.log('Collection "' + title + '" - id=' + id + ' has no reviews');
-            }
-            _context4.next = 122;
-            break;
-
-          case 118:
-            _context4.prev = 118;
-            _context4.t6 = _context4['catch'](114);
-            _didIteratorError3 = true;
-            _iteratorError3 = _context4.t6;
-
-          case 122:
-            _context4.prev = 122;
-            _context4.prev = 123;
-
-            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-              _iterator3.return();
-            }
-
-          case 125:
-            _context4.prev = 125;
-
-            if (!_didIteratorError3) {
-              _context4.next = 128;
-              break;
-            }
-
-            throw _iteratorError3;
-
-          case 128:
-            return _context4.finish(125);
-
-          case 129:
-            return _context4.finish(122);
-
-          case 130:
-          case 'end':
-            return _context4.stop();
-        }
-      }
-    }, _callee4, undefined, [[9, 38, 42, 50], [17, 21, 25, 33], [26,, 28, 32], [43,, 45, 49], [55, 99, 103, 111], [66, 81, 85, 93], [86,, 88, 92], [104,, 106, 110], [114, 118, 122, 130], [123,, 125, 129]]);
-  }));
-
-  return function (_x3) {
-    return _ref6.apply(this, arguments);
-  };
-}());
+task2().then(function () {
+  console.log('completed');
+});
 /* WEBPACK VAR INJECTION */}.call(exports, "static/node-src"))
 
 /***/ }),
@@ -16038,6 +16234,128 @@ module.exports = toNumber;
 /***/ (function(module, exports) {
 
 module.exports = require("shopify-api-node");
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var createRange = __webpack_require__(345);
+
+/**
+ * Creates an array of numbers (positive and/or negative) progressing from
+ * `start` up to, but not including, `end`. A step of `-1` is used if a negative
+ * `start` is specified without an `end` or `step`. If `end` is not specified,
+ * it's set to `start` with `start` then set to `0`.
+ *
+ * **Note:** JavaScript follows the IEEE-754 standard for resolving
+ * floating-point values which can produce unexpected results.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {number} [start=0] The start of the range.
+ * @param {number} end The end of the range.
+ * @param {number} [step=1] The value to increment or decrement by.
+ * @returns {Array} Returns the range of numbers.
+ * @see _.inRange, _.rangeRight
+ * @example
+ *
+ * _.range(4);
+ * // => [0, 1, 2, 3]
+ *
+ * _.range(-4);
+ * // => [0, -1, -2, -3]
+ *
+ * _.range(1, 5);
+ * // => [1, 2, 3, 4]
+ *
+ * _.range(0, 20, 5);
+ * // => [0, 5, 10, 15]
+ *
+ * _.range(0, -4, -1);
+ * // => [0, -1, -2, -3]
+ *
+ * _.range(1, 4, 0);
+ * // => [1, 1, 1]
+ *
+ * _.range(0);
+ * // => []
+ */
+var range = createRange();
+
+module.exports = range;
+
+
+/***/ }),
+/* 345 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseRange = __webpack_require__(346),
+    isIterateeCall = __webpack_require__(340),
+    toFinite = __webpack_require__(341);
+
+/**
+ * Creates a `_.range` or `_.rangeRight` function.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new range function.
+ */
+function createRange(fromRight) {
+  return function(start, end, step) {
+    if (step && typeof step != 'number' && isIterateeCall(start, end, step)) {
+      end = step = undefined;
+    }
+    // Ensure the sign of `-0` is preserved.
+    start = toFinite(start);
+    if (end === undefined) {
+      end = start;
+      start = 0;
+    } else {
+      end = toFinite(end);
+    }
+    step = step === undefined ? (start < end ? 1 : -1) : toFinite(step);
+    return baseRange(start, end, step, fromRight);
+  };
+}
+
+module.exports = createRange;
+
+
+/***/ }),
+/* 346 */
+/***/ (function(module, exports) {
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeCeil = Math.ceil,
+    nativeMax = Math.max;
+
+/**
+ * The base implementation of `_.range` and `_.rangeRight` which doesn't
+ * coerce arguments.
+ *
+ * @private
+ * @param {number} start The start of the range.
+ * @param {number} end The end of the range.
+ * @param {number} step The value to increment or decrement by.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Array} Returns the range of numbers.
+ */
+function baseRange(start, end, step, fromRight) {
+  var index = -1,
+      length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+      result = Array(length);
+
+  while (length--) {
+    result[fromRight ? length : ++index] = start;
+    start += step;
+  }
+  return result;
+}
+
+module.exports = baseRange;
+
 
 /***/ })
 /******/ ]);

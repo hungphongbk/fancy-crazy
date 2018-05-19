@@ -114,3 +114,5 @@ static/dist/reviews-collection-56552915013.json
 static/dist/reviews-collection-56558878789.json
 static/dist/reviews-collection-587956249.json
 yarn.lock
+/static/node/
+local_history.patch
