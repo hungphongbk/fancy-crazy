@@ -21,7 +21,8 @@ const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: () => ({
     recently: [],
-    isLoading: false
+    isLoading: false,
+    lockScroll: false
   }),
   mutations: {
     addToRecently({recently}, {product}) {
@@ -40,6 +41,9 @@ const store = new Vuex.Store({
     },
     swapProductImage(state, {product, value}) {
       product.isMouseOver = value;
+    },
+    lockScroll(state, value = undefined) {
+      state.lockScroll = value ? value : (!state.lockScroll);
     }
   },
   actions: {
@@ -57,6 +61,7 @@ const store = new Vuex.Store({
   plugins: [vuexLocalStorage.plugin]
 });
 store.replaceState(Object.assign({}, store2.get('vuex', {}), __state__, {
+  lockScroll: false,
   cart: cart.state()
 }));
 

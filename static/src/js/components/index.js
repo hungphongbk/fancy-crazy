@@ -11,3 +11,7 @@ Vue.component('counter', Counter);
 export {default as ImagePair}   from './image-pair';
 export {default as Slider}      from './slider';
 export {default as ProductItem} from './ProductItem';
+
+//move chunk to frontend
+import './universal/cart'
+import './universal/modal'

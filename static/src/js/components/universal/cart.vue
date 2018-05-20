@@ -82,6 +82,18 @@
     margin-bottom: -15px;
     width: calc(100% + 20px) !important;
   }
+
+  @include media-breakpoint-down(sm){
+    .cart{
+      display: flex;
+    }
+    .cart-thumb{
+      transform: scale(1.125) translateY(.3rem) translateX(-.6rem);
+    }
+    .cart-panel{
+      width: unset;
+    }
+  }
 </style>
 <template lang="pug">
   div(:class="$style.cart")
@@ -133,7 +145,7 @@
   import CartIcon from '@fortawesome/fontawesome-free-solid/faShoppingCart';
   import TimesIcon from '@fortawesome/fontawesome-free-solid/faTimes';
   import SyncIcon from '@fortawesome/fontawesome-free-solid/faSync';
-  import Modal from '@/js/components/desktop/modal';
+  import Modal from '@/js/components/universal/modal';
   import {createNamespacedHelpers} from 'vuex';
   import imgSecurePayment from '@/images/mcafee.png';
 

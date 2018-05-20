@@ -44,7 +44,7 @@
           a.list-group-item.list-group-item-action(v-for="col in sidebarTags", href="javascript:void(0)" :class="{ [$bs.active]:(filteredTag && (col.title=== filteredTag.title)), [$style.active]: (filteredTag && (col.title=== filteredTag.title)) }", @click="goToTag(col.url)") {{col.title}}
       .col-sm-10.pr-3
         .row.no-gutter
-          .col-sm-3.product-item(v-for="product in products")
+          .col-6.col-sm-3.product-item(v-for="product in products")
             product-item(:product="product")
         .row.mt-5
           .col-sm-12(v-if="pages.length>1")

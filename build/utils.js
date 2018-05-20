@@ -35,11 +35,13 @@ const createUniqueIdGenerator = () => {
 const idLocal = createUniqueIdGenerator(), idComponent = createUniqueIdGenerator();
 const components = {};
 const generateScopedName = (localName, resourcePath) => {
-  const componentName = resourcePath.split('/').slice(-2).join('/');
+  const componentName = resourcePath.split('/').slice(-2).join('_');
   if (!components[componentName]) {
     components[componentName] = true;
     // console.log(componentName[0]+' '+resourcePath);
   }
+  if (process.env.NODE_ENV === 'development')
+    return componentName + '__' + localName;
   if (/^col-/.test(localName))
     return 'col-' + idLocal(localName);
   return idComponent(componentName).toUpperCase() + idLocal(localName);
@@ -64,15 +66,15 @@ const cssLoaders = (before = [], modules = false) => {
     }
   ];
   if (isProduction) {
-    const ieOff=true;
+    const ieOff = true;
 
     loaders.push({
       loader: "clean-css-loader",
       options: {
         level: 2,
         inline: false,
-        compatibility:{
-          properties:{
+        compatibility: {
+          properties: {
             iePrefixHack: ieOff,
             ieSuffixHack: ieOff
           }

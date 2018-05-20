@@ -120,7 +120,7 @@
   import menuMixin from '@/js/components/menu-header-mixins';
   import SEARCH_ICON from '@fortawesome/fontawesome-free-solid/faSearch';
   import TIMES_ICON from '@fortawesome/fontawesome-free-solid/faTimes';
-  import Cart from './cart';
+  import Cart from '../universal/cart';
   import MenuHeaderDropdown from './menu-header-dropdown'
 
   export default {

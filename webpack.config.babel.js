@@ -2,7 +2,7 @@ import path              from "path";
 import webpack           from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
-import DuplicateCheck from 'duplicate-package-checker-webpack-plugin'
+import DuplicateCheck    from 'duplicate-package-checker-webpack-plugin';
 import merge             from 'webpack-merge';
 import base              from './build/webpack-base.config.babel';
 import combine           from 'webpack-combine-loaders';
@@ -208,10 +208,7 @@ if (process.env.NODE_ENV === 'production') {
     extractCss,
     new DuplicateCheck(),
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      getLocalIdent: (context, localIdentName, localName) => {
-        return generateScopedName(localName, context.resourcePath);
-      }
+      minimize: true
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -230,6 +227,12 @@ if (process.env.NODE_ENV === 'production') {
       name: "inline",
       minChunks: Infinity,
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      // names: ["app", "subPageA"]
+      name: "frontend",
+      children: true,
+      minChunks: 2,
+    }),
     new UglifyJSPlugin({
       test: /\.js($|\?)/i,
       cache: true,
@@ -240,7 +243,8 @@ if (process.env.NODE_ENV === 'production') {
           properties: {
             regex: regexCombiner([
               /^([A-Z][A-Z0-9]*_)([A-Z0-9]+_?)*$/,
-              /^\$(style|createElement)$/
+              /^\$(style|createElement)$/,
+              /^_tweens/
             ])
           }
         },
