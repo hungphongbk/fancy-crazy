@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+//move desktop-mobile functional components to here
+// import '../fragments/collection__Sidebar'
+
 const Index = () => import(/* webpackChunkName: "index" */ './index.vue'),
   Collections = () => import(/* webpackChunkName: "collections" */ './collections.vue'),
   Product = () => import(/* webpackChunkName: "product" */ './product.vue');

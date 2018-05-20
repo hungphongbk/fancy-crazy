@@ -229,7 +229,8 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       // names: ["app", "subPageA"]
-      name: "frontend",
+      names: ["frontend"],
+      // name: "frontend",
       children: true,
       minChunks: 2,
     }),
