@@ -103,7 +103,7 @@
         span(:class="$style.count")
           fa-icon(v-if="isLoading", :class="$style.loading", :icon="SyncIcon", spin, size="xs")
           template(v-else) {{CART_COUNT}}
-    modal(:class="$style.cartPanel", :show="SHOW_POPUP")
+    modal(:class="$style.cartPanel", :show="SHOW_POPUP", :backdrop="$mq.phone")
       form(action="/cart" method="post" novalidate)
         .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
           img.mr-2(:src="item.image")

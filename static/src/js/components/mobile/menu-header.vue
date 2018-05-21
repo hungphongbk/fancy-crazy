@@ -58,6 +58,9 @@
     /*right: 0;*/
     /*left: 0;*/
     overflow: scroll;
+    >div{
+      height: 100%;
+    }
   }
 </style>
 <template lang="pug">
