@@ -41,7 +41,7 @@ const generateScopedName = (localName, resourcePath) => {
     // console.log(componentName[0]+' '+resourcePath);
   }
   if (process.env.NODE_ENV === 'development')
-    return componentName + '__' + localName;
+    return componentName.replace(/\./g, '_') + '__' + localName;
   if (/^col-/.test(localName))
     return 'col-' + idLocal(localName);
   return idComponent(componentName).toUpperCase() + idLocal(localName);

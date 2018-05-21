@@ -3,13 +3,16 @@
 
   .product-variants {
     background-color: lighten(#6c757d, 45%);
+    padding-bottom: 1px !important;
+  }
+  .item:not(:last-child){
+    margin-bottom: 1rem;
   }
 </style>
 <template lang="pug">
   div.py-4.px-3.mt-3(:class="$style.productVariants")
-    div(v-for="(_,index) in opts")
+    div(v-for="(_,index) in opts", :class="$style.item")
       variant-items(:type="options[index]", :items="optLists[index]", v-model="opts[index]")
-      br
 </template>
 <script>
   import unzip from 'lodash/unzip';

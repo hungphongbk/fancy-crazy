@@ -4,7 +4,9 @@
   .sale-percentage{
     vertical-align: bottom;
   }
-
+  del{
+    color: $theme-red
+  }
 }
 %part{
   //composes: badge from "../../scss/styles.m-scss";
@@ -14,6 +16,9 @@
   .priceLg & {
     margin-right: 1.2rem;
     font-weight: 400;
+    @include media-breakpoint-down(sm){
+      margin-right: .7rem;
+    }
   }
 }
 .badge{
@@ -25,13 +30,12 @@
 .originalPrice{
   @extend %part;
   .sale & {
-    opacity: .65;
+    //opacity: .65;
   }
 }
 .salePrice{
   @extend %part;
 }
-
 @include media-breakpoint-down(sm){
   .priceMd{
     font-size: .8rem;

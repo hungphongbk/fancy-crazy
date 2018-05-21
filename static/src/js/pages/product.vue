@@ -16,17 +16,24 @@
     font-weight: 600;
     font-family: Oswald, serif;
   }
+  @include media-breakpoint-down(sm){
+    .prices{
+      font-size: $h4-font-size;
+    }
+  }
 </style>
 <template lang="pug">
-  .container.pt-2.px-6
+  .container.pt-2.px-sm-6
     .row
       .col-sm-7
-        magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
-        fragment-image-list
+        template(v-if="$mq.desktop")
+          magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
+          fragment-image-list
+        img.img-fluid(:src="SELECTED_IMAGE | shopifyImgUrl('grande')")
       .col-sm-5
         h1(:class="$style.productName") {{product.title}}
         hr
-        h2
+        h2(:class="$style.prices")
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
         .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}

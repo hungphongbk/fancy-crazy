@@ -26,7 +26,7 @@ export default {
       ];
       if (props.hasSale)
         innerHTML.unshift(<span
-          class={[$style.salePercentage, $style.badge, $bs.badge, $bs.badgePrimary]}>SALE {salePercentage}%</span>);
+          class={[$style.salePercentage, $style.badge, $bs.badge, $bs.badgeSuccess]}>SALE {salePercentage}%</span>);
     }
     return (<span class={[$style.price, isSale ? $style.sale : null, $style['price' + size]]}>{innerHTML}</span>);
   },

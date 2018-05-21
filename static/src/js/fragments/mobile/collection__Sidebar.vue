@@ -14,6 +14,10 @@
     }
   }
 
+  .title {
+    font-size: $h6-font-size*0.9;
+  }
+
   .dropdown-button {
     padding: .5rem;
   }
@@ -34,7 +38,7 @@
     margin-bottom: .5rem;
   }
 
-  .dropdown{
+  .dropdown {
     overflow: hidden;
   }
 </style>
@@ -47,18 +51,18 @@
       div(:class="DROPDOWN_BUTTON", @click="()=> IS_TAG_TOGGLE = !IS_TAG_TOGGLE")
         h6.mx-2.my-0(:class="{ [$style.title]:true, [$style.open]:IS_TAG_TOGGLE }") INTERESTS
         fa-icon(:icon="FA_CHEVRON_DOWN", :class="{ [$style.icon]:true }")
-    dropdown(:is-open="IS_COLLECTION_TOGGLE", :class="$style.dropdown")
+    dropdown(:is-open="IS_COLLECTION_TOGGLE", :class="$style.dropdown", :is-parallax="true")
       .list-group.mt-3.px-3
         template(v-for="(col,index) in SIDEBAR_COLLECTIONS")
           template(v-if="col.children")
-            a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="TOGGLE_MENU(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
-              span {{col.title}}
-              fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle[index]?null:180")
-            transition(v-if="toggle[index]", name="fade")
+            a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href="javascript:void(0)", @click="TOGGLE_MENU(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
+              span(:class="{ [$style.open]:toggle[index] }") {{col.title}}
+              fa-icon(:icon="FA_CHEVRON_DOWN", :class="$style.icon")
+            dropdown(:is-open="toggle[index]")
               div(:class="$style.children")
                 a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="GO_TO_COLLECTION(childCol.url)") {{childCol.title}}
           a.list-group-item.list-group-item-action(v-else, @click="GO_TO_COLLECTION(col.url)") {{col.title}}
-    dropdown(:is-open="IS_TAG_TOGGLE", :class="$style.dropdown")
+    dropdown(:is-open="IS_TAG_TOGGLE", :class="$style.dropdown", :is-parallax="true")
       .list-group.mt-3.px-3
         a.list-group-item.list-group-item-action(v-for="col in SIDEBAR_TAGS", href="javascript:void(0)" :class="{ [$bs.active]:(FILTERED_TAG && (col.title=== FILTERED_TAG.title)), [$style.active]: (FILTERED_TAG && (col.title=== FILTERED_TAG.title)) }", @click="GO_TO_TAG(col.url)") {{col.title}}
 </template>
@@ -82,7 +86,7 @@
         toggle: Array(50).fill(false),
       }
     },
-    methods:{
+    methods: {
       TOGGLE_MENU(index) {
         this.$set(this.toggle, index, !this.toggle[index])
       }

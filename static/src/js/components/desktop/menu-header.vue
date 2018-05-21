@@ -48,6 +48,7 @@
     }
     .dropdown:hover > .dropdown-menu {
       visibility: visible;
+      /*opacity: 1;*/
       animation: fadeIn .3s ease-in {
         fill-mode: forwards;
       }
