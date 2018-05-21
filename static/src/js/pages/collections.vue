@@ -1,37 +1,21 @@
-<style lang="scss" module>
-  @import "../../scss/inc";
-
-  .sidebar {
-    font-size: .9em;
-  }
-
-  .active {
-    font-weight: 700;
-  }
-
-  .children {
-    margin-left: 1rem;
-    margin-bottom: .5rem;
-  }
-</style>
 <template lang="pug">
-  .container-fluid.pt-3(:class="$style.collections")
+  .container-fluid.pt-3
     div(ref="anchor")
     fragment-breadcrumb.mb-3
-    .row
-      collection-sidebar.col-sm-2.border-right.pl-3
-      .col-sm-10.pr-3
-        .row.no-gutter
-          .col-6.col-sm-3.product-item(v-for="product in products")
-            product-item(:product="product")
-        .row.mt-5
-          .col-sm-12(v-if="pages.length>1")
-            nav.d-flex.justify-content-center
-              ul.pagination(:class="$style.pagination")
-                page-link(:is-disabled="!canPrev", @click="prevPage") Previous
-                page-link(v-for="page in pages", :key="page.index", :is-current="page.label===current", @click="()=>goToPage({page:page.index})") {{page.label}}
-                page-link(:is-disabled="!canNext", @click="nextPage") Next
-    .row.mt-6
+    collection-layout
+      template(slot="sidebar")
+        collection-sidebar
+      template(slot="products")
+        .col-6.col-sm-3(v-for="product in products")
+          product-item(:product="product")
+      template(slot="pagination")
+        .col-sm-12(v-if="pages.length>1")
+          nav.d-flex.justify-content-center
+            ul.pagination
+              page-link(:is-disabled="!canPrev", @click="prevPage") Previous
+              page-link(v-for="page in pages", :key="page.index", :is-current="page.label===current", @click="()=>goToPage({page:page.index})") {{page.label}}
+              page-link(:is-disabled="!canNext", @click="nextPage") Next
+    //.row.mt-6
       .col-sm-12
         fragment-reviews(:items="group1")
         fragment-reviews(:items="group2")
@@ -45,6 +29,7 @@
   import StarRating from 'vue-star-rating';
   import FragmentReviews from '@/js/fragments/app__Review'
   import CollectionSidebar from '@/js/fragments/collection__Sidebar'
+  import CollectionLayout from '@/js/fragments/collection__Layout'
 
   export default {
     storeModule: ['pageCollections', collectionModule],
@@ -56,6 +41,7 @@
       ProductItem,
       FragmentReviews,
       CollectionSidebar,
+      CollectionLayout,
       PageLink: {
         functional: true,
         render: (h, {props: {isCurrent = false, isDisabled = false}, listeners, children, parent}) => {
@@ -69,7 +55,7 @@
           return <li class={{[$bs.pageItem]: true, [$bs.disabled]: isDisabled, [$bs.active]: isCurrent}}
                      onClick={listeners.click}>{inner}</li>;
         }
-      }
+      },
     },
     computed: {
       ...mapGetters(spreadModuleProps('pageCollections', [

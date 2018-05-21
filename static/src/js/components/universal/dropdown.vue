@@ -12,8 +12,8 @@
         required: true
       }
     },
-    data:() => ({
-      DROPDOWN_HEIGHT_ANIMATE: 0
+    data: () => ({
+      heightAnim: 0
     }),
     computed: {
       DROPDOWN_HEIGHT() {
@@ -23,9 +23,9 @@
        * @returns {string}
        */
       DROPDOWN_HEIGHT_PX() {
-        if (this.DROPDOWN_HEIGHT_ANIMATE === 'auto')
-          return this.DROPDOWN_HEIGHT_ANIMATE;
-        return this.DROPDOWN_HEIGHT_ANIMATE + 'px'
+        if (this.heightAnim === 'auto')
+          return this.heightAnim;
+        return this.heightAnim + 'px'
       }
     },
     watch: {
@@ -41,7 +41,7 @@
             }
           }
 
-          const from = this.DROPDOWN_HEIGHT_ANIMATE,
+          const from = this.heightAnim,
             to = height === 0 ? this.$refs.dropdown.scrollHeight : 0,
             obj = {value: from};
 
@@ -50,7 +50,7 @@
             // .easing(TWEEN.Easing.Quadratic.Out)
             .onUpdate(() => {
               // console.log(obj.value);
-              this.DROPDOWN_HEIGHT_ANIMATE = obj.value
+              this.heightAnim = obj.value
             })
             .onComplete(() => {
               cancelAnimationFrame(frameHandler)
