@@ -12,7 +12,7 @@
   .slider :global {
     .flickity-prev-next-button {
       @include size(4rem);
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         @include size(2.3rem);
       }
       border-radius: 50%;
@@ -36,20 +36,30 @@
     }
   }
 
-  .narrow :global .flickity-viewport {
+  .vertical {
+    height: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
   }
 </style>
 <template lang="pug">
   div(:class="[$style.slider, $style[theme], narrow?$style.narrow:'']")
-    flickity(ref="flkty", :options="options")
+    flickity(ref="flkty", :options="options", v-show="!ORIENTATION_VERTICAL_SHOW")
       slot
+    vertical-duplicator(v-if="ORIENTATION_VERTICAL_SHOW")
 </template>
 <script>
   import 'flickity-imagesloaded'
   import Flickity from 'vue-flickity'
 
   export default {
-    components: {Flickity},
+    components: {
+      Flickity,
+      VerticalDuplicator: {
+        functional: true,
+        render: (h, {parent}) => h('div', {class: parent.$style.vertical}, parent.$slots.default)
+      }
+    },
     props: {
       opts: {
         type: Object,
@@ -62,6 +72,10 @@
       narrow: {
         type: Boolean,
         default: false
+      },
+      orientation: {
+        type: String,
+        default: 'horizontal'
       }
     },
     data() {
@@ -77,12 +91,21 @@
     computed: {
       options() {
         return Object.assign({}, this.slickOpts, this.opts);
+      },
+      /**
+       * @return {boolean}
+       */
+      ORIENTATION_VERTICAL_SHOW() {
+        return this.orientation === 'vertical'
       }
     },
     methods: {
       select(index) {
         this.$refs.flkty.select(index);
       }
+    },
+    mounted() {
+      // debugger;
     }
   }
 </script>

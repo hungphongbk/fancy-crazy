@@ -32,14 +32,14 @@
   .magnifier-component
     .ratio-6-7
       .content
-        .magnifier-thumb-wrapper.pr-5
+        .magnifier-thumb-wrapper
           img(:id="id", :src="thumbSrc", style="width: 100%;", @load="init")
     .ratio-6-7.magnifier-preview-wrapper
       .content
         .magnifier-preview(:id="PREVIEW_ID")
 </template>
 <script>
-  import {Magnifier} from "@/js/plugins";
+  import Magnifier from "@/js/plugins/magnifier";
 
   let instances = 0;
 

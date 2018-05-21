@@ -3,7 +3,7 @@ import Thumbnail from './thumbnail';
 import Price     from './price';
 import Counter   from './counter';
 
-console.log(__state__.pageProduct);
+
 Vue.component('thumbnail', Thumbnail);
 Vue.component('price', Price);
 Vue.component('counter', Counter);
@@ -15,3 +15,4 @@ export {default as ProductItem} from './ProductItem';
 //move chunk to frontend
 import './universal/cart'
 import './universal/modal'
+import './universal/dropdown'

@@ -1,11 +1,12 @@
 <style lang="scss" module>
   @import "../../scss/inc";
 
-  .imgThumbnail {
+  .img-thumbnail {
     padding: .3rem;
     width: percentage(1/3);
     @at-root .inner {
       border: 2px solid $gray-200;
+      transition: border $animation-time*2/3 ease;
       &.selected {
         border-color: $theme-red;
       }
@@ -21,9 +22,28 @@
   .img {
     height: 100%;
   }
+
+  @include media-breakpoint-down(sm) {
+    .img-thumbnail {
+      padding: .15rem;
+      @include reset-link {
+        display: block;
+      }
+      width: 100%;
+    }
+    .inner {
+      border-color: rgba(#fff, 0)
+    }
+    .content {
+      padding: .3rem;
+    }
+    .slider {
+      height: 75vw;
+    }
+  }
 </style>
 <template lang="pug">
-  slider(:narrow="true", theme="dark", ref="slider")
+  slider(:narrow="true", theme="dark", ref="slider", :orientation="(!$mq.phone)?'horizontal':'vertical'", :class="$style.slider")
     a(v-for="(image,index) in PRODUCT_IMAGES", :key="image", :class="$style.imgThumbnail")
       .ratio-1-1(:class="{ [$style.inner]:true, [$style.selected]: (SELECTED_IMAGE===image) }", @click="select(index)")
         .content(:class="$style.content")
@@ -46,7 +66,13 @@
       ...mapGetters({
         PRODUCT_IMAGES: 'images',
         SELECTED_IMAGE: 'selectedImage'
-      })
+      }),
+      /**
+       * @return {boolean}
+       */
+      IS_VERTICAL() {
+        return this.$mq.phone
+      }
     },
     methods: {
       select(index) {

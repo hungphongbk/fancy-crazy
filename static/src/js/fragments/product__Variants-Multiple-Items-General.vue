@@ -3,7 +3,7 @@
 
   .label {
     line-height: 2.2;
-    composes: item from './product__Variants-Multiple-Items__share.m-scss'
+    composes: label from './product__Variants-Multiple-Items__share.m-scss'
   }
 
   .btn {

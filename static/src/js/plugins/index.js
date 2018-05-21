@@ -1,14 +1,18 @@
-import './responsive'
+import './responsive';
 // import './font'
 // import './animateCss'
-import Vue from 'vue'
-import AsyncComputed from 'vue-async-computed'
-import VueLocalStorage from 'vue-localstorage'
-import VueLazyload from 'vue-lazyload'
-import './fontawesome'
+import Vue             from 'vue';
+import AsyncComputed   from 'vue-async-computed';
+import VueLocalStorage from 'vue-localstorage';
+import VueLazyload     from 'vue-lazyload';
+import './fontawesome';
 // import {delay} from '../components/helpers'
 // import './observe-visibility'
-import {detect} from 'detect-browser'
+import {detect}        from 'detect-browser';
+import * as filters    from './filters';
+import './tooltip';
+
+import smoothscroll from 'smoothscroll-polyfill';
 //
 // import 'vue-carousel'
 
@@ -39,12 +43,10 @@ Vue.mixin({
       }
     }
   }
-})
-
-import * as filters from './filters'
+});
 
 for (const key of Object.keys(filters)) {
-  Vue.filter(key, filters[key])
+  Vue.filter(key, filters[key]);
 }
 
 const browser = detect();
@@ -53,7 +55,7 @@ Object.defineProperty(Vue.prototype, '$browser', {
     if (browser) return browser.name;
     return '';
   }
-})
+});
 
 // export const tooltip = (el, {value, modifiers = {top: true}}) => $(el).tooltip({
 //   placement: (() => {
@@ -66,11 +68,8 @@ Object.defineProperty(Vue.prototype, '$browser', {
 //   title: value
 // });
 
-export {default as Magnifier} from './magnifier'
-
-import './tooltip'
-
-import smoothscroll from 'smoothscroll-polyfill';
+const Magnifier = () => import(/* webpackChunkName:"desktop" */ '@/js/components/magnifier');
+export {Magnifier};
 
 // kick off the polyfill!
 smoothscroll.polyfill();

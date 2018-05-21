@@ -16,8 +16,9 @@
     font-weight: 600;
     font-family: Oswald, serif;
   }
-  @include media-breakpoint-down(sm){
-    .prices{
+
+  @include media-breakpoint-down(sm) {
+    .prices {
       font-size: $h4-font-size;
     }
   }
@@ -26,10 +27,16 @@
   .container.pt-2.px-sm-6
     .row
       .col-sm-7
-        template(v-if="$mq.desktop")
+        template(v-if="!$mq.phone")
           magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
           fragment-image-list
-        img.img-fluid(:src="SELECTED_IMAGE | shopifyImgUrl('grande')")
+        .row.pb-3(v-else)
+          .col-3
+            fragment-image-list
+          .col-9.pl-0
+            .ratio-6-7
+              .content
+                img.img-fluid(:src="SELECTED_IMAGE | shopifyImgUrl('grande')")
       .col-sm-5
         h1(:class="$style.productName") {{product.title}}
         hr
@@ -38,7 +45,7 @@
         fragment-variants.rounded-top
         .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
         img.w-100(:src="IMG_SECURE_PAYMENT")
-        .text-center.px-6
+        .text-center.px-2.px-sm-6
           p <b>All our products are custom printed and designed with love just for you!</b>
           p You can expect the following delivery times to receive your personalized shirt:
           p
@@ -46,24 +53,25 @@
             br
             | INT Orders: 2 - 3 weeks
         fragment-expandable.pt-2.my-2(:content="product.content")
-        .text-center.px-6.pt-4
+        .text-center.px-2.px-sm-6.pt-4
           h5 Good Fancy Crazy Guaranteed
-          p <i>Melts in Your Heart, Not in Your Eyes</i>
+          p
+            b <i>Melts in Your Heart, Not in Your Eyes</i>
           p Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!
           p Not fully Fancy Crazy with your products?
             br
-            |No worries! We've got it covered.
+            | No worries! We've got it covered.
           p +1 914-598-8976 | support@fancycrazy.com
 </template>
 <script>
   import productModule from '@/js/store/page-product';
-  import Magnifier from '@/js/components/magnifier';
   import FragmentVariants from '@/js/fragments/product__Variants';
   import FragmentImageList from '@/js/fragments/product__ImageList';
   import IMG_SECURE_PAYMENT from '@/images/mcafee.png';
   import {addToCart} from "@/js/components/mixins/addToCart";
   import {mapGetters, mapState} from 'vuex';
   import FragmentExpandable from "@/js/fragments/product__Expandable";
+  import {Magnifier} from "@/js/plugins";
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -113,6 +121,13 @@
       }
     },
     async created() {
+      if(this.$mq.phone){
+        this.$appStore.subscribe(mutation=>{
+          if(mutation.type==='cart/addToCart'){
+            this.$appStore.commit('cart/togglePopup');
+          }
+        })
+      }
       await Promise.all([
         this.$store.dispatch('addToRecently', this.product.handle),
         this.$store.dispatch('pageProduct/initial')

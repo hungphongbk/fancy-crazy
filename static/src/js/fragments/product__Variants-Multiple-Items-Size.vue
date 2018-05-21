@@ -1,13 +1,21 @@
 <style lang="scss" module>
+  .container :global{
+    .blueimp-gallery>.close{
+      color: white;
+    }
+  }
   .label{
     composes: label from './product__Variants-Multiple-Items__share.m-scss'
   }
   .item{
     composes: item from './product__Variants-Multiple-Items__share.m-scss'
   }
+  .selected{
+
+  }
 </style>
 <template lang="pug">
-  div
+  div(:class="$style.container")
     .clearfix
       p.float-left(:class="$style.label") PICK YOUR SIZE:
       p.float-right(:class="$style.label", v-if="hasSizeChart")
@@ -16,7 +24,7 @@
           fa-icon.ml-1(:icon="AngleRight", size="lg")
     dl.d-flex.flex-wrap
       div(v-for="item in items")
-        .btn.mr-1.mb-1(:class="[ $style.item, item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{item.title}}
+        .btn.mr-1.mb-1(:class="[ $style.item, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary, item.title===value.title?$style.selected:'']", @click="$emit('input', item)") {{item.title}}
     vue-gallery(:images="sizeCharts | shopifyImgUrls('master')", :index="currentSizeChart", @close="currentSizeChart = null")
 </template>
 <script>

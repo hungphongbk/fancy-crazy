@@ -74,8 +74,8 @@ export default {
       return post('/cart/add.js', {
         id, quantity
       }).then(lineItem => {
-        commit('addToCart', {lineItem});
         dispatch('fetch');
+        commit('addToCart', {lineItem});
       });
     },
     changeItem({commit, dispatch}, {id, quantity}) {
