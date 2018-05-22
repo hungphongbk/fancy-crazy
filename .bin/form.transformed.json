@@ -2,6 +2,13 @@
  "type": "Block",
  "nodes": [
   {
+   "type": "Comment",
+   "val": "functional",
+   "buffer": true,
+   "line": 1,
+   "column": 1
+  },
+  {
    "type": "Tag",
    "name": "div",
    "selfClosing": false,
@@ -29,13 +36,13 @@
             "block": {
              "type": "Block",
              "nodes": [],
-             "line": 4
+             "line": 5
             },
             "attrs": [
              {
               "name": ":src",
               "val": "\"loadeds[0]\"",
-              "line": 4,
+              "line": 5,
               "column": 21,
               "mustEscape": true
              },
@@ -46,38 +53,38 @@
             ],
             "attributeBlocks": [],
             "isInline": true,
-            "line": 4,
+            "line": 5,
             "column": 7
            }
           ],
-          "line": 3
+          "line": 4
          },
          "attrs": [
           {
            "name": ":class",
            "val": "\"[$bs.dFlex,$bs.alignItemsEnd]\"",
-           "line": 3,
+           "line": 4,
            "column": 29,
            "mustEscape": true
           },
           {
            "name": "v-if",
            "val": "\"!hover\"",
-           "line": 3,
+           "line": 4,
            "column": 51,
            "mustEscape": true
           },
           {
            "name": ":key",
            "val": "\"loadeds[0]\"",
-           "line": 3,
+           "line": 4,
            "column": 66,
            "mustEscape": true
           }
          ],
          "attributeBlocks": [],
          "isInline": false,
-         "line": 3,
+         "line": 4,
          "column": 5
         },
         {
@@ -94,13 +101,13 @@
             "block": {
              "type": "Block",
              "nodes": [],
-             "line": 6
+             "line": 7
             },
             "attrs": [
              {
               "name": ":src",
               "val": "\"loadeds[1]\"",
-              "line": 6,
+              "line": 7,
               "column": 21,
               "mustEscape": true
              },
@@ -111,86 +118,86 @@
             ],
             "attributeBlocks": [],
             "isInline": true,
-            "line": 6,
+            "line": 7,
             "column": 7
            }
           ],
-          "line": 5
+          "line": 6
          },
          "attrs": [
           {
            "name": ":class",
            "val": "\"[$bs.dFlex,$bs.alignItemsEnd]\"",
-           "line": 5,
+           "line": 6,
            "column": 29,
            "mustEscape": true
           },
           {
            "name": "v-else",
            "val": true,
-           "line": 5,
+           "line": 6,
            "column": 51,
            "mustEscape": true
           },
           {
            "name": ":key",
            "val": "\"loadeds[1]\"",
-           "line": 5,
+           "line": 6,
            "column": 59,
            "mustEscape": true
           }
          ],
          "attributeBlocks": [],
          "isInline": false,
-         "line": 5,
+         "line": 6,
          "column": 5
         }
        ],
-       "line": 2
+       "line": 3
       },
       "attrs": [
        {
         "name": "name",
         "val": "\"fade\"",
-        "line": 2,
+        "line": 3,
         "column": 14,
         "mustEscape": true
        }
       ],
       "attributeBlocks": [],
       "isInline": false,
-      "line": 2,
+      "line": 3,
       "column": 3
      }
     ],
-    "line": 1
+    "line": 2
    },
    "attrs": [
     {
      "name": ":class",
      "val": "\"$style.imagePair\"",
-     "line": 1,
+     "line": 2,
      "column": 5,
      "mustEscape": true
     },
     {
      "name": "@mouseover",
      "val": "\"hover\"",
-     "line": 1,
+     "line": 2,
      "column": 31,
      "mustEscape": true
     },
     {
      "name": "@mouseleave",
      "val": "\"leave\"",
-     "line": 1,
+     "line": 2,
      "column": 51,
      "mustEscape": true
     }
    ],
    "attributeBlocks": [],
    "isInline": false,
-   "line": 1,
+   "line": 2,
    "column": 1
   }
  ],

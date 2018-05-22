@@ -1,41 +1,35 @@
 <template lang="pug" functional>
-  footer
+  //functional
+  .container
     div(v-if="parent.$mq.phone")
-      div(:class="parent.$bs.row")
-        div(:class="[parent.$bs.col10, parent.$bs.offset1]")
+      .row
+        .col-10.offset-1
           slot(name="brand")
-          div(:class="[parent.$bs.borderTop, parent.$bs.borderBottom]")
-            div(:class="[parent.$bs.textCenter, parent.$bs.pt2]", @click="injections.vm.toggle = !injections.vm.toggle")
-              h5(:class="parent.$bs.fontWeightBold") INFORMATION
+          .border-top.border-bottom
+            .text-center.pt-3(@click="injections.vm.toggle = !injections.vm.toggle")
+              h6.font-weight-bold.mb-3 INFORMATION
             component(:is="injections.comp.Dropdown", :is-open="injections.vm.toggle")
               slot(name="info")
-    div(v-else, :class="parent.$bs.container")
-      div(:class="parent.$bs.row")
-        div(:class="parent.$bs.colSm4")
+          .text-center
+            h6.font-weight-bold.mt-3 GOOD FANCY CRAZY GUARANTEED
+            div(v-html="injections.text")
+    div(v-else)
+      .row
+        .col-sm-4
           div
             slot(name="brand")
-        div(:class="parent.$bs.colSm8")
-          div(:class="parent.$bs.row")
-            div(:class="parent.$bs.colSm3")
+        .col-sm-8
+          .row
+            .col-sm-3
               h4 Information
               slot(name="info")
-            div(:class="parent.$bs.colSm5")
+            .col-sm-5
               h4 Good Fancy Crazy Guaranteed
-              p Melts in Your Heart, Not in Your Eyes
-              p
-                | Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!
-                br
-                | Not fully Fancy Crazy with your products?
-                br
-                | No worries! We've got it covered.
-              p
-                strong +1 914-598-8976
-                br
-                strong support@fancycrazy.com
-            div(:class="parent.$bs.colSm4")
-        div(:class="parent.$bs.colSm12")
+              div(v-html="injections.text")
+            .col-sm-4
+        .col-sm-12
           hr
-          p(:class="parent.$bs.mt2") © 2018 Copyright FancyCrazy Inc. All Right Reserved.
+          p.mt-2 © 2018 Copyright FancyCrazy Inc. All Right Reserved.
 </template>
 <script>
   import Dropdown from '@/js/components/universal/dropdown'
@@ -44,7 +38,7 @@
 
   const vm = new Vue({
     data: {
-      toggle: false
+      toggle: true
     }
   });
 
@@ -57,6 +51,11 @@
       },
       vm:{
         default: vm
+      },
+      text:{
+        default:`<p><b><i>Melts in Your Heart, Not in Your Eyes</i></b></p>
+<p>Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!<br/>Not fully Fancy Crazy with your products?<br/>No worries! We've got it covered.</p>
+<p><strong>+1 914-598-8976</strong><br/><strong>support@fancycrazy.com</strong></p>`
       }
     }
   }

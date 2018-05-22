@@ -5,19 +5,23 @@ const lex = require('pug-lexer'),
   walk = require('pug-walk'),
   constantinople = require('constantinople'),
   kebabCase = require('kebab-case'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  path = require('path');
 
 const attrSpecs = [, , 'filename', 'output'],
-  attrs = {};
+  attrs = {
+    filename: path.resolve(__dirname, 'form.pug'),
+    output: path.resolve(__dirname, 'form.transformed.pug')
+  };
 process.argv.forEach((val, index) => {
-  if (attrSpecs[index])
+  if (attrSpecs[index] && typeof val === "string" && val.length > 0)
     attrs[attrSpecs[index]] = val;
 });
 
 const src = fs.readFileSync(attrs.filename, 'utf8');
 
 // Parse
-const output = __dirname + '/' + attrs.output,
+const output = attrs.output,
   tokens = lex(src, {filename: attrs.filename}),
   classList = JSON.parse(fs.readFileSync(process.cwd() + '/build/loaders/pug-bootstrap-moduled/classes.json', 'utf8'));
 const ast = parse(tokens);
@@ -35,7 +39,7 @@ const new_ast = walk(ast, function before(node, replace) {
       else console.log(classAttr.val + ' not found');
     },
     reMustacheClass = (node, classNode) => {
-      if(node.name==='h4')
+      if (node.name === 'h4')
         console.log(node);
       const clazz = constantinople.toConstant(classNode.val),
         newClazz = '$bs.' + kebabCase.reverse(clazz).replace(/-/g, ''),

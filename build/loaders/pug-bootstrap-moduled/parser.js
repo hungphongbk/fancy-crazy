@@ -7,6 +7,18 @@ import constantinople from 'constantinople';
 import genSource      from 'pug-source-gen';
 
 module.exports = function (source, testClass) {
+  const opts = {
+    functional: false
+  };
+
+  //return new class name
+  function newClass(clazz) {
+    let newClazz = '$bs.' + kebabCase.reverse(clazz).replace(/-/g, '');
+    if (opts.functional)
+      newClazz = 'parent.' + newClazz;
+    return newClazz;
+  }
+
   const ast = parser(lex(source)),
     new_ast = walk(ast, function before(node, replace) {
 
@@ -20,7 +32,7 @@ module.exports = function (source, testClass) {
         },
         reMustacheClass = (node, classNode) => {
           const clazz = constantinople.toConstant(classNode.val),
-            newClazz = '$bs.' + kebabCase.reverse(clazz).replace(/-/g, ''),
+            newClazz = newClass(clazz),
             index = node.attrs.findIndex(attr => attr.name === ':class'),
             isNew = (typeof node.attrs[index] === 'undefined'),
             cls = isNew ? {name: ':class', val: '""'} : node.attrs[index];
@@ -37,7 +49,7 @@ module.exports = function (source, testClass) {
             const pad = val.lastIndexOf('}');
             val = val.substr(0, pad) + `,[${newClazz}]: true}`;
           } else {
-            val = `[${val.length===0?val:(val+',')}${newClazz}]`;
+            val = `[${val.length === 0 ? val : (val + ',')}${newClazz}]`;
           }
 
           //put back to node
@@ -49,7 +61,9 @@ module.exports = function (source, testClass) {
           removeClass(node, classNode);
         };
 
-      if (node.type === 'Tag') {
+      if (node.type === 'Comment' && node.val === 'functional') {
+        opts.functional = true;
+      } else if (node.type === 'Tag') {
         findClasses(node).forEach(classAttr => {
           reMustacheClass(node, classAttr);
         });
@@ -58,4 +72,4 @@ module.exports = function (source, testClass) {
       }
     });
   return genSource(new_ast).replace(/=true/g, '').toString();
-}
+};

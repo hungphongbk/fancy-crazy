@@ -16,13 +16,16 @@
         default: false
       }
     },
-    data: () => ({
-      heightAnim: 0,
-      CSS_TRANSFORMS: {
-        opacity: 0,
-        transform: 'translateY(0)'
+    data() {
+      const isOpen = this.isOpen;
+      return {
+        heightAnim: isOpen ? 'auto' : 0,
+        CSS_TRANSFORMS: {
+          opacity: isOpen ? 1 : 0,
+          transform: 'translateY(0)'
+        }
       }
-    }),
+    },
     computed: {
       DROPDOWN_HEIGHT() {
         return this.isOpen ? 'auto' : 0;
@@ -83,7 +86,7 @@
             .onUpdate(() => {
               this.heightAnim = objFrom.height;
               this.CSS_TRANSFORMS.opacity = objFrom.opacity;
-              if(this.isParallax)
+              if (this.isParallax)
                 this.CSS_TRANSFORMS.transform = `translateY(${objFrom.transform}rem`;
             })
             .onComplete(() => {
