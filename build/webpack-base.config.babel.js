@@ -8,7 +8,7 @@ export default {
       {
         test: /\.js$/,
         exclude: [
-          /node_modules\/(?!(js-effect-ripple|vue-match-media))/
+          /node_modules\/(?!(js-effect-ripple|vue-match-media|v-tooltip))/
         ],
         use: [
           "babel-loader?cacheDirectory"

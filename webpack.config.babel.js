@@ -203,9 +203,9 @@ let plugins = [
 if (process.env.NODE_ENV === 'production') {
   // http://vue-loader.vuejs.org/en/workflow/production.html
   plugins = plugins.concat([
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static'
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // }),
     extractCss,
     new DuplicateCheck(),
     new webpack.LoaderOptionsPlugin({

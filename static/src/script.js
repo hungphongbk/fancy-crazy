@@ -25,7 +25,7 @@ const app = new Vue({
   render: h => h(App),
   store,
   mq: {
-    phone: '(max-width: 767px)',
+    phone: '(max-width: 768px)',
     tablet: '(max-width: 991px)',
     desktop: '(min-width: 1199px)'
   }

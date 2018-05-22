@@ -11,6 +11,7 @@
   }
 
   .cart-thumb {
+    cursor: pointer;
     transform: scale(1.36);
     border-radius: 50%;
     //background-color: $gray-200;
@@ -47,16 +48,20 @@
     }
   }
 
-  .cartPanel {
+  .cart-panel {
     position: absolute;
     top: 100%;
     right: 0;
     width: 35vw;
     margin-top: .7rem;
     border-top: 4px solid $green;
+    &:global(.mobile){
+      margin-top: 0;
+      border: none;
+    }
   }
 
-  .cartItem {
+  .cart-item {
     img {
       width: 64px;
     }

@@ -1,12 +1,18 @@
-<style lang="scss" scoped>
-</style>
 <template lang="pug" functional>
   footer
-    .footer-mobile(v-if="parent.$mq.tablet")
-    .footer-desktop(v-else, :class="parent.$bs.container")
+    div(v-if="parent.$mq.phone")
+      div(:class="parent.$bs.row")
+        div(:class="[parent.$bs.col10, parent.$bs.offset1]")
+          slot(name="brand")
+          div(:class="[parent.$bs.borderTop, parent.$bs.borderBottom]")
+            div(:class="[parent.$bs.textCenter, parent.$bs.pt2]", @click="injections.vm.toggle = !injections.vm.toggle")
+              h5(:class="parent.$bs.fontWeightBold") INFORMATION
+            component(:is="injections.comp.Dropdown", :is-open="injections.vm.toggle")
+              slot(name="info")
+    div(v-else, :class="parent.$bs.container")
       div(:class="parent.$bs.row")
         div(:class="parent.$bs.colSm4")
-          .footer-brand
+          div
             slot(name="brand")
         div(:class="parent.$bs.colSm8")
           div(:class="parent.$bs.row")
@@ -31,3 +37,27 @@
           hr
           p(:class="parent.$bs.mt2") © 2018 Copyright FancyCrazy Inc. All Right Reserved.
 </template>
+<script>
+  import Dropdown from '@/js/components/universal/dropdown'
+  //hack
+  import Vue from 'vue'
+
+  const vm = new Vue({
+    data: {
+      toggle: false
+    }
+  });
+
+  export default {
+    inject: {
+      comp: {
+        default: {
+          Dropdown
+        }
+      },
+      vm:{
+        default: vm
+      }
+    }
+  }
+</script>
