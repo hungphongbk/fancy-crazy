@@ -29,6 +29,7 @@
     @at-root .title {
       font-family: Oswald, sans-serif;
     }
+    @include lbn-box-shadow(5px);
   }
 </style>
 <template lang="pug">

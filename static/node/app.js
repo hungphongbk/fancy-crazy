@@ -12578,7 +12578,7 @@ var getFileInCache = function getFileInCache(url) {
  */
 var generateImageSet = function () {
   var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(url) {
-    var hasCache, heights, filenameWithoutExt, transform, rs;
+    var hasCache, heights, req, filenameWithoutExt, transform, rs;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -12609,7 +12609,7 @@ var generateImageSet = function () {
           case 8:
 
             //resize to 2 difference sizes (by height)
-            heights = [200, 500];
+            heights = [200, 500], req = (0, _request2.default)(url);
             filenameWithoutExt = (0, _stringHash2.default)(url);
 
             transform = function transform(h) {
@@ -12618,7 +12618,7 @@ var generateImageSet = function () {
                     format = 'jpeg';
 
                 //begin optimize
-                gm((0, _request2.default)(url)).resize(null, h).noProfile().sharpen(3, 0.8).quality(h === 200 ? 60 : 70).compress(format).toBuffer(format, function (err, data) {
+                gm(req).resize(null, h).noProfile().sharpen(3, 0.8).quality(h === 200 ? 60 : 70).compress(format).toBuffer(format, function (err, data) {
                   if (err) {
                     console.log('err unexpected on URL ' + url);
                     reject(err);

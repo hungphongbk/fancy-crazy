@@ -1,14 +1,13 @@
-import path                   from "path";
-import webpack                from "webpack";
-import ExtractTextPlugin      from "extract-text-webpack-plugin";
-import UglifyJSPlugin         from "uglifyjs-webpack-plugin";
-import DuplicateCheck         from 'duplicate-package-checker-webpack-plugin';
-import merge                  from 'webpack-merge';
-import base                   from './build/webpack-base.config.babel';
-import combine                from 'webpack-combine-loaders';
-import regexCombiner          from 'regex-combiner';
-import _                      from './build/utils';
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import path              from "path";
+import webpack           from "webpack";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
+import DuplicateCheck    from 'duplicate-package-checker-webpack-plugin';
+import merge             from 'webpack-merge';
+import base              from './build/webpack-base.config.babel';
+import combine           from 'webpack-combine-loaders';
+import regexCombiner     from 'regex-combiner';
+import _                 from './build/utils';
 
 const src = './static/src',
   dist = './static/dist',
@@ -38,7 +37,7 @@ const cssLoader = (modules = false) => ({
 
 module.exports = merge(base, {
   entry: {
-    vendor: ['vue', 'vuex', 'vuex-router-sync', 'vue-i18n', 'vue-lazyload', 'vue-match-media', 'vue-responsive', 'mobile-detect', 'flickity', 'vue-flickity', 'flickity-imagesloaded', 'vue-gallery','@tweenjs/tween.js'],
+    vendor: ['vue', 'vuex', 'vuex-router-sync', 'vue-i18n', 'vue-lazyload', 'vue-match-media', 'vue-responsive', 'mobile-detect', 'flickity', 'vue-flickity', 'flickity-imagesloaded', '@tweenjs/tween.js'],
     frontend: src + '/script.js'
   },
   output: {

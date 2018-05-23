@@ -75,7 +75,8 @@ const generateImageSet = async (url: String) => {
   if (hasCache) return hasCache;
 
   //resize to 2 difference sizes (by height)
-  const heights = [200, 500];
+  const heights = [200, 500],
+    req = request(url);
 
   const filenameWithoutExt = stringHash(url);
   const transform = h => new Promise((resolve, reject) => {
@@ -83,7 +84,7 @@ const generateImageSet = async (url: String) => {
       format = 'jpeg';
 
     //begin optimize
-    gm(request(url))
+    gm(req)
       .resize(null, h)
       .noProfile()
       .sharpen(3, 0.8)

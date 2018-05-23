@@ -4,6 +4,7 @@
   .footer{
     p{
       color: $gray-700;
+      @include font-size-with-line-height($font-size-base*0.85);
     }
   }
 
