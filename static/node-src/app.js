@@ -1,13 +1,15 @@
-import Spreadsheet from './Spreadsheet';
-import path        from 'path';
-import fs          from 'fs';
-import groupBy     from 'lodash/groupBy';
-import clone       from 'lodash/clone';
-import omit        from 'lodash/omit';
-import flatten     from 'lodash/flatten';
-import random      from 'lodash/random';
-import range       from 'lodash/range';
-import Shopify     from 'shopify-api-node';
+import Spreadsheet   from './Spreadsheet';
+import ImgCompressor from './ImgCompressor';
+import path          from 'path';
+import fs            from 'fs';
+import groupBy       from 'lodash/groupBy';
+import clone         from 'lodash/clone';
+import omit          from 'lodash/omit';
+import flatten       from 'lodash/flatten';
+import random        from 'lodash/random';
+import range         from 'lodash/range';
+import chunk         from 'lodash/chunk';
+import Shopify       from 'shopify-api-node';
 
 const s = new Spreadsheet(path.resolve(__dirname, '../dist/reviews.json')),
   shopify = new Shopify({
@@ -25,8 +27,7 @@ async function task1() {
     if (!cols[collection_id]) {
       cols[collection_id] = await shopify.collect.list({collection_id, fields: 'collection_id,product_id'});
     }
-    console.log(`id = ${collection_id} has ${cols[collection_id].length} collects`);
-    // else console.log('cached');
+    // console.log(`id = ${collection_id} has ${cols[collection_id].length} collects`);
     const collects = cols[collection_id];
     if (collects.length === 0) return null;
     let product_id;
@@ -38,16 +39,22 @@ async function task1() {
       products[product_id] = await shopify.product.get(product_id);
     }
 
-    let i;
+    let i, counter = 0, images = products[product_id].images;
     do {
-      i = random(products[product_id].images.length - 1);
-    } while (/sizechart/.test(products[product_id].images[i].src));
-    return products[product_id].images[i].src.replace('https://cdn.shopify.com', '');
+      i = random(images.length - 1);
+    } while (!(images[i] && (!/sizechart/.test(images[i].src))) && ++counter < images.length * 2);
+    if (counter >= images.length * 2) {
+      console.log('cannot get random only product on ' + collection_id);
+      return '';
+    }
+    return images[i].src.replace('https://cdn.shopify.com', '');
   }
 
   async function transformItem(item) {
     if (item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id)) {
       item.image_url = await getRandonlyProduct(item.collection_id);
+    } else if (item.type === 'image-only' && /thenativesite/.test(item.image_url)) {
+      item.image_url = await ImgCompressor.generateImageSet(item.image_url);
     }
     return omit(item, ['position', 'collection_id']);
   }
@@ -67,7 +74,7 @@ async function task1() {
         remove = id => {
           const index = collections.findIndex(col => col.id * 1 === id * 1);
           if (index > -1) {
-            console.log(`remove collection "${collections[index].BTN_TITLE}"`);
+            console.log(`remove collection "${collections[index].title}"`);
             collections.splice(index, 1);
           }
         };
@@ -93,14 +100,17 @@ async function task1() {
 
       for (const [file, obj] of Object.entries(filesObj)) {
         const newObj = [];
-        for (const item of obj) {
-          newObj.push(await transformItem(item));
-          remove(item.collection_id);
+        for (const items of chunk(obj, 1)) {
+          const transformed = await Promise.all(items.map(transformItem));
+          newObj.push(...transformed);
+          // remove(item.collection_id);
+          items.forEach(({collection_id}) => remove(collection_id));
         }
         fs.writeFileSync(
           path.resolve(__dirname, `../dist/reviews-${file}.json`),
           JSON.stringify(newObj),
           'utf-8');
+        console.log(`reviews-${file}.json has been written`);
         // await timeout(500);
       }
 
@@ -144,6 +154,15 @@ async function task2() {
     'utf-8');
 }
 
-task2().then(() => {
+//test only
+async function task3() {
+  const rs = await Promise.all([
+    'http://thenativesite.com/wp-content/uploads/2018/05/6cf420c76ba2632837984a816b63ca81.jpg',
+    'http://thenativesite.com/wp-content/uploads/2018/05/southwest_navajo_handbag_01.jpg'
+  ].map(ImgCompressor.generateImageSet));
+  console.log(rs);
+}
+
+task1().then(() => {
   console.log('completed');
 });

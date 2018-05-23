@@ -1,5 +1,5 @@
 import path from "path";
-
+import webpack from 'webpack';
 import merge from 'webpack-merge';
 import base  from './build/webpack-base.config.babel';
 
@@ -42,7 +42,7 @@ export default merge(base, {
               ]
             }
           },
-          // "remove-hashbag-loader"
+          "remove-hashbag-loader"
         ]
       }
     ]
@@ -53,11 +53,14 @@ export default merge(base, {
   },
   resolveLoader: {
     alias: {
-      // "remove-hashbag-loader": path.join(__dirname, "./webpack/remove-hashbag-loader")
+      "remove-hashbag-loader": path.join(__dirname, "./build/loaders/remove-hashbag-loader")
     }
   },
   externals: Object.keys(require('./package.json').dependencies),
   performance: {
     hints: false
-  }
+  },
+  plugins:[
+    ...[/vertx/, /bufferutil/, /utf-8-validate/].map(reg => new webpack.IgnorePlugin(reg)),
+  ]
 });

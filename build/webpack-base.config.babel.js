@@ -19,12 +19,13 @@ export default {
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.vue', '.ts', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.runtime.esm.js',
-      '@': path.resolve(__dirname, '../static/src'),
       '@settings': path.resolve(__dirname, '../static/settings'),
-      '@node': path.resolve(__dirname, '../static/node-src')
-    }
+      '@node': path.resolve(__dirname, '../static/node-src'),
+      '@google-cloud': path.resolve(__dirname, 'node_modules/@google-cloud'),
+      '@': path.resolve(__dirname, '../static/src')
+    },
+    extensions: ['.js', '.json', '.vue', '.ts', '.tsx']
   }
 };

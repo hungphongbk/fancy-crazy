@@ -15,7 +15,7 @@
               page-link(:is-disabled="!canPrev", @click="prevPage") Previous
               page-link(v-for="page in pages", :key="page.index", :is-current="page.label===current", @click="()=>goToPage({page:page.index})") {{page.label}}
               page-link(:is-disabled="!canNext", @click="nextPage") Next
-    //.row.mt-6
+    .row.mt-6
       .col-sm-12
         fragment-reviews(:items="group1")
         fragment-reviews(:items="group2")

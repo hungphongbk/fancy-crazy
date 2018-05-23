@@ -13,26 +13,30 @@
           .text-center
             h6.font-weight-bold.mt-3 GOOD FANCY CRAZY GUARANTEED
             div(v-html="injections.text")
+            component.mt-2(:is="injections.comp.Contact")
+            p.mt-4 <small>© 2018 Copyright FancyCrazy Inc. All Right Reserved.</small>
     div(v-else)
       .row
-        .col-sm-4
+        .col-sm-3
           div
             slot(name="brand")
-        .col-sm-8
+        .col-sm-9
           .row
-            .col-sm-3
-              h4 Information
+            .col-sm-4
+              h5.d-inline-block.mb-3.font-weight-bold INFORMATION
               slot(name="info")
             .col-sm-5
-              h4 Good Fancy Crazy Guaranteed
+              h5.font-weight-bold GOOD FANCY CRAZY GUARANTEED
               div(v-html="injections.text")
-            .col-sm-4
+            .col-sm-3
+              component.mt-5(:is="injections.comp.Contact")
         .col-sm-12
           hr
           p.mt-2 © 2018 Copyright FancyCrazy Inc. All Right Reserved.
 </template>
 <script>
   import Dropdown from '@/js/components/universal/dropdown'
+  import Contact from '@/js/components/footer-contact'
   //hack
   import Vue from 'vue'
 
@@ -46,7 +50,8 @@
     inject: {
       comp: {
         default: {
-          Dropdown
+          Dropdown,
+          Contact
         }
       },
       vm:{

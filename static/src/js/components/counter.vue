@@ -1,6 +1,11 @@
 <style lang="scss" module>
-  .counter input.input{
-    width: 1.85rem;
+  .counter {
+    flex-wrap: nowrap;
+    width: unset;
+    input.input{
+      flex: 0 0 auto;
+      width: 1.85rem;
+    }
   }
 </style>
 <template lang="pug">

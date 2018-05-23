@@ -98,6 +98,9 @@
     .cart-panel{
       width: unset;
     }
+    .title+span{
+
+    }
   }
 </style>
 <template lang="pug">
@@ -121,7 +124,7 @@
               span
                 price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false")
                 br
-                span.d-flex.flex-row.mt-2
+                span.d-flex.flex-row.mt-2.justify-content-end
                   counter.input-group-sm(:value="item.quantity", @input="quantity => change({id: item.id, quantity})")
                   .btn.btn-danger.btn-sm.ml-1(:class="$style.remove", @click="remove({id: item.id})")
                     fa-icon(:icon="TimesIcon" style="color: white", size="xs")
