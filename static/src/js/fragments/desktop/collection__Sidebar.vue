@@ -13,16 +13,21 @@
     margin-left: 1rem;
     margin-bottom: .5rem;
   }
+
+  .filter{
+    border-radius: 1.2rem !important;
+    background-color: $gray-100;
+  }
 </style>
 <template lang="pug">
   div(:class="$style.sidebar")
     template(v-if="FILTERED_COLLECTION || FILTERED_TAG")
       h5.mb-3 Filtered by
       ul.list-group
-        a.list-group-item.list-group-item-action(v-if="FILTERED_COLLECTION")
+        a.list-group-item.list-group-item-action(v-if="FILTERED_COLLECTION", :class="$style.filter")
           strong {{FILTERED_COLLECTION.title}}
           button.close(@click="GO_TO_COLLECTION()") <span aria-hidden="true">&times;</span>
-        a.list-group-item.list-group-item-action(v-if="FILTERED_TAG", href="javascript:void(0)")
+        a.list-group-item.list-group-item-action(v-if="FILTERED_TAG", href="javascript:void(0)", :class="$style.filter")
           strong {{FILTERED_TAG.title}}
           button.close(@click="GO_TO_TAG()") <span aria-hidden="true">&times;</span>
     h5.mt-4.mb-4 PRODUCTS
@@ -32,7 +37,7 @@
           a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="TOGGLE_MENU(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
             span {{col.title}}
             fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle[index]?null:180")
-          transition(v-if="toggle[index]", name="fade")
+          dropdown(:is-open="toggle[index]")
             div(:class="$style.children")
               a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="GO_TO_COLLECTION(childCol.url)") {{childCol.title}}
         a.list-group-item.list-group-item-action(v-else, @click="GO_TO_COLLECTION(col.url)") {{col.title}}
@@ -44,14 +49,16 @@
 <script>
   import collectionMixin from '@/js/fragments/mixins/collection__Sidebar'
   import FA_CHEVRON_UP from '@fortawesome/fontawesome-free-solid/faChevronUp'
+  import Dropdown from "@/js/components/universal/dropdown";
 
   export default {
     mixins: [collectionMixin],
+    components: {Dropdown},
     data: () => ({
       toggle: Array(50).fill(false),
       FA_CHEVRON_UP
     }),
-    methods:{
+    methods: {
       TOGGLE_MENU(index) {
         this.$set(this.toggle, index, !this.toggle[index])
       }

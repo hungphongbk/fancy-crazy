@@ -35,7 +35,7 @@
       color: $gray-600;
       margin-top: .19rem;
     }
-    .title{
+    .title {
       @include font-size-with-line-height($h6-font-size);
     }
   }
@@ -49,10 +49,14 @@
 </style>
 <template lang="pug">
   .mx-3
+    .d-flex.align-items-center
+      star-rating.d-inline-block(:rating="REVIEW_POINT", :star-size="$mq.phone?15:20", :show-rating="false", :read-only="true")
+      .d-inline-block.ml-2 {{items.length}} Reviews
+    hr
     slider(type="flickity", :opts="opts", theme="dark")
       .px-2(:class="$style.item", v-for="item in items")
         .d-flex.justify-content-between.mb-2.mr-sm-4
-          star-rating(:rating="item.rating", :star-size="$mq.phone?15:40", :show-rating="false", :read-only="true")
+          star-rating(:rating="item.rating", :star-size="$mq.phone?15:30", :show-rating="false", :read-only="true")
           span.mr-sm-6.mt-sm-3(:class="$style.timestamp")
             //span.d-inline-block
             fa-icon.mr-2(:icon="faClock")
@@ -71,6 +75,8 @@
   import {Slider} from "@/js/components";
   import StarRating from 'vue-star-rating'
   import faClock from "@fortawesome/fontawesome-free-regular/faClock"
+  import sum from "lodash/sum";
+  import round from "lodash/round";
 
   export default {
     components: {Slider, StarRating},
@@ -85,6 +91,11 @@
       opts: {
         infinite: true
       }
-    })
+    }),
+    computed: {
+      REVIEW_POINT() {
+        return round(sum(this.items.map(i => i.rating)) / this.items.length, 1);
+      }
+    }
   }
 </script>

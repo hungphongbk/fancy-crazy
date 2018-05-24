@@ -59,7 +59,7 @@
     /*left: 0;*/
     overflow: scroll;
     >div{
-      height: 100%;
+      min-height: 100%;
     }
   }
 </style>

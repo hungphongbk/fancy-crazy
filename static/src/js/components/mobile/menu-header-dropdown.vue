@@ -43,9 +43,9 @@
       h5.m-0(:class="{ [$style.title]:true, [$style.open]:IS_TOGGLE }") {{item.title}}
       fa-icon(:icon="FA_CHEVRON_DOWN", v-if="item.hasDropdown", :class="{ [$style.icon]:true }")
     //div(:class="$style.dropdownPanel", v-if="item.hasDropdown", :style="{height: DROPDOWN_HEIGHT_PX}", ref="dropdown")
-    dropdown(:class="$style.dropdownPanel", v-if="item.hasDropdown", :is-open="IS_TOGGLE")
+    dropdown(:class="[$style.dropdownPanel]", v-if="item.hasDropdown", :is-open="IS_TOGGLE")
       .pt-3
-        a.px-2.text-center.d-block(v-for="child in item.children", :href="child.url")
+        a.text-center.d-block(v-for="child in item.children", :href="child.url", :class="item.children.length===5?$bs.px6:$bs.px2")
           img.w-100(:src="child.image | shopifyImgUrl")
           h5(:class="$style.subtitle") {{child.title|uppercase}}
 </template>

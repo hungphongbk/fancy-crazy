@@ -14,7 +14,7 @@
     .container
       fragment-featured-products(:index="3", :columns="3").mt-4
     .mt-5
-      fragment-reviews(:items="reviews.group3")
+      fragment-reviews(:items="reviews.group3", :not-slide="true")
 </template>
 <script>
   import indexModule from '@/js/store/page-index'
@@ -37,6 +37,11 @@
       }
     },
     async created() {
+      this.$store.subscribe(mutation=>{
+        if(mutation.type==='pageIndex/fetch'){
+
+        }
+      })
       await this.$store.dispatch('pageIndex/fetch');
     }
   }

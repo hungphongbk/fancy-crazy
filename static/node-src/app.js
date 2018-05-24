@@ -1,5 +1,6 @@
 import Spreadsheet   from './Spreadsheet';
 import ImgCompressor from './ImgCompressor';
+import cache         from './Cache';
 import path          from 'path';
 import fs            from 'fs';
 import groupBy       from 'lodash/groupBy';
@@ -10,6 +11,11 @@ import random        from 'lodash/random';
 import range         from 'lodash/range';
 import chunk         from 'lodash/chunk';
 import Shopify       from 'shopify-api-node';
+import Bluebird      from 'bluebird';
+
+//region Somethings
+const cacheGet = Bluebird.promisify(cache.get, {context: cache}),
+  cacheSet = Bluebird.promisify(cache.set, {context: cache});
 
 const s = new Spreadsheet(path.resolve(__dirname, '../dist/reviews.json')),
   shopify = new Shopify({
@@ -18,28 +24,59 @@ const s = new Spreadsheet(path.resolve(__dirname, '../dist/reviews.json')),
     password: '7f6a7e330da245f0049ff3a642e3abdc'
   });
 
-const timeout = ms => new Promise(res => setTimeout(res, ms));
+const TTL = 2592000,
+  timeout = ms => new Promise(res => setTimeout(res, ms));
 
-const cols = [], products = [];
+
+function retry(fn, max = 2) {
+  return new Promise(async (resolve, reject) => {
+    let retryCounter = 0;
+    while (true) {
+      try {
+        resolve(await fn());
+        break;
+      } catch (e) {
+        console.log(`Retry ${++retryCounter}`);
+        if (retryCounter >= max) {
+          reject();
+          break;
+        }
+      }
+    }
+  });
+}
+
+//endregion
 
 async function task1() {
-  async function getRandonlyProduct(collection_id) {
-    if (!cols[collection_id]) {
-      cols[collection_id] = await shopify.collect.list({collection_id, fields: 'collection_id,product_id'});
+  async function getRandomlyProduct(collection_id) {
+    let collects = await cacheGet(collection_id);
+    if (!collects) {
+      console.log('[App] start caching collects from collection_id=' + collection_id);
+      try {
+        collects = await retry(() => shopify.collect.list({collection_id, fields: 'collection_id,product_id'}));
+        await cacheSet(collection_id, collects, TTL);
+      } catch (e) {
+        return '';
+      }
     }
-    // console.log(`id = ${collection_id} has ${cols[collection_id].length} collects`);
-    const collects = cols[collection_id];
+
     if (collects.length === 0) return null;
     let product_id;
     do {
       const index = random(collects.length - 1);
       product_id = collects[index].product_id;
     } while (typeof product_id === 'undefined');
-    if (!products[product_id]) {
-      products[product_id] = await shopify.product.get(product_id);
+
+    //get product from product_id
+    let product = await cacheGet(product_id);
+    if (!product) {
+      console.log('[App] start caching product, product_id=' + product_id);
+      product = await retry(() => shopify.product.get(product_id));
+      await cacheSet(product_id, product, TTL);
     }
 
-    let i, counter = 0, images = products[product_id].images;
+    let i, counter = 0, images = product.images;
     do {
       i = random(images.length - 1);
     } while (!(images[i] && (!/sizechart/.test(images[i].src))) && ++counter < images.length * 2);
@@ -51,8 +88,9 @@ async function task1() {
   }
 
   async function transformItem(item) {
+    // debugger;
     if (item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id)) {
-      item.image_url = await getRandonlyProduct(item.collection_id);
+      item.image_url = await getRandomlyProduct(item.collection_id);
     } else if (item.type === 'image-only' && /thenativesite/.test(item.image_url)) {
       item.image_url = await ImgCompressor.generateImageSet(item.image_url);
     }
@@ -68,7 +106,7 @@ async function task1() {
     return [].concat(custom, smart);
   }
 
-  s.readSheetData()
+  await s.readSheetData()
     .then(async arr => {
       const collections = await getAllCollections(),
         remove = id => {
@@ -80,16 +118,23 @@ async function task1() {
         };
       console.log(`fetch ${collections.length} collections`);
 
-      let filesObj_ = {};
+      let filesObj_ = {
+        index: []
+      };
       for (const item of arr) {
         if (typeof item.collection_id !== 'undefined' && item.collection_id.length > 0) {
-          for (const id of item.collection_id.split(',')) if (id.length > 0) {
+          const ids = item.collection_id.split(',')
+            .map(id => id.trim())
+            .filter(id => id.length > 0);
+          for (const id of ids) if (id.length > 0) {
             if (!filesObj_[id]) filesObj_[id] = [];
 
             const newItem = clone(item);
             newItem.collection_id = id;
             filesObj_[id].push(newItem);
           }
+        } else if (item.position === 'index') {
+          filesObj_.index.push(item);
         }
       }
       filesObj_ = flatten(Object.values(filesObj_));

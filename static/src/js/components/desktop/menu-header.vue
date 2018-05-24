@@ -60,6 +60,10 @@
     }
   }
 
+  .nav-item.text-only {
+    position: relative;
+  }
+
   .searchGroup {
     /*position: absolute;*/
     /*right: 0;*/
@@ -103,9 +107,9 @@
         img.img-fluid(style="height: 70px;", src="@/images/logo-soa.png")
       .navbar-collapse.collapse.d-flex.justify-content-center
         ul.navbar-nav
-          li.nav-item(v-for="menuItem in menuList", :class="{[$bs.active]: menuItem.isActive, [$bs.dropdown]:menuItem.hasDropdown, [$style.dropdown]:menuItem.hasDropdown, [$style.custom]: true, [$style.navItem]: true}")
+          li.nav-item(v-for="menuItem in menuList", :class="{[$bs.active]: menuItem.isActive, [$bs.dropdown]:menuItem.hasDropdown, [$style.dropdown]:menuItem.hasDropdown, [$style.custom]: true, [$style.navItem]: true, [$style.textOnly]: menuItem.isTextOnly}")
             nav-link(:item="menuItem") {{menuItem.title}}
-            menu-header-dropdown(:class="$style.dropdownMenu", v-if="menuItem.hasDropdown", :children="menuItem.children")
+            menu-header-dropdown(:class="$style.dropdownMenu", v-if="menuItem.hasDropdown", :children="menuItem.children", :is-text-only="menuItem.isTextOnly || false")
       .navbar-collapse.collapse.mr-5.justify-content-end(:class="$style.searchGroup")
         transition(name="fade")
           div(v-if="isSearchMode", :class="$style.searchPanel")

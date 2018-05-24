@@ -8,6 +8,16 @@
     top: calc(100% - 0.7rem);
     border: unset;
     border-radius: unset;
+    @include lbn-box-shadow(5px);
+    &.text-only{
+      box-shadow: unset;
+      min-width: 300px;
+      left: unset;
+
+      .dropdown-item{
+        text-transform: uppercase;
+      }
+    }
 
     &-item {
       @include reset-link {
@@ -17,7 +27,7 @@
       &:hover {
         color: $theme-red;
       }
-      /*flex-grow: 1;*/
+      flex-basis: unset;
       :global(.length-3) & {
         flex-basis: percentage(1/3);
       }
@@ -29,16 +39,15 @@
     @at-root .title {
       font-family: Oswald, sans-serif;
     }
-    @include lbn-box-shadow(5px);
   }
 </style>
 <template lang="pug">
-  .dropdown-menu.d-flex.justify-content-center.px-5.pb-4(:class="[$style.dropdown, `length-${children.length}`, children.length===5?$bs.pt1:$bs.pt4 ]")
+  .dropdown-menu.d-flex.justify-content-center.pb-4(:class="DROPDOWN_CLASSES")
     a.mx-1.d-flex.flex-column.align-items-center(:class="$style.dropdownItem", v-for="child in children", :href="child.url")
       //div(:class="children.length===5?$bs.mx6:$bs.mx4")
-      .mx-5
+      .mx-5(v-if="child.image")
         img.w-100(:src="child.image | shopifyImgUrl")
-      h4.mt-4(:class="$style.title") {{child.title}}
+      h4(:class="[$style.title, isTextOnly?$bs.mt3:$bs.mt4]") {{child.title}}
 </template>
 <script>
   export default {
@@ -46,6 +55,29 @@
       children: {
         type: Array,
         required: true
+      },
+      isTextOnly: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed:{
+      DROPDOWN_CLASSES(){
+        const cls=[this.$style.dropdown];
+        if(!this.isTextOnly){
+          cls.push(...[
+            this.$bs.px5,
+            `length-${this.children.length}`,
+            this.children.length===5?this.$bs.pt1:this.$bs.pt4
+          ])
+        } else {
+          cls.push([
+            this.$bs.px2,
+            this.$style.textOnly,
+            this.$bs.flexColumn
+          ])
+        }
+        return cls;
       }
     }
   }

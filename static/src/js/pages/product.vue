@@ -18,13 +18,16 @@
   }
 
   @include media-breakpoint-down(sm) {
+    .page-product{
+      font-size: .9em;
+    }
     .prices {
       font-size: $h4-font-size;
     }
   }
 </style>
 <template lang="pug">
-  .container.pt-2.px-sm-6
+  .container.pt-2.px-sm-6(:class="$style.pageProduct")
     .row
       .col-sm-7
         template(v-if="!$mq.phone")

@@ -1,4 +1,5 @@
 import {shopifyImgUrl} from "@/js/plugins/filters";
+import {assert}        from "@/js/plugins/helpers";
 
 const filterImg = (images, onlySizeCharts = false) =>
   images.filter(url => /sizechart_/g.test(url) === onlySizeCharts);
@@ -41,6 +42,9 @@ export default {
     selectedImage: ({product, selectedImage}) => product.images[selectedImage]
   },
   mutations: {
+    refine(state) {
+      state.product.images = state.product.images.filter(i => assert(i) && typeof i === 'string');
+    },
     select(state, {variantId}) {
       state.selected = state.product.variants.find(({id}) => id === variantId);
     },
@@ -50,6 +54,7 @@ export default {
   },
   actions: {
     initial({commit, state}) {
+      // commit('refine');
       commit('select', {variantId: state.product.variants[0].id});
     },
     select({commit, state, getters}, variant) {
@@ -57,7 +62,7 @@ export default {
 
       //find image and selected it
       console.log(state.selected.image);
-      const variantImg=shopifyImgUrl(state.selected.image,'large',false),
+      const variantImg = shopifyImgUrl(state.selected.image, 'large', false),
         index = state.product.images.findIndex(i => i === variantImg);
       commit('selectImage', {index});
     }

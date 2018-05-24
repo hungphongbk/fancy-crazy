@@ -68,8 +68,9 @@ const getFileInCache: (string => string | null) = url => {
  */
 const generateImageSet = async (url: String) => {
   if (cache === null) {
+    console.log('[GoogleCloud Storage] start caching. Please wait...');
     cache = (await getBucket().getFiles())[0];
-    console.log(`Cached ${cache.length} files`);
+    console.log(`[GoogleCloud Storage] cached ${cache.length} files`);
   }
   const hasCache = getFileInCache(url);
   if (hasCache) return hasCache;

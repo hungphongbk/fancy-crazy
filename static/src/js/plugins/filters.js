@@ -6,6 +6,7 @@ Vue.use(VueFilters);
 Vue.filter('secure', url => url.replace('http:/', 'https:/'));
 
 const shopifyImgUrl = (_url, size = '', appendCdn = true) => {
+  if (typeof _url === 'undefined') return '';
   const sizes = 'thumb,small,compact,medium,large,grande,original,master'.split(','),
     sizeRegex = new RegExp(sizes.join('|'));
 

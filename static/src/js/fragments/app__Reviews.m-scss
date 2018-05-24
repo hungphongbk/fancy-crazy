@@ -1,0 +1,18 @@
+@import "../../scss/inc";
+
+@mixin w($s){
+  flex: 0 0 percentage($s);
+  width: percentage($s);
+}
+
+.item {
+  @include w(1/3);
+  @include media-breakpoint-up(sm) {
+    &.big{
+      @include w(1/4);
+    }
+    &.small{
+      @include w(1/6);
+    }
+  }
+}
