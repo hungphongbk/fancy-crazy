@@ -76,7 +76,6 @@
   import StarRating from 'vue-star-rating'
   import faClock from "@fortawesome/fontawesome-free-regular/faClock"
   import sum from "lodash/sum";
-  import round from "lodash/round";
 
   export default {
     components: {Slider, StarRating},
@@ -93,8 +92,11 @@
       }
     }),
     computed: {
+      /**
+       * @return {number}
+       */
       REVIEW_POINT() {
-        return round(sum(this.items.map(i => i.rating)) / this.items.length, 1);
+        return (sum(this.items.map(i => i.rating)) / this.items.length).toFixed(1);
       }
     }
   }

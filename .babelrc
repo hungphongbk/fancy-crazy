@@ -7,6 +7,8 @@
     "react"
   ],
   "plugins": [
+    "transform-class-properties",
+    ["transform-es2015-classes", {"loose": true}],
     "jsx-v-model",
     "jsx-event-modifiers",
     "transform-vue-jsx",

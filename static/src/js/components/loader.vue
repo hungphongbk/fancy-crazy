@@ -67,6 +67,13 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    &.internal {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: unset;
+      height: unset;
+    }
     background: rgba(#fff, .45);
 
     display: flex;
@@ -84,7 +91,7 @@
   }
 </style>
 <template functional lang="pug">
-  div(:class="$style.loaderOverlay")
+  div(:class="[$style.loaderOverlay, props.isInternal?$style.internal:null]")
     div(:class="$style.wrapper")
       svg(:class="$style.spinner", viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg")
         circle(:class="$style.path", fill="none" stroke-width="4" stroke-linecap="round" cx="25" cy="25" r="23")
