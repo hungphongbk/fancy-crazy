@@ -5,6 +5,28 @@
     border-radius: unset;
     font-family: Oswald, sans-serif;
     @include font-size-with-line-height($font-size-base*1.7);
+
+    @include media-breakpoint-down(sm) {
+      &-wrapper {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+        padding: 1rem {
+          top: .5rem;
+        }
+        z-index: 10;
+        background-color: white;
+        @include lbn-box-shadow(-2px);
+
+        transition: all $animation-time*1.5 ease;
+        transform: translateY(100%);
+        &.scrolled {
+          transform: translateY(0);
+        }
+      }
+    }
   }
 
   .content {
@@ -18,7 +40,7 @@
   }
 
   @include media-breakpoint-down(sm) {
-    .page-product{
+    .page-product {
       font-size: .9em;
     }
     .prices {
@@ -27,7 +49,7 @@
   }
 </style>
 <template lang="pug">
-  .container.pt-2.px-sm-6(:class="$style.pageProduct")
+  .container.pt-2.px-sm-6.pb-6(:class="$style.pageProduct")
     .row
       .col-sm-7
         template(v-if="!$mq.phone")
@@ -46,7 +68,8 @@
         h2(:class="$style.prices")
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
-        .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
+        div(:class="{ [$style.addToCartWrapper]: true, [$style.scrolled]: MOBILE_TOGGLE_ADD_TO_CART }")
+          .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
         img.w-100(:src="IMG_SECURE_PAYMENT")
         .text-center.px-2.px-sm-6
           p <b>All our products are custom printed and designed with love just for you!</b>
@@ -75,6 +98,7 @@
   import {mapGetters, mapState} from 'vuex';
   import FragmentExpandable from "@/js/fragments/product__Expandable";
   import {Magnifier} from "@/js/plugins";
+  import {GLOBAL_EVENTS} from "@/js/plugins";
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -88,7 +112,8 @@
     data() {
       return {
         IMG_SECURE_PAYMENT,
-        BTN_TITLE: 'BUY IT NOW!'
+        BTN_TITLE: 'BUY IT NOW!',
+        MOBILE_TOGGLE_ADD_TO_CART: false
       };
     },
     computed: {
@@ -105,7 +130,7 @@
       ADD_TO_CART_CLASSES() {
         const bs = this.$bs,
           cls = [this.$style.addToCart];
-        if (!this.IS_VARIANT_AVAILABLE) {
+        if ((!this.IS_VARIANT_AVAILABLE) || (this.$mq.phone)) {
           cls.push(...[bs.roundedTop, bs.mt2]);
         }
         if (/^ADD/.test(this.BTN_TITLE))
@@ -124,11 +149,15 @@
       }
     },
     async created() {
-      if(this.$mq.phone){
-        this.$appStore.subscribe(mutation=>{
-          if(mutation.type==='cart/addToCart'){
+      if (this.$mq.phone) {
+        this.$appStore.subscribe(mutation => {
+          if (mutation.type === 'cart/addToCart') {
             this.$appStore.commit('cart/togglePopup');
           }
+        });
+        document.getElementById('app').style.paddingBottom = '60px';
+        GLOBAL_EVENTS.$on('scroll', value => {
+          this.MOBILE_TOGGLE_ADD_TO_CART = value;
         })
       }
       await Promise.all([

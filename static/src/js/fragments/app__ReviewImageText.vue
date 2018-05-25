@@ -96,7 +96,7 @@
        * @return {number}
        */
       REVIEW_POINT() {
-        return (sum(this.items.map(i => i.rating)) / this.items.length).toFixed(1);
+        return (sum(this.items.map(i => i.rating)) / this.items.length).toFixed(1)*1.0;
       }
     }
   }

@@ -14,9 +14,31 @@
     margin-bottom: .5rem;
   }
 
-  .filter{
+  .filter {
     border-radius: 1.2rem !important;
     background-color: $gray-100;
+    font-size: $font-size-base*0.85;
+    @include lbn-box-shadow();
+    transition: all $animation-time ease;
+    &:hover {
+      @include lbn-box-shadow(3px);
+    }
+    > button {
+      font-size: 1.12rem;
+      height: 1.2rem;
+      display: inline-block;
+      width: 1.2rem;
+      border-radius: 50%;
+      background-color: rgba(#000, 0);
+      transition: all $animation-time*0.75 ease;
+      margin-right: -0.6rem;
+      >span{
+        text-shadow: none;
+      }
+      &:hover {
+        background-color: rgba(#000, .1);
+      }
+    }
   }
 </style>
 <template lang="pug">
@@ -24,7 +46,7 @@
     template(v-if="FILTERED_COLLECTION || FILTERED_TAG")
       h5.mb-3 Filtered by
       ul.list-group
-        a.list-group-item.list-group-item-action(v-if="FILTERED_COLLECTION", :class="$style.filter")
+        a.list-group-item.list-group-item-action(v-if="FILTERED_COLLECTION", href="javascript:void(0)", :class="$style.filter")
           strong {{FILTERED_COLLECTION.title}}
           button.close(@click="GO_TO_COLLECTION()") <span aria-hidden="true">&times;</span>
         a.list-group-item.list-group-item-action(v-if="FILTERED_TAG", href="javascript:void(0)", :class="$style.filter")

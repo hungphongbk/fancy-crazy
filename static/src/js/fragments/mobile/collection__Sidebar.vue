@@ -6,7 +6,7 @@
   }
 
   .sidebar {
-    > div:first-child {
+    > .dropdown-list {
       border: {
         top: 1px solid $gray-400;
         bottom: 1px solid $gray-400;
@@ -41,10 +41,49 @@
   .dropdown {
     overflow: hidden;
   }
+
+  .filter {
+    padding: .4rem 1rem;
+
+    border-radius: 1.2rem !important;
+    background-color: $gray-100;
+    font-size: $font-size-base*0.78;
+    @include lbn-box-shadow();
+    transition: all $animation-time ease;
+    &:hover {
+      @include lbn-box-shadow(3px);
+    }
+    > button {
+      font-size: 1rem;
+      height: 1.1rem;
+      display: inline-block;
+      width: 1.1rem;
+      border-radius: 50%;
+      background-color: rgba(#000, 0);
+      transition: all $animation-time*0.75 ease;
+      margin-right: -0.55rem;
+      > span {
+        text-shadow: none;
+      }
+      &:hover {
+        background-color: rgba(#000, .1);
+      }
+    }
+  }
 </style>
 <template lang="pug">
   div(:class="$style.sidebar")
-    .d-flex.mx-3
+    template(v-if="FILTERED_COLLECTION || FILTERED_TAG")
+      .row.mb-4.mx-3.no-gutter
+        .col-6.px-2(v-if="FILTERED_COLLECTION")
+          div(:class="$style.filter")
+            strong {{FILTERED_COLLECTION.title}}
+            button.close(@click="GO_TO_COLLECTION()") <span aria-hidden="true">&times;</span>
+        .col-6.px-2(v-if="FILTERED_TAG")
+          div(:class="$style.filter")
+            strong {{FILTERED_TAG.title}}
+            button.close(@click="GO_TO_TAG()") <span aria-hidden="true">&times;</span>
+    .d-flex.mx-3(:class="$style.dropdownList")
       .border-right(:class="DROPDOWN_BUTTON", @click="()=> IS_COLLECTION_TOGGLE = !IS_COLLECTION_TOGGLE")
         h6.mx-2.my-0(:class="{ [$style.title]:true, [$style.open]:IS_COLLECTION_TOGGLE }") PRODUCTS
         fa-icon(:icon="FA_CHEVRON_DOWN", :class="{ [$style.icon]:true }")
@@ -90,6 +129,14 @@
       TOGGLE_MENU(index) {
         this.$set(this.toggle, index, !this.toggle[index])
       }
+    },
+    mounted() {
+      this.$store.subscribe(mutation => {
+        if (mutation.type === 'pageCollections/goToPage') {
+          this.IS_COLLECTION_TOGGLE = false;
+          this.IS_TAG_TOGGLE = false;
+        }
+      })
     }
   }
 </script>

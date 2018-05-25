@@ -180,6 +180,7 @@
     "shopify-api-node": "^2.14.0",
     "shopify-token": "^3.0.2",
     "spawn-sync": "^2.0.0",
-    "string-hash": "^1.1.3"
+    "string-hash": "^1.1.3",
+    "vue-scroll": "^2.1.7"
   }
 }

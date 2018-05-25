@@ -8,11 +8,11 @@ import VueLazyload     from 'vue-lazyload';
 import './fontawesome';
 // import {delay} from '../components/helpers'
 // import './observe-visibility'
-import {detect}        from 'detect-browser';
 import * as filters    from './filters';
 import './tooltip';
 
 import smoothscroll from 'smoothscroll-polyfill';
+import vuescroll    from 'vue-scroll';
 //
 // import 'vue-carousel'
 
@@ -49,14 +49,6 @@ for (const key of Object.keys(filters)) {
   Vue.filter(key, filters[key]);
 }
 
-const browser = detect();
-Object.defineProperty(Vue.prototype, '$browser', {
-  get() {
-    if (browser) return browser.name;
-    return '';
-  }
-});
-
 // export const tooltip = (el, {value, modifiers = {top: true}}) => $(el).tooltip({
 //   placement: (() => {
 //     let pos = null;
@@ -74,4 +66,6 @@ export {Magnifier};
 // kick off the polyfill!
 smoothscroll.polyfill();
 
+Vue.use(vuescroll);
 
+export const GLOBAL_EVENTS = new Vue();

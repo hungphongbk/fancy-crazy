@@ -3,6 +3,12 @@
 
 //$fa-font-path: "~font-awesome/fonts";
 //@import "~font-awesome/scss/font-awesome.scss";
+html,body{
+  height: 100%;
+  max-height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 :global(#preview-bar-iframe){
   display: none !important;
 }

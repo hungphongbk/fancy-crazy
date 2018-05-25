@@ -1,5 +1,11 @@
+<style lang="scss">
+  #app {
+    height: 100%;
+    overflow: scroll;
+  }
+</style>
 <template lang="pug">
-  #app
+  #app(v-scroll="onScroll", ref="app")
     site-header
     #primary.clearfix
       main#main(role="main")
@@ -12,6 +18,7 @@
   import SiteHeader from '@/js/components/menu-header'
   import SiteFooter from '@/js/components/footer'
   import Loader from '@/js/components/loader'
+  import {GLOBAL_EVENTS} from "@/js/plugins";
 
   const $ = jQuery;
   export default {
@@ -20,18 +27,39 @@
       SiteFooter,
       Loader
     },
+    data() {
+      return {
+        SCROLL_TOP: 0
+      }
+    },
     computed: {
       IS_LOADING() {
         return this.$store.state.isLoading;
+      },
+      /**
+       * @return {boolean}
+       */
+      IS_SCROLLING() {
+        return this.SCROLL_TOP > 60;
+      }
+    },
+    watch: {
+      IS_SCROLLING(value) {
+        GLOBAL_EVENTS.$emit('scroll', value);
+      }
+    },
+    methods: {
+      onScroll(_, {scrollTop}) {
+        this.SCROLL_TOP = scrollTop;
       }
     },
     async created() {
       this.$appStore.subscribe(mutation => {
         if (mutation.type === 'lockScroll') {
           const val = this.$appStore.state.lockScroll;
-          $('body').css({overflow: val ? 'hidden' : 'scroll'})
+          $(this.$refs.app).css({overflow: val ? 'hidden' : 'scroll'})
         }
-      })
+      });
       await this.$store.dispatch('cart/fetch');
     }
   }

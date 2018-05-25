@@ -1,7 +1,7 @@
 <template lang="pug">
   .container-fluid.pt-3
     div(ref="anchor")
-    fragment-breadcrumb.mb-3
+    fragment-breadcrumb(v-if="!$mq.phone").mb-3
     collection-layout
       template(slot="sidebar")
         collection-sidebar

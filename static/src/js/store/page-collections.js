@@ -105,23 +105,28 @@ export default {
   },
   actions: {
     async fetch({commit, state}, url = null) {
-      const reviews = await $.get(url || state.reviewUrl),
-        obj = {};
-      for (const r of reviews) {
-        if (typeof r.rating !== 'undefined') {
-          const rating = r.rating.replace(/\s*sao/g, '');
-          r.rating = rating * 1.0;
-        }
+      try {
+        const reviews = await $.get(url || state.reviewUrl),
+          obj = {};
+        for (const r of reviews) {
+          if (typeof r.rating !== 'undefined') {
+            const rating = r.rating.replace(/\s*sao/g, '');
+            r.rating = rating * 1.0;
+          }
 
-        const group = r.group.replace(/\s/, '');
-        if (!obj[group])
-          obj[group] = [];
-        obj[group].push(r);
+          const group = r.group.replace(/\s/, '');
+          if (!obj[group])
+            obj[group] = [];
+          obj[group].push(r);
+        }
+        for (const key of Object.keys(obj))
+          if (obj[key].length === 0)
+            delete obj[key];
+        commit('fetchReview', obj);
+      } catch (e) {
+        //do nothing
+        console.log('review not found');
       }
-      for (const key of Object.keys(obj))
-        if (obj[key].length === 0)
-          delete obj[key];
-      commit('fetchReview', obj);
     },
     async _navigate({commit, dispatch, getters}) {
       window.history.pushState('string', '', '/collections/' + getters.url);

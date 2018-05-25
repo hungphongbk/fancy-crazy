@@ -150,7 +150,7 @@ templates/blog.liquid:
 templates/cart.liquid:
   development: 2018-05-19T02:53:07-07:00   6ebde04a2ab52a22c9dfa9a2b62e977d
 templates/collection.json.liquid:
-  development: 2018-05-18T13:00:01-07:00   628f3f6c7a3e5cc49e5fce4fc67f0b4a
+  development: 2018-05-25T19:13:05+07:00   5ef99a096363bced76cd66c1824caac7
 templates/collection.liquid:
   development: 2018-05-18T13:00:01-07:00   978b636fec9ed546466533b7b02602e5
 templates/customers/account.liquid:
