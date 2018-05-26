@@ -19,12 +19,6 @@
         z-index: 10;
         background-color: white;
         @include lbn-box-shadow(-2px);
-
-        transition: all $animation-time*1.5 ease;
-        transform: translateY(100%);
-        &.scrolled {
-          transform: translateY(0);
-        }
       }
     }
   }
@@ -68,7 +62,7 @@
         h2(:class="$style.prices")
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
-        div(:class="{ [$style.addToCartWrapper]: true, [$style.scrolled]: MOBILE_TOGGLE_ADD_TO_CART }")
+        div(:class="{ [$style.addToCartWrapper]: true }", :style="ADD_TO_CART_OUTER_SCROLL")
           .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
         img.w-100(:src="IMG_SECURE_PAYMENT")
         .text-center.px-2.px-sm-6
@@ -136,6 +130,14 @@
         if (/^ADD/.test(this.BTN_TITLE))
           cls.push(bs.disabled);
         return cls;
+      },
+      ADD_TO_CART_OUTER_SCROLL() {
+        if (!this.$mq.phone) return {};
+        const percentage = (100 - this.MOBILE_TOGGLE_ADD_TO_CART * 100) + '%';
+        return {
+          'transform': `translateY(${percentage})`,
+          '-webkit-transform': `translateY(${percentage})`
+        }
       }
     },
     methods: {

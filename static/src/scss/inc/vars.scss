@@ -61,3 +61,9 @@ $sizes: (
 
 $list-group-item-padding-y: .5rem;
 $list-group-border-radius: 0;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$mobile-navbar-height: 55px;
+$mobile-navbar-full-height: calc(#{$mobile-navbar-height} + #{$navbar-padding-y*2});

@@ -1,13 +1,17 @@
 <style lang="scss" module>
   @import "../../../scss/inc";
 
-  $s: 55px;
+  $s: $mobile-navbar-height;
   .part {
     flex-basis: percentage(1/3)
   }
 
   .logo {
     margin-top: -$navbar-padding-y/2 !important;
+    padding: .3rem;
+    img {
+      height: calc(#{$mobile-navbar-height} - .6rem);
+    }
   }
 
   .mobile-open {
@@ -58,14 +62,14 @@
     /*right: 0;*/
     /*left: 0;*/
     overflow: scroll;
-    >div{
+    > div {
       min-height: 100%;
     }
   }
 </style>
 <template lang="pug">
   header.sticky-top
-    nav.navbar.navbar-expand-sm.navbar-light.bg-white.d-flex.justify-content-between(:class="$style.nav")
+    nav.navbar.navbar-expand-sm.navbar-light.bg-white.d-flex.justify-content-between(:class="$style.nav", :style="NAVBAR_BOX_SHADOW")
       div(:class="$style.part")
         .navbar-collapse
           div(:class="{ [$style.mobileOpen]:true, [$style.open]:IS_TOGGLE }", @click="IS_TOGGLE = !IS_TOGGLE")
@@ -76,8 +80,9 @@
             menu-header-dropdown(v-for="item in menuList", :key="item.handle", :item="item")
       .d-flex.justify-content-center(:class="$style.part")
         a.navbar-brand.p-0.m-0(href="/", :class="$style.logo")
-          img.img-fluid(style="height: 55px;", src="@/images/logo-soa.png")
+          img.img-fluid(src="@/images/logo-soa.png")
       .d-flex.justify-content-end(:class="$style.part")
+        search.mr-3
         cart
 </template>
 <script>
@@ -85,21 +90,40 @@
   import Cart from '@/js/components/universal/cart'
   import Modal from '@/js/components/universal/modal';
   import MenuHeaderDropdown from '@/js/components/mobile/menu-header-dropdown'
+  import Search from '@/js/components/universal/search'
+  import {GLOBAL_EVENTS} from "@/js/plugins";
 
   export default {
     mixins: [menuMixin],
     components: {
       Cart,
       Modal,
-      MenuHeaderDropdown
+      MenuHeaderDropdown,
+      Search
     },
     data: () => ({
-      IS_TOGGLE: false
+      IS_TOGGLE: false,
+      BOX_SHADOW_Y_OFFSET: 0,
     }),
+    computed: {
+      NAVBAR_BOX_SHADOW() {
+        const value = `0 ${this.BOX_SHADOW_Y_OFFSET - 4}px 10px -3px rgba(0,0,0,0.65)`;
+        return {
+          'box-shadow': value,
+          '-webkit-box-shadow': value,
+          '-moz-box-shadow': value
+        }
+      }
+    },
     watch: {
       IS_TOGGLE(value) {
         this.$appStore.commit('lockScroll', value)
       }
+    },
+    created() {
+      GLOBAL_EVENTS.$on('scroll', value => {
+        this.BOX_SHADOW_Y_OFFSET = value * 4;
+      })
     }
   }
 </script>

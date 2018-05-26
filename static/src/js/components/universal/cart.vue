@@ -114,7 +114,7 @@
     modal(:class="$style.cartPanel", :show="SHOW_POPUP", :backdrop="$mq.phone")
       form(action="/cart" method="post" novalidate)
         .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
-          img.mr-2(:src="item.image")
+          img.mr-2(:src="item.image | shopifyImgUrl('compact',false)")
           .media-body
             h6.d-flex
               span(:class="$style.title")

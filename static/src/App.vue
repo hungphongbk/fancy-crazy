@@ -20,6 +20,8 @@
   import Loader from '@/js/components/loader'
   import {GLOBAL_EVENTS} from "@/js/plugins";
 
+  const THRESHOLD = 180;
+
   const $ = jQuery;
   export default {
     components: {
@@ -37,10 +39,10 @@
         return this.$store.state.isLoading;
       },
       /**
-       * @return {boolean}
+       * @return {float}
        */
       IS_SCROLLING() {
-        return this.SCROLL_TOP > 60;
+        return this.SCROLL_TOP > THRESHOLD ? 1 : (this.SCROLL_TOP*1.0) / THRESHOLD;
       }
     },
     watch: {
