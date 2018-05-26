@@ -35,7 +35,7 @@
       &, .collapsed & {
         transform: scale(1.05) translate(.5rem, 0.2rem);
       }
-      .expanded &{
+      .expanded & {
         transform: scale(0.95) translate(3.2rem, 0.2rem);
       }
 
@@ -123,14 +123,16 @@
       div(:class="$style.searchBoxInner", ref="elInner")
         div(:class="$style.searchBoxInverter", ref="elInverter")
           div(:class="$style.searchBox", ref="content")
-            p fuck you
+            search-panel
 </template>
 <script>
   // @flow
   import SEARCH_ICON from "@fortawesome/fontawesome-free-solid/faSearch";
   import CLOSE_ICON from "@fortawesome/fontawesome-free-solid/faTimes";
+  import SearchPanel from './search-panel'
 
   export default {
+    components: {SearchPanel},
     data: () => ({
       SEARCH_ICON,
       CLOSE_ICON,
@@ -230,19 +232,11 @@
           });
         }
 
-        ease.textContent = `
-      @keyframes ${this.$style.expandAnim} {
-        ${expandAnimation.join('')}
-      }
-      @keyframes ${this.$style.expandContentAnim} {
-        ${expandContentsAnimation.join('')}
-      }
-      @keyframes ${this.$style.collapseAnim} {
-        ${collapseAnimation.join('')}
-      }
-      @keyframes ${this.$style.collapseContentAnim} {
-        ${collapseContentsAnimation.join('')}
-      }`;
+        ease.textContent = [
+      `@keyframes ${this.$style.expandAnim}{${expandAnimation.join('')}}`,
+      `@keyframes ${this.$style.expandContentAnim}{${expandContentsAnimation.join('')}}`,
+      `@keyframes ${this.$style.collapseAnim}{${collapseAnimation.join('')}}`,
+      `@keyframes ${this.$style.collapseContentAnim}{${collapseContentsAnimation.join('')}}`].join('');
 
         document.head.appendChild(ease);
         console.log(ease);
@@ -262,16 +256,9 @@
         const scale = start + (end - start) * step;
         const invScale = 1 / scale;
 
-        outerAnimation.push(`
-      ${i}% {
-        opacity: ${opacity};
-        transform: scale(${scale});
-      }`);
+        outerAnimation.push(`${i}%{opacity:${opacity};transform:scale(${scale});}`);
 
-        innerAnimation.push(`
-      ${i}% {
-        transform: scale(${invScale});
-      }`);
+        innerAnimation.push(`${i}%{transform: scale(${invScale});}`);
       },
       /**
        * @return {number}

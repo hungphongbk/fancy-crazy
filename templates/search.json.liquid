@@ -1,0 +1,23 @@
+{% layout json %}
+{% capture results %}
+{% for item in search.results %}
+  {% if item.object_type == 'product' %}
+    {% assign product = item %}
+    {% assign variant = product.selected_or_first_available_variant %}
+    {% assign image = product.images | first %}
+    {
+      "id": {{ product.id }},
+      "handle": {{ product.handle | json }},
+      "title": {{ product.title | upcase | json }},
+      "url": "{{ product.url }}",
+      "image": {{ image.src | product_img_url: 'large' | replace: '//cdn.shopify.com':'' | json }},
+      "prices": {% include 'prices' with variant %},
+    }
+{% endif %}
+{% unless forloop.last %},{% endunless %}
+{% endfor %}
+{% endcapture %}
+{
+"results_count": {{ search.results_count }},
+"results": [{{ results }}]
+}
