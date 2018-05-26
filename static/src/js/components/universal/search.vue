@@ -119,7 +119,7 @@
         transition(name="fade")
           fa-icon(v-if="!SEARCH_BOX_TOGGLE", :icon="SEARCH_ICON", size="lg")
           fa-icon(v-else, :icon="CLOSE_ICON", size="lg")
-    div(:class="$style.searchBoxOuter", ref="el")
+    div(:class="$style.searchBoxOuter", ref="el", style="transform: translateX(-100%)")
       div(:class="$style.searchBoxInner", ref="elInner")
         div(:class="$style.searchBoxInverter", ref="elInverter")
           div(:class="$style.searchBox", ref="content")
@@ -143,7 +143,8 @@
     watch: {
       SEARCH_BOX_TOGGLE(expanded) {
         const el = this.$el,
-          inner = this.$refs.elInner;
+          inner = this.$refs.elInner,
+          outer = this.$refs.el;
         el.classList.remove(this.$style.expanded);
         el.classList.remove(this.$style.collapsed);
 
@@ -151,11 +152,13 @@
 
         if (expanded) {
           inner.style['z-index'] = 'auto';
+          outer.style.transform = 'translateX(0)';
           el.classList.add(this.$style.expanded);
         } else {
           el.classList.add(this.$style.collapsed);
           window.setTimeout(() => {
             inner.style['z-index'] = -1;
+            outer.style.transform = 'translateX(-100%)';
           }, 300)
         }
 
@@ -233,10 +236,10 @@
         }
 
         ease.textContent = [
-      `@keyframes ${this.$style.expandAnim}{${expandAnimation.join('')}}`,
-      `@keyframes ${this.$style.expandContentAnim}{${expandContentsAnimation.join('')}}`,
-      `@keyframes ${this.$style.collapseAnim}{${collapseAnimation.join('')}}`,
-      `@keyframes ${this.$style.collapseContentAnim}{${collapseContentsAnimation.join('')}}`].join('');
+          `@keyframes ${this.$style.expandAnim}{${expandAnimation.join('')}}`,
+          `@keyframes ${this.$style.expandContentAnim}{${expandContentsAnimation.join('')}}`,
+          `@keyframes ${this.$style.collapseAnim}{${collapseAnimation.join('')}}`,
+          `@keyframes ${this.$style.collapseContentAnim}{${collapseContentsAnimation.join('')}}`].join('');
 
         document.head.appendChild(ease);
         console.log(ease);
