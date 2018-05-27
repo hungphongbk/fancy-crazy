@@ -65,7 +65,7 @@
   .d-flex.flex-column(:class="$style.panel")
     .mt-1.d-flex.align-items-center(:class="$style.box")
       .p-2.w-100(style="position: relative")
-        input(placeholder="SEARCH...", v-model="SEARCH_KEYWORD")
+        input(placeholder="SEARCH...", v-model="SEARCH_KEYWORD", ref="input")
         span
     .p-3(:class="$style.itemList")
       ul.list-unstyled
@@ -93,6 +93,12 @@
 
   export default {
     components: {StarRating, Loader},
+    props: {
+      isExpanded: {
+        type: Boolean,
+        required: true
+      }
+    },
     data: () => ({
       SEARCH_KEYWORD: '',
       SEARCH_KW: '',
@@ -116,7 +122,16 @@
     watch: {
       SEARCH_KEYWORD: debounce(function (value) {
         this.SEARCH_KW = value;
-      }, 200)
+      }, 200),
+      isExpanded(value) {
+        setTimeout(() => {
+          if (value)
+            this.$refs.input.focus();
+          else {
+            this.SEARCH_KEYWORD = this.SEARCH_KW = '';
+          }
+        }, 200);
+      }
     }
   }
 </script>

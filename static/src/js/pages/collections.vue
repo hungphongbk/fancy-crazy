@@ -1,3 +1,13 @@
+<style lang="scss">
+  @import "../../scss/inc";
+
+  #app {
+    @include media-breakpoint-down(sm) {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+  }
+</style>
 <template lang="pug">
   .container-fluid.pt-3
     div(ref="anchor")

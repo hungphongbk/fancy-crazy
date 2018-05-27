@@ -35,6 +35,7 @@
 
   @include media-breakpoint-down(sm) {
     .page-product {
+      position: relative;
       font-size: .9em;
     }
     .prices {

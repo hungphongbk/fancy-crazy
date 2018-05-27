@@ -60,8 +60,11 @@
   if(o.isDev){
     o.loadJs(['https://localhost:8080/vendor.js','https://localhost:8080/frontend.js'])
   } else {
-    o.loadCss(['https://static.fancycrazy.com/frontend.css']);
-    o.loadJs(['https://static.fancycrazy.com/inline.js','https://static.fancycrazy.com/vendor.js', 'https://static.fancycrazy.com/frontend.js'])
+    o.loadCss(['https://static.fancycrazy.com/frontend.css?{{ shop.metafields.fancyCrazySrc.frontend_css }}']);
+    o.loadJs([
+      'https://static.fancycrazy.com/inline.js?{{ shop.metafields.fancyCrazySrc.inline_js }}',
+      'https://static.fancycrazy.com/vendor.js?{{ shop.metafields.fancyCrazySrc.vendor_js }}',
+      'https://static.fancycrazy.com/frontend.js?{{ shop.metafields.fancyCrazySrc.frontend_js }}'])
   }
 </script>
 {% endcapture %}{{ rendered | strip_newlines | replace: "  ","" | replace: ": ",":" | replace: " =":"=" | replace: "= ":"=" }}

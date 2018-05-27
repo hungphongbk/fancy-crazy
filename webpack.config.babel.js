@@ -8,6 +8,7 @@ import base              from './build/webpack-base.config.babel';
 import combine           from 'webpack-combine-loaders';
 import regexCombiner     from 'regex-combiner';
 import _                 from './build/utils';
+import ShopifyPlugin from './build/plugins/shopify'
 
 const src = './static/src',
   dist = './static/dist',
@@ -256,6 +257,7 @@ if (process.env.NODE_ENV === 'production') {
         file: 'js.LICENSE'
       }
     }),
+    ShopifyPlugin
   ]);
 } else {
   module.exports.devtool = '#eval-source-map';

@@ -123,7 +123,7 @@
       div(:class="$style.searchBoxInner", ref="elInner")
         div(:class="$style.searchBoxInverter", ref="elInverter")
           div(:class="$style.searchBox", ref="content")
-            search-panel
+            search-panel(:is-expanded="SEARCH_BOX_TOGGLE")
 </template>
 <script>
   // @flow
@@ -142,20 +142,23 @@
     }),
     watch: {
       SEARCH_BOX_TOGGLE(expanded) {
-        const el = this.$el,
-          inner = this.$refs.elInner,
-          outer = this.$refs.el;
-        el.classList.remove(this.$style.expanded);
-        el.classList.remove(this.$style.collapsed);
+        const self = this,
+          el = self.$el,
+          inner = self.$refs.elInner,
+          outer = self.$refs.el;
+        el.classList.remove(self.$style.expanded);
+        el.classList.remove(self.$style.collapsed);
 
         window.getComputedStyle(inner).transform;
 
         if (expanded) {
+          self.$store.commit('lockScroll', true);
           inner.style['z-index'] = 'auto';
           outer.style.transform = 'translateX(0)';
-          el.classList.add(this.$style.expanded);
+          el.classList.add(self.$style.expanded);
         } else {
-          el.classList.add(this.$style.collapsed);
+          self.$store.commit('lockScroll', false);
+          el.classList.add(self.$style.collapsed);
           window.setTimeout(() => {
             inner.style['z-index'] = -1;
             outer.style.transform = 'translateX(-100%)';
