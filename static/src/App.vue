@@ -2,6 +2,8 @@
   #app {
     height: 100%;
     overflow: scroll;
+    will-change: transform;
+    transform: translateZ(0);
   }
 </style>
 <template lang="pug">

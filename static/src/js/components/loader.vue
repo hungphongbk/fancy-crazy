@@ -62,6 +62,7 @@
   }
 
   .loaderOverlay {
+    composes: component__loader from global;
     position: fixed;
     top: 0;
     left: 0;

@@ -75,7 +75,7 @@
 
     &-box-inner {
       position: absolute;
-      background-color: $gray-200;
+      background-color: #ffeee5;
       border-radius: 50%;
       z-index: -1;
       opacity: 0;

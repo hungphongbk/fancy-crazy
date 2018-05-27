@@ -11,7 +11,7 @@
       "title": {{ product.title | upcase | json }},
       "url": "{{ product.url }}",
       "image": {{ image.src | product_img_url: 'large' | replace: '//cdn.shopify.com':'' | json }},
-      "prices": {% include 'prices' with variant %},
+      "prices": {% include 'prices' with variant %}
     }
 {% endif %}
 {% unless forloop.last %},{% endunless %}
