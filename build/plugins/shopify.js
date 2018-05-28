@@ -9,7 +9,7 @@ const shopify = new Shopify({
 
 export default {
   apply(compiler) {
-    compiler.plugin('emit', async compilation => {
+    compiler.plugin('emit', async (compilation,callback) => {
       const picks = ['frontend', 'vendor', 'inline'],
         isBeginWith = file => picks.reduce(
           (acc, f) => acc |= file.startsWith(f),
@@ -45,6 +45,7 @@ export default {
 
         console.log('done ' + file);
       }));
+      callback();
     });
   }
 };
