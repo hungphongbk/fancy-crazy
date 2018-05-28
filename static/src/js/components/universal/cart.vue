@@ -98,8 +98,15 @@
     .cart-panel{
       width: unset;
     }
-    .title+span{
-
+    .cart-item img{
+      width: 56px;
+    }
+    .title{
+      &-outer{
+        font-size: .9rem;
+      }
+      +span{
+      }
     }
   }
 </style>
@@ -116,11 +123,11 @@
         .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
           img.mr-2(:src="item.image | shopifyImgUrl('compact',false)")
           .media-body
-            h6.d-flex
+            h6.d-flex(:class="$style.titleOuter")
               span(:class="$style.title")
                 span {{item.product_title}}
                 br
-                span.small {{item.variant_title}}
+                span.small(:class="") {{item.variant_title}}
               span
                 price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false")
                 br

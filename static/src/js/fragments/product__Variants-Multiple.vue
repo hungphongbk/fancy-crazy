@@ -11,8 +11,8 @@
 </style>
 <template lang="pug">
   div.py-4.px-3.mt-3(:class="$style.productVariants")
-    div(v-for="(_,index) in opts", :class="$style.item")
-      variant-items(:type="options[index]", :items="optLists[index]", v-model="opts[index]")
+    div(v-for="(_,index) in VARIANT_OPTS", :class="$style.item")
+      variant-items(:type="options[index]", :items="OPT_LISTS[index]", v-model="VARIANT_OPTS[index]")
 </template>
 <script>
   import unzip from 'lodash/unzip';
@@ -30,9 +30,9 @@
     components: {VariantItems},
     data() {
       //init separated lists (2) from options and variants
-      const opts = mapVariant(this.$store.state.pageProduct.selected);
+      const VARIANT_OPTS = mapVariant(this.$store.state.pageProduct.selected);
       return {
-        opts
+        VARIANT_OPTS
       };
     },
     computed: {
@@ -44,10 +44,10 @@
       optLength() {
         return this.options.length;
       },
-      optLists() {
-        const {opts} = this;
-        return opts.map((opt, index) => {
-          const anotherOpts = opts.filter(i => i !== opt);
+      OPT_LISTS() {
+        const {VARIANT_OPTS} = this;
+        return VARIANT_OPTS.map((opt, index) => {
+          const anotherOpts = VARIANT_OPTS.filter(i => i !== opt);
 
           //split this.list into multiple lists depends on variant options
           //1. take item from this.list which "variant option tuple" available to current option
@@ -65,9 +65,9 @@
         });
       },
       selected() {
-        const {list, opts} = this;
+        const {list, VARIANT_OPTS} = this;
         return list.find(({title}) =>
-            opts.reduce(
+            VARIANT_OPTS.reduce(
               (rs, opt) => rs && title.includes(opt.title),
               true
             )
@@ -76,15 +76,14 @@
       }
     },
     watch: {
-      opts: {
-        handler(opts) {
+      VARIANT_OPTS: {
+        handler(VARIANT_OPTS) {
           const {list} = this,
             value = list.find(({title}) =>
-                opts.reduce(
+                VARIANT_OPTS.reduce(
                   (rs, opt) => rs && title.includes(opt.title),
                   true
                 )
-              //title.includes(opt1.title) && title.includes(opt2.title)
             );
           // noinspection JSIgnoredPromiseFromCall
           this.$appStore.dispatch('pageProduct/select', {variantId: value.id});

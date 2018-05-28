@@ -6,9 +6,9 @@ export default {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js($|\?)/,
         exclude: [
-          /node_modules\/(?!(js-effect-ripple|vue-match-media|v-tooltip))/
+          /node_modules\/(?!(js-effect-ripple|vue-match-media|v-tooltip|my-vue-utils))/
         ],
         use: [
           "babel-loader?cacheDirectory"

@@ -20,6 +20,17 @@
     composes: label from './product__Variants-Multiple-Items__share.m-scss';
     line-height: 2.3;
   }
+
+  @include media-breakpoint-down(sm) {
+    .label {
+      line-height: 1.9;
+    }
+    .item {
+      @include size(1.9rem);
+      @include outline(1px, darken(white, 25%), 4px);
+      margin-right: .9rem !important;
+    }
+  }
 </style>
 <template lang="pug">
   .d-flex
@@ -39,6 +50,7 @@
     data() {
       return {
         colors: {
+          white: '#fff',
           black: '#111111',
           navy: '#001f3f',
           red: '#FF4136',

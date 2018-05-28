@@ -155,7 +155,8 @@
     "webpack-dev-server": "^2.11.2",
     "webpack-merge": "^4.1.2",
     "webpack-s3-plugin": "^1.0.0-rc.0",
-    "yaml-loader": "^0.5.0"
+    "yaml-loader": "^0.5.0",
+    "my-vue-utils": "latest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
