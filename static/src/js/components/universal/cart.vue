@@ -121,7 +121,7 @@
     modal(:class="$style.cartPanel", :show="SHOW_POPUP", :backdrop="$mq.phone")
       form(action="/cart" method="post" novalidate)
         .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
-          img.mr-2(:src="item.image | shopifyImgUrl('compact',false)")
+          img.mr-2(:src="item.image | shopifyImgUrl($mq.phone?'small':'compact',false)")
           .media-body
             h6.d-flex(:class="$style.titleOuter")
               span(:class="$style.title")
@@ -129,7 +129,7 @@
                 br
                 span.small(:class="") {{item.variant_title}}
               span
-                price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false")
+                price.pl-4(:class="$style.price", :prices="item.prices", :has-sale="false", :from-label="false")
                 br
                 span.d-flex.flex-row.mt-2.justify-content-end
                   counter.input-group-sm(:value="item.quantity", @input="quantity => change({id: item.id, quantity})")

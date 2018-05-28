@@ -2,7 +2,7 @@
   @import "../../scss/inc";
 
   .item {
-    composes: item from './product__Variants-Multiple-Items__share.m-scss';
+    composes: item from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss';
     height: 2.3rem;
     width: 2.3rem;
     display: inline-block;
@@ -17,7 +17,7 @@
   }
 
   .label {
-    composes: label from './product__Variants-Multiple-Items__share.m-scss';
+    composes: label from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss';
     line-height: 2.3;
   }
 

@@ -9,6 +9,11 @@ html,body{
   margin: 0 !important;
   padding: 0 !important;
 }
+body{
+  @include media-breakpoint-down(sm){
+    font-size: $font-size-base*0.95;
+  }
+}
 :global(#preview-bar-iframe){
   display: none !important;
 }

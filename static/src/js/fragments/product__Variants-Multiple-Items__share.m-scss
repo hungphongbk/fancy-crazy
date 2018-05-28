@@ -1,6 +1,15 @@
+@import "../../scss/inc";
+
 .label {
   font-weight: 700;
 }
+
 .item {
   cursor: pointer;
+}
+
+.label, .item {
+  @include media-breakpoint-down(sm) {
+    font-size: .95em;
+  }
 }

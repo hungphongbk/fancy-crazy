@@ -18,12 +18,13 @@ export default {
       const sale = usd(price.sale),
         salePercentage = Math.round((price.original - price.sale) * 100 / price.original);
       innerHTML = [
-        <span>from&nbsp;</span>,
         <span class={$style.salePrice}>{sale}</span>,
         <span>
           <del class={$style.originalPrice}>{original}</del>
         </span>
       ];
+      if (props.fromLabel)
+        innerHTML.unshift(<span>from&nbsp;</span>);
       if (props.hasSale)
         innerHTML.unshift(<span
           class={[$style.salePercentage, $style.badge, $bs.badge, $bs.badgeSuccess]}>SALE {salePercentage}%</span>);
@@ -40,6 +41,10 @@ export default {
       default: 'md'
     },
     hasSale: {
+      type: Boolean,
+      default: true
+    },
+    fromLabel: {
       type: Boolean,
       default: true
     }

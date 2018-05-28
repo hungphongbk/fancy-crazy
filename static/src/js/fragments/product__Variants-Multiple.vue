@@ -5,20 +5,22 @@
     background-color: lighten(#6c757d, 45%);
     padding-bottom: 1px !important;
   }
-  .item:not(:last-child){
+
+  .item:not(:last-child) {
     margin-bottom: 1rem;
   }
 </style>
 <template lang="pug">
   div.py-4.px-3.mt-3(:class="$style.productVariants")
     div(v-for="(_,index) in VARIANT_OPTS", :class="$style.item")
-      variant-items(:type="options[index]", :items="OPT_LISTS[index]", v-model="VARIANT_OPTS[index]")
+      variant-items(:type="options[index]", :items="OPT_LISTS[index]", v-model="VARIANT_OPTS[index]", :full-items="OPT_FULL_LISTS[index]", @input="()=>LAST_INDEX_CHANGED=index")
 </template>
 <script>
   import unzip from 'lodash/unzip';
   import uniq from 'lodash/uniqBy';
   import VariantItems from './product__Variants-Multiple-Items';
   import {mapState} from 'vuex';
+  import {assert} from "@/js/plugins/helpers";
 
   const $ = jQuery,
     mapVariant = variant => variant.title.split(/\s\/\s/).map(title => ({
@@ -32,7 +34,8 @@
       //init separated lists (2) from options and variants
       const VARIANT_OPTS = mapVariant(this.$store.state.pageProduct.selected);
       return {
-        VARIANT_OPTS
+        VARIANT_OPTS,
+        LAST_INDEX_CHANGED: -1
       };
     },
     computed: {
@@ -43,6 +46,10 @@
       }),
       optLength() {
         return this.options.length;
+      },
+      OPT_FULL_LISTS() {
+        return unzip(this.list.map(mapVariant))
+          .map(item => uniq(item, i => i.title));
       },
       OPT_LISTS() {
         const {VARIANT_OPTS} = this;
@@ -78,13 +85,20 @@
     watch: {
       VARIANT_OPTS: {
         handler(VARIANT_OPTS) {
-          const {list} = this,
-            value = list.find(({title}) =>
-                VARIANT_OPTS.reduce(
-                  (rs, opt) => rs && title.includes(opt.title),
-                  true
-                )
-            );
+          const {list, LAST_INDEX_CHANGED} = this;
+          let value = list.find(({title}) =>
+            VARIANT_OPTS.reduce(
+              (rs, opt) => rs && title.includes(opt.title),
+              true
+            )
+          );
+
+          if (!assert(value)) {
+            value = list.find(item =>
+              mapVariant(item)[LAST_INDEX_CHANGED].title === VARIANT_OPTS[LAST_INDEX_CHANGED].title);
+            this.VARIANT_OPTS = mapVariant(value);
+            return;
+          }
           // noinspection JSIgnoredPromiseFromCall
           this.$appStore.dispatch('pageProduct/select', {variantId: value.id});
         },

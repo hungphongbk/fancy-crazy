@@ -3,18 +3,19 @@
 
   .label {
     line-height: 2.2;
-    composes: label from './product__Variants-Multiple-Items__share.m-scss'
+    composes: label from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss'
   }
 
   .btn {
     font-weight: 700;
+    composes: item from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss'
   }
 </style>
 <template lang="pug">
   .d-flex.flex-wrap
     span.mr-3(:class="$style.label") {{ type | uppercase }}:
-    span(v-for="item in items")
-      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnOutlineThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
+    span(v-for="item in fullItems")
+      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
 </template>
 <script>
   import mixins from './product__Variants-Multiple-Items-mixins';
@@ -28,10 +29,16 @@
 
   export default {
     mixins: [mixins],
+    props: {
+      fullItems: {
+        type: Array,
+        default: () => []
+      }
+    },
     computed: {
       commonStartTitle() {
-        if (this.items.length === 1) return '';
-        return sharedStart(this.items.map(i => i.title));
+        if (this.fullItems.length === 1) return '';
+        return sharedStart(this.fullItems.map(i => i.title));
       }
     },
     filters: {

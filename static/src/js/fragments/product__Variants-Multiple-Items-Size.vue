@@ -5,10 +5,10 @@
     }
   }
   .label{
-    composes: label from './product__Variants-Multiple-Items__share.m-scss'
+    composes: label from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss'
   }
   .item{
-    composes: item from './product__Variants-Multiple-Items__share.m-scss'
+    composes: item from 'sass-loader!./product__Variants-Multiple-Items__share.m-scss'
   }
   .selected{
 

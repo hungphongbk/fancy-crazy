@@ -61,7 +61,6 @@ export default {
       commit('select', variant);
 
       //find image and selected it
-      console.log(state.selected.image);
       const variantImg = shopifyImgUrl(state.selected.image, 'large', false),
         index = state.product.images.findIndex(i => i === variantImg);
       commit('selectImage', {index});
