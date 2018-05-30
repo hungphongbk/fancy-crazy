@@ -1,5 +1,4 @@
 @import "../inc";
-
 //region Import Bootstrap 4
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -38,6 +37,7 @@
 //@import "~bootstrap/scss/print";
 //endregion
 
+//region Roboto Font
 $FontPath: "../.././../node_modules/roboto/fonts";
 @import "~roboto/sass/variables";
 @import "~roboto/sass/mixins";
@@ -54,12 +54,21 @@ $FontPath: "../.././../node_modules/roboto/fonts";
 //@import "~roboto/sass/BoldItalic";
 //@import "~roboto/sass/Black";
 //@import "~roboto/sass/BlackItalic";
+//endregion
 
 //@include embedFonts("Lato", ".woff2");
 @include font-face("Oswald", url("../fonts/Oswald.woff2"));
 
 //region Bootstrap 4
-.list-group-item{
+.list-group-item {
   margin-bottom: .5rem;
 }
+
+.btn-lg {
+  @include media-breakpoint-down(sm) {
+    $f: 0.85;
+    @include button-size($btn-padding-y-lg*$f, $btn-padding-x-lg*$f, $font-size-lg*$f, $btn-line-height-lg*$f, $btn-border-radius-lg*$f);
+  }
+}
+
 //endregion

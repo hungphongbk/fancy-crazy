@@ -65,6 +65,7 @@
         fragment-variants.rounded-top
         div(:class="{ [$style.addToCartWrapper]: true }", :style="ADD_TO_CART_OUTER_SCROLL")
           .btn.btn-primary.btn-lg.rounded-bottom.w-100(:class="ADD_TO_CART_CLASSES", @click="addToCart(selectedVariant.id)") {{BTN_TITLE}}
+        #addToCart
         img.w-100(:src="IMG_SECURE_PAYMENT")
         .text-center.px-2.px-sm-6
           p <b>All our products are custom printed and designed with love just for you!</b>
