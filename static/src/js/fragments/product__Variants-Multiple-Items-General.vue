@@ -14,18 +14,15 @@
 <template lang="pug">
   .d-flex.flex-wrap
     span.mr-3(:class="$style.label") {{ type | uppercase }}:
-    span(v-for="item in fullItems")
-      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{item.title | simplify(commonStartTitle) | uppercase }}
+    span(v-for="(item,index) in fullItems")
+      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{COMMON_START_TITLE[index] | uppercase }}
 </template>
 <script>
   import mixins from './product__Variants-Multiple-Items-mixins';
-
-  function sharedStart(array) {
-    let A = array.concat().sort(),
-      a1 = A[0], a2 = A[A.length - 1], L = a1.length, i = 0;
-    while (i < L && a1.charAt(i) === a2.charAt(i)) i++;
-    return a1.substring(0, i);
-  }
+  import intersect from 'lodash/intersection'
+  import difference from 'lodash/difference'
+  import pull from 'lodash/pull'
+  import unique from 'lodash/uniq'
 
   export default {
     mixins: [mixins],
@@ -36,14 +33,19 @@
       }
     },
     computed: {
-      commonStartTitle() {
-        if (this.fullItems.length === 1) return '';
-        return sharedStart(this.fullItems.map(i => i.title));
-      }
-    },
-    filters: {
-      simplify(value, common) {
-        return value.replace(common, '');
+      COMMON_START_TITLE() {
+        const titles = this.fullItems.map(i => i.title);
+        if (this.fullItems.length === 1) return titles;
+        const splitted = titles.map(i => unique(i.split(' '))),
+          commons = pull(splitted.reduce((acc, arr) => {
+            if (acc === null) return arr;
+            return intersect(acc, arr);
+          }, null), '-');
+        for (let i = 0; i < titles.length; i++) {
+          titles[i] = difference(splitted[i], commons).join(' ');
+        }
+
+        return titles;
       }
     }
   };

@@ -4,7 +4,8 @@
     height: 100%;
   }
   #app #scroll{
-    overflow: scroll;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 </style>
 <template lang="pug">
@@ -63,7 +64,7 @@
       this.$appStore.subscribe(mutation => {
         if (mutation.type === 'lockScroll') {
           const val = this.$appStore.state.lockScroll;
-          $(this.$refs.app).css({overflow: val ? 'hidden' : 'scroll'})
+          $(this.$refs.app).css({'overflow-y': val ? 'hidden' : 'scroll'})
         }
       });
       await this.$store.dispatch('cart/fetch');
