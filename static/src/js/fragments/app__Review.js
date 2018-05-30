@@ -21,9 +21,10 @@ export default {
 
     if (props.notSlide === true) {
       const bs = parent.$bs;
-      const items = props.items.slice(0,16).map((i, index) => (<div class={[style.item, index<12?style.small:style.big]}>
-        <img class={bs.imgFluid} src={storage(i.image_url, store.state.mq.phone)}/>
-      </div>));
+      const items = props.items.slice(0, parent.$mq.phone?12:16)
+        .map((i, index) => (<div class={[style.item, index < 12 ? style.small : style.big]}>
+          <img class={bs.imgFluid} src={storage(i.image_url, store.state.mq.phone)}/>
+        </div>));
       return (<div class={[bs.dFlex, bs.flexWrap]}>{items}</div>);
     }
 

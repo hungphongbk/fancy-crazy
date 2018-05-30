@@ -6,12 +6,9 @@
   <script type="text/javascript">
     (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/4YQSveRiBO25dC5MBNbCZ5XOk4m2pFpcj9qDBtK7/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
   </script>
-
-  <!-- Basic page needs ================================================== -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
   {% if settings.favicon_enable %}
     <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
   {% endif %}
@@ -24,6 +21,9 @@
     <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
 
+  <!--PRELOAD-->
+  <link rel="preload" href="https://static.fancycrazy.com/frontend.css?{{ shop.metafields.fancyCrazySrc.frontend_css }}" as="style" crossorigin="anonymous">
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
   {% include 'social-meta-tags' %}
@@ -34,18 +34,14 @@
   {{ content_for_header }}
   {% include 'oldIE-js' %}
 
-  {{ 'modernizr.min.js' | asset_url | script_tag }}
-
   {% comment %}
-    If you store has customer accounts disabled, you can remove the following JS file
-  {% endcomment %}
   {% if template contains 'customers' %}
     {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
   {% endif %}
-
-
-
-
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  <script>var o=function(e,t,n){var i=jQuery;function getCookie(e){var t=e+"=";var r=decodeURIComponent(n);var i=r.split(";");for(var o=0;o<i.length;o++){var a=i[o];while(a.charAt(0)==" "){a=a.substring(1)}if(a.indexOf(t)==0){return a.substring(t.length,a.length)}}return""}i.cachedScript=function(e,t){t=i.extend(t||{},{dataType:"script",cache:true,url:e});return i.ajax(t)};return{dev:getCookie("dev")==="1",loadCss:function(e){var n=t.createElement("link");n.rel="stylesheet";n.href=e;n.type="text/css";var r=t.getElementsByTagName("link")[0];r.parentNode.insertBefore(n,r)},loadJs:function(e){if(typeof e==="string")e=[e];(function r(){if(e.length>0)i.cachedScript(e.shift()).done(r)})()}}}(window,document,document.cookie);</script>
+  <script>if(!o.dev)o.loadCss(['https://static.fancycrazy.com/frontend.css?{{ shop.metafields.fancyCrazySrc.frontend_css }}']);</script>
 </head>
 {% comment %}{% include 'someone_purchase' %}{% endcomment %}
 {% capture rendered %}
@@ -56,11 +52,10 @@
 {% include 'theme-state' %}
 {{ content_for_layout }}
 
-<script>var o=function(e,n,t){var r=jQuery;function o(e){var n=e+"=";var r=decodeURIComponent(t);var o=r.split(";");for(var a=0;a<o.length;a++){var c=o[a];while(c.charAt(0)==" "){c=c.substring(1)}if(c.indexOf(n)==0){return c.substring(n.length,c.length)}}return""}function a(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var n=new RegExp("[\\?&]"+e+"=([^&#]*)");var t=n.exec(location.search);return t===null?"":decodeURIComponent(t[1].replace(/\+/g," "))}r.cachedScript=function(e,n){n=r.extend(n||{},{dataType:"script",cache:true,url:e});return r.ajax(n)};var c=a("experiment");if(c)console.log("EXPERIMENT MODE");function i(e){return e}return{isDev:o("dev")==="1",isExperiment:c,transform:i,loadCss:function(e){e=i(e);var t=n.createElement("link");t.rel="stylesheet";t.href=e;t.type="text/css";var r=n.getElementsByTagName("link")[0];r.parentNode.insertBefore(t,r)},loadJs:function(e){if(typeof e==="string")e=[e];(function n(){if(e.length>0)r.cachedScript(i(e.shift())).done(n)})()}}}(window,document,document.cookie);
-  if(o.isDev){
+<script>
+  if(o.dev){
     o.loadJs(['https://localhost:8080/vendor.js','https://localhost:8080/frontend.js'])
   } else {
-    o.loadCss(['https://static.fancycrazy.com/frontend.css?{{ shop.metafields.fancyCrazySrc.frontend_css }}']);
     o.loadJs([
       'https://static.fancycrazy.com/inline.js?{{ shop.metafields.fancyCrazySrc.inline_js }}',
       'https://static.fancycrazy.com/vendor.js?{{ shop.metafields.fancyCrazySrc.vendor_js }}',

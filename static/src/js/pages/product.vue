@@ -158,7 +158,7 @@
             this.$appStore.commit('cart/togglePopup');
           }
         });
-        document.getElementById('app').style.paddingBottom = '60px';
+        document.getElementById('scroll').style.paddingBottom = '60px';
         GLOBAL_EVENTS.$on('scroll', value => {
           this.MOBILE_TOGGLE_ADD_TO_CART = value;
         })

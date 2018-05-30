@@ -1,7 +1,7 @@
 <style lang="scss">
   @import "../../scss/inc";
 
-  #app {
+  #app #scroll {
     @include media-breakpoint-down(sm) {
       will-change: transform;
       transform: translateZ(0);

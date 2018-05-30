@@ -178,6 +178,7 @@
     "imagemin-pngquant": "^5.1.0",
     "mime-types": "^2.1.18",
     "request": "^2.87.0",
+    "roboto": "https://github.com/FontFaceKit/roboto",
     "shopify-api-node": "^2.14.0",
     "shopify-token": "^3.0.2",
     "spawn-sync": "^2.0.0",

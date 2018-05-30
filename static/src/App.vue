@@ -1,17 +1,20 @@
 <style lang="scss">
   @import "scss/inc";
-  #app {
+  #app, #scroll {
     height: 100%;
+  }
+  #app #scroll{
     overflow: scroll;
   }
 </style>
 <template lang="pug">
-  #app(v-scroll="onScroll", ref="app")
+  #app.d-flex.flex-column
     site-header
-    #primary.clearfix
-      main#main(role="main")
-        site-content
-    site-footer
+    #scroll.flex-grow-1(v-scroll="onScroll", ref="app")
+      #primary.clearfix
+        main#main(role="main")
+          site-content
+      site-footer
     transition(name="fade")
       loader(v-if="IS_LOADING")
 </template>

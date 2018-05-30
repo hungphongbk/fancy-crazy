@@ -1,3 +1,4 @@
+// @flow
 import Spreadsheet   from './Spreadsheet';
 import ImgCompressor from './ImgCompressor';
 import cache         from './Cache';
@@ -10,6 +11,7 @@ import flatten       from 'lodash/flatten';
 import random        from 'lodash/random';
 import range         from 'lodash/range';
 import chunk         from 'lodash/chunk';
+import transform     from 'lodash/transform';
 import Shopify       from 'shopify-api-node';
 import Bluebird      from 'bluebird';
 
@@ -47,6 +49,15 @@ function retry(fn, max = 2) {
 }
 
 //endregion
+
+async function getAllCollections() {
+  const fields = 'id,title,handle';
+  const [custom, smart] = await Promise.all([
+    shopify.customCollection.list({fields, limit: 250}),
+    shopify.smartCollection.list({fields, limit: 250})
+  ]);
+  return [].concat(custom, smart);
+}
 
 async function task1() {
   async function getRandomlyProduct(collection_id) {
@@ -95,15 +106,6 @@ async function task1() {
       item.image_url = await ImgCompressor.generateImageSet(item.image_url);
     }
     return omit(item, ['position', 'collection_id']);
-  }
-
-  async function getAllCollections() {
-    const fields = 'id,title';
-    const [custom, smart] = await Promise.all([
-      shopify.customCollection.list({fields, limit: 250}),
-      shopify.smartCollection.list({fields, limit: 250})
-    ]);
-    return [].concat(custom, smart);
   }
 
   await s.readSheetData()
@@ -208,6 +210,67 @@ async function task3() {
   console.log(rs);
 }
 
-task1().then(() => {
+async function task4() {
+  const cols: Array<string> = transform({
+    'apparel': 'tshirt,hooded-blanket,leggings,hat,bomber-jacket',
+    '3d-art': '3d-hoodie,3d-tshirt,3d-dress,3d-skirt',
+    'shoes': 'boots-shoes,top-shoes,low-tops,sneakers,slip-ons',
+    'car-seat-covers': '',
+    'bed': '',
+    'pillow': 'feather-pillow,canvas,mug,clock-wall',
+    'jewelry': 'jewelry-1,watch,phone-cases,luggage-covers',
+    'bag-1': 'saddle-bag,leather-bag,tote-bag',
+    'native-handmade': ''
+  }, (rs, value, key) => {
+    rs.push(key);
+    rs.push(...value.split(',').filter(v => v.length > 0));
+  }, []),
+    tags = transform({
+      native: 'Native American',
+      hippie: 'Spiritual Hippie',
+      animal: 'Animal Spirit',
+      pet: 'Pets',
+      dreamcatcher: 'Dreamcatcher',
+      yoga: 'Yoga',
+      christian: 'Christian'
+    }, (rs, value, key) => {
+      rs.push({
+        type: 'tags',
+        title: value,
+        url: key
+      });
+    }, []);
+
+  const all = await getAllCollections();
+
+  // transform cols to metafield object, and push tag items
+  const metaObj = cols.map(handle => {
+    const title = all.find(col => col.handle === handle).title;
+    return {
+      type: 'categories',
+      title,
+      url: handle
+    };
+  });
+  metaObj.push(...tags);
+
+  const meta = await shopify.metafield.list({
+    namespace: 'fancyCrazyCols',
+  });
+  if (typeof meta === 'undefined' || !Array.isArray(meta) || meta.length === 0) {
+    await shopify.metafield.create({
+      namespace: 'fancyCrazyCols',
+      key: 'sidebar',
+      value: JSON.stringify(metaObj),
+      value_type: 'string'
+    });
+  } else {
+    await shopify.metafield.update(meta[0].id, {
+      value: JSON.stringify(metaObj)
+    });
+  }
+}
+
+task4().then(() => {
   console.log('completed');
 });

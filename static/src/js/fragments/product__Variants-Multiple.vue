@@ -12,8 +12,8 @@
 </style>
 <template lang="pug">
   div.py-4.px-3.mt-3(:class="$style.productVariants")
-    div(v-for="(_,index) in VARIANT_OPTS", :class="$style.item")
-      variant-items(:type="options[index]", :items="OPT_LISTS[index]", v-model="VARIANT_OPTS[index]", :full-items="OPT_FULL_LISTS[index]", @input="()=>LAST_INDEX_CHANGED=index")
+    div(v-for="(_,index) in variantOpts", :class="$style.item")
+      variant-items(:type="options[index]", :items="OPT_LISTS[index]", v-model="variantOpts[index]", :full-items="OPT_FULL_LISTS[index]", @input="()=>LAST_INDEX_CHANGED=index")
 </template>
 <script>
   import unzip from 'lodash/unzip';
@@ -32,9 +32,9 @@
     components: {VariantItems},
     data() {
       //init separated lists (2) from options and variants
-      const VARIANT_OPTS = mapVariant(this.$store.state.pageProduct.selected);
+      const variantOpts = mapVariant(this.$store.state.pageProduct.selected);
       return {
-        VARIANT_OPTS,
+        variantOpts,
         LAST_INDEX_CHANGED: -1
       };
     },
@@ -52,9 +52,9 @@
           .map(item => uniq(item, i => i.title));
       },
       OPT_LISTS() {
-        const {VARIANT_OPTS} = this;
-        return VARIANT_OPTS.map((opt, index) => {
-          const anotherOpts = VARIANT_OPTS.filter(i => i !== opt);
+        const {variantOpts} = this;
+        return variantOpts.map((opt, index) => {
+          const anotherOpts = variantOpts.filter(i => i !== opt);
 
           //split this.list into multiple lists depends on variant options
           //1. take item from this.list which "variant option tuple" available to current option
@@ -72,9 +72,9 @@
         });
       },
       selected() {
-        const {list, VARIANT_OPTS} = this;
+        const {list, variantOpts} = this;
         return list.find(({title}) =>
-            VARIANT_OPTS.reduce(
+            variantOpts.reduce(
               (rs, opt) => rs && title.includes(opt.title),
               true
             )
@@ -83,11 +83,11 @@
       }
     },
     watch: {
-      VARIANT_OPTS: {
-        handler(VARIANT_OPTS) {
+      variantOpts: {
+        handler(variantOpts) {
           const {list, LAST_INDEX_CHANGED} = this;
           let value = list.find(({title}) =>
-            VARIANT_OPTS.reduce(
+            variantOpts.reduce(
               (rs, opt) => rs && title.includes(opt.title),
               true
             )
@@ -95,8 +95,8 @@
 
           if (!assert(value)) {
             value = list.find(item =>
-              mapVariant(item)[LAST_INDEX_CHANGED].title === VARIANT_OPTS[LAST_INDEX_CHANGED].title);
-            this.VARIANT_OPTS = mapVariant(value);
+              mapVariant(item)[LAST_INDEX_CHANGED].title === variantOpts[LAST_INDEX_CHANGED].title);
+            this.variantOpts = mapVariant(value);
             return;
           }
           // noinspection JSIgnoredPromiseFromCall

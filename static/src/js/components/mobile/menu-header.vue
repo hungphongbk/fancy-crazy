@@ -91,7 +91,6 @@
   import Modal from '@/js/components/universal/modal';
   import MenuHeaderDropdown from '@/js/components/mobile/menu-header-dropdown'
   import Search from '@/js/components/universal/search'
-  import {GLOBAL_EVENTS} from "@/js/plugins";
 
   export default {
     mixins: [menuMixin],
@@ -103,27 +102,11 @@
     },
     data: () => ({
       IS_TOGGLE: false,
-      BOX_SHADOW_Y_OFFSET: 0,
     }),
-    computed: {
-      NAVBAR_BOX_SHADOW() {
-        const value = `0 ${this.BOX_SHADOW_Y_OFFSET - 4}px 10px -3px rgba(0,0,0,0.65)`;
-        return {
-          'box-shadow': value,
-          '-webkit-box-shadow': value,
-          '-moz-box-shadow': value
-        }
-      }
-    },
     watch: {
       IS_TOGGLE(value) {
         this.$appStore.commit('lockScroll', value)
       }
-    },
-    created() {
-      GLOBAL_EVENTS.$on('scroll', value => {
-        this.BOX_SHADOW_Y_OFFSET = value * 4;
-      })
     }
   }
 </script>

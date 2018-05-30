@@ -1,11 +1,6 @@
 const MenuDesktop = () => import(/* webpackChunkName: "desktop" */ './desktop/menu-header.vue');
 const MenuMobile = () => import(/* webpackChunkName: "mobile" */ './mobile/menu-header.vue');
-import store from '@/js/store'
+import './menu-header-mixins';
+import responsive from './responsive';
 
-export default {
-  functional: true,
-  render(h, {data, children}) {
-    if (store.state.mq.tablet) return h(MenuMobile, data, children);
-    return h(MenuDesktop, data, children)
-  }
-}
+export default responsive(MenuMobile, MenuDesktop);

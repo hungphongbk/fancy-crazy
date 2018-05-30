@@ -37,14 +37,25 @@
 @import "~bootstrap/scss/utilities";
 //@import "~bootstrap/scss/print";
 //endregion
-//@import "~slick-carousel/slick/slick.scss";
 
-//@import "bs-4-switch";
-@include embedFonts("Lato", ".woff2");
-//@include embedFonts("OpenSansCondensed", ".woff2", (
-//  "Bold": 700 normal,
-//  "Light": 100 normal
-//))
+$FontPath: "../.././../node_modules/roboto/fonts";
+@import "~roboto/sass/variables";
+@import "~roboto/sass/mixins";
+
+@import "~roboto/sass/Thin";
+//@import "~roboto/sass/ThinItalic";
+@import "~roboto/sass/Light";
+//@import "~roboto/sass/LightItalic";
+@import "~roboto/sass/Regular";
+//@import "~roboto/sass/Italic";
+@import "~roboto/sass/Medium";
+//@import "~roboto/sass/MediumItalic";
+@import "~roboto/sass/Bold";
+//@import "~roboto/sass/BoldItalic";
+//@import "~roboto/sass/Black";
+//@import "~roboto/sass/BlackItalic";
+
+//@include embedFonts("Lato", ".woff2");
 @include font-face("Oswald", url("../fonts/Oswald.woff2"));
 
 //region Bootstrap 4

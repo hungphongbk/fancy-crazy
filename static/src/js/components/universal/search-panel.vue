@@ -65,7 +65,7 @@
   .d-flex.flex-column(:class="$style.panel")
     .mt-1.d-flex.align-items-center(:class="$style.box")
       .p-2.w-100(style="position: relative")
-        input(placeholder="SEARCH...", v-model="SEARCH_KEYWORD", ref="input")
+        input(placeholder="SEARCH...", v-model="searchKeyword", ref="input")
         span
     .p-3(:class="$style.itemList")
       ul.list-unstyled
@@ -100,7 +100,7 @@
       }
     },
     data: () => ({
-      SEARCH_KEYWORD: '',
+      searchKeyword: '',
       SEARCH_KW: '',
       IS_LOADING: false,
     }),
@@ -120,7 +120,7 @@
       }
     },
     watch: {
-      SEARCH_KEYWORD: debounce(function (value) {
+      searchKeyword: debounce(function (value) {
         this.SEARCH_KW = value;
       }, 200),
       isExpanded(value) {
@@ -128,7 +128,7 @@
           if (value)
             this.$refs.input.focus();
           else {
-            this.SEARCH_KEYWORD = this.SEARCH_KW = '';
+            this.searchKeyword = this.SEARCH_KW = '';
           }
         }, 200);
       }

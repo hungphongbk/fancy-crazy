@@ -102,7 +102,7 @@
 </style>
 <template lang="pug">
   header.sticky-top
-    nav.navbar.navbar-expand-sm.navbar-light.bg-white(:class="$style.nav")
+    nav.navbar.navbar-expand-sm.navbar-light.bg-white(:class="$style.nav", :style="NAVBAR_BOX_SHADOW")
       a.navbar-brand.ml-6(href="/")
         img.img-fluid(style="height: 70px;", src="@/images/logo-soa.png")
       .navbar-collapse.collapse.d-flex.justify-content-center
@@ -152,6 +152,7 @@
     computed: {
       SEARCH_TOGGLE_ICON() {
         const self = this;
+        console.log(self);
         return self.isSearchMode ? self.TIMES_ICON : self.SEARCH_ICON;
       }
     }
