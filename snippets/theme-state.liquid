@@ -1,17 +1,3 @@
 <script>
-  {% capture tmpl %}
-  {{ template }}
-  {% if template == 'page' %}
-  {{ page.handle | prepend: '-' }}
-  {% endif %}
-  {% endcapture %}
-  window.__state__ = {
-    template:{{ tmpl | remove:' ' | strip_newlines | json }},
-    recently: [],
-    mq: {},
-    isLoading: false,
-    menu: {
-      list: {% include 'theme-state-menu' %}
-    }
-  }
+  window.__state__ = {% include 'theme-state-object.json' %}
 </script>
