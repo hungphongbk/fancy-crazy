@@ -11,7 +11,7 @@ html,body{
 }
 body{
   @include media-breakpoint-down(sm){
-    font-size: $font-size-base*0.95;
+    font-size: $font-size-base*0.88;
   }
 }
 :global(#preview-bar-iframe){

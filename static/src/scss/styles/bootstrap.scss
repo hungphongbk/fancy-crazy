@@ -66,7 +66,7 @@ $FontPath: "../.././../node_modules/roboto/fonts";
 
 .btn-lg {
   @include media-breakpoint-down(sm) {
-    $f: 0.85;
+    $f: 0.78;
     @include button-size($btn-padding-y-lg*$f, $btn-padding-x-lg*$f, $font-size-lg*$f, $btn-line-height-lg*$f, $btn-border-radius-lg*$f);
   }
 }
