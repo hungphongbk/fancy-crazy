@@ -7,6 +7,9 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
+  #primary, #main{
+    padding-top: 1px;
+  }
 </style>
 <template lang="pug">
   #app.d-flex.flex-column
@@ -15,6 +18,7 @@
       #primary.clearfix
         main#main(role="main")
           site-content
+            slot
       site-footer
     transition(name="fade")
       loader(v-if="IS_LOADING")

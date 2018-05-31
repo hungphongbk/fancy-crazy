@@ -8,7 +8,7 @@ layout/json.liquid:
 layout/theme-vue.liquid:
   development: 2018-05-31T18:34:49+07:00   28b75fb49a7143e15f7029b8d62e970a
 layout/theme.liquid:
-  development: 2018-05-31T14:55:50+07:00   28b75fb49a7143e15f7029b8d62e970a
+  development: 2018-05-31T18:54:52+07:00   1697510b70f70c5b39cfe18bda22291c
 locales/de.json:
   development: 2018-05-19T02:38:37+07:00   dc97bee332ae1e252873ab58c05ce12d
 locales/en.default.json:

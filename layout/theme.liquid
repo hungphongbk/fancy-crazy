@@ -50,8 +50,15 @@
     r=e.createElement(t);r.id=n;r.src="//button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
 
 {% include 'theme-state' %}
+{% comment %}
 {{ content_for_layout }}
-
+{% endcomment %}
+<div id="app"></div>
+<script>
+  __state__.general={
+    content:{{ content_for_layout | json }}
+  }
+</script>
 <script>
   if(o.dev){
     o.loadJs(['https://localhost:8080/vendor.js','https://localhost:8080/frontend.js'])
