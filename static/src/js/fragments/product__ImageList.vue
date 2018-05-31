@@ -16,6 +16,7 @@
       align-items: center;
       justify-content: center;
       padding: .7rem;
+      overflow: hidden;
     }
   }
 
@@ -47,7 +48,7 @@
     a(v-for="(image,index) in PRODUCT_IMAGES", :key="image", :class="$style.imgThumbnail")
       .ratio-1-1(:class="{ [$style.inner]:true, [$style.selected]: (SELECTED_IMAGE===image) }", @click="select(index)")
         .content(:class="$style.content")
-          img(:src="image | shopifyImgUrl", :class="$style.img")
+          img(:src="image | shopifyImgUrl('medium')", :class="$style.img")
 </template>
 <script>
   import {createNamespacedHelpers} from 'vuex';

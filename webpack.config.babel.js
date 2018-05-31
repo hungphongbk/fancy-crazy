@@ -246,6 +246,7 @@ if (process.env.NODE_ENV === 'production') {
             regex: regexCombiner([
               /^([A-Z][A-Z0-9]*_)([A-Z0-9]+_?)*$/,
               /^\$(style|createElement)$/,
+              /^(options)$/,
               /^_tweens/
             ])
           }
