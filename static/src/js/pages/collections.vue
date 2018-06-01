@@ -29,6 +29,7 @@
       .col-sm-12
         fragment-reviews(:items="group1")
         fragment-reviews(:items="group2")
+    fragment-recently-products.mt-5
 </template>
 <script>
   import collectionModule from '@/js/store/page-collections';
@@ -40,6 +41,7 @@
   import FragmentReviews from '@/js/fragments/app__Review'
   import CollectionSidebar from '@/js/fragments/collection__Sidebar'
   import CollectionLayout from '@/js/fragments/collection__Layout'
+  import FragmentRecentlyProducts from '@/js/fragments/index__RecentlyProducts'
 
   export default {
     storeModule: ['pageCollections', collectionModule],
@@ -52,6 +54,7 @@
       FragmentReviews,
       CollectionSidebar,
       CollectionLayout,
+      FragmentRecentlyProducts,
       PageLink: {
         functional: true,
         render: (h, {props: {isCurrent = false, isDisabled = false}, listeners, children, parent}) => {

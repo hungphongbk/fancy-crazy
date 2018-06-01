@@ -19,7 +19,7 @@ export default store => {
   if (__state__.pageProduct)
     __state__.pageProduct.selectedImage = 0;
 
-  store.replaceState(Object.assign({}, store2.get('vuex', {}), __state__, {
+  store.replaceState(Object.assign({}, __state__, store2.get('vuex', {}), {
     lockScroll: false,
     cart: cart.state()
   }));

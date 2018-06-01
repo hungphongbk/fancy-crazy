@@ -15,6 +15,8 @@
       fragment-featured-products(:index="3", :columns="3").mt-4
     .mt-5
       fragment-reviews(:items="reviews.group3", :not-slide="true")
+    .mt-5.container
+      fragment-recently-products
 </template>
 <script>
   import indexModule from '@/js/store/page-index'

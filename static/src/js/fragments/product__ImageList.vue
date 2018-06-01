@@ -84,7 +84,8 @@
       this.$appStore.subscribe(mutation => {
         if (mutation.type === 'pageProduct/selectImage') {
           const index = this.PRODUCT_IMAGES.findIndex(i => i === this.SELECTED_IMAGE);
-          this.$refs.slider.select(index)
+          if (this.$refs.slider)
+            this.$refs.slider.select(index)
         }
       })
     }

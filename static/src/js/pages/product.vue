@@ -84,6 +84,7 @@
             br
             | No worries! We've got it covered.
           p +1 914-598-8976 | support@fancycrazy.com
+    fragment-recently-products.mt-5
 </template>
 <script>
   import productModule from '@/js/store/page-product';
@@ -95,6 +96,7 @@
   import FragmentExpandable from "@/js/fragments/product__Expandable";
   import {Magnifier} from "@/js/plugins";
   import {GLOBAL_EVENTS} from "@/js/plugins";
+  import FragmentRecentlyProducts from '@/js/fragments/index__RecentlyProducts'
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -103,7 +105,8 @@
       Magnifier,
       FragmentVariants,
       FragmentImageList,
-      FragmentExpandable
+      FragmentExpandable,
+      FragmentRecentlyProducts
     },
     data() {
       return {
@@ -153,12 +156,12 @@
       }
     },
     async created() {
+      this.$appStore.subscribe(mutation => {
+        if (mutation.type === 'cart/addToCart') {
+          this.$appStore.commit('cart/togglePopup');
+        }
+      });
       if (this.$mq.phone) {
-        this.$appStore.subscribe(mutation => {
-          if (mutation.type === 'cart/addToCart') {
-            this.$appStore.commit('cart/togglePopup');
-          }
-        });
         document.getElementById('scroll').style.paddingBottom = '60px';
         GLOBAL_EVENTS.$on('scroll', value => {
           this.MOBILE_TOGGLE_ADD_TO_CART = value;

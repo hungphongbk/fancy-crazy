@@ -1,3 +1,4 @@
+import Vue             from 'vue';
 import {shopifyImgUrl} from "@/js/plugins/filters";
 import {assert}        from "@/js/plugins/helpers";
 
@@ -39,13 +40,16 @@ export default {
         return Math.round((original - sale) * 100 / original);
       } else return 0;
     },
-    selectedImage: ({product, selectedImage}) => product.images[selectedImage]
+    selectedImage: ({product, selectedImage, selected}) => {
+      return product.images[selectedImage]
+        || selected.image;
+    }
   },
   mutations: {
     refine(state) {
       state.product.images = state.product.images.filter(i => assert(i) && typeof i === 'string');
     },
-    select(state, {variantId}) {
+    select(state, {variantId, onInitial = false}) {
       state.selected = state.product.variants.find(({id}) => id === variantId);
     },
     selectImage(state, {index}) {
@@ -55,15 +59,17 @@ export default {
   actions: {
     initial({commit, state}) {
       // commit('refine');
-      commit('select', {variantId: state.product.variants[0].id});
+      commit('select', {variantId: state.product.variants[0].id, onInitial: true});
     },
     select({commit, state, getters}, variant) {
       commit('select', variant);
 
       //find image and selected it
-      const variantImg = shopifyImgUrl(state.selected.image, 'large', false),
-        index = state.product.images.findIndex(i => i === variantImg);
-      commit('selectImage', {index});
+      Vue.nextTick(() => {
+        const variantImg = shopifyImgUrl(state.selected.image, 'large', false),
+          index = state.product.images.findIndex(i => i === variantImg);
+        commit('selectImage', {index});
+      });
     }
   }
 };
