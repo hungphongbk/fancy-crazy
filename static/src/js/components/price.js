@@ -2,6 +2,7 @@ import $style     from './price.m-scss';
 import $bs        from '@/scss/styles.m-scss';
 import {usd}      from "@/js/plugins/filters";
 import capitalize from 'lodash/capitalize';
+import {assert}   from "@/js/plugins/helpers";
 
 export default {
   functional: true,
@@ -10,7 +11,7 @@ export default {
       original = usd(price.original),
       size = capitalize(props.size);
     let innerHTML, isSale;
-    if (!price.sale || price.original <= price.sale) {
+    if (!assert(price.sale) || price.original <= price.sale) {
       isSale = false;
       innerHTML = (<span class={$style.originalPrice}>{original}</span>);
     } else {

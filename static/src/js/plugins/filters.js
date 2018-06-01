@@ -1,5 +1,6 @@
 import Vue        from 'vue';
 import VueFilters from 'vue2-filters';
+import {assert}   from "@/js/plugins/helpers";
 
 Vue.use(VueFilters);
 
@@ -21,7 +22,7 @@ const shopifyImgUrl = (_url, size = '', appendCdn = true) => {
 const shopifyImgUrls = (urls, size = '') => urls.map(url => shopifyImgUrl(url, size));
 
 const usd = (value) => {
-  if (!value) return '';
+  if (!assert(value)) return '';
   return '$' + (value / 100).toLocaleString("en-US");
 };
 
