@@ -3,7 +3,7 @@
 
   .index-collections {
     a {
-      @include reset-link{
+      @include reset-link {
         display: block;
       }
     }
@@ -14,7 +14,7 @@
       .content img {
         width: 100%;
       }
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         width: 100% !important;
       }
     }
@@ -25,10 +25,12 @@
       padding: 0 15%;
       text-align: center;
 
-      transition: all $animation-time ease;
-      background: rgba(#000, 0);
-      &:hover {
-        background: rgba(#000, .65);
+      @include media-breakpoint-up(sm) {
+        transition: all $animation-time ease;
+        background: rgba(#000, 0);
+        &:hover {
+          background: rgba(#000, .65);
+        }
       }
     }
     &big {
@@ -38,6 +40,7 @@
       width: percentage(1/4);
     }
   }
+
   .title {
     color: white;
     position: relative;
@@ -59,11 +62,12 @@
       }
     }
 
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       @include font-size-with-line-height($h6-font-size)
     }
   }
-  .image{
+
+  .image {
     width: 100%;
   }
 </style>

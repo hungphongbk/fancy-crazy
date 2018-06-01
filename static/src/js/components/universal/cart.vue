@@ -83,6 +83,9 @@
       font-weight: 600;
       font-size: 1.12em;
     }
+    &-regular{
+      color: lighten($theme-red, 15%)
+    }
   }
 
   .secure {
@@ -146,11 +149,11 @@
               span Subtotal
             td
               span {{TOTAL_SUB | usd}}
-          tr
+          tr(:class="$style.summaryRegular")
             td
-              span.text-primary Regular Total
+              span Regular Total
             td
-              span.text-primary <del>{{TOTAL_REGULAR | usd}}</del>
+              span <del>{{TOTAL_REGULAR | usd}}</del>
           tr
             td
               span.text-success Total Saving
