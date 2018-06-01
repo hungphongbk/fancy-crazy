@@ -19,6 +19,9 @@
 
       transition: all $animation-time ease;
     }
+    .flickity-page-dots{
+      display: none;
+    }
   }
 
   .light :global .flickity-prev-next-button {

@@ -130,7 +130,7 @@ export default {
     },
     async _navigate({commit, dispatch, getters}) {
       window.history.pushState('string', '', '/collections/' + getters.url);
-      const {id, totalPages, products, title} = JSON.parse(await $.get(`/collections/${getters.url}?view=json`));
+      const {id, totalPages, products, title} = JSON.parse(await $.get(`/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`));
       commit('clearCache');
       commit('cache', {
         products,
@@ -157,7 +157,7 @@ export default {
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {
         commit('toggleLoading', {isLoading: true}, {root: true});
         commit('cache', {
-          products: JSON.parse(await $.get(`/collections/${getters.url}?view=json&page=${page + 1}`)).products,
+          products: JSON.parse(await $.get(`/collections/${getters.url}?view=json&page=${page + 1}&${SHOPIFY_THEME_ID}`)).products,
           page
         });
         commit('toggleLoading', {isLoading: false}, {root: true});

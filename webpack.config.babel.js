@@ -8,7 +8,7 @@ import base              from './build/webpack-base.config.babel';
 import combine           from 'webpack-combine-loaders';
 import regexCombiner     from 'regex-combiner';
 import _                 from './build/utils';
-import ShopifyPlugin from './build/plugins/shopify'
+import ShopifyPlugin     from './build/plugins/shopify';
 
 const src = './static/src',
   dist = './static/dist',
@@ -199,6 +199,9 @@ let plugins = [
     Popper: ['popper.js', 'default'],
     moment: 'moment'
   }),
+  new webpack.DefinePlugin({
+    SHOPIFY_THEME_ID: '"preview_theme_id=31911346245"'
+  })
 ];
 if (process.env.NODE_ENV === 'production') {
   // http://vue-loader.vuejs.org/en/workflow/production.html
@@ -246,7 +249,7 @@ if (process.env.NODE_ENV === 'production') {
             regex: regexCombiner([
               /^([A-Z][A-Z0-9]*_)([A-Z0-9]+_?)*$/,
               /^\$(style|createElement)$/,
-              /^(options)$/,
+              // /^(options)$/,
               /^_tweens/
             ])
           }

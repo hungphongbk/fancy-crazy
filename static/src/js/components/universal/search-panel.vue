@@ -109,7 +109,7 @@
         get() {
           return new Promise(resolve => {
             this.IS_LOADING = true;
-            jQuery.get('https://fancycrazy.com/search/?type=product&view=json&q=' + this.SEARCH_KW)
+            jQuery.get('https://fancycrazy.com/search/?type=product&' + SHOPIFY_THEME_ID + '&view=json&q=' + this.SEARCH_KW)
               .then(obj => {
                 this.IS_LOADING = false;
                 resolve(ensureJSON(obj).results)

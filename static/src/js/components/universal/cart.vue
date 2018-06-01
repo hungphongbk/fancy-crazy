@@ -79,6 +79,10 @@
     tr td:nth-child(2) {
       text-align: right;
     }
+    &-subtotal{
+      font-weight: 600;
+      font-size: 1.12em;
+    }
   }
 
   .secure {
@@ -137,21 +141,21 @@
                     fa-icon(:icon="TimesIcon" style="color: white", size="xs")
         hr
         table(:class="$style.summary")
+          tr(:class="$style.summarySubtotal")
+            td
+              span Subtotal
+            td
+              span {{TOTAL_SUB | usd}}
           tr
             td
-              span.text-primary Subtotal
+              span.text-primary Regular Total
             td
-              span.text-primary {{TOTAL_SUB | usd}}
+              span.text-primary <del>{{TOTAL_REGULAR | usd}}</del>
           tr
             td
-              span Regular Total
+              span.text-success Total Saving
             td
-              span {{TOTAL_REGULAR | usd}}
-          tr
-            td
-              b.text-success Total Saving
-            td
-              b.text-success {{TOTAL_SAVING | usd}}
+              span.text-success {{TOTAL_SAVING | usd}}
         input.btn.btn-lg.btn-success.w-100.mt-3(type="submit", name="checkout", value="PROCEED TO CHECKOUT")
       img(:class="$style.secure", :src="imgSecurePayment")
 </template>

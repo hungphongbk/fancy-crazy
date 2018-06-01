@@ -1,4 +1,6 @@
 declare global {
+  const SHOPIFY_THEME_ID: string;
+
   interface PageIndexState {
     reviews: Array<any>
   }

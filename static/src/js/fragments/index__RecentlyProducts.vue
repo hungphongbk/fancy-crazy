@@ -42,7 +42,7 @@
                 price(:prices="product.prices")
 </template>
 <script>
-  import {ImagePair} from "@/js/components";
+  import {ImagePair, ProductItem} from "@/js/components";
 
   export default {
     components: {ImagePair},

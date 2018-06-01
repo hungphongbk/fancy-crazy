@@ -28,7 +28,7 @@
   }
 
   .product-name {
-    @include font-size-with-line-height($h2-font-size);
+    @include font-size-with-line-height($h2-font-size*0.9);
     font-weight: 600;
     font-family: Oswald, serif;
   }
@@ -60,7 +60,7 @@
       .col-sm-5
         h1(:class="$style.productName") {{product.title}}
         hr
-        h2(:class="$style.prices")
+        h3(:class="$style.prices")
           price(:prices="selectedVariant.prices", size="lg")
         fragment-variants.rounded-top
         div(:class="{ [$style.addToCartWrapper]: true }", :style="ADD_TO_CART_OUTER_SCROLL")
