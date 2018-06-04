@@ -1,10 +1,12 @@
 import store2 from 'store2';
 import cart   from "@/js/store/cart";
+import {win}  from "@/js/global";
 
 export default store => {
+  const w = win();
   //add menu to more
   const createMenu = (title, url) => ({title, url}),
-    moreMenu = __state__.menu.list.find(m => m.handle === 'more');
+    moreMenu = w.__state__.menu.list.find(m => m.handle === 'more');
   // debugger;
   moreMenu.isTextOnly = true;
   moreMenu.children.push(...[
@@ -16,10 +18,10 @@ export default store => {
     createMenu('About Us', 'https://fancycrazy.com/pages/about-us')
   ]);
 
-  if (__state__.pageProduct)
-    __state__.pageProduct.selectedImage = 0;
+  if (w.__state__.pageProduct)
+    w.__state__.pageProduct.selectedImage = 0;
 
-  store.replaceState(Object.assign({}, __state__, store2.get('vuex', {}), {
+  store.replaceState(Object.assign({}, w.__state__, store2.get('vuex', {}), {
     lockScroll: false,
     cart: cart.state()
   }));

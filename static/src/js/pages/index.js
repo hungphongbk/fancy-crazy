@@ -1,4 +1,6 @@
-import Vue from 'vue';
+import Vue   from 'vue';
+import {win} from "@/js/global";
+const w=win();
 
 //move desktop-mobile functional components to here
 // import '../fragments/collection__Sidebar'
@@ -12,7 +14,7 @@ const Index = () => import(/* webpackChunkName: "index" */ './index.vue'),
 const Pages = {Index, Collections, Product, Article, General};
 
 const component = () => {
-  switch (window.__state__.template) {
+  switch (w.__state__.template) {
     case 'index':
       return Pages.Index;
     case 'collection':
@@ -26,7 +28,7 @@ const component = () => {
     case 'product':
       return Pages.Product;
     default:
-      if (/^page/.test(window.__state__.template))
+      if (/^page/.test(w.__state__.template))
         return Pages.Article;
       else return Pages.General;
   }

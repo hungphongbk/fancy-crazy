@@ -1,5 +1,7 @@
-import _       from 'lodash';
-import Shopify from 'shopify-api-node';
+import _                      from 'lodash';
+import Shopify                from 'shopify-api-node';
+import {createBundleRenderer} from 'vue-server-renderer';
+import path                   from 'path';
 
 const shopify = new Shopify({
   shopName: 'cubachtung.myshopify.com',
@@ -9,7 +11,7 @@ const shopify = new Shopify({
 
 export default {
   apply(compiler) {
-    compiler.plugin('emit', async (compilation,callback) => {
+    compiler.plugin('emit', async (compilation, callback) => {
       const picks = ['frontend', 'vendor', 'inline'],
         isBeginWith = file => picks.reduce(
           (acc, f) => acc |= file.startsWith(f),
@@ -26,9 +28,12 @@ export default {
       });
 
       await Promise.all(files.map(async file => {
-        const [_key, value] = file.split('?'),
+        let [_key, value] = file.split('?'),
           key = _key.replace('.', '_'),
           m = metaList.find(m => m.key === _key);
+
+        if (_key.startsWith('inline') || _key.startsWith('frontend.css'))
+          value = compilation.assets[file].source();
 
         if (!m) {
           await shopify.metafield.create({
@@ -45,6 +50,15 @@ export default {
 
         console.log('done ' + file);
       }));
+
+      //generate ssr context for index page
+      global.window={};
+      const renderer = createBundleRenderer(path.resolve(__dirname, '../../static/vue-ssr-server-bundle.json'), {
+        runInNewContext: false
+      });
+      const html = await renderer.renderToString();
+      console.log(html);
+
       callback();
     });
   }

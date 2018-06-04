@@ -117,3 +117,4 @@ yarn.lock
 /static/node/
 local_history.patch
 /static/node-src/credentials/fancycrazy-895ba-firebase-adminsdk-c73dr-2f62366df5.json
+/functions/app/cred/

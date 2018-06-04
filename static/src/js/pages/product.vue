@@ -85,6 +85,7 @@
             | No worries! We've got it covered.
           p +1 914-598-8976 | support@fancycrazy.com
     fragment-recently-products.mt-5
+    similar-products(:product-id="product.id").mt-5
 </template>
 <script>
   import productModule from '@/js/store/page-product';
@@ -97,6 +98,7 @@
   import {Magnifier} from "@/js/plugins";
   import {GLOBAL_EVENTS} from "@/js/plugins";
   import FragmentRecentlyProducts from '@/js/fragments/index__RecentlyProducts'
+  import SimilarProducts from '@/js/fragments/product__SimilarProducts'
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -106,7 +108,8 @@
       FragmentVariants,
       FragmentImageList,
       FragmentExpandable,
-      FragmentRecentlyProducts
+      FragmentRecentlyProducts,
+      SimilarProducts
     },
     data() {
       return {

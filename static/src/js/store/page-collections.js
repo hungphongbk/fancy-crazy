@@ -2,6 +2,9 @@ import reviews                                                              from
 import {COLLECTION_GETTER_REVIEWS_GROUP1, COLLECTION_GETTER_REVIEWS_GROUP2} from "@/js/store/types";
 import defaultTo                                                            from 'lodash/defaultTo';
 import keyBy                                                                from 'lodash/keyBy';
+import {win}                                                                from "@/js/global";
+
+const w = win();
 
 export default {
   namespaced: true,
@@ -129,7 +132,7 @@ export default {
       }
     },
     async _navigate({commit, dispatch, getters}) {
-      window.history.pushState('string', '', '/collections/' + getters.url);
+      w.history.pushState('string', '', '/collections/' + getters.url);
       const {id, totalPages, products, title} = JSON.parse(await $.get(`/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`));
       commit('clearCache');
       commit('cache', {

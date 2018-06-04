@@ -20,7 +20,7 @@
   }
 </style>
 <template lang="pug">
-  a(:href="product.url", :class="$style.productItem")
+  a(:href="product.url || `/products/${product.handle}`", :class="$style.productItem")
     .ratio-5-6.mx-sm-2
       .content.text-center.d-flex.align-items-end
         image-pair(:srcset="product.images | shopifyImgUrls($mq.phone?'medium':'large')")

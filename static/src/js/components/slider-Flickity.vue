@@ -19,8 +19,19 @@
 
       transition: all $animation-time ease;
     }
-    .flickity-page-dots{
+  }
+
+  .slider.top {
+    padding-top: 20px;
+  }
+
+  :global(.flickity-page-dots) :local {
+    .slider.no-page-dots & {
       display: none;
+    }
+    .slider.top & {
+      bottom: unset;
+      top: -10px;
     }
   }
 
@@ -46,13 +57,12 @@
   }
 </style>
 <template lang="pug">
-  div(:class="[$style.slider, $style[theme], narrow?$style.narrow:'']")
+  div(:class="SLIDER_CLASSES")
     flickity(ref="flkty", :options="options", v-show="!ORIENTATION_VERTICAL_SHOW")
       slot
     vertical-duplicator(v-if="ORIENTATION_VERTICAL_SHOW")
 </template>
 <script>
-  import 'flickity-imagesloaded'
   import Flickity from 'vue-flickity'
 
   export default {
@@ -95,6 +105,18 @@
       options() {
         return Object.assign({}, this.slickOpts, this.opts);
       },
+      SLIDER_CLASSES() {
+        const $style = this.$style,
+          rs = [$style.slider, $style[this.theme]];
+        if (this.narrow)
+          rs.push($style.narrow);
+        if (this.options.pageDots === false)
+          rs.push($style.noPageDots);
+        else if (typeof this.options.pageDots === 'string')
+          rs.push($style[this.options.pageDots]);
+
+        return rs;
+      },
       /**
        * @return {boolean}
        */
@@ -109,6 +131,7 @@
     },
     mounted() {
       // debugger;
+      require('flickity-imagesloaded');
     }
   }
 </script>

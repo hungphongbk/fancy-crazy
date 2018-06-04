@@ -130,6 +130,9 @@
   import SEARCH_ICON from "@fortawesome/fontawesome-free-solid/faSearch";
   import CLOSE_ICON from "@fortawesome/fontawesome-free-solid/faTimes";
   import SearchPanel from './search-panel'
+  import {win} from "@/js/global";
+
+  const w=win();
 
   export default {
     components: {SearchPanel},
@@ -149,7 +152,7 @@
         el.classList.remove(self.$style.expanded);
         el.classList.remove(self.$style.collapsed);
 
-        window.getComputedStyle(inner).transform;
+        w.getComputedStyle(inner).transform;
 
         if (expanded) {
           self.$store.commit('lockScroll', true);
@@ -159,7 +162,7 @@
         } else {
           self.$store.commit('lockScroll', false);
           el.classList.add(self.$style.collapsed);
-          window.setTimeout(() => {
+          w.setTimeout(() => {
             inner.style['z-index'] = -1;
             outer.style.transform = 'translateX(-100%)';
           }, 300)

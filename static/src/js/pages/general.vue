@@ -3,9 +3,13 @@
     .mt-4.mt-sm-6(v-html="contentTransformed")
 </template>
 <script>
+  import {win} from "@/js/global";
+
+  const w = win();
+
   export default {
     data: () => ({
-      content: window.__state__.general.content,
+      content: w.__state__.general.content,
       contentTransformed: ''
     }),
     async mounted() {

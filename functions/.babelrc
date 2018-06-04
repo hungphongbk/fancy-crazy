@@ -3,11 +3,20 @@
     [
       "env",
       {
-        "targets": {
-          "node": "9.9.0"
-        }
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
       }
     ],
-    "es2017"
+    "transform-decorators-legacy",
+    "transform-object-rest-spread",
+    "graphql-js-client-transform"
   ]
 }

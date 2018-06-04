@@ -3,15 +3,14 @@
     .text-center
       h4 RECENTLY VIEWED PRODUCTS
       hr
-    .row
-      div(v-for="product in products", :class="classes")
-        product-item(:product="product")
+    data-source(:dataSource="products", type="slider")
+        product-item(slot-scope="{item}", :product="item")
 </template>
 <script>
-  import {ProductItem} from "@/js/components";
+  import {ProductItem, DataSource} from "@/js/components";
 
   export default {
-    components: {ProductItem},
+    components: {ProductItem, DataSource},
     data() {
       return {
         products: this.$store.state.recently,

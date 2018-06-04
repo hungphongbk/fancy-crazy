@@ -3,12 +3,13 @@ import Vuex        from 'vuex';
 import menu        from './menu';
 import cart        from './cart';
 import VuexPersist from 'vuex-persist';
-import polyfill    from './_polyfill';
+import {win}       from "@/js/global";
 
+const w = win();
 Vue.use(Vuex);
 
 const vuexLocalStorage = new VuexPersist({
-  storage: window.localStorage,
+  storage: w.localStorage,
   reducer: state => ({
     recently: state.recently
   })
@@ -57,6 +58,5 @@ const store = new Vuex.Store({
   },
   plugins: [vuexLocalStorage.plugin]
 });
-polyfill(store);
 
 export default store;

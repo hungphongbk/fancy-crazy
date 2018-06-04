@@ -9,7 +9,7 @@
             .text-center.pt-3(@click="injections.vm.toggle = !injections.vm.toggle")
               h6.font-weight-bold.mb-3 INFORMATION
             component(:is="injections.comp.Dropdown", :is-open="injections.vm.toggle")
-              slot(name="info")
+              slot(name="info", :toggle="injections.vm.toggle")
           .text-center
             h6.font-weight-bold.mt-3 GOOD FANCY CRAZY GUARANTEED
             div(v-html="injections.text")
