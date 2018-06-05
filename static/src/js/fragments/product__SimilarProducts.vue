@@ -23,7 +23,7 @@
         products: []
       }
     },
-    async created(){
+    async mounted(){
       this.products = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/products/${this.productId}/similar`);
     }
   }

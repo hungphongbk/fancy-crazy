@@ -41,18 +41,20 @@
     asyncComputed: {
       loadeds: {
         get() {
-          const loadImg = src => new Promise(resolve => {
-            const img = new Image();
-            img.onload = () => resolve();
-            img.src = src;
-          });
+          if(SSR==='client') {
+            const loadImg = src => new Promise(resolve => {
+              const img = new Image();
+              img.onload = () => resolve();
+              img.src = src;
+            });
 
-          return new Promise(resolve => {
-            Promise.all(this.srcset.map(loadImg))
-              .then(() => {
-                resolve(this.srcset);
-              })
-          })
+            return new Promise(resolve => {
+              Promise.all(this.srcset.map(loadImg))
+                .then(() => {
+                  resolve(this.srcset);
+                })
+            })
+          } else return Promise.resolve(this.srcset);
         },
         default: ['', '']
       }

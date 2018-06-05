@@ -1,5 +1,5 @@
 export const cartMixin = {
-  async created() {
+  async mounted() {
     await this.$store.dispatch('cart/fetch');
   }
 };

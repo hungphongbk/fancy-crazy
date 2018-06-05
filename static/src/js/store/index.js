@@ -8,14 +8,7 @@ import {win}       from "@/js/global";
 const w = win();
 Vue.use(Vuex);
 
-const vuexLocalStorage = new VuexPersist({
-  storage: w.localStorage,
-  reducer: state => ({
-    recently: state.recently
-  })
-});
-
-const store = new Vuex.Store({
+const store = {
   strict: process.env.NODE_ENV !== 'production',
   state: () => ({
     recently: [],
@@ -56,7 +49,17 @@ const store = new Vuex.Store({
     menu,
     cart
   },
-  plugins: [vuexLocalStorage.plugin]
-});
+  plugins: []
+};
 
-export default store;
+if (SSR === 'client') {
+  const vuexLocalStorage = new VuexPersist({
+    storage: w.localStorage,
+    reducer: state => ({
+      recently: state.recently
+    })
+  });
+  store.plugins.push(vuexLocalStorage.plugin);
+}
+
+export default new Vuex.Store(store);

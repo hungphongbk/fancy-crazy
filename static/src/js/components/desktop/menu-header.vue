@@ -152,7 +152,6 @@
     computed: {
       SEARCH_TOGGLE_ICON() {
         const self = this;
-        console.log(self);
         return self.isSearchMode ? self.TIMES_ICON : self.SEARCH_ICON;
       }
     }

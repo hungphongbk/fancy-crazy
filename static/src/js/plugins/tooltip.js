@@ -1,4 +1,6 @@
-import Vue      from 'vue';
-import VTooltip from 'v-tooltip/src/directives/v-tooltip';
+import Vue from 'vue';
 
-Vue.directive('tooltip', VTooltip);
+if (SSR === 'client') {
+  const VTooltip = require('v-tooltip/src/directives/v-tooltip');
+  Vue.directive('tooltip', VTooltip);
+}

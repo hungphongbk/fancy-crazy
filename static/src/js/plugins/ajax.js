@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import qs from 'query-string';
 import store from 'store2';
 
@@ -10,7 +9,7 @@ export const get = (url, useSession = false) => new Promise((resolve, reject) =>
     resolve(storage.get(url));
     return;
   }
-  $.ajax({
+  jQuery.ajax({
     url,
     type: 'GET',
     contentType: 'json',
@@ -21,7 +20,7 @@ export const get = (url, useSession = false) => new Promise((resolve, reject) =>
   }).catch(reject);
 });
 
-export const post = (url, data) => $.ajax({
+export const post = (url, data) => jQuery.ajax({
   url,
   type: 'POST',
   // contentType: 'json',

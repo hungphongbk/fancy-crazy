@@ -2,13 +2,12 @@ import $bs      from '@/scss/styles.m-scss';
 import Vue      from 'vue';
 import '@/js/components';
 import store    from '@/js/store';
-import '@/js/pages';
 import '@/js/plugins';
-import App      from './App';
 
 import 'vue-transition-css/src/sass/fade.scss';
 import mqStore  from '@/js/store/mq';
 import polyfill from "@/js/store/_polyfill";
+// import App from './App'
 
 Object.defineProperties(Vue.prototype, {
   $appStore: {
@@ -23,8 +22,10 @@ if (process.env.NODE_ENV !== 'production')
 
 export default () => {
   polyfill(store);
+  const App = require('./App').default;
   const app = new Vue({
     render: h => h(App),
+    // render: h=>h('div',['fuck']),
     store,
     mq: {
       phone: '(max-width: 768px)',

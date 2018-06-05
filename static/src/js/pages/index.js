@@ -1,7 +1,3 @@
-import Vue   from 'vue';
-import {win} from "@/js/global";
-const w=win();
-
 //move desktop-mobile functional components to here
 // import '../fragments/collection__Sidebar'
 
@@ -11,27 +7,24 @@ const Index = () => import(/* webpackChunkName: "index" */ './index.vue'),
   Article = () => import(/* webpackChunkName: "article" */ './article.vue'),
   General = () => import(/* webpackChunkName: "general" */ './general.vue');
 
-const Pages = {Index, Collections, Product, Article, General};
+let component;
+switch (window.__state__.template) {
+  case 'index':
+    component = Index;
+    break;
+  case 'collection':
+    component = Collections;
+    break;
+  case 'product':
+    component = Product;
+    break;
+  default:
+    if (/^page/.test(window.__state__.template))
+      component = Article;
+    else component = General;
+}
 
-const component = () => {
-  switch (w.__state__.template) {
-    case 'index':
-      return Pages.Index;
-    case 'collection':
-      return Pages.Collections;
-    // case 'blog':
-    //   return Pages.Blog;
-    // case 'article':
-    //   return Pages.Article;
-    // case 'page-vaithuhay':
-    //   return Pages.PageVaithuhay;
-    case 'product':
-      return Pages.Product;
-    default:
-      if (/^page/.test(w.__state__.template))
-        return Pages.Article;
-      else return Pages.General;
-  }
-};
+// Vue.component('site-content',component());
+import c from './index.vue'
 
-Vue.component('site-content', component());
+export default c;

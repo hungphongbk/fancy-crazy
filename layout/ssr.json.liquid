@@ -1,0 +1,21 @@
+{% comment %}
+{{ content_for_header }}
+{% endcomment %}
+{% capture rendered %}
+{% capture tmpl %}
+{{ template }}
+{% if template == 'page' %}
+{{ page.handle | prepend: '-' }}
+{% endif %}
+{% endcapture %}
+{
+  "template": {{ tmpl | replace: ".json","" | remove:' ' | strip_newlines | json }},
+  "recently": [],
+  "mq": {},
+  "isLoading": false,
+  "menu": {
+    "list": {% include 'theme-state-menu' %}
+  },
+  {{ content_for_layout }}
+}
+{% endcapture %}{{ rendered | strip_newlines | replace: "  ","" | replace: ": ",":" }}

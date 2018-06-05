@@ -9,6 +9,7 @@ export default store => {
     moreMenu = w.__state__.menu.list.find(m => m.handle === 'more');
   // debugger;
   moreMenu.isTextOnly = true;
+  if (!moreMenu.children) moreMenu.children = [];
   moreMenu.children.push(...[
     createMenu('Blog', 'https://fancycrazy.com/blogs/news'),
     createMenu('Size Chart', 'https://fancycrazy.com/blogs/news'),
@@ -17,6 +18,16 @@ export default store => {
     createMenu('Track your Order', 'http://fancycrazy.aftership.com'),
     createMenu('About Us', 'https://fancycrazy.com/pages/about-us')
   ]);
+
+  if (w.__state__.pageIndex) {
+    const pageIndex = w.__state__.pageIndex;
+    if (!pageIndex.reviews)
+      pageIndex.reviews = {
+        group1: [],
+        group2: [],
+        group3: []
+      };
+  }
 
   if (w.__state__.pageProduct)
     w.__state__.pageProduct.selectedImage = 0;

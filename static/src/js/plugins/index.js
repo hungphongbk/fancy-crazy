@@ -4,22 +4,27 @@ import './responsive';
 import Vue             from 'vue';
 import AsyncComputed   from 'vue-async-computed';
 import VueLocalStorage from 'vue-localstorage';
-import VueLazyload     from 'vue-lazyload';
 import './fontawesome';
 // import {delay} from '../components/helpers'
 // import './observe-visibility'
 import * as filters    from './filters';
 import './tooltip';
-
-import smoothscroll from 'smoothscroll-polyfill';
-import vuescroll    from 'vue-scroll';
 //
 // import 'vue-carousel'
+
+if (SSR === 'client') {
+  const VueLazyLoad = require('vue-lazyload'),
+    smoothscroll = require('smoothscroll-polyfill'),
+    vueScroll = require('vue-scroll').default;
+  Vue.use(VueLazyLoad, {});
+  Vue.use(vueScroll);
+  smoothscroll.polyfill();
+}
+
 
 // Vue.use(VeeValidate);
 Vue.use(AsyncComputed);
 Vue.use(VueLocalStorage);
-Vue.use(VueLazyload, {});
 
 Vue.directive('anim', async (el) => {
   const $children = el.children;
@@ -64,8 +69,5 @@ const Magnifier = () => import(/* webpackChunkName:"desktop" */ '@/js/components
 export {Magnifier};
 
 // kick off the polyfill!
-smoothscroll.polyfill();
-
-Vue.use(vuescroll);
-
 export const GLOBAL_EVENTS = new Vue();
+

@@ -9,11 +9,6 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "allowJs": true,
-    "paths": {
-      "@": [
-        "/static/src"
-      ]
-    },
     "lib": [
       "es7",
       "dom",
@@ -26,10 +21,9 @@
     "node_modules"
   ],
   "include": [
-    "/static/src/global.d.ts",
-    "/functions/app/**/*.ts"
+    "app/**/*.ts"
   ],
   "files": [
-    "/static/src/global.d.ts"
+    "global.d.ts"
   ]
 }

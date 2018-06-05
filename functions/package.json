@@ -2,17 +2,18 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
-    "dev": "webpack --config ./webpack.config.js --hide-modules --color --watch",
-    "serve": "firebase serve --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "func:dev": "webpack --config ./webpack.config.js --hide-modules --color --watch",
+    "func:serve": "firebase serve --only functions",
+    "func:shell": "firebase functions:shell",
+    "func:start": "npm run shell",
+    "func:deploy": "firebase deploy --only functions",
+    "func:logs": "firebase functions:log"
   },
   "dependencies": {
     "atob": "^2.1.1",
     "babel-plugin-graphql-js-client-transform": "^1.1.1",
     "babel-runtime": "^6.26.0",
+    "body-parser": "^1.18.3",
     "btoa": "^1.2.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
@@ -21,6 +22,7 @@
     "firebase-functions": "^1.0.1",
     "graphql-js-client": "^0.9.2",
     "lodash": "^4.17.10",
+    "lodash-decorators": "^5.0.1",
     "md5": "^2.2.1",
     "query-string": "^6.1.0",
     "redis": "^2.8.0",
@@ -35,6 +37,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "json-loader": "^0.5.7",
+    "ts-loader": "^4.3.1",
+    "typescript": "^2.9.1",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.0",
     "webpack-node-externals": "^1.7.2"

@@ -22,8 +22,7 @@
   import {mapState} from 'vuex';
   import {assert} from "@/js/plugins/helpers";
 
-  const $ = jQuery,
-    mapVariant = variant => variant.title.split(/\s\/\s/).map(title => ({
+  const mapVariant = variant => variant.title.split(/\s\/\s/).map(title => ({
       title,
       image: variant.image
     }));

@@ -8,7 +8,7 @@
     "theme:watch": "shopify_theme watch",
     "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem",
     "ssr:build": "cross-env NODE_ENV=production webpack --config webpack-ssr.config.babel.js --hide-modules",
-    "app:build": "yarn run ssr:build;cross-env NODE_ENV=production webpack --hide-modules",
+    "app:build": "yarn run ssr:build;NODE_OPTIONS=--trace-warnings cross-env NODE_ENV=production webpack --hide-modules",
     "app:deploy": "cross-env NODE_ENV=production webpack --hide-modules; firebase deploy --only hosting",
     "node:dev": "cross-env NODE_ENV=development webpack --config webpack-node.config.babel.js --hide-modules --color --watch",
     "node:run": "node static/node/app.js"
@@ -81,6 +81,7 @@
     "lodash": "^4.17.10",
     "mobile-detect": "^1.4.1",
     "moment": "^2.22.1",
+    "my-vue-utils": "https://github.com/hungphongbk/my-vue-utils",
     "node-sass": "^4.9.0",
     "node-sass-import": "^2.0.1",
     "node-sass-importer": "^1.0.0",
@@ -139,6 +140,7 @@
     "vue-router": "^3.0.1",
     "vue-scrollspy": "^0.1.3",
     "vue-select": "^2.4.0",
+    "vue-server-renderer": "^2.5.16",
     "vue-socket.io": "^2.1.1",
     "vue-star-rating": "https://github.com/hungphongbk/vue-star-rating",
     "vue-template-compiler": "^2.5.16",
@@ -155,8 +157,7 @@
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.7.2",
     "webpack-s3-plugin": "^1.0.0-rc.0",
-    "yaml-loader": "^0.5.0",
-    "my-vue-utils": "latest"
+    "yaml-loader": "^0.5.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
@@ -177,6 +178,7 @@
     "imagemin": "^5.3.1",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^5.1.0",
+    "matchmedia-polyfill": "^0.3.0",
     "mime-types": "^2.1.18",
     "request": "^2.87.0",
     "roboto": "https://github.com/FontFaceKit/roboto",
@@ -184,7 +186,6 @@
     "shopify-token": "^3.0.2",
     "spawn-sync": "^2.0.0",
     "string-hash": "^1.1.3",
-    "vue-scroll": "^2.1.7",
-    "vue-server-renderer": "^2.5.16"
+    "vue-scroll": "^2.1.7"
   }
 }

@@ -38,12 +38,12 @@
         return this.$appStore.state.pageIndex.reviews
       }
     },
-    async created() {
+    async mounted() {
       this.$store.subscribe(mutation=>{
         if(mutation.type==='pageIndex/fetch'){
 
         }
-      })
+      });
       await this.$store.dispatch('pageIndex/fetch');
     }
   }

@@ -158,7 +158,7 @@
         }, 1000)
       }
     },
-    async created() {
+    async mounted() {
       this.$appStore.subscribe(mutation => {
         if (mutation.type === 'cart/addToCart') {
           this.$appStore.commit('cart/togglePopup');

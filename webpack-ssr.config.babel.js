@@ -170,8 +170,10 @@ module.exports = merge(base, {
   },
   externals: nodeExternals({
     whitelist: [
-      /\.css$/,
-      'vue-flickity'
+      /\.s?css$/,
+      'vue-flickity',
+      /^vue-match-media/,
+      /^v-tooltip/
     ]
   }),
   plugins: [

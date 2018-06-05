@@ -17,8 +17,12 @@ module.exports = {
   module: {
     rules: [
       {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
+      {test: /\.ts$/, loader: "ts-loader"}
       // {test: /\.json$/, loader: "json-loader"}
     ]
+  },
+  resolve:{
+    extensions: [".ts", ".js", ".json"]
   },
   node: {
     __filename: true,

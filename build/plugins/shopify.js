@@ -9,6 +9,11 @@ const shopify = new Shopify({
   password: '7f6a7e330da245f0049ff3a642e3abdc'
 });
 
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p);
+  // application specific logging, throwing an error, or other logic here
+});
+
 export default {
   apply(compiler) {
     compiler.plugin('emit', async (compilation, callback) => {
@@ -52,12 +57,24 @@ export default {
       }));
 
       //generate ssr context for index page
-      global.window={};
+      global.window = {
+        Event: {},
+        Element: class {
+          matches() {
+            return true;
+          }
+        }
+      };
+      global.document = {
+        readyState: 'loading',
+        addEventListener(type, listener) {
+        }
+      };
       const renderer = createBundleRenderer(path.resolve(__dirname, '../../static/vue-ssr-server-bundle.json'), {
         runInNewContext: false
       });
       const html = await renderer.renderToString();
-      console.log(html);
+      console.log("SSR generated size: "+Math.round(html.length*100/1024)/100+'KB');
 
       callback();
     });
