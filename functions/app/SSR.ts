@@ -107,7 +107,11 @@ class SSR {
         list: menu,
       },
       recently: [],
-      mq: {},
+      mq: {
+        phone: true,
+        tablet: false,
+        desktop: false,
+      },
       isLoading: false,
       ...await this.generateIndexPageState(),
     };

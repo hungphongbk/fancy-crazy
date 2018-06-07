@@ -135,6 +135,7 @@
     "vue-localstorage": "^0.6.2",
     "vue-masonry": "^0.10.17",
     "vue-match-media": "^1.0.3",
+    "vue-no-ssr": "^0.2.2",
     "vue-observe-visibility": "^0.3.1",
     "vue-responsive": "^0.2.0",
     "vue-router": "^3.0.1",

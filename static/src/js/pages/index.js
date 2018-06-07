@@ -1,3 +1,4 @@
+import Vue from 'vue';
 //move desktop-mobile functional components to here
 // import '../fragments/collection__Sidebar'
 
@@ -10,7 +11,7 @@ const Index = () => import(/* webpackChunkName: "index" */ './index.vue'),
 let component;
 switch (window.__state__.template) {
   case 'index':
-    component = Index;
+    component = (SSR === 'client' ? Index : require('./index.vue').default);
     break;
   case 'collection':
     component = Collections;
@@ -24,7 +25,7 @@ switch (window.__state__.template) {
     else component = General;
 }
 
-// Vue.component('site-content',component());
-import c from './index.vue'
-
-export default c;
+// Vue.component('site-content', component);
+// import c from './index.vue'
+//
+export default component;

@@ -123,7 +123,8 @@
       div(:class="$style.searchBoxInner", ref="elInner")
         div(:class="$style.searchBoxInverter", ref="elInverter")
           div(:class="$style.searchBox", ref="content")
-            search-panel(:is-expanded="SEARCH_BOX_TOGGLE")
+            no-ssr
+              search-panel(:is-expanded="SEARCH_BOX_TOGGLE")
 </template>
 <script>
   // @flow

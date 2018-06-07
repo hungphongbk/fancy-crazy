@@ -16,7 +16,6 @@
       }
     ],
     "transform-decorators-legacy",
-    "transform-object-rest-spread",
-    "graphql-js-client-transform"
+    "transform-object-rest-spread"
   ]
 }
