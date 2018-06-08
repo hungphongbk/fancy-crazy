@@ -9,7 +9,7 @@ import shopify        from './Shopify.ts';
 import ssr            from './SSR.ts';
 
 const app = express();
-app.use(cors());
+app.use(cors({origin: true}));
 app.use(cacheControl({
   maxAge: 3600
 }));
@@ -26,7 +26,13 @@ app.get('/products/:id/similar', async (req, res) => {
 
 app.post('/ssr', async (req, res) => {
   // const url = req.body.url;
-  res.json(await ssr.generateStateTree());
+  await ssr.generateSSRContent();
+  res.json({status: 'OK'});
 });
 
 export const s = functions.https.onRequest(app);
+
+export const ssrUpload = functions.database.ref('server/ssr-bundle/obj')
+  .onCreate((snapshot, context) => {
+
+  });

@@ -1,7 +1,6 @@
-import _                      from 'lodash';
-import Shopify                from 'shopify-api-node';
-import {createBundleRenderer} from 'vue-server-renderer';
-import path                   from 'path';
+import _       from 'lodash';
+import Shopify from 'shopify-api-node';
+import axios   from 'axios';
 
 const shopify = new Shopify({
   shopName: 'cubachtung.myshopify.com',
@@ -17,6 +16,7 @@ process.on('unhandledRejection', (reason, p) => {
 export default {
   apply(compiler) {
     compiler.plugin('emit', async (compilation, callback) => {
+      console.log('begin create SSR content');
       const picks = ['frontend', 'vendor', 'inline'],
         isBeginWith = file => picks.reduce(
           (acc, f) => acc |= file.startsWith(f),
@@ -37,7 +37,7 @@ export default {
           key = _key.replace('.', '_'),
           m = metaList.find(m => m.key === _key);
 
-        if (_key.startsWith('inline') || _key.startsWith('frontend.css'))
+        if (_key.startsWith('inline'))
           value = compilation.assets[file].source();
 
         if (!m) {
@@ -57,24 +57,7 @@ export default {
       }));
 
       //generate ssr context for index page
-      global.window = {
-        Event: {},
-        Element: class {
-          matches() {
-            return true;
-          }
-        }
-      };
-      global.document = {
-        readyState: 'loading',
-        addEventListener(type, listener) {
-        }
-      };
-      const renderer = createBundleRenderer(path.resolve(__dirname, '../../static/vue-ssr-server-bundle.json'), {
-        runInNewContext: false
-      });
-      const html = await renderer.renderToString();
-      console.log("SSR generated size: "+Math.round(html.length*100/1024)/100+'KB');
+      // await axios.post('http://localhost:5000/fancycrazy-895ba/us-central1/s/ssr');
 
       callback();
     });

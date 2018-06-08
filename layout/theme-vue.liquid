@@ -23,9 +23,12 @@
   {% endif %}
 
   <!--PRELOAD-->
-  <style>{{ shop.metafields.fancyCrazySrc.frontend_css }}</style>
+  <link rel="stylesheet" href="https://static.fancycrazy.com/frontend.css?{{ shop.metafields.fancyCrazySrc.frontend_css }}">
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.1/mobile-detect.min.js"></script>
+
 
   {% include 'social-meta-tags' %}
   <link rel="canonical" href="{{ canonical_url }}">

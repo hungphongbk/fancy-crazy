@@ -1,5 +1,8 @@
-import shopify     from './Shopify';
-import {cacheable} from "./utils";
+import shopify                from './Shopify';
+import {cacheable}            from "./utils";
+import database               from '../firebase/database.babel';
+import {createBundleRenderer} from "vue-server-renderer";
+import polyfill               from './polyfill';
 
 function handleize(str) {
   str = str.toLowerCase();
@@ -78,6 +81,7 @@ class SSR {
     return menuObj;
   }
 
+  @cacheable(60)
   async generateIndexPageState() {
     const collectionList = 'Native Apparel|Animal Spirit Bedding|Hippie Car Seat Covers|Dreamcatcher Saddle Bag|Yoga Leggings|Christian necklace|Pet Hightop'.split('|').map(handleize);
     const featuredCollectionList = 'Bed|Native Apparel|Dreamcatcher Legging|Hippe Car Seat Cover'.split('|').map(handleize);
@@ -97,7 +101,13 @@ class SSR {
     return '';
   }
 
-  async generateStateTree(url = '/') {
+  readSSRBundle() {
+    return new Promise(resolve => {
+      database.ref('server/ssr-bundle/source').once('value', snapshot => resolve(JSON.parse(snapshot.val())));
+    });
+  }
+
+  async generateStateTree(url = '/', responsiveMode = '') {
     const template = this.determineTemplate(url),
       menu = await this.generateMenu();
 
@@ -108,13 +118,31 @@ class SSR {
       },
       recently: [],
       mq: {
-        phone: true,
+        phone: responsiveMode === 'phone',
         tablet: false,
-        desktop: false,
+        desktop: responsiveMode === 'desktop',
       },
       isLoading: false,
       ...await this.generateIndexPageState(),
     };
+  }
+
+  async generateSSRContent(url = '/') {
+    // const bundle=JSON.parse(await database.ref('server/ssr-bundle/source'))
+    const bundle = await this.readSSRBundle(),
+      renderer = createBundleRenderer(bundle, {
+        runInNewContext: 'once',
+        template: '<!--vue-ssr-outlet-->',
+      });
+
+    polyfill();
+
+    await Promise.all(['phone', 'desktop'].map(async responsive => {
+      const html = await renderer.renderToString({
+        __state__: await this.generateStateTree(url, responsive),
+      });
+      await shopify.SSR(url, responsive, html);
+    }));
   }
 }
 

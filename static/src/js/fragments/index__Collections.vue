@@ -77,7 +77,7 @@
       a(:href="col.url")
         .ratio-1-1
           .content
-            img.img-fluid(:class="$style.image", :src="col.image | shopifyImgUrl('grande')")
+            img.img-fluid(:class="$style.image", :src="col.image | shopifyImgUrl($mq.phone?'large':'grande')")
           .content(:class="$style.collectionDetail")
             div
               h4.pb-2(:class="$style.title") {{col.title}}

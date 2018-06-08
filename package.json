@@ -8,7 +8,7 @@
     "theme:watch": "shopify_theme watch",
     "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem",
     "ssr:build": "cross-env NODE_ENV=production webpack --config webpack-ssr.config.babel.js --hide-modules",
-    "app:build": "yarn run ssr:build;NODE_OPTIONS=--trace-warnings cross-env NODE_ENV=production webpack --hide-modules",
+    "app:build": "NODE_OPTIONS=--trace-warnings cross-env NODE_ENV=production webpack --hide-modules",
     "app:deploy": "cross-env NODE_ENV=production webpack --hide-modules; firebase deploy --only hosting",
     "node:dev": "cross-env NODE_ENV=development webpack --config webpack-node.config.babel.js --hide-modules --color --watch",
     "node:run": "node static/node/app.js"
@@ -79,6 +79,7 @@
     "lazyloadxt": "^1.1.0",
     "loader-utils": "latest",
     "lodash": "^4.17.10",
+    "md5": "^2.2.1",
     "mobile-detect": "^1.4.1",
     "moment": "^2.22.1",
     "my-vue-utils": "https://github.com/hungphongbk/my-vue-utils",

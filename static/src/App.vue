@@ -1,23 +1,20 @@
 <style lang="scss">
   @import "scss/inc";
-
   #app, #scroll {
     height: 100%;
   }
-
-  #app #scroll {
+  #app #scroll{
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
-
-  #primary, #main {
+  #primary, #main{
     padding-top: 1px;
   }
 </style>
 <template lang="pug">
   #app.d-flex.flex-column
     site-header
-    #scroll.flex-grow-1
+    #scroll.flex-grow-1(v-scroll="onScroll", ref="app")
       #primary.clearfix
         main#main(role="main")
           component(:is="SITE_CONTENT")
@@ -27,13 +24,14 @@
 </template>
 <script>
   import SiteHeader from '@/js/components/menu-header'
-  import SITE_CONTENT from '@/js/pages'
   import SiteFooter from '@/js/components/footer'
   import Loader from '@/js/components/loader'
   import {GLOBAL_EVENTS} from "@/js/plugins";
+  import SITE_CONTENT from '@/js/pages'
 
   const THRESHOLD = 180;
 
+  const $ = jQuery;
   export default {
     components: {
       SiteHeader,
@@ -54,7 +52,7 @@
        * @return {float}
        */
       IS_SCROLLING() {
-        return this.SCROLL_TOP > THRESHOLD ? 1 : (this.SCROLL_TOP * 1.0) / THRESHOLD;
+        return this.SCROLL_TOP > THRESHOLD ? 1 : (this.SCROLL_TOP*1.0) / THRESHOLD;
       }
     },
     watch: {
@@ -67,11 +65,11 @@
         this.SCROLL_TOP = scrollTop;
       }
     },
-    async mounted() {
+    async created() {
       this.$appStore.subscribe(mutation => {
         if (mutation.type === 'lockScroll') {
           const val = this.$appStore.state.lockScroll;
-          jQuery(this.$refs.app).css({'overflow-y': val ? 'hidden' : 'scroll'})
+          $(this.$refs.app).css({'overflow-y': val ? 'hidden' : 'scroll'})
         }
       });
       await this.$store.dispatch('cart/fetch');

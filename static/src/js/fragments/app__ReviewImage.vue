@@ -11,7 +11,7 @@
 </style>
 <template lang="pug">
   slider(type="flickity", :opts="opts")
-    img(v-for="{image_url} in items", :class="$style.image", :src="image_url | secure | storage($mq.phone)")
+    img(v-for="{image_url} in items", :class="$style.image", :data-flickity-lazyload="image_url | secure | storage($mq.phone)")
 </template>
 <script>
   import {Slider} from "@/js/components";
@@ -27,7 +27,8 @@
     data: () => ({
       opts: {
         infinite: true,
-        variableWidth: true
+        variableWidth: true,
+        lazyLoad: 2
       }
     }),
     filters: {

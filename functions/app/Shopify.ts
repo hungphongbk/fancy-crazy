@@ -102,6 +102,7 @@ class ShopifyWrapper {
     });
 
     // transform collections to products
+    console.log(collections);
     const products = uniqBy(
       flatten(await Promise.all(collections.map(
         col => this.collectionGetProducts(col.id, {
@@ -163,6 +164,25 @@ class ShopifyWrapper {
       .then(this.collectionGetCollects)
       .then(collects => collects.map(c => c.product_id))
       .then(ids => this.productList(ids, params));
+  }
+
+  async SSR(url, responsive, source) {
+    const metafields = await shopify.metafield.list({
+      namespace: 'fancyCrazySSR',
+      key: `${responsive}-${url.replace(/\//g, '')}`,
+    });
+    if (metafields.length === 0) {
+      await shopify.metafield.create({
+        namespace: 'fancyCrazySSR',
+        key: `${responsive}-${url.replace(/\//g, '')}`,
+        value: source,
+        value_type: 'string',
+      });
+    } else {
+      await shopify.metafield.update(metafields[0].id, {
+        value: source,
+      });
+    }
   }
 }
 

@@ -1,5 +1,21 @@
 {% layout 'theme-vue' %}
-<div id="app"></div>
+<div id="app" v-cloak></div>
+{% comment %}
+<div id="app-desktop" style="display:none">{{ shop.metafields.fancyCrazySsr['desktop-'] }}</div>
+<div id="app-phone" style="display:none">{{ shop.metafields.fancyCrazySsr['phone-'] }}</div>
+<script>
+  if(!o.dev){
+    var md=new MobileDetect(window.navigator.userAgent),
+      $app=$('#app:not([data-server-rendered])');
+    if(md.mobile()){
+      $app.replaceWith($('#app-phone').children())
+    } else {
+      console.log('desktop detected');
+      $app.replaceWith($('#app-desktop').children())
+    }
+  }
+</script>
+{% endcomment %}
 <script>
   {% assign collectionList = 'Native Apparel|Animal Spirit Bedding|Hippie Car Seat Covers|Dreamcatcher Saddle Bag|Yoga Leggings|Christian necklace|Pet Hightop' | split: '|' %}
   window.__state__.pageIndex = {

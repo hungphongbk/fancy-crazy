@@ -38,6 +38,9 @@
     .title {
       @include font-size-with-line-height($h6-font-size);
     }
+    .content p{
+      @include font-size-with-line-height($font-size-base*0.74);
+    }
   }
 
   @include media-breakpoint-up(sm) {
@@ -65,7 +68,7 @@
         .d-flex.mt-2
           .ratio-1-1(:class="$style.thumbnail")
             .content
-              img.img-fluid(:src="item.image_url | shopifyImgUrl($mq.phone?'thumb':'medium')")
+              img.img-fluid(:data-flickity-lazyload="item.image_url | shopifyImgUrl('medium')")
           .pl-2.pr-1.pr-sm-4(:class="$style.content")
             p
               i.text-muted {{item.review_content}}
@@ -88,7 +91,8 @@
     data: () => ({
       faClock,
       opts: {
-        infinite: true
+        infinite: true,
+        lazyLoad: 2
       }
     }),
     computed: {

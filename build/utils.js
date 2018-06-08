@@ -36,15 +36,19 @@ const idLocal = createUniqueIdGenerator(), idComponent = createUniqueIdGenerator
 const components = {};
 const generateScopedName = (localName, resourcePath) => {
   const componentName = resourcePath.split('/').slice(-2).join('_');
-  if (!components[componentName]) {
-    components[componentName] = true;
-    // console.log(componentName[0]+' '+resourcePath);
-  }
   if (process.env.NODE_ENV === 'development')
     return componentName.replace(/\./g, '_') + '__' + localName;
   if (/^col-/.test(localName))
     return 'col-' + idLocal(localName);
-  return idComponent(componentName).toUpperCase() + idLocal(localName);
+
+  //return caching
+  if (components[componentName + localName]) {
+    return components[componentName + localName];
+  }
+
+  const ident = idComponent(componentName).toUpperCase() + idLocal(localName);
+  components[componentName + localName] = ident;
+  return ident;
 };
 
 const getLocalIdent = (context, localIdentName, localName) => generateScopedName(localName, context.resourcePath);
@@ -89,5 +93,12 @@ const cssLoaders = (before = [], modules = false) => {
 
 export default {
   getLocalIdent,
-  cssLoaders
+  cssLoaders,
+  LocalIdentPlugin: {
+    apply(compiler) {
+      compiler.plugin('compilation', (compilation, callback) => {
+
+      });
+    }
+  }
 };

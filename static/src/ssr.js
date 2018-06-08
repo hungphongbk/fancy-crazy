@@ -1,7 +1,18 @@
-import createApp from './universal';
-import axios     from 'axios';
-
+global.window = {
+  Event: {},
+  Element: class {
+    matches() {
+      return true;
+    }
+  }
+};
+global.document = {
+  readyState: 'loading',
+  addEventListener(type, listener) {
+  }
+};
 export default async context => {
-  global.window.__state__ = (await axios.post('http://localhost:5000/fancycrazy-895ba/us-central1/s/ssr')).data;
+  const createApp = require('./universal').default;
+  global.window.__state__ = context.__state__;
   return createApp();
 }

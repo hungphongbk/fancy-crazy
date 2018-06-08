@@ -7,6 +7,7 @@ import _                  from './build/utils';
 import VueSSRServerPlugin from 'vue-server-renderer/server-plugin';
 import nodeExternals      from 'webpack-node-externals';
 import webpack            from 'webpack';
+import BundleUpload       from './build/plugins/bundle-upload-to-firebase-database';
 
 const src = './static/src',
   dist = './static/dist',
@@ -17,7 +18,7 @@ const extractCss = new ExtractTextPlugin({
   filename: "[name].css?[contenthash]"
 });
 
-global.getLocalIdent = _.getLocalIdent;
+// global.getLocalIdent = _.getLocalIdent;
 
 const cssLoader = (modules = false) => ({
   loader: "css-loader",
@@ -181,6 +182,7 @@ module.exports = merge(base, {
       SSR: '"server"'
     }),
     extractCss,
-    new VueSSRServerPlugin()
+    new VueSSRServerPlugin(),
+    BundleUpload
   ]
 });
