@@ -16,7 +16,9 @@ if (SSR === 'client') {
   const VueLazyLoad = require('vue-lazyload'),
     smoothscroll = require('smoothscroll-polyfill'),
     vueScroll = require('vue-scroll').default;
-  Vue.use(VueLazyLoad, {});
+  Vue.use(VueLazyLoad, {
+    loading: require('@/images/loading-0.svg')
+  });
   Vue.use(vueScroll);
   smoothscroll.polyfill();
 }

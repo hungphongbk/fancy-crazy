@@ -23,7 +23,7 @@
   a(:href="product.url || `/products/${product.handle}`", :class="$style.productItem")
     .ratio-5-6.mx-sm-2
       .content.text-center.d-flex.align-items-end
-        image-pair(:srcset="product.images | shopifyImgUrls($mq.phone?'medium':'large')")
+        image-pair(:srcset="product.images | shopifyImgUrls('large')")
     .product-detail.text-center.mt-2
       h6.mb-0.mb-sm-1(:class="$style.productTitle") {{product.title}}
       h6

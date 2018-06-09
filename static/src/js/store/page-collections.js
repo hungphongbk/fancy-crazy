@@ -44,7 +44,7 @@ export default {
           'bed': '',
           'pillow': 'feather-pillow,canvas,mug,clock-wall',
           'jewelry': 'jewelry-1,watch,phone-cases,luggage-covers',
-          'bag-1': 'saddle-bag,leather-bag,tote-bag',
+          'bag-collections': 'saddle-bag,leather-bag,round-lling-bag',
           'native-handmade': ''
         };
       const rs = [];

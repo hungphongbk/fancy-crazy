@@ -84,7 +84,7 @@ class ShopifyWrapper {
     }).then(this._refineProductList);
   }
 
-  @cacheable()
+  @cacheable(3600)
   async productSimilar(product_id) {
     const collects = await this.productGetCollects(product_id),
       collections = await Promise.all(collects.map(async c => {
@@ -102,18 +102,17 @@ class ShopifyWrapper {
     });
 
     // transform collections to products
-    console.log(collections);
     const products = uniqBy(
       flatten(await Promise.all(collections.map(
-        col => this.collectionGetProducts(col.id, {
+        col => this.collectionGetProducts(col.id * 1, {
           fields: 'id,title,handle,images,variants',
         }),
       )))
       , 'id');
-    if (!Array.isArray(comparator) || comparator.length === 0)
+    if (!Array.isArray(comparator) || comparator.length === 0 || comparator[0] === null)
       return products;
 
-    const comparatorProducts = await this.collectionGetProducts(comparator[0].id, {
+    const comparatorProducts = await this.collectionGetProducts(comparator[0].id * 1, {
       fields: 'id,title,handle,images',
     });
 
@@ -151,11 +150,14 @@ class ShopifyWrapper {
     });
   }
 
-  @cacheable(0)
+  @cacheable()
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
     const getId = new Promise(resolve => {
-      if (typeof id === "number") resolve(id);
+      if (typeof id === "number" || /^[0-9]+$/.test(id)) {
+        resolve(id);
+        return;
+      }
       return this.collectionGetByHandle(id)
         .then(collection => resolve(collection.id));
     });

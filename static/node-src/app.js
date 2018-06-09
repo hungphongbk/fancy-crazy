@@ -212,19 +212,19 @@ async function task3() {
 
 async function task4() {
   const cols: Array<string> = transform({
-    'apparel': 'tshirt,hooded-blanket,leggings,hat,bomber-jacket',
-    '3d-art': '3d-hoodie,3d-tshirt,3d-dress,3d-skirt',
-    'shoes': 'boots-shoes,top-shoes,low-tops,sneakers,slip-ons',
-    'car-seat-covers': '',
-    'bed': '',
-    'pillow': 'feather-pillow,canvas,mug,clock-wall',
-    'jewelry': 'jewelry-1,watch,phone-cases,luggage-covers',
-    'bag-1': 'saddle-bag,leather-bag,tote-bag',
-    'native-handmade': ''
-  }, (rs, value, key) => {
-    rs.push(key);
-    rs.push(...value.split(',').filter(v => v.length > 0));
-  }, []),
+      'apparel': 'tshirt,hooded-blanket,leggings,hat,bomber-jacket',
+      '3d-art': '3d-hoodie,3d-tshirt,3d-dress,3d-skirt',
+      'shoes': 'boots-shoes,top-shoes,low-tops,sneakers,slip-ons',
+      'car-seat-covers': '',
+      'bed': '',
+      'pillow': 'feather-pillow,canvas,mug,clock-wall',
+      'jewelry': 'jewelry-1,watch,phone-cases,luggage-covers',
+      'bag-collections': 'saddle-bag,leather-bag,round-lling-bag',
+      'native-handmade': ''
+    }, (rs, value, key) => {
+      rs.push(key);
+      rs.push(...value.split(',').filter(v => v.length > 0));
+    }, []),
     tags = transform({
       native: 'Native American',
       hippie: 'Spiritual Hippie',
@@ -245,12 +245,16 @@ async function task4() {
 
   // transform cols to metafield object, and push tag items
   const metaObj = cols.map(handle => {
-    const title = all.find(col => col.handle === handle).title;
-    return {
-      type: 'categories',
-      title,
-      url: handle
-    };
+    try {
+      const title = all.find(col => col.handle === handle).title;
+      return {
+        type: 'categories',
+        title,
+        url: handle
+      };
+    } catch (e) {
+      console.error(`${handle} is undefined`);
+    }
   });
   metaObj.push(...tags);
 

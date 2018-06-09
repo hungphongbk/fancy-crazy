@@ -38,7 +38,7 @@ const cssLoader = (modules = false) => ({
 
 module.exports = merge(base, {
   entry: {
-    vendor: ['vue', 'vuex', 'vue-lazyload', 'vue-match-media', 'flickity', 'vue-flickity', 'flickity-imagesloaded', '@tweenjs/tween.js'],
+    vendor: ['vue', 'vuex', 'vue-lazyload', 'vue-match-media', 'flickity', 'vue-flickity', 'flickity-imagesloaded', '@tweenjs/tween.js','popper.js'],
     frontend: src + '/script.js'
   },
   output: {
