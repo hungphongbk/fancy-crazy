@@ -4240,7 +4240,7 @@ var task1 = function () {
               case 13:
                 _context3.prev = 13;
                 _context3.t0 = _context3['catch'](5);
-                return _context3.abrupt('return', '');
+                return _context3.abrupt('return', ['', '']);
 
               case 16:
                 if (!(collects.length === 0)) {
@@ -4248,7 +4248,7 @@ var task1 = function () {
                   break;
                 }
 
-                return _context3.abrupt('return', null);
+                return _context3.abrupt('return', ['', '']);
 
               case 18:
                 product_id = void 0;
@@ -4295,10 +4295,10 @@ var task1 = function () {
                 }
 
                 console.log('cannot get random only product on ' + collection_id);
-                return _context3.abrupt('return', '');
+                return _context3.abrupt('return', ['', '']);
 
               case 35:
-                return _context3.abrupt('return', images[i].src.replace('https://cdn.shopify.com', ''));
+                return _context3.abrupt('return', [product_id, images[i].src.replace('https://cdn.shopify.com', '')]);
 
               case 36:
               case 'end':
@@ -4315,43 +4315,63 @@ var task1 = function () {
 
     var transformItem = function () {
       var _ref7 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(item) {
+        var promises, _ref8, _ref9, product_id, image_url, cloneItem;
+
         return _regenerator2.default.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                // debugger;
+                promises = [];
+
                 if (!(item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id))) {
-                  _context4.next = 6;
+                  _context4.next = 12;
                   break;
                 }
 
-                _context4.next = 3;
+                _context4.next = 4;
                 return getRandomlyProduct(item.collection_id);
 
-              case 3:
-                item.image_url = _context4.sent;
-                _context4.next = 10;
+              case 4:
+                _ref8 = _context4.sent;
+                _ref9 = (0, _slicedToArray3.default)(_ref8, 2);
+                product_id = _ref9[0];
+                image_url = _ref9[1];
+
+                item.image_url = image_url;
+                if (product_id.length > 0) {
+                  cloneItem = (0, _clone2.default)(item);
+
+                  delete cloneItem.collection_id;
+                  cloneItem.product_id = product_id;
+                  cloneItem.position = 'product';
+                  promises.push(db.push().set(cloneItem));
+                }
+                _context4.next = 16;
                 break;
 
-              case 6:
+              case 12:
                 if (!(item.type === 'image-only' && /thenativesite/.test(item.image_url))) {
-                  _context4.next = 10;
+                  _context4.next = 16;
                   break;
                 }
 
-                _context4.next = 9;
+                _context4.next = 15;
                 return _ImgCompressor2.default.generateImageSet(item.image_url);
 
-              case 9:
+              case 15:
                 item.image_url = _context4.sent;
 
-              case 10:
-                _context4.next = 12;
-                return db.push().set(item);
+              case 16:
 
-              case 12:
+                promises.push(db.push().set(item));
+                _context4.next = 19;
+                return _promise2.default.all(promises);
+
+              case 19:
                 return _context4.abrupt('return', (0, _omit2.default)(item, ['position', 'collection_id']));
 
-              case 13:
+              case 20:
               case 'end':
                 return _context4.stop();
             }
@@ -4376,8 +4396,8 @@ var task1 = function () {
           case 3:
             _context6.next = 5;
             return s.readSheetData().then(function () {
-              var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(arr) {
-                var collections, remove, filesObj_, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, ids, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _id, newItem, filesObj, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _ref9, _ref10, file, obj, newObj, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, items, transformed, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _ref11, id, title;
+              var _ref10 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(arr) {
+                var collections, remove, filesObj_, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, ids, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _id, newItem, filesObj, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _ref11, _ref12, file, obj, newObj, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, items, transformed, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _ref13, id, title;
 
                 return _regenerator2.default.wrap(function _callee5$(_context5) {
                   while (1) {
@@ -4542,10 +4562,10 @@ var task1 = function () {
                           break;
                         }
 
-                        _ref9 = _step2.value;
-                        _ref10 = (0, _slicedToArray3.default)(_ref9, 2);
-                        file = _ref10[0];
-                        obj = _ref10[1];
+                        _ref11 = _step2.value;
+                        _ref12 = (0, _slicedToArray3.default)(_ref11, 2);
+                        file = _ref12[0];
+                        obj = _ref12[1];
                         newObj = [];
                         _iteratorNormalCompletion5 = true;
                         _didIteratorError5 = false;
@@ -4568,8 +4588,8 @@ var task1 = function () {
 
                         newObj.push.apply(newObj, (0, _toConsumableArray3.default)(transformed));
                         // remove(item.collection_id);
-                        items.forEach(function (_ref12) {
-                          var collection_id = _ref12.collection_id;
+                        items.forEach(function (_ref14) {
+                          var collection_id = _ref14.collection_id;
                           return remove(collection_id);
                         });
 
@@ -4664,8 +4684,8 @@ var task1 = function () {
                         _iteratorError3 = undefined;
                         _context5.prev = 118;
                         for (_iterator3 = (0, _getIterator3.default)(collections); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                          _ref11 = _step3.value;
-                          id = _ref11.id, title = _ref11.title;
+                          _ref13 = _step3.value;
+                          id = _ref13.id, title = _ref13.title;
 
                           console.log('Collection "' + title + '" - id=' + id + ' has no reviews');
                         }
@@ -4711,7 +4731,7 @@ var task1 = function () {
               }));
 
               return function (_x6) {
-                return _ref8.apply(this, arguments);
+                return _ref10.apply(this, arguments);
               };
             }());
 
@@ -4729,8 +4749,8 @@ var task1 = function () {
 }();
 
 var task2 = function () {
-  var _ref13 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
-    var findColorOption, colors, count, requestCount, products, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, _ref14, id, title, options, colorOption, _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _val, val;
+  var _ref15 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee7() {
+    var findColorOption, colors, count, requestCount, products, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, _ref16, id, title, options, colorOption, _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _val, val;
 
     return _regenerator2.default.wrap(function _callee7$(_context7) {
       while (1) {
@@ -4776,8 +4796,8 @@ var task2 = function () {
               break;
             }
 
-            _ref14 = _step6.value;
-            id = _ref14.id, title = _ref14.handle, options = _ref14.options;
+            _ref16 = _step6.value;
+            id = _ref16.id, title = _ref16.handle, options = _ref16.options;
 
             if (!options) {
               _context7.next = 42;
@@ -4890,7 +4910,7 @@ var task2 = function () {
   }));
 
   return function task2() {
-    return _ref13.apply(this, arguments);
+    return _ref15.apply(this, arguments);
   };
 }();
 
@@ -4898,7 +4918,7 @@ var task2 = function () {
 
 
 var task3 = function () {
-  var _ref15 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8() {
+  var _ref17 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee8() {
     var rs;
     return _regenerator2.default.wrap(function _callee8$(_context8) {
       while (1) {
@@ -4921,12 +4941,12 @@ var task3 = function () {
   }));
 
   return function task3() {
-    return _ref15.apply(this, arguments);
+    return _ref17.apply(this, arguments);
   };
 }();
 
 var task4 = function () {
-  var _ref16 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9() {
+  var _ref18 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee9() {
     var cols, tags, all, metaObj, meta;
     return _regenerator2.default.wrap(function _callee9$(_context9) {
       while (1) {
@@ -5027,7 +5047,7 @@ var task4 = function () {
   }));
 
   return function task4() {
-    return _ref16.apply(this, arguments);
+    return _ref18.apply(this, arguments);
   };
 }();
 

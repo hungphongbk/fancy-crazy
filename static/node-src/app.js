@@ -72,11 +72,11 @@ async function task1() {
         collects = await retry(() => shopify.collect.list({collection_id, fields: 'collection_id,product_id'}));
         await cacheSet(collection_id, collects, TTL);
       } catch (e) {
-        return '';
+        return ['', ''];
       }
     }
 
-    if (collects.length === 0) return null;
+    if (collects.length === 0) return ['', ''];
     let product_id;
     do {
       const index = random(collects.length - 1);
@@ -97,20 +97,30 @@ async function task1() {
     } while (!(images[i] && (!/sizechart/.test(images[i].src))) && ++counter < images.length * 2);
     if (counter >= images.length * 2) {
       console.log('cannot get random only product on ' + collection_id);
-      return '';
+      return ['', ''];
     }
-    return images[i].src.replace('https://cdn.shopify.com', '');
+    return [product_id, images[i].src.replace('https://cdn.shopify.com', '')];
   }
 
   async function transformItem(item) {
     // debugger;
+    const promises = [];
     if (item.type === 'image-with-data' && /^[0-9]+$/.test(item.collection_id)) {
-      item.image_url = await getRandomlyProduct(item.collection_id);
+      const [product_id, image_url] = await getRandomlyProduct(item.collection_id);
+      item.image_url = image_url;
+      if (product_id.length > 0) {
+        const cloneItem = clone(item);
+        delete cloneItem.collection_id;
+        cloneItem.product_id = product_id;
+        cloneItem.position = 'product';
+        promises.push(db.push().set(cloneItem));
+      }
     } else if (item.type === 'image-only' && /thenativesite/.test(item.image_url)) {
       item.image_url = await ImgCompressor.generateImageSet(item.image_url);
     }
 
-    await db.push().set(item);
+    promises.push(db.push().set(item));
+    await Promise.all(promises);
     return omit(item, ['position', 'collection_id']);
   }
 

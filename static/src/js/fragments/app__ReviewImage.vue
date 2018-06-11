@@ -24,13 +24,15 @@
         required: true
       }
     },
-    data: () => ({
-      opts: {
-        infinite: true,
-        variableWidth: true,
-        lazyLoad: 2
+    data() {
+      return {
+        opts: {
+          infinite: true,
+          variableWidth: true,
+          lazyLoad: this.$mq.phone ? 2 : 5,
+        }
       }
-    }),
+    },
     filters: {
       storage(url, isPhone) {
         if (!/storage.googleapis.com/.test(url)) return url;
