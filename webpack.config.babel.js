@@ -132,11 +132,11 @@ module.exports = merge(base, {
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
-          ...(isProduction ? ['cache-loader'] : []),
+          // ...(isProduction ? ['cache-loader'] : []),
           {
             loader: 'url-loader',
             options: {
-              limit: 1024,
+              limit: 2048,
               name: '[sha512:hash:base64:8].[ext]'
             }
           },
@@ -191,7 +191,7 @@ module.exports = merge(base, {
 });
 
 let plugins = [
-  new webpack.IgnorePlugin(/(locale)/, /node_modules.+(moment)/),
+  new webpack.IgnorePlugin(/(locale)/, /node_modules.+(moment)/, /blueimp-gallery-(video|youtube)/),
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
@@ -211,6 +211,7 @@ if (process.env.NODE_ENV === 'production') {
     //   analyzerMode: 'static'
     // }),
     extractCss,
+    // new webpack.IgnorePlugin(/blueimp-gallery\/js\/blueimp-gallery-(video|youtube)/),
     new DuplicateCheck(),
     new webpack.LoaderOptionsPlugin({
       minimize: true

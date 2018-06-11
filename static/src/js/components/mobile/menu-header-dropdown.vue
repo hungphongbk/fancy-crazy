@@ -17,7 +17,9 @@
   }
 
   .title {
-    font-weight: bold;
+    h5{
+      font-weight: bold;
+    }
     composes: subtitle;
 
     @extend %transition;
@@ -40,7 +42,8 @@
 <template lang="pug">
   .px-3
     .d-flex.justify-content-between.align-items-center(@click="OPEN_DROPDOWN")
-      h5.m-0(:class="{ [$style.title]:true, [$style.open]:IS_TOGGLE }") {{item.title}}
+      a.m-0(:href="item.hasDropdown?'javascript:void(0)':item.url", :class="{ [$style.title]:true, [$style.open]:IS_TOGGLE }")
+        h5 {{item.title}}
       fa-icon(:icon="FA_CHEVRON_DOWN", v-if="item.hasDropdown", :class="{ [$style.icon]:true }")
     //div(:class="$style.dropdownPanel", v-if="item.hasDropdown", :style="{height: DROPDOWN_HEIGHT_PX}", ref="dropdown")
     dropdown(:class="[$style.dropdownPanel]", v-if="item.hasDropdown", :is-open="IS_TOGGLE")

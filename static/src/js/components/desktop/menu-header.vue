@@ -119,7 +119,7 @@
         a.ratio-1-1(:class="$style.searchThumb", @click="isSearchMode = !isSearchMode")
           .content.d-flex.justify-content-center.align-items-center
             fa-icon(:icon="SEARCH_TOGGLE_ICON", size="large")
-        cart.ml-2
+        cart.ml-2(@mouseover.native="()=>CART_TOGGLE(true)", @mouseleave.native="()=>CART_TOGGLE(false)")
 </template>
 <script>
   import menuMixin from '@/js/components/menu-header-mixins';
@@ -153,6 +153,15 @@
       SEARCH_TOGGLE_ICON() {
         const self = this;
         return self.isSearchMode ? self.TIMES_ICON : self.SEARCH_ICON;
+      },
+      IS_CART_POPUP() {
+        return this.$store.state.cart.showPopup;
+      }
+    },
+    methods: {
+      CART_TOGGLE(value) {
+        if (this.IS_CART_POPUP !== value)
+          this.$store.commit('cart/togglePopup', value);
       }
     }
   };

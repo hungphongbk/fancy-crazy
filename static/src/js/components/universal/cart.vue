@@ -74,6 +74,11 @@
     }
   }
 
+  .cart-empty{
+    img{
+    }
+  }
+
   .summary {
     width: 100%;
     tr td:nth-child(2) {
@@ -126,7 +131,7 @@
           fa-icon(v-if="isLoading", :class="$style.loading", :icon="SyncIcon", spin, size="xs")
           template(v-else) {{CART_COUNT}}
     modal(:class="$style.cartPanel", :show="SHOW_POPUP", :backdrop="$mq.phone")
-      form(action="/cart" method="post" novalidate)
+      form(v-if="CART_ITEMS.length>0", action="/cart" method="post" novalidate)
         .media.mb-2(v-for="item in CART_ITEMS", :class="$style.cartItem", :key="item.key")
           img.mr-2(:src="item.image | shopifyImgUrl($mq.phone?'small':'compact',false)")
           .media-body
@@ -160,7 +165,13 @@
             td
               span.text-success {{TOTAL_SAVING | usd}}
         input.btn.btn-lg.btn-success.w-100.mt-3(type="submit", name="checkout", value="PROCEED TO CHECKOUT")
-      img(:class="$style.secure", :src="imgSecurePayment")
+      div(v-else)
+        .text-center.mt-4.mb-2
+          img.w-25.d-inline-block(src="@/images/empty-cart-edited.svg")
+          h5.mt-3 Your cart is empty
+          p.text-muted.mt-2.mb-3 Looks like you haven't made your choice yet...
+      .btn.btn-lg.btn-outline-theme-red.w-100.mt-2(@click="toggle") CONTINUE SHOPPING
+      img(:class="$style.secure", src="@/images/mcafee.png")
 </template>
 <script>
   import {cartMixin} from "@/js/components/mixins/cart";
@@ -169,7 +180,6 @@
   import SyncIcon from '@fortawesome/fontawesome-free-solid/faSync';
   import Modal from '@/js/components/universal/modal';
   import {createNamespacedHelpers} from 'vuex';
-  import imgSecurePayment from '@/images/mcafee.png';
 
   const {mapState, mapGetters, mapActions} = createNamespacedHelpers('cart');
 
@@ -183,8 +193,7 @@
       return {
         CartIcon,
         TimesIcon,
-        SyncIcon,
-        imgSecurePayment
+        SyncIcon
       };
     },
     computed: {

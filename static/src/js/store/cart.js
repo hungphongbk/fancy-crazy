@@ -50,8 +50,8 @@ export default {
     },
     addToCart(state, {lineItem}) {
     },
-    togglePopup(state) {
-      state.showPopup = !state.showPopup;
+    togglePopup(state, value = null) {
+      state.showPopup = value !== null ? value : (!state.showPopup);
     }
   },
   actions: {

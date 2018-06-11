@@ -3,6 +3,7 @@ import {COLLECTION_GETTER_REVIEWS_GROUP1, COLLECTION_GETTER_REVIEWS_GROUP2} from
 import defaultTo                                                            from 'lodash/defaultTo';
 import keyBy                                                                from 'lodash/keyBy';
 import {win}                                                                from "@/js/global";
+import {get}                                                                from "@/js/plugins/ajax";
 
 const w = win();
 
@@ -133,16 +134,17 @@ export default {
     },
     async _navigate({commit, dispatch, getters}) {
       w.history.pushState('string', '', '/collections/' + getters.url);
-      const {id, totalPages, products, title} = JSON.parse(await $.get(`/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`));
+      const {id, totalPages, products, title} = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}`);
       commit('clearCache');
       commit('cache', {
+        url:`/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`,
         products,
         page: 0,
         totalPages,
         title,
         force: true
       });
-      await dispatch('fetch', `https://static.fancycrazy.com/reviews-collection-${id}.json`);
+      await dispatch('fetch', `https://https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/reviews/collections/${id}`);
       commit('toggleLoading', {isLoading: false}, {root: true});
       commit('goToPage', {page: 0});
     },
@@ -160,7 +162,7 @@ export default {
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {
         commit('toggleLoading', {isLoading: true}, {root: true});
         commit('cache', {
-          products: JSON.parse(await $.get(`/collections/${getters.url}?view=json&page=${page + 1}&${SHOPIFY_THEME_ID}`)).products,
+          products: JSON.parse(await $.get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`)).products,
           page
         });
         commit('toggleLoading', {isLoading: false}, {root: true});

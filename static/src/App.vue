@@ -1,20 +1,33 @@
 <style lang="scss">
   @import "scss/inc";
+
   #app, #scroll {
     height: 100%;
   }
-  #app #scroll{
+
+  #app #scroll {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
-  #primary, #main{
+
+  #primary, #main {
     padding-top: 1px;
+  }
+</style>
+<style lang="scss" module>
+  // fix safari bug
+  .hide-menu {
+    .site-header {
+      transform: translateY(-100%);
+      height: 0;
+      overflow: hidden;
+    }
   }
 </style>
 <template lang="pug">
   #app.d-flex.flex-column
-    site-header
-    #scroll.flex-grow-1(v-scroll="onScroll", ref="app")
+    site-header(:class="$style.siteHeader")
+    #scroll.flex-grow-1(v-scroll="onScroll", ref="app", :class="$style.siteBody")
       #primary.clearfix
         main#main(role="main")
           component(:is="SITE_CONTENT")
@@ -52,7 +65,7 @@
        * @return {float}
        */
       IS_SCROLLING() {
-        return this.SCROLL_TOP > THRESHOLD ? 1 : (this.SCROLL_TOP*1.0) / THRESHOLD;
+        return this.SCROLL_TOP > THRESHOLD ? 1 : (this.SCROLL_TOP * 1.0) / THRESHOLD;
       }
     },
     watch: {
@@ -63,6 +76,14 @@
     methods: {
       onScroll(_, {scrollTop}) {
         this.SCROLL_TOP = scrollTop;
+      },
+      ON_VUE_GALLERY_TOGGLE(value) {
+        console.log(this.$style);
+        const hideMenu = this.$style.hideMenu;
+        if (value)
+          this.$el.classList.add(hideMenu);
+        else
+          this.$el.classList.remove(hideMenu);
       }
     },
     async created() {
@@ -73,6 +94,7 @@
         }
       });
       await this.$store.dispatch('cart/fetch');
+      GLOBAL_EVENTS.$on('vue-gallery-toggle', value => this.ON_VUE_GALLERY_TOGGLE(value))
     }
   }
 </script>

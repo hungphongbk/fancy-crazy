@@ -38,7 +38,7 @@
     .title {
       @include font-size-with-line-height($h6-font-size);
     }
-    .content p{
+    .content p {
       @include font-size-with-line-height($font-size-base*0.74);
     }
   }
@@ -88,19 +88,21 @@
         required: true
       }
     },
-    data: () => ({
-      faClock,
-      opts: {
-        infinite: true,
-        lazyLoad: 2
+    data() {
+      return {
+        faClock,
+        opts: {
+          infinite: true,
+          lazyLoad: this.$mq.phone ? 2 : 4
+        }
       }
-    }),
+    },
     computed: {
       /**
        * @return {number}
        */
       REVIEW_POINT() {
-        return (sum(this.items.map(i => i.rating)) / this.items.length).toFixed(1)*1.0;
+        return (sum(this.items.map(i => i.rating)) / this.items.length).toFixed(1) * 1.0;
       }
     }
   }

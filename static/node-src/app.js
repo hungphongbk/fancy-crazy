@@ -14,6 +14,7 @@ import chunk         from 'lodash/chunk';
 import transform     from 'lodash/transform';
 import Shopify       from 'shopify-api-node';
 import Bluebird      from 'bluebird';
+import database      from '../../functions/firebase/database.babel';
 
 //region Somethings
 const cacheGet = Bluebird.promisify(cache.get, {context: cache}),
@@ -60,6 +61,9 @@ async function getAllCollections() {
 }
 
 async function task1() {
+  const db = database.ref('server/reviews');
+  await db.remove();
+
   async function getRandomlyProduct(collection_id) {
     let collects = await cacheGet(collection_id);
     if (!collects) {
@@ -105,6 +109,8 @@ async function task1() {
     } else if (item.type === 'image-only' && /thenativesite/.test(item.image_url)) {
       item.image_url = await ImgCompressor.generateImageSet(item.image_url);
     }
+
+    await db.push().set(item);
     return omit(item, ['position', 'collection_id']);
   }
 
@@ -275,6 +281,6 @@ async function task4() {
   }
 }
 
-task4().then(() => {
+task1().then(() => {
   console.log('completed');
 });

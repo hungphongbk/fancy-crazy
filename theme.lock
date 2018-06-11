@@ -3,6 +3,8 @@ config/settings_data.json:
   development: 2018-06-04T22:43:20+07:00   8330baa1e45868da82b9d0621cbc7837
 config/settings_schema.json:
   development: 2018-05-27T08:31:46+07:00   77c8a9bf5d8f31ae135842779351a540
+layout/checkout.liquid:
+  development: 2018-06-10T07:42:57+07:00
 layout/json.liquid:
   development: 2018-05-31T23:11:11+07:00   a67570dc4d4328bd67d471d03c687091
 layout/ssr.json.liquid:
@@ -138,7 +140,7 @@ templates/cart.liquid:
 templates/collection.json.liquid:
   development: 2018-05-25T19:13:05+07:00   5ef99a096363bced76cd66c1824caac7
 templates/collection.liquid:
-  development: 2018-05-31T18:36:47+07:00   3a8973ad0b24b9bf376880e72d514670
+  development: 2018-06-11T19:13:06+07:00   7f4c27b4f50423b46ac9d704ed74fb9c
 templates/customers/account.liquid:
   development: 2018-05-08T10:25:34+07:00   1d5a9966e01bc7e01aa17f03b15c0c85
 templates/customers/activate_account.liquid:

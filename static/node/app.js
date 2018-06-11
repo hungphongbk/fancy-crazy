@@ -4345,9 +4345,13 @@ var task1 = function () {
                 item.image_url = _context4.sent;
 
               case 10:
+                _context4.next = 12;
+                return db.push().set(item);
+
+              case 12:
                 return _context4.abrupt('return', (0, _omit2.default)(item, ['position', 'collection_id']));
 
-              case 11:
+              case 13:
               case 'end':
                 return _context4.stop();
             }
@@ -4360,11 +4364,17 @@ var task1 = function () {
       };
     }();
 
+    var db;
     return _regenerator2.default.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.next = 2;
+            db = _database2.default.ref('server/reviews');
+            _context6.next = 3;
+            return db.remove();
+
+          case 3:
+            _context6.next = 5;
             return s.readSheetData().then(function () {
               var _ref8 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(arr) {
                 var collections, remove, filesObj_, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, ids, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _id, newItem, filesObj, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _ref9, _ref10, file, obj, newObj, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, items, transformed, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _ref11, id, title;
@@ -4705,7 +4715,7 @@ var task1 = function () {
               };
             }());
 
-          case 2:
+          case 5:
           case 'end':
             return _context6.stop();
         }
@@ -5081,12 +5091,15 @@ var _bluebird = __webpack_require__(106);
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
+var _database = __webpack_require__(363);
+
+var _database2 = _interopRequireDefault(_database);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //region Somethings
 var cacheGet = _bluebird2.default.promisify(_Cache2.default.get, { context: _Cache2.default }),
     cacheSet = _bluebird2.default.promisify(_Cache2.default.set, { context: _Cache2.default });
-
 
 var s = new _Spreadsheet2.default(_path2.default.resolve(__dirname, '../dist/reviews.json')),
     shopify = new _shopifyApiNode2.default({
@@ -5164,7 +5177,7 @@ function retry(fn) {
   }());
 }
 
-task4().then(function () {
+task1().then(function () {
   console.log('completed');
 });
 /* WEBPACK VAR INJECTION */}.call(exports, "static/node-src"))
@@ -17146,6 +17159,33 @@ module.exports = transform;
 /***/ (function(module, exports) {
 
 module.exports = require("shopify-api-node");
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// import admin from 'firebase-admin';
+var admin = __webpack_require__(364),
+    cert = __webpack_require__(365);
+
+admin.initializeApp({
+  credential: admin.credential.cert(cert),
+  databaseURL: "https://fancycrazy-895ba.firebaseio.com"
+});
+
+module.exports = admin.database();
+
+/***/ }),
+/* 364 */
+/***/ (function(module, exports) {
+
+module.exports = require("firebase-admin");
+
+/***/ }),
+/* 365 */
+/***/ (function(module, exports) {
+
+module.exports = {"type":"service_account","project_id":"fancycrazy-895ba","private_key_id":"2f62366df5c054c3ad2fadc673edc67aa7e0b9b2","private_key":"-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1oPJJO8P1OyZW\nXgZlgql14wohg7kgs3MmMGQwER6a89A2JncYIdslD7ZlRCPrf9dhUQm1bIJfZsKA\n6aEEd7TXM1ji6p9vPeoqOfQDQFMh2bZn6iCqDhJCJuHKA/Qh9b3w15t/jUowHw/O\nOfApnupI8Qg1oNn/KBZyUWw34UchFjEJbXmD71UT7c6VmsZI5RwxslWkXfnLKmQ2\npAjt/XKlZHaf13OzzBsTt7qf8u3fBDlaOu6RubT0T0N1w6OZyeeLVSc1HF9WrU4F\nmIeOd+C5hjVMQeclb/0nGUMcYDktIv1/u/+H7FmhegV9pR1bkaceoN0rw5eHczjs\nn31u7jsBAgMBAAECggEAApGvO6fzwqE+jpQv5PmvKfK3LvgtAzBmnZCrqh5j3285\nb7qljprT/bc2LkKDe45IXqEF0SIiyfSrJaWoWGbVEQIx7KvC65DloglF0VH0mxL4\nSIoAQkeGrJbeNLxPlLdkI2b5VRmLhhi6YYFiS0RrLfLy2cdXrgtEHgPW0weFuQsQ\nJccpGM5Ssyb6C7uC8x2LN+DtiAxgjMDELz8c1lMq1mKN6UP5H4/0p+pNK5ddmXAD\nA6NuM+ICAvqeGdJfNRlbSCmg0tD+6EoXDESJ+xHmxOXMf7CxNsPnMgdsV10s6q9J\nkxQ13/anfyVc2etr/9bsWE8Oh/3KiRJuI8TLyae/fQKBgQD5+JzUVSznTaP0aWL7\nEoe70MWudM+zYB9cE5ZJBI5zrK20gkRgMfKlap9/tj88SIjis1gU+/0G6hZyZgrC\nTXmxEujCA/v/40V7lODQucrZ9nIJs1ydWfAoc0rYs7ejnxKUahzLZOYBQp6S8Hn0\nbT+p0jZZRAoY2RYOVT48J7szTwKBgQC6Al6gOJXT0odhkj47tl3WLp99xLUMY3/d\nVCDIE2iZd+pRffx2OXlLuEuSfDHYlKfzm3DXA1B0U4GzZBizDKQPY3XJ3g1k5S8d\nu6vFTI/MRYujUMPmQEhVaVk4wkSJcUmBAlmfyoHwCZAOgPEwUKeMSP3ApaIm5m8O\n66BXhb1YrwKBgGojQNv7ioRv+ATIVqnKtW1u+PDZUnOUhdw/yNkaIS5GjL8PbN73\ndlL8UdsVVAZRuiWgBu9qC4bLEFrkrv7PjLM+FyyCKpb9NjyB+29E5DfmJ4es6884\nJ/vU8FvQ+1FzMp1n7PAD2JGCavhzOSUq2hROWJtQg4UHcBEH6tP5/seLAoGAJxxg\ncSf0uPlHZgit9Tg/Os3K01MNDnHNbOhHjEoocDx6lG/9KY6kJnu1yDM89+Ep/1rr\nuwoDXLJCT0n4t40s4d9z4OJDxrc51PKlB3M1uSnWVpyg1EUn8G2aSQjwCEY9wlaQ\nKb0W3TXliGcsT5Bl6mVelac+FRfWujhpGn4QdhkCgYBGtPtv7a8GOMlIrb1gYWSF\nfHI2Qrc2vvNiHNgGUEz9VoH0TcWwKp2O0CIj7RNXidYdQqDqI5OdXnkT+SWLrK25\nOIr3/EG+k8hdtRChxMYi0NuMcNTCritEi8ZoHbBb7SFZfb/KT2wdWh6SFQA/xq6h\nJKyMhCxkA4VWb8yYgu/FCg==\n-----END PRIVATE KEY-----\n","client_email":"firebase-adminsdk-c73dr@fancycrazy-895ba.iam.gserviceaccount.com","client_id":"100431285598293605980","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-c73dr%40fancycrazy-895ba.iam.gserviceaccount.com"}
 
 /***/ })
 /******/ ]);

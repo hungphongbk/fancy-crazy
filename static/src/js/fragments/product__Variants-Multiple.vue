@@ -22,10 +22,13 @@
   import {mapState} from 'vuex';
   import {assert} from "@/js/plugins/helpers";
 
-  const mapVariant = variant => variant.title.split(/\s\/\s/).map(title => ({
+  const mapVariant = variant => {
+    // debugger;
+    return variant.title.split(/\s\/\s/).map(title => ({
       title,
       image: variant.image
     }));
+  };
 
   export default {
     components: {VariantItems},
@@ -102,6 +105,9 @@
           this.$appStore.dispatch('pageProduct/select', {variantId: value.id});
         },
         deep: true
+      },
+      value(val){
+        this.variantOpts=mapVariant(val);
       }
     }
   };

@@ -6,6 +6,7 @@ import flatten      from 'lodash/flatten';
 import uniqBy       from 'lodash/uniqBy';
 import intersection from 'lodash/intersectionBy';
 import BindAll      from 'lodash-decorators/bindAll';
+import omit         from 'lodash/omit';
 
 const shopify = new ShopifyApi({
   shopName: 'cubachtung.myshopify.com',
@@ -76,8 +77,8 @@ class ShopifyWrapper {
     return shopify.product.get(id, params);
   }
 
-  @cacheable(0)
-  productList(ids, params = {}) {
+  @cacheable()
+  productList(ids, params = {}): Promise<App.Product[]> {
     return shopify.product.list({
       ids: ids.join(','),
       ...params,
@@ -153,19 +154,40 @@ class ShopifyWrapper {
   @cacheable()
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
-    const getId = new Promise(resolve => {
-      if (typeof id === "number" || /^[0-9]+$/.test(id)) {
-        resolve(id);
-        return;
-      }
-      return this.collectionGetByHandle(id)
-        .then(collection => resolve(collection.id));
-    });
+    const _params = omit(params, ['tag']),
+      hasTagFilter = params.hasOwnProperty('tag'),
+      getId = new Promise(resolve => {
+        if (typeof id === "number" || /^[0-9]+$/.test(id)) {
+          resolve(id);
+          return;
+        }
+        return this.collectionGetByHandle(id)
+          .then(collection => resolve(collection.id));
+      });
 
-    return getId
+    if (hasTagFilter && _params.hasOwnProperty('fields')) {
+      _params['fields'] += ',tags';
+    }
+
+    let promise = getId
       .then(this.collectionGetCollects)
       .then(collects => collects.map(c => c.product_id))
-      .then(ids => this.productList(ids, params));
+      .then(ids => this.productList(ids, _params));
+
+    // if has tag, filter products by tag
+    if (hasTagFilter) {
+      promise = promise.then(products => {
+        return products.filter(product => {
+          //get product tags
+          const tags = product.tags
+            .split(',')
+            .map(tag => tag.trim().toLowerCase());
+          return tags.indexOf(params['tag']) >= 0;
+        });
+      });
+    }
+
+    return promise;
   }
 
   async SSR(url, responsive, source) {
