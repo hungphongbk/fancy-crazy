@@ -1,22 +1,22 @@
-import path from "path";
-import webpack from "webpack";
+import path              from "path";
+import webpack           from "webpack";
 import HTMLWebpackPlugin from "html-webpack-plugin";
-import UglifyJSPlugin from "uglifyjs-webpack-plugin";
-import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
-import S3Plugin from "webpack-s3-plugin";
-import {WebpackCloudFlareSync} from "hungphongbk-utils";
-import merge from 'webpack-merge'
-import base from './build/webpack-base.config.babel'
+import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
+// import {WebpackCloudFlareSync} from "hungphongbk-utils";
+import merge             from 'webpack-merge';
+import base              from './build/webpack-base.config.babel';
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 const src = './static/settings',
   dist = './static/dist',
   isProduction = process.env.NODE_ENV === 'production',
-  publicPath = isProduction ? 'https://static.letbuynow.com/' : 'https://localhost:8081/';
+  publicPath = isProduction ? 'https://static.fancycrazy.com/' : 'https://localhost:8082/';
+
+const extractCSS = new ExtractTextPlugin('settings.css?[chunkhash]');
 
 module.exports = merge(base, {
   entry: {
-    'settings-vendor': ['vue', 'vuex', 'vuex-router-sync'],
+    'settings-vendor': ['vue', 'vuex', 'vuetify', 'vue-router'],
     'settings-index': src + '/index.js'
   },
   output: {
@@ -44,8 +44,8 @@ module.exports = merge(base, {
         }
       },
       {
-        test: /\.css$/,
-        use: [
+        test: /\.css($|\?)/,
+        use: isProduction ? extractCSS.extract(['css-loader', 'postcss-loader']) : [
           {loader: 'style-loader'},
           {loader: 'css-loader'}
         ]
@@ -109,7 +109,7 @@ module.exports = merge(base, {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    publicPath: 'https://localhost:8081/',
+    publicPath: 'https://localhost:8082/',
     stats: {chunks: false}
   }
 });
@@ -124,7 +124,7 @@ let plugins = [
     moment: 'moment'
   }),
   new HTMLWebpackPlugin({
-    filename: 'settings.html',
+    filename: 'index.html',
     template: path.resolve(src, 'settings.html')
   })
 ];
@@ -137,6 +137,7 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
+    extractCSS,
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
@@ -157,32 +158,9 @@ if (process.env.NODE_ENV === 'production') {
       uglifyOptions: {
         ie8: false
       }
-    }),
-    new S3Plugin({
-      // Exclude uploading of html
-      include: /.*\.(css|js|html)/,
-      // s3Options are required
-      s3Options: {
-        accessKeyId: 'AKIAJKOMHMXCZZKYWKIA',
-        secretAccessKey: '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',
-        region: 'ap-southeast-1'
-        // signatureVersion: 'v2'
-      },
-      s3UploadOptions: {
-        Bucket: 'static.letbuynow.com',
-        Key(filename) {
-          return filename.split('?')[0]
-        }
-      }
-    }),
-    WebpackCloudFlareSync({
-      zoneId: 'f194859ddc3666c9fdf6a83a6adb3e02',
-      watchAssets: ['settings-vendor.js', 'settings-frontend.js', 'settings.html'],
-      manifestFile: path.resolve(__dirname, 'static/current.json'),
-      baseCloudFlareUrl: 'https://static.letbuynow.com/'
     })
     // Ssr(App)
-  ])
+  ]);
 } else {
   module.exports.devtool = 'source-map';
   plugins = plugins.concat([

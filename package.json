@@ -7,6 +7,8 @@
     "test": "$NODE_DEBUG_OPTIONS node .bin/pug-parser.js /Users/hungphongbk/Projects/NodeJS/fancy-crazy/.bin/form.pug form.transformed.pug",
     "theme:watch": "shopify_theme watch",
     "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem",
+    "settings:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack-settings.config.babel.js --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem --port 8082",
+    "settings:build": "cross-env NODE_ENV=production webpack --config webpack-settings.config.babel.js --hide-modules",
     "ssr:build": "cross-env NODE_ENV=production webpack --config webpack-ssr.config.babel.js --hide-modules",
     "app:build": "NODE_OPTIONS=--trace-warnings cross-env NODE_ENV=production webpack --hide-modules",
     "app:deploy": "cross-env NODE_ENV=production webpack --hide-modules; firebase deploy --only hosting",
@@ -148,6 +150,7 @@
     "vue-template-compiler": "^2.5.16",
     "vue-transition-css": "^1.0.4",
     "vue2-filters": "^0.3.0",
+    "vuetify": "^1.0.19",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.3.0",
     "vuex-router-sync": "^5.0.0",
@@ -173,6 +176,7 @@
     "duplicate-package-checker-webpack-plugin": "^2.1.0",
     "express-cache-controller": "^1.1.0",
     "fast-crc32c": "^1.0.4",
+    "firebase": "^5.0.4",
     "firebase-admin": "^5.12.1",
     "gm": "^1.23.1",
     "googleapis": "^30.0.0",
@@ -188,6 +192,7 @@
     "shopify-token": "^3.0.2",
     "spawn-sync": "^2.0.0",
     "string-hash": "^1.1.3",
-    "vue-scroll": "^2.1.7"
+    "vue-scroll": "^2.1.7",
+    "vuefire": "^1.4.5"
   }
 }
