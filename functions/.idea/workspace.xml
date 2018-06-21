@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0461f915-5f0e-4252-8461-81c234ee0c6a" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../layout/checkout.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Shopify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/Shopify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/14R64wDM.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/184HD941.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/18JxPnvH.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/18YtnE6Q.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/1JaoSVp9.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/1VLu5PzG.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/1_mczJ7P.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/1aBac9pJ.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/1oqxnhUr.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/20mJq0aQ.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2255VC2x.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2MrckFfp.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2gzkNxgR.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2x8mBEp-.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2xtD1zRD.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/2ypDJGnQ.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/33GGQeux.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3HFN8T56.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3KT40WXC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3YFBEax_.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3Zd89wQm.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3gVqznAw.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3m0tJDVU.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/3vdxOI9y.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/5mQiPaRs.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/884JppG7.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/EvV0PhEY.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/Z2NKRMxm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/collections.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/desktop.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/frontend.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/frontend.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/hVEvVQUM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/index.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/inline.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/mobile.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/product.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-4030496793.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436454540.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436456524.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436513356.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436514700.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436517004.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436517068.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-436561868.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-437338124.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-438184332.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-438184716.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-439886092.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56371052613.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56517754949.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56517787717.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56517951557.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518279237.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518312005.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518344773.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518377541.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518410309.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-56518475845.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-collection-876314649.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/reviews-index.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/dist/vendor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/node-src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../static/node-src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/node/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/components/desktop/menu-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/components/desktop/menu-header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/components/mobile/menu-header-dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/components/mobile/menu-header-dropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/components/universal/cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/components/universal/cart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/fragments/app__ReviewImageText.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/fragments/app__ReviewImageText.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/fragments/product__Variants-Multiple-Items-Size.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/fragments/product__Variants-Multiple-Items-Size.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/fragments/product__Variants-Multiple.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/fragments/product__Variants-Multiple.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/store/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/store/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/src/js/store/page-collections.js" beforeDir="false" afterPath="$PROJECT_DIR$/../static/src/js/store/page-collections.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../theme.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../theme.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webpack.config.babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webpack.config.babel.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+              <folding>
+                <element signature="e#11#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SSR.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/SSR.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="482">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
+                <element signature="n#!!block;n#handleize#0" />
+                <element signature="n#!!block;n#generateMenu#0;n#SSR#0" />
+                <element signature="n#!!block;n#determineTemplate#0;n#SSR#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="polyfill.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/polyfill.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/utils.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14">
+              <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shopify.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Shopify.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="854">
+              <caret line="154" column="82" selection-start-line="154" selection-start-column="82" selection-end-line="154" selection-end-column="82" />
+              <folding>
+                <element signature="e#80#115#0" expanded="true" />
+                <element signature="n#!!block;n#api#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#_refineImageUrl#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#_refineProductItem#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#_refineProductList#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#productGetCollects#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#productGet#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#productList#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#productSimilar#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#collectionGet#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#collectionGetByHandle#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#collectionGetCollects#0;n#ShopifyWrapper#0" />
+                <element signature="n#!!block;n#collectionGetProducts#0;n#ShopifyWrapper#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>lodash</find>
+      <find>gra</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/app</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.babelrc" />
+        <option value="$PROJECT_DIR$/firebase/database.js" />
+        <option value="$PROJECT_DIR$/app/utils.ts" />
+        <option value="$PROJECT_DIR$/firebase/database.babel.js" />
+        <option value="$PROJECT_DIR$/app/Shopify.ts" />
+        <option value="$PROJECT_DIR$/app/index.js" />
+        <option value="$PROJECT_DIR$/app/polyfill.js" />
+        <option value="$PROJECT_DIR$/app/SSR.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="42" />
+    <option name="y" value="23" />
+    <option name="width" value="1878" />
+    <option name="height" value="1177" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fancy-crazy-functions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="functions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fancy-crazy-functions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="functions" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fancy-crazy-functions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="functions" type="462c0819:PsiDirectoryNode" />
+              <item name="firebase" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="9.9.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.func:dev">
+    <configuration name="func:deploy" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="func:deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration name="func:dev" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="func:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration name="func:serve" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="func:serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <list>
+      <item itemvalue="npm.func:dev" />
+      <item itemvalue="npm.func:deploy" />
+      <item itemvalue="npm.func:serve" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.func:serve" />
+        <item itemvalue="npm.func:dev" />
+        <item itemvalue="npm.func:deploy" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0461f915-5f0e-4252-8461-81c234ee0c6a" name="Default" comment="" />
+      <created>1528368882282</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1528368882282</updated>
+      <workItem from="1528368883476" duration="5330000" />
+    </task>
+    <task id="LOCAL-00001" summary="re-init functions">
+      <created>1528369522503</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528369522503</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="5330000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="42" y="23" width="1878" height="1177" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49723756" visible="true" weight="0.24986537" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50080776" side_tool="true" visible="true" weight="0.32962963" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.32962963" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info id="npm" order="2" sideWeight="0.50276244" side_tool="true" visible="true" weight="0.24986537" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49973074" weight="0.32962963" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="re-init functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-init functions" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="e#11#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/polyfill.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Shopify.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="854">
+          <caret line="154" column="82" selection-start-line="154" selection-start-column="82" selection-end-line="154" selection-end-column="82" />
+          <folding>
+            <element signature="e#80#115#0" expanded="true" />
+            <element signature="n#!!block;n#api#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineImageUrl#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineProductItem#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineProductList#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productGetCollects#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productGet#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productList#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productSimilar#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGet#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetByHandle#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetCollects#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetProducts#0;n#ShopifyWrapper#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/SSR.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1036">
+          <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="n#!!block;n#handleize#0" />
+            <element signature="n#!!block;n#generateMenu#0;n#SSR#0" />
+            <element signature="n#!!block;n#determineTemplate#0;n#SSR#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret column="1319" selection-start-column="1319" selection-end-column="1319" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/atob/node-atob.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/atob/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.babelrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firebase/database.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vue-server-renderer/types/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Shopify.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="854">
+          <caret line="154" column="82" selection-start-line="154" selection-start-column="82" selection-end-line="154" selection-end-column="82" />
+          <folding>
+            <element signature="e#80#115#0" expanded="true" />
+            <element signature="n#!!block;n#api#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineImageUrl#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineProductItem#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#_refineProductList#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productGetCollects#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productGet#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productList#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#productSimilar#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGet#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetByHandle#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetCollects#0;n#ShopifyWrapper#0" />
+            <element signature="n#!!block;n#collectionGetProducts#0;n#ShopifyWrapper#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="e#11#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/polyfill.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/SSR.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="n#!!block;n#handleize#0" />
+            <element signature="n#!!block;n#generateMenu#0;n#SSR#0" />
+            <element signature="n#!!block;n#determineTemplate#0;n#SSR#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

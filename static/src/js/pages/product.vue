@@ -99,6 +99,7 @@
   import {GLOBAL_EVENTS} from "@/js/plugins";
   import FragmentRecentlyProducts from '@/js/fragments/index__RecentlyProducts'
   import SimilarProducts from '@/js/fragments/product__SimilarProducts'
+  import ProductReviews from '@/js/fragments/product__Reviews'
 
   export default {
     storeModule: ['pageProduct', productModule],
@@ -109,7 +110,8 @@
       FragmentImageList,
       FragmentExpandable,
       FragmentRecentlyProducts,
-      SimilarProducts
+      SimilarProducts,
+      ProductReviews
     },
     data() {
       return {

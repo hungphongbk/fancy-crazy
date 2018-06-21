@@ -1,0 +1,7 @@
+//functional
+div(:class="$style.imagePair" @mouseover="hover" @mouseleave="leave")
+  transition(name="fade")
+    div(:class="[$bs.dFlex,$bs.alignItemsEnd]" v-if="!hover" :key="loadeds[0]")
+      img(:src="loadeds[0]" :class="[$bs.imgFluid]")
+    div(:class="[$bs.dFlex,$bs.alignItemsEnd]" v-else :key="loadeds[1]")
+      img(:src="loadeds[1]" :class="[$bs.imgFluid]")
