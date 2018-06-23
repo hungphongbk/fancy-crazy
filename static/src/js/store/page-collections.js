@@ -162,7 +162,7 @@ export default {
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {
         commit('toggleLoading', {isLoading: true}, {root: true});
         commit('cache', {
-          products: JSON.parse(await $.get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`)).products,
+          products: (await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`)).products,
           page
         });
         commit('toggleLoading', {isLoading: false}, {root: true});

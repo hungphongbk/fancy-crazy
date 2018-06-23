@@ -84,6 +84,7 @@
             br
             | No worries! We've got it covered.
           p +1 914-598-8976 | support@fancycrazy.com
+    product-reviews.mt-5
     fragment-recently-products.mt-5
     similar-products(:product-id="product.id").mt-5
 </template>
