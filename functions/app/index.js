@@ -14,7 +14,7 @@ app.use(cors({origin: true}));
 app.use(cacheControl({
   maxAge: 7200
 }));
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/products/:id/similar', (req, res) => {
   const product_id = req.params.id;

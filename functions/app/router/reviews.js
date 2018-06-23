@@ -11,14 +11,18 @@ const transformReviews = review => omit(review, ['collection_id', 'position', 'p
 
 r.get('/collections/:id', (req, res) => {
   db.orderByChild('collection_id').equalTo(req.params.id).once('value', snapshot => {
-    res.json(values(snapshot.val()).map(transformReviews));
+    res.json(values(snapshot.val() || []).map(transformReviews));
   });
 });
 
 r.get('/products/:id', (req, res) => {
   db.orderByChild('product_id').equalTo(req.params.id).once('value', snapshot => {
-    res.json(values(snapshot.val()).map(transformReviews));
+    res.json(values(snapshot.val() || []).map(transformReviews));
   });
+});
+
+r.post('/products/:id', (req, res) => {
+
 });
 
 export default r;
