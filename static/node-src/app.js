@@ -11,10 +11,13 @@ import flatten       from 'lodash/flatten';
 import random        from 'lodash/random';
 import range         from 'lodash/range';
 import chunk         from 'lodash/chunk';
+import zip           from 'lodash/zipObject';
 import transform     from 'lodash/transform';
 import Shopify       from 'shopify-api-node';
 import Bluebird      from 'bluebird';
 import database      from '../../functions/firebase/database.babel';
+import csvReader     from 'csv-reader';
+import moment        from 'moment';
 
 //region Somethings
 const cacheGet = Bluebird.promisify(cache.get, {context: cache}),
@@ -291,6 +294,45 @@ async function task4() {
   }
 }
 
-task1().then(() => {
+async function task5() {
+  const read = new Promise(resolve => {
+    const inputStream = fs.createReadStream(path.resolve(__dirname, 'reviews.csv'), 'utf8'),
+      rs = [];
+    inputStream.pipe(csvReader({
+      parseNumbers: true,
+      parseBooleans: true,
+      trim: true,
+      skipEmptyLines: true
+    }))
+      .on('data', row => {
+        rs.push(row);
+      })
+      .on('end', () => resolve(rs));
+  });
+
+  const rows = await read;
+  for (let i = 1; i < rows.length; i++) {
+    rows[i] = zip(rows[0], rows[i]);
+  }
+  rows.splice(0, 1);
+  let i = 0;
+  for (const row of rows) {
+    const review = {
+      review_title: '',
+      review_customer_name: row.nickname,
+      review_content: row.review,
+      product_id: row.productId,
+      image_url: '',
+      type: 'image-with-data',
+      rating: row.rating,
+      review_date: moment(row.date).format('DD-MM-YYYY'),
+      position: 'product'
+    };
+    await database.ref('server/reviews').push().set(review);
+    console.log(`Completed ${++i}`);
+  }
+}
+
+task5().then(() => {
   console.log('completed');
 });

@@ -173,6 +173,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-loose": "^8.0.0",
     "cacheman-mongo": "^1.0.3",
+    "csv-reader": "^1.0.3",
     "duplicate-package-checker-webpack-plugin": "^2.1.0",
     "express-cache-controller": "^1.1.0",
     "fast-crc32c": "^1.0.4",
