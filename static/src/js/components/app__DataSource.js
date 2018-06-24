@@ -1,4 +1,4 @@
-import grid   from './app__DataSource-grid';
+import grid from './app__DataSource-grid';
 import slider from './app__DataSource-slider';
 
 export default {

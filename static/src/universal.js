@@ -1,9 +1,9 @@
-import $bs      from '@/scss/styles.m-scss';
-import Vue      from 'vue';
+import $bs from '@/scss/styles.m-scss';
+import Vue from 'vue';
 import '@/js/components';
-import store    from '@/js/store';
+import store from '@/js/store';
 import 'vue-transition-css/src/sass/fade.scss';
-import mqStore  from '@/js/store/mq';
+import mqStore from '@/js/store/mq';
 import polyfill from "@/js/store/_polyfill";
 // import '@/js/plugins';
 // import App from './App'

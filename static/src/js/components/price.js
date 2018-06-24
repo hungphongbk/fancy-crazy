@@ -1,8 +1,8 @@
-import $style     from './price.m-scss';
-import $bs        from '@/scss/styles.m-scss';
-import {usd}      from "@/js/plugins/filters";
+import $style from './price.m-scss';
+import $bs from '@/scss/styles.m-scss';
+import {usd} from "@/js/plugins/filters";
 import capitalize from 'lodash/capitalize';
-import {assert}   from "@/js/plugins/helpers";
+import {assert} from "@/js/plugins/helpers";
 
 export default {
   functional: true,

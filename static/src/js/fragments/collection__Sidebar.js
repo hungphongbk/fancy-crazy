@@ -1,7 +1,8 @@
 import './mixins/collection__Sidebar';
+import store from '@/js/store';
+
 const Desktop = () => import( /* webpackChunkName: "desktop" */ './desktop/collection__Sidebar'),
   Mobile = () => import( /* webpackChunkName: "mobile" */ './mobile/collection__Sidebar');
-import store from '@/js/store';
 
 export default {
   functional: true,

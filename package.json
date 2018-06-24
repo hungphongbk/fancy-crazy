@@ -6,7 +6,7 @@
   "scripts": {
     "test": "$NODE_DEBUG_OPTIONS node .bin/pug-parser.js /Users/hungphongbk/Projects/NodeJS/fancy-crazy/.bin/form.pug form.transformed.pug",
     "theme:watch": "shopify_theme watch",
-    "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem",
+    "app:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --https --cert=/etc/pki/tls/certs/MyOwnGrave.crt --key=/etc/pki/tls/certs/MyOwnGrave.key",
     "settings:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack-settings.config.babel.js --inline --hot --https --cert=/Users/hungphongbk/localhost.pem --key=/Users/hungphongbk/localhost.pem --port 8082",
     "settings:build": "cross-env NODE_ENV=production webpack --config webpack-settings.config.babel.js --hide-modules",
     "ssr:build": "cross-env NODE_ENV=production webpack --config webpack-ssr.config.babel.js --hide-modules",

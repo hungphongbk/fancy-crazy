@@ -10,15 +10,15 @@
 }
 
 %_aspect-ratio-content {
-  position:relative;
-  >.content{
+  position: relative;
+  > .content {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
   }
-  &:before{
+  &:before {
     display: block;
     content: "";
     width: 100%;
@@ -66,7 +66,7 @@ $fontmap: (
   position: relative;
   &:before {
     position: absolute;
-    content:'';
+    content: '';
     visibility: visible;
     top: -$outline-offset;
     left: -$outline-offset;

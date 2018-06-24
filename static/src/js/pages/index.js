@@ -1,4 +1,3 @@
-import Vue from 'vue';
 //move desktop-mobile functional components to here
 // import '../fragments/collection__Sidebar'
 

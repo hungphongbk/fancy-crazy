@@ -32,7 +32,7 @@
       background-color: rgba(#000, 0);
       transition: all $animation-time*0.75 ease;
       margin-right: -0.6rem;
-      >span{
+      > span {
         text-shadow: none;
       }
       &:hover {

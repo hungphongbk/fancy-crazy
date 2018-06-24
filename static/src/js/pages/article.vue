@@ -1,16 +1,17 @@
 <style lang="scss" module>
   @import "../../scss/inc";
-  .article{
-    &-title{
-      font-family: Oswald,sans-serif;
+
+  .article {
+    &-title {
+      font-family: Oswald, sans-serif;
       font-weight: 700;
     }
-    &-content{
+    &-content {
       text-align: justify;
 
-      >p>img{
+      > p > img {
         width: 100%;
-        @include media-breakpoint-up(sm){
+        @include media-breakpoint-up(sm) {
           width: 70%;
           margin: 1rem 15%;
         }

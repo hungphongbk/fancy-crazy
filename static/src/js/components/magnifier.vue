@@ -98,21 +98,21 @@
     },
     methods: {
       generateId() {
-        const self=this;
+        const self = this;
         self.internalId++;
         self.id = `magnifier-thumb-${instances}-${self.internalId}`;
         self.PREVIEW_ID = `magnifier-preview-${instances}-${self.internalId}`;
       },
       init({target}) {
         const {clientHeight, clientWidth} = target,
-          self=this;
+          self = this;
         self.cw = clientWidth;
         self.ch = clientHeight;
         self.WILL_SHOW_LOADING = false;
         self.IS_LOADING = false;
       },
       attach() {
-        const self=this,
+        const self = this,
           {m, id, largeSrc, PREVIEW_ID, zoom} = self;
         self.$nextTick(() => {
           m.attach({

@@ -1,6 +1,6 @@
-import Vue             from 'vue';
+import Vue from 'vue';
 import {shopifyImgUrl} from "@/js/plugins/filters";
-import {assert}        from "@/js/plugins/helpers";
+import {assert} from "@/js/plugins/helpers";
 
 const filterImg = (images, onlySizeCharts = false) =>
   images.filter(url => /sizechart_/g.test(url) === onlySizeCharts);

@@ -1,16 +1,17 @@
 <style lang="scss" module>
   @import "../../../scss/inc";
 
-  .mobile{
+  .mobile {
     composes: mobile from global;
   }
+
   .modal {
-    >div{
+    > div {
       background: white;
     }
     @include lbn-box-shadow;
     @include media-breakpoint-down(sm) {
-      &.mobile{
+      &.mobile {
         position: fixed;
         left: 0;
         right: 0;

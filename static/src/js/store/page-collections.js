@@ -1,9 +1,9 @@
-import reviews                                                              from './reviews';
+import reviews from './reviews';
 import {COLLECTION_GETTER_REVIEWS_GROUP1, COLLECTION_GETTER_REVIEWS_GROUP2} from "@/js/store/types";
-import defaultTo                                                            from 'lodash/defaultTo';
-import keyBy                                                                from 'lodash/keyBy';
-import {win}                                                                from "@/js/global";
-import {get}                                                                from "@/js/plugins/ajax";
+import defaultTo from 'lodash/defaultTo';
+import keyBy from 'lodash/keyBy';
+import {win} from "@/js/global";
+import {get} from "@/js/plugins/ajax";
 
 const w = win();
 
@@ -137,7 +137,7 @@ export default {
       const {id, totalPages, products, title} = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}`);
       commit('clearCache');
       commit('cache', {
-        url:`/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`,
+        url: `/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`,
         products,
         page: 0,
         totalPages,

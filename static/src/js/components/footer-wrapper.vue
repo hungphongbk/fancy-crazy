@@ -54,11 +54,11 @@
           Contact
         }
       },
-      vm:{
+      vm: {
         default: vm
       },
-      text:{
-        default:`<p><b><i>Melts in Your Heart, Not in Your Eyes</i></b></p>
+      text: {
+        default: `<p><b><i>Melts in Your Heart, Not in Your Eyes</i></b></p>
 <p>Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!<br/>Not fully Fancy Crazy with your products?<br/>No worries! We've got it covered.</p>
 <p><strong>+1 914-598-8976</strong><br/><strong>support@fancycrazy.com</strong></p>`
       }

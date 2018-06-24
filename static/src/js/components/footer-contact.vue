@@ -1,7 +1,7 @@
 <style lang="scss" module>
-  .btn{
-    font-family: Oswald,sans-serif;
-    padding:{
+  .btn {
+    font-family: Oswald, sans-serif;
+    padding: {
       left: 1.4rem;
       right: 1.4rem;
     }
@@ -16,7 +16,7 @@
         button.btn.btn-success.rounded-0(type="button", :class="$style.btn") GO
 </template>
 <script>
-export default {
-name: ""
-}
+  export default {
+    name: ""
+  }
 </script>

@@ -4,7 +4,7 @@
       h4 RECENTLY VIEWED PRODUCTS
       hr
     data-source(:dataSource="products", type="slider")
-        product-item(slot-scope="{item}", :product="item")
+      product-item(slot-scope="{item}", :product="item")
 </template>
 <script>
   import {ProductItem, DataSource} from "@/js/components";

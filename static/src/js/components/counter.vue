@@ -2,7 +2,7 @@
   .counter {
     flex-wrap: nowrap;
     width: unset;
-    input.input{
+    input.input {
       flex: 0 0 auto;
       width: 1.85rem;
     }

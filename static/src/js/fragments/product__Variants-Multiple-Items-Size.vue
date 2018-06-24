@@ -5,7 +5,7 @@
     .blueimp-gallery > .close {
       color: white;
 
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         height: 50px;
         width: 50px;
         display: inline-block;
@@ -16,8 +16,8 @@
         border-radius: 50%;
         background-color: white;
         color: black;
-        opacity:1;
-        box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.75);
+        opacity: 1;
+        box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
       }
     }
   }

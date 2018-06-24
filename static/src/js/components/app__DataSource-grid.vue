@@ -5,7 +5,7 @@
 </template>
 <script>
   export default {
-    data(){
+    data() {
       return {
         classes: [
           this.$bs.col6,

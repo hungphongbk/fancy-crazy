@@ -1,6 +1,5 @@
 import Single from './product__Variants-Single'
 import Multiple from './product__Variants-Multiple'
-import store from '@/js/store'
 
 export default {
   name: 'ProductVariants',

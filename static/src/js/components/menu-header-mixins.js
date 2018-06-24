@@ -1,7 +1,7 @@
 import {GLOBAL_EVENTS} from "@/js/plugins";
 
 export default {
-  data:()=>({
+  data: () => ({
     BOX_SHADOW_Y_OFFSET: 0
   }),
   computed: {

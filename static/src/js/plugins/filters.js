@@ -1,6 +1,6 @@
-import Vue        from 'vue';
+import Vue from 'vue';
 import VueFilters from 'vue2-filters';
-import {assert}   from "@/js/plugins/helpers";
+import {assert} from "@/js/plugins/helpers";
 
 Vue.use(VueFilters);
 

@@ -1,3 +1,1 @@
-export const addToCart = {
-
-};
+export const addToCart = {};

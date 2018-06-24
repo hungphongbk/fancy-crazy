@@ -1,8 +1,8 @@
-import Vue       from 'vue';
+import Vue from 'vue';
 import Thumbnail from './thumbnail';
-import Price     from './price';
-import Counter   from './counter';
-import NoSsr     from 'vue-no-ssr';
+import Price from './price';
+import Counter from './counter';
+import NoSsr from 'vue-no-ssr';
 //move chunk to frontend
 import './universal/cart';
 import './universal/modal';

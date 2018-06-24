@@ -1,12 +1,12 @@
-import ShopifyApi   from "shopify-api-node";
+import ShopifyApi from "shopify-api-node";
 // import GraphQL from "./GraphQL"
-import {cacheable}  from "./utils";
-import remove       from 'lodash/remove';
-import flatten      from 'lodash/flatten';
-import uniqBy       from 'lodash/uniqBy';
+import {cacheable} from "./utils";
+import remove from 'lodash/remove';
+import flatten from 'lodash/flatten';
+import uniqBy from 'lodash/uniqBy';
 import intersection from 'lodash/intersectionBy';
-import BindAll      from 'lodash-decorators/bindAll';
-import omit         from 'lodash/omit';
+import BindAll from 'lodash-decorators/bindAll';
+import omit from 'lodash/omit';
 
 const shopify = new ShopifyApi({
   shopName: 'cubachtung.myshopify.com',
@@ -85,7 +85,7 @@ class ShopifyWrapper {
     }).then(this._refineProductList);
   }
 
-  @cacheable(3600)
+  @cacheable()
   async productSimilar(product_id) {
     const collects = await this.productGetCollects(product_id),
       collections = await Promise.all(collects.map(async c => {
@@ -144,6 +144,17 @@ class ShopifyWrapper {
   }
 
   @cacheable()
+  async collectionBestSelling(): Promise<App.Collection> {
+    const query = {
+      title: 'Best Selling'
+    }
+    let collections: App.Collection[] = await shopify.smartCollection.list(query);
+    if (collections.length === 0)
+      throw new Error('Best Selling not found');
+    return collections[0];
+  }
+
+  @cacheable()
   collectionGetCollects(collection_id) {
     return shopify.collect.list({
       collection_id,
@@ -151,7 +162,7 @@ class ShopifyWrapper {
     });
   }
 
-  @cacheable()
+  @cacheable(86400*7)
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
     const _params = omit(params, ['tag']),

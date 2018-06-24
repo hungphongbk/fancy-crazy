@@ -1,7 +1,7 @@
-import Image         from './app__ReviewImage';
+import Image from './app__ReviewImage';
 import ImageWithText from './app__ReviewImageText';
-import style         from './app__Reviews.m-scss';
-import store         from '@/js/store';
+import style from './app__Reviews.m-scss';
+import store from '@/js/store';
 
 const types = {
   'image-only': Image,

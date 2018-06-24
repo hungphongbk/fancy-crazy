@@ -41,7 +41,7 @@
     asyncComputed: {
       loadeds: {
         get() {
-          if(SSR==='client') {
+          if (SSR === 'client') {
             const loadImg = src => new Promise(resolve => {
               const img = new Image();
               img.onload = () => resolve();

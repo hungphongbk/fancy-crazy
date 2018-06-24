@@ -33,14 +33,14 @@
       FragmentRecentlyProducts,
       FragmentReviews
     },
-    computed:{
-      reviews(){
+    computed: {
+      reviews() {
         return this.$appStore.state.pageIndex.reviews
       }
     },
     async mounted() {
-      this.$store.subscribe(mutation=>{
-        if(mutation.type==='pageIndex/fetch'){
+      this.$store.subscribe(mutation => {
+        if (mutation.type === 'pageIndex/fetch') {
 
         }
       });

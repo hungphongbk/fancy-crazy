@@ -1,6 +1,6 @@
 import store2 from 'store2';
-import cart   from "@/js/store/cart";
-import {win}  from "@/js/global";
+import cart from "@/js/store/cart";
+import {win} from "@/js/global";
 
 export default store => {
   const w = win();

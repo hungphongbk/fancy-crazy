@@ -13,7 +13,7 @@ export default {
     GO_TO_TAG: 'goToTag',
     GO_TO_COLLECTION: 'goToCollection'
   }),
-  created(){
+  created() {
     console.log(this.$store.state.pageCollections.sidebar);
     console.log(this.SIDEBAR_COLLECTIONS);
   }

@@ -17,7 +17,7 @@
   }
 
   .title {
-    h5{
+    h5 {
       font-weight: bold;
     }
     composes: subtitle;
@@ -57,7 +57,7 @@
   import Dropdown from '@/js/components/universal/dropdown'
 
   export default {
-    components:{
+    components: {
       Dropdown
     },
     props: {

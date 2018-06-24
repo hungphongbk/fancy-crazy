@@ -1,9 +1,9 @@
-import Vue         from 'vue';
-import Vuex        from 'vuex';
-import menu        from './menu';
-import cart        from './cart';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import menu from './menu';
+import cart from './cart';
 import VuexPersist from 'vuex-persist';
-import {win}       from "@/js/global";
+import {win} from "@/js/global";
 
 const w = win();
 Vue.use(Vuex);

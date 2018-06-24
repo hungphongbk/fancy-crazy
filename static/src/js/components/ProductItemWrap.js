@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import store from '../store';
 
 export default function (product) {
   // if (typeof product.isMouseOver !== 'undefined') return product;

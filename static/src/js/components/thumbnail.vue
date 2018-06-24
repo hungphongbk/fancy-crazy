@@ -105,8 +105,7 @@
       }
     },
     data() {
-      return {
-      };
+      return {};
     },
     computed: {
       lazyUrl_() {

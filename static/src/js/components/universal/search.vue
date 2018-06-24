@@ -133,7 +133,7 @@
   import SearchPanel from './search-panel'
   import {win} from "@/js/global";
 
-  const w=win();
+  const w = win();
 
   export default {
     components: {SearchPanel},

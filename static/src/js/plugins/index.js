@@ -1,13 +1,13 @@
 import './responsive';
 // import './font'
 // import './animateCss'
-import Vue             from 'vue';
-import AsyncComputed   from 'vue-async-computed';
+import Vue from 'vue';
+import AsyncComputed from 'vue-async-computed';
 import VueLocalStorage from 'vue-localstorage';
 import './fontawesome';
 // import {delay} from '../components/helpers'
 // import './observe-visibility'
-import * as filters    from './filters';
+import * as filters from './filters';
 import './tooltip';
 //
 // import 'vue-carousel'

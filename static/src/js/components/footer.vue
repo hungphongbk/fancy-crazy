@@ -1,8 +1,8 @@
 <style lang="scss" module>
   @import "../../scss/inc";
 
-  .footer{
-    p{
+  .footer {
+    p {
       color: $gray-700;
       @include font-size-with-line-height($font-size-base*0.85);
     }
@@ -23,7 +23,7 @@
   .info {
     flex-basis: 50%;
     text-align: center;
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       text-align: left;
     }
   }

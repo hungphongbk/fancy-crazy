@@ -106,8 +106,8 @@
         },
         deep: true
       },
-      value(val){
-        this.variantOpts=mapVariant(val);
+      value(val) {
+        this.variantOpts = mapVariant(val);
       }
     }
   };

@@ -10,7 +10,7 @@
     h3 {
       font-family: Oswald, sans-serif;
       display: inline-block;
-      @include media-breakpoint-down(sm){
+      @include media-breakpoint-down(sm) {
         font-size: $h4-font-size;
       }
     }
@@ -38,7 +38,7 @@
   import Dropdown from '@/js/components/universal/dropdown'
 
   export default {
-    components:{
+    components: {
       Dropdown
     },
     props: {
