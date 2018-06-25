@@ -80,6 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
 
   .wrapper {
@@ -91,9 +92,24 @@
     @include lbn-box-shadow;
   }
 </style>
-<template functional lang="pug">
-  div(:class="[$style.loaderOverlay, props.isInternal?$style.internal:null]")
+<template lang="pug">
+  div(:class="[$style.loaderOverlay, isInternal?$style.internal:null]")
     div(:class="$style.wrapper")
       svg(:class="$style.spinner", viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg")
         circle(:class="$style.path", fill="none" stroke-width="4" stroke-linecap="round" cx="25" cy="25" r="23")
+    p.mt-2(v-if="isLong") It just take a bit long. Waiting...
 </template>
+<script>
+  export default {
+    props:{
+      isLong:{
+        type:Boolean,
+        default:false
+      },
+      isInternal:{
+        type:Boolean,
+        default:false
+      }
+    }
+  }
+</script>

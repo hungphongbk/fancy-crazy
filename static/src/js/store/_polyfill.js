@@ -29,6 +29,10 @@ export default store => {
       };
   }
 
+  if(w.__state__.pageCollections){
+    w.__state__.pageCollections.isBestSelling=false;
+  }
+
   if (w.__state__.pageProduct)
     w.__state__.pageProduct.selectedImage = 0;
 

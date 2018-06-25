@@ -8,6 +8,17 @@
     }
   }
 </style>
+<style lang="scss" module>
+  @import "../../scss/inc";
+  .show-best-selling{
+    img{
+      width: percentage(1/3);
+      @include media-breakpoint-up(sm){
+        width: percentage(1/6);
+      }
+    }
+  }
+</style>
 <template lang="pug">
   .container-fluid.pt-3
     div(ref="anchor")
@@ -16,6 +27,10 @@
       template(slot="sidebar")
         collection-sidebar
       template(slot="products")
+        .col-12.text-center(v-if="IS_BEST_SELLING")
+          div(:class="$style.showBestSelling")
+            img(src="@/images/empty-box.svg")
+            p.mt-0.mb-4.text-muted <i>This collection is empty. Instead, below is our best sellings!</i>
         .col-6.col-sm-3(v-for="product in products")
           product-item(:product="product")
       template(slot="pagination")
@@ -71,6 +86,12 @@
       },
     },
     computed: {
+      /**
+       * @return {boolean}
+       */
+      IS_BEST_SELLING(){
+        return this.$store.state.pageCollections.isBestSelling;
+      },
       ...mapGetters(spreadModuleProps('pageCollections', [
         'products', 'current', 'pages', 'canNext', 'canPrev',
         'sidebarCollections', 'sidebarTags',

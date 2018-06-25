@@ -154,15 +154,17 @@ class ShopifyWrapper {
     return collections[0];
   }
 
-  @cacheable()
+  @cacheable(0)
   collectionGetCollects(collection_id) {
     return shopify.collect.list({
       collection_id,
       fields: 'collection_id,product_id',
+      limit: 250
     });
   }
 
-  @cacheable(86400*7)
+  @cacheable(86400 * 7)
+  // @cacheable(0)
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
     const _params = omit(params, ['tag']),

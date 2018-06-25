@@ -33,7 +33,8 @@
           component(:is="SITE_CONTENT")
       site-footer
     transition(name="fade")
-      loader(v-if="IS_LOADING")
+      div(v-if="IS_LOADING")
+        loader(:is-long="LONG_TASK")
 </template>
 <script>
   import SiteHeader from '@/js/components/menu-header'
@@ -54,7 +55,8 @@
     data() {
       return {
         SCROLL_TOP: 0,
-        SITE_CONTENT
+        SITE_CONTENT,
+        LONG_TASK: false
       }
     },
     computed: {
@@ -69,6 +71,16 @@
       }
     },
     watch: {
+      IS_LOADING(val) {
+        if (!val) {
+          this.LONG_TASK = false;
+        } else {
+          setTimeout(() => {
+            if (this.IS_LOADING)
+              this.LONG_TASK = true;
+          }, 2000)
+        }
+      },
       IS_SCROLLING(value) {
         GLOBAL_EVENTS.$emit('scroll', value);
       }

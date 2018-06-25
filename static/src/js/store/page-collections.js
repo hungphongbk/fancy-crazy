@@ -13,6 +13,7 @@ export default {
   state: () => ({
     handle: '',
     tag: '',
+    isBestSelling: false,
     title: '',
     totalPages: 0,
     products: [],
@@ -84,12 +85,20 @@ export default {
     }
   },
   mutations: {
-    cache(state, {products = [], page = state.current, totalPages = 0, force = false, title = ''} = {}) {
+    cache(state, {
+      products = [],
+      page = state.current,
+      totalPages = 0,
+      force = false,
+      title = ''
+    } = {}) {
       state.__cache__[page] = (products.length === 0 && !force) ? state.products : products;
 
       if (totalPages > 0) state.totalPages = totalPages;
       if (title.length > 0) state.title = title;
     },
+    showBestSelling: state => state.isBestSelling = true,
+    hideBestSelling: state => state.isBestSelling = false,
     clearCache(state) {
       for (const cacheItem of state.__cache__) {
         if (cacheItem)
@@ -133,9 +142,18 @@ export default {
       }
     },
     async _navigate({commit, dispatch, getters}) {
+      let isBestSelling = false;
+
       w.history.pushState('string', '', '/collections/' + getters.url);
-      const {id, totalPages, products, title} = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}`);
+      let {id, totalPages, products, title} = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}`);
+      if (products.length === 0) {
+        isBestSelling = true;
+        const another = await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/best-selling`);
+        totalPages = another.totalPages;
+        products = another.products;
+      }
       commit('clearCache');
+      commit(isBestSelling ? 'showBestSelling' : 'hideBestSelling');
       commit('cache', {
         url: `/collections/${getters.url}?view=json&${SHOPIFY_THEME_ID}`,
         products,
@@ -160,9 +178,14 @@ export default {
     },
     async goToPage({commit, getters, state}, {page}) {
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {
+        //if is-best-selling, download from best-selling
+        const url = state.isBestSelling ?
+          `https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/best-selling?page=${page + 1}` :
+          `https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`;
+
         commit('toggleLoading', {isLoading: true}, {root: true});
         commit('cache', {
-          products: (await get(`https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`)).products,
+          products: (await get(url)).products,
           page
         });
         commit('toggleLoading', {isLoading: false}, {root: true});
