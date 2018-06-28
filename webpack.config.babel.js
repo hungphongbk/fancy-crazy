@@ -205,6 +205,7 @@ let plugins = [
   })
 ];
 if (process.env.NODE_ENV === 'production') {
+  // module.exports.devtool = 'source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   plugins = plugins.concat([
     // new BundleAnalyzerPlugin({
@@ -240,10 +241,15 @@ if (process.env.NODE_ENV === 'production') {
       children: true,
       minChunks: 2,
     }),
+    // new webpack.SourceMapDevToolPlugin({
+    //   filename: '[name].js.map',
+    //   exclude: ['inline.js']
+    // }),
     new UglifyJSPlugin({
       test: /\.js($|\?)/i,
       cache: true,
       parallel: false,
+      sourceMap: true,
       uglifyOptions: {
         ie8: false,
         mangle: {

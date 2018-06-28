@@ -333,6 +333,6 @@ async function task5() {
   }
 }
 
-task5().then(() => {
+task4().then(() => {
   console.log('completed');
 });

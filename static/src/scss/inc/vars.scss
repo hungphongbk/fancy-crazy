@@ -1,4 +1,4 @@
-$theme-red: #db1600;
+$theme-red: #94721e;
 
 $animation-time: .16s;
 
@@ -61,6 +61,8 @@ $sizes: (
 
 $list-group-item-padding-y: .5rem;
 $list-group-border-radius: 0;
+
+//$enable-shadows: true;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";

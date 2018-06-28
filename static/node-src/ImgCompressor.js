@@ -1,6 +1,6 @@
 // @flow
 import Storage     from '@google-cloud/storage';
-import credentials from './credentials/fancycrazy-895ba-firebase-adminsdk-c73dr-2f62366df5';
+import credentials from './credentials/hungphongbk-02e62197a93f';
 import mime        from 'mime-types';
 import gm$         from 'gm';
 import request     from 'request';

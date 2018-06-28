@@ -4,6 +4,7 @@
 const Index = () => import(/* webpackChunkName: "index" */ './index.vue'),
   Collections = () => import(/* webpackChunkName: "collections" */ './collections.vue'),
   Product = () => import(/* webpackChunkName: "product" */ './product.vue'),
+  Blog = () => import(/* webpackChunkName: "blog" */ './blog.vue'),
   Article = () => import(/* webpackChunkName: "article" */ './article.vue'),
   General = () => import(/* webpackChunkName: "general" */ './general.vue');
 
@@ -18,8 +19,11 @@ switch (window.__state__.template) {
   case 'product':
     component = Product;
     break;
+  case 'blog':
+    component = Blog;
+    break;
   default:
-    if (/^page/.test(window.__state__.template))
+    if (/^(page|article)/.test(window.__state__.template))
       component = Article;
     else component = General;
 }

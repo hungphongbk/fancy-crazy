@@ -8,8 +8,10 @@ import cacheControl      from 'express-cache-controller';
 import shopify           from './Shopify.ts';
 import ReviewsController from './router/reviews';
 import CollectionsController from './router/collections';
+import morgan from 'morgan'
 
 const app = express();
+app.use(morgan('combined'));
 app.use(cors({origin: true}));
 app.use(cacheControl({
   maxAge: 7200

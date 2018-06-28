@@ -9,11 +9,13 @@
     &-content {
       text-align: justify;
 
-      > p > img {
-        width: 100%;
-        @include media-breakpoint-up(sm) {
-          width: 70%;
-          margin: 1rem 15%;
+      > p,div{
+        img {
+          width: 100%;
+          @include media-breakpoint-up(sm) {
+            width: 70%;
+            margin: 1rem 15%;
+          }
         }
       }
     }

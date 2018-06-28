@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 //import webpack from 'webpack';
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     target: 'node',
     context: process.cwd(),
     entry: {

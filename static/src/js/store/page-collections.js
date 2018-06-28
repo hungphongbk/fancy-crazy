@@ -119,7 +119,7 @@ export default {
   actions: {
     async fetch({commit, state}, url = null) {
       try {
-        const reviews = await $.get(url || state.reviewUrl),
+        const reviews = await get(url || state.reviewUrl),
           obj = {};
         for (const r of reviews) {
           if (typeof r.rating !== 'undefined') {
@@ -152,6 +152,7 @@ export default {
         totalPages = another.totalPages;
         products = another.products;
       }
+      // alert('ok');
       commit('clearCache');
       commit(isBestSelling ? 'showBestSelling' : 'hideBestSelling');
       commit('cache', {
@@ -162,8 +163,9 @@ export default {
         title,
         force: true
       });
-      await dispatch('fetch', `https://https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/reviews/collections/${id}`);
+      await dispatch('fetch', `https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/reviews/collections/${id}`);
       commit('toggleLoading', {isLoading: false}, {root: true});
+      // alert('ok');
       commit('goToPage', {page: 0});
     },
     async goToCollection({dispatch, commit}, collection = 'all') {

@@ -7,6 +7,7 @@ import uniqBy from 'lodash/uniqBy';
 import intersection from 'lodash/intersectionBy';
 import BindAll from 'lodash-decorators/bindAll';
 import omit from 'lodash/omit';
+// import cacher from './ShopifyCacher'
 
 const shopify = new ShopifyApi({
   shopName: 'cubachtung.myshopify.com',
@@ -154,7 +155,7 @@ class ShopifyWrapper {
     return collections[0];
   }
 
-  @cacheable(0)
+  @cacheable()
   collectionGetCollects(collection_id) {
     return shopify.collect.list({
       collection_id,
@@ -164,7 +165,6 @@ class ShopifyWrapper {
   }
 
   @cacheable(86400 * 7)
-  // @cacheable(0)
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
     const _params = omit(params, ['tag']),
