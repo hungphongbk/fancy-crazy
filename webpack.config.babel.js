@@ -1,14 +1,14 @@
-import path              from "path";
-import webpack           from "webpack";
+import path from "path";
+import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
-import UglifyJSPlugin    from "uglifyjs-webpack-plugin";
-import DuplicateCheck    from 'duplicate-package-checker-webpack-plugin';
-import merge             from 'webpack-merge';
-import base              from './build/webpack-base.config.babel';
-import combine           from 'webpack-combine-loaders';
-import regexCombiner     from 'regex-combiner';
-import _                 from './build/utils';
-import ShopifyPlugin     from './build/plugins/shopify';
+import UglifyJSPlugin from "uglifyjs-webpack-plugin";
+import DuplicateCheck from 'duplicate-package-checker-webpack-plugin';
+import merge from 'webpack-merge';
+import base from './build/webpack-base.config.babel';
+import combine from 'webpack-combine-loaders';
+import regexCombiner from 'regex-combiner';
+import _ from './build/utils';
+import ShopifyPlugin from './build/plugins/shopify';
 
 const src = './static/src',
   dist = './static/dist',
@@ -38,7 +38,7 @@ const cssLoader = (modules = false) => ({
 
 module.exports = merge(base, {
   entry: {
-    vendor: ['vue', 'vuex', 'vue-lazyload', 'vue-match-media', 'flickity', 'vue-flickity', 'flickity-imagesloaded', '@tweenjs/tween.js','popper.js'],
+    vendor: ['vue', 'vuex', 'vue-lazyload', 'vue-match-media', 'flickity', 'vue-flickity', 'flickity-imagesloaded', '@tweenjs/tween.js', 'popper.js'],
     frontend: src + '/script.js'
   },
   output: {
@@ -46,6 +46,7 @@ module.exports = merge(base, {
     publicPath: publicPath,
     filename: '[name].js' + (isProduction ? '?[chunkhash]' : ''),
     chunkFilename: '[name].bundle.js?[chunkhash]',
+    jsonpFunction: 'fancyCrazyJsonp'
   },
   module: {
     rules: [
@@ -272,13 +273,13 @@ if (process.env.NODE_ENV === 'production') {
     ShopifyPlugin
   ]);
 } else {
-  module.exports.devtool = '#eval-source-map';
+  // module.exports.devtool = '#eval-source-map';
   plugins = plugins.concat([
     new webpack.NamedModulesPlugin(),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[name].js.map',
-      exclude: ['vendor.js']
-    })
+    // new webpack.SourceMapDevToolPlugin({
+    //   filename: '[name].js.map',
+    //   exclude: ['vendor.js']
+    // })
   ]);
 }
 module.exports.plugins = plugins;

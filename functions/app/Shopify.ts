@@ -4,7 +4,9 @@ import {cacheable} from "./utils";
 import remove from 'lodash/remove';
 import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy';
+import range from 'lodash/range'
 import intersection from 'lodash/intersectionBy';
+import chunk from 'lodash/chunk'
 import BindAll from 'lodash-decorators/bindAll';
 import omit from 'lodash/omit';
 // import cacher from './ShopifyCacher'
@@ -79,11 +81,15 @@ class ShopifyWrapper {
   }
 
   @cacheable()
-  productList(ids, params = {}): Promise<App.Product[]> {
-    return shopify.product.list({
-      ids: ids.join(','),
-      ...params,
-    }).then(this._refineProductList);
+  async productList(_ids, params = {}): Promise<App.Product[]> {
+    const __ids = chunk(_ids, 50).map(ids => ids.join(','));
+
+    return flatten(await Promise.all(__ids.map((ids) =>
+      shopify.product.list({
+        ids,
+        ...params
+      }).then(this._refineProductList))
+    ));
   }
 
   @cacheable()
@@ -148,7 +154,7 @@ class ShopifyWrapper {
   async collectionBestSelling(): Promise<App.Collection> {
     const query = {
       title: 'Best Selling'
-    }
+    };
     let collections: App.Collection[] = await shopify.smartCollection.list(query);
     if (collections.length === 0)
       throw new Error('Best Selling not found');
@@ -156,15 +162,25 @@ class ShopifyWrapper {
   }
 
   @cacheable()
-  collectionGetCollects(collection_id) {
-    return shopify.collect.list({
-      collection_id,
-      fields: 'collection_id,product_id',
-      limit: 250
-    });
+  async collectionGetCollects(collection_id) {
+    const params = {
+        collection_id,
+        fields: 'collection_id,product_id',
+        limit: 250
+      },
+      count = await shopify.collect.count(params),
+      pages = Math.ceil(count / 250);
+
+    return flatten(await Promise.all(
+      range(1, pages + 1).map(page => shopify.collect.list({
+        ...params,
+        page
+      }))
+    ));
   }
 
-  @cacheable(86400 * 7)
+  @cacheable(86400 * 8)
+  // @cacheable(0)
   collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
 
     const _params = omit(params, ['tag']),

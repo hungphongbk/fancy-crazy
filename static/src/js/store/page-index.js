@@ -1,3 +1,5 @@
+import {get} from "@/js/plugins/ajax";
+
 export default {
   namespaced: true,
   state: () => ({
@@ -12,7 +14,7 @@ export default {
   },
   actions: {
     async fetch({commit}) {
-      const reviews = await $.get('https://static.fancycrazy.com/reviews-index.json'),
+      const reviews = await get('https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/reviews/index'),
         obj = {};
       for (const r of reviews) {
         const group = r.group.replace(/\s/, '');

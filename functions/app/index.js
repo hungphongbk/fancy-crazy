@@ -1,18 +1,21 @@
 //polyfill
 import 'babel-runtime/regenerator';
-import * as functions    from "firebase-functions";
-import express           from "express";
-import bodyParser        from 'body-parser';
-import cors              from "cors";
-import cacheControl      from 'express-cache-controller';
-import shopify           from './Shopify.ts';
+import * as functions from "firebase-functions";
+import express from "express";
+import bodyParser from 'body-parser';
+import cors from "cors";
+import cacheControl from 'express-cache-controller';
+import shopify from './Shopify.ts';
 import ReviewsController from './router/reviews';
 import CollectionsController from './router/collections';
-import morgan from 'morgan'
+//import morgan from 'morgan'
 
 const app = express();
-app.use(morgan('combined'));
-app.use(cors({origin: true}));
+// app.use(morgan('combined'));
+app.use(cors({
+  origin: 'https://fancycrazy.com',
+  optionsSuccessStatus: 200
+}));
 app.use(cacheControl({
   maxAge: 7200
 }));
@@ -29,7 +32,7 @@ app.get('/products/:id/similar', (req, res) => {
   });
 });
 
-app.use('/collections',CollectionsController);
+app.use('/collections', CollectionsController);
 
 app.use('/reviews', ReviewsController);
 
