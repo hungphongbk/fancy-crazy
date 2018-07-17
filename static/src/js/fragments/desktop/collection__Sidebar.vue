@@ -56,13 +56,13 @@
     .list-group#products
       template(v-for="(col,index) in SIDEBAR_COLLECTIONS")
         template(v-if="col.children")
-          a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="TOGGLE_MENU(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
+          a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="toggleParent=index", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
             span {{col.title}}
-            fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle[index]?null:180")
-          dropdown(:is-open="toggle[index]")
+            fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle===index?null:180")
+          dropdown(:is-open="toggleParent===index")
             div(:class="$style.children")
-              a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="GO_TO_COLLECTION(childCol.url)") {{childCol.title}}
-        a.list-group-item.list-group-item-action(v-else, @click="GO_TO_COLLECTION(col.url)") {{col.title}}
+              sidebar-item(v-for="(childCol, subIndex) in col.children" :item="childCol" :index="subIndex+(index+1)*100" :key="subIndex+(index+1)*100") {{childCol.title}}
+        sidebar-item(v-else :index="index" :item="col") {{col.title}}
     h5.mt-4.mb-4 INTERESTS
     .list-group
       //
@@ -75,14 +75,14 @@
 
   export default {
     mixins: [collectionMixin],
-    components: {Dropdown},
     data: () => ({
-      toggle: Array(50).fill(false),
+      toggle: -1,
+      toggleParent: -1,
       FA_CHEVRON_UP
     }),
     methods: {
       TOGGLE_MENU(index) {
-        this.$set(this.toggle, index, !this.toggle[index])
+        this.toggle = index;
       }
     }
   }

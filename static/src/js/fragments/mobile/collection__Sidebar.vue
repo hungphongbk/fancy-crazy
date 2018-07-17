@@ -94,13 +94,13 @@
       .list-group.mt-3.px-3
         template(v-for="(col,index) in SIDEBAR_COLLECTIONS")
           template(v-if="col.children")
-            a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href="javascript:void(0)", @click="TOGGLE_MENU(index)", :class="{ [$bs.active]: toggle[index], [$style.active]: toggle[index] }")
+            a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href="javascript:void(0)", @click="toggleParent=index", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
               span(:class="{ [$style.open]:toggle[index] }") {{col.title}}
               fa-icon(:icon="FA_CHEVRON_DOWN", :class="$style.icon")
-            dropdown(:is-open="toggle[index]")
+            dropdown(:is-open="toggleParent===index")
               div(:class="$style.children")
-                a.list-group-item.list-group-item-action(v-for="childCol in col.children", @click="GO_TO_COLLECTION(childCol.url)") {{childCol.title}}
-          a.list-group-item.list-group-item-action(v-else, @click="GO_TO_COLLECTION(col.url)") {{col.title}}
+                sidebar-item(v-for="(childCol, subIndex) in col.children" :item="childCol" :index="subIndex+(index+1)*100" :key="subIndex+(index+1)*100") {{childCol.title}}
+          sidebar-item(v-else :index="index" :item="col") {{col.title}}
     dropdown(:is-open="IS_TAG_TOGGLE", :class="$style.dropdown", :is-parallax="true")
       .list-group.mt-3.px-3
         a.list-group-item.list-group-item-action(v-for="col in SIDEBAR_TAGS", href="javascript:void(0)" :class="{ [$bs.active]:(FILTERED_TAG && (col.title=== FILTERED_TAG.title)), [$style.active]: (FILTERED_TAG && (col.title=== FILTERED_TAG.title)) }", @click="GO_TO_TAG(col.url)") {{col.title}}
@@ -112,9 +112,6 @@
 
   export default {
     mixins: [collectionMixin],
-    components: {
-      Dropdown
-    },
     data() {
       const bs = this.$bs;
       return {
@@ -122,12 +119,13 @@
         IS_COLLECTION_TOGGLE: false,
         IS_TAG_TOGGLE: false,
         DROPDOWN_BUTTON: [bs.flexGrow1, bs.dFlex, bs.justifyContentCenter, bs.alignItemsCenter, this.$style.dropdownButton],
-        toggle: Array(50).fill(false),
+        toggle: -1,
+        toggleParent: -1
       }
     },
     methods: {
       TOGGLE_MENU(index) {
-        this.$set(this.toggle, index, !this.toggle[index])
+        this.toggle=index;
       }
     },
     mounted() {
