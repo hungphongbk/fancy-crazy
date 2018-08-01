@@ -44,7 +44,8 @@
       .col-sm-12
         fragment-reviews(:items="group1")
         fragment-reviews(:items="group2")
-    fragment-recently-products.mt-5
+    .mt-5
+    fragment-recently-products
 </template>
 <script>
   import collectionModule from '@/js/store/page-collections';

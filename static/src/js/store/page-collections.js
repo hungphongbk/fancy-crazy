@@ -30,10 +30,24 @@ export default {
     products: ({products}) => products,
     current: (state) => state.current + 1,
     totalPages: state => state.totalPages,
-    pages: ({totalPages}) => Array(totalPages).fill().map((_, index) => ({
-      label: index + 1,
-      index
-    })),
+    pages: ({totalPages}, {current}) => {
+      const list = Array(totalPages).fill().map((_, index) => ({
+        label: index + 1,
+        index
+      }));
+      if (totalPages > current + 3)
+        list.splice(current + 1, totalPages - current - 2, {
+          label: '...',
+          index: -1
+        });
+      if (current > 3)
+        list.splice(1, current - 3, {
+          label: '...',
+          index: -1
+        });
+
+      return list;
+    },
     canNext: state => state.current < state.totalPages - 1,
     canPrev: state => state.current > 0,
     sidebarCollections: ({sidebar}) => {
@@ -179,11 +193,17 @@ export default {
       await dispatch('_navigate');
     },
     async goToPage({commit, getters, state}, {page}) {
+      if (page === -1) return;
+      const isAll = getters.url === 'all',
+        prefix = isAll
+          ? 'https://fancycrazy.com'
+          : 'https://us-central1-fancycrazy-895ba.cloudfunctions.net/s';
+
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {
         //if is-best-selling, download from best-selling
         const url = state.isBestSelling ?
           `https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/best-selling?page=${page + 1}` :
-          `https://us-central1-fancycrazy-895ba.cloudfunctions.net/s/collections/${getters.url}?page=${page + 1}`;
+          `${prefix}/collections/${getters.url + (isAll ? '/' : '')}?page=${page + 1}&view=json`;
 
         commit('toggleLoading', {isLoading: true}, {root: true});
         commit('cache', {

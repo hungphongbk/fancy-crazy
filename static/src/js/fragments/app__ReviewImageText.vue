@@ -51,7 +51,7 @@
   }
 </style>
 <template lang="pug">
-  .mx-3
+  .mx-sm-3
     .d-flex.align-items-center
       star-rating.d-inline-block(:rating="REVIEW_POINT", :star-size="$mq.phone?15:20", :show-rating="false", :read-only="true")
       .d-inline-block.ml-2 {{items.length}} Reviews

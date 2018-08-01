@@ -10,13 +10,21 @@ export const get = (url, useSession = false) => new Promise((resolve, reject) =>
     resolve(storage.get(url));
     return;
   }
-  jQuery.ajax({
+
+  let promise;
+  if (/fancycrazy\.com/.test(url)) {
+    promise = jQuery.get(url)
+      .then(body => JSON.parse(body));
+  } else {
+    promise = jQuery.ajax({
       url,
       type: 'GET',
       contentType: 'json',
       dataType: 'json'
-    })
-    .then(body => {
+    });
+  }
+
+  promise.then(body => {
       storage.set(url, body);
       resolve(body);
     })

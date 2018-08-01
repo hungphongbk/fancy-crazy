@@ -94,7 +94,7 @@
       .list-group.mt-3.px-3
         template(v-for="(col,index) in SIDEBAR_COLLECTIONS")
           template(v-if="col.children")
-            a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href="javascript:void(0)", @click="toggleParent=index", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
+            a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href="javascript:void(0)", @click="toggleParent=(toggleParent!==index)?index:-1", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
               span(:class="{ [$style.open]:toggle[index] }") {{col.title}}
               fa-icon(:icon="FA_CHEVRON_DOWN", :class="$style.icon")
             dropdown(:is-open="toggleParent===index")

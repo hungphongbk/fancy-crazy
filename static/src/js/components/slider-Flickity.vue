@@ -127,11 +127,17 @@
     methods: {
       select(index) {
         this.$refs.flkty.select(index);
-      }
+      },
+
     },
     mounted() {
       // debugger;
       require('flickity-imagesloaded');
+      this.$store.subscribe(mutation => {
+        if (mutation.type === 'pageCollections/goToPage') {
+          this.$refs.flkty.rerender();
+        }
+      });
     }
   }
 </script>

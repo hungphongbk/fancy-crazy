@@ -114,7 +114,7 @@ class ShopifyWrapper {
       flatten(await Promise.all(collections.map(
         col => this.collectionGetProducts(col.id * 1, {
           fields: 'id,title,handle,images,variants',
-        }),
+        }, true),
       )))
       , 'id');
     if (!Array.isArray(comparator) || comparator.length === 0 || comparator[0] === null)
@@ -122,9 +122,9 @@ class ShopifyWrapper {
 
     const comparatorProducts = await this.collectionGetProducts(comparator[0].id * 1, {
       fields: 'id,title,handle,images',
-    });
+    }, true);
 
-    return intersection(products, comparatorProducts, 'id');
+    return intersection(products, comparatorProducts, 'id').slice(0, 50);
   }
 
   @cacheable()
@@ -162,13 +162,13 @@ class ShopifyWrapper {
   }
 
   @cacheable()
-  async collectionGetCollects(collection_id) {
+  async collectionGetCollects(collection_id, onlyFirstPage: boolean = false) {
     const params = {
         collection_id,
         fields: 'collection_id,product_id',
         limit: 250
       },
-      count = await shopify.collect.count(params),
+      count = onlyFirstPage ? 0 : (await shopify.collect.count(params)),
       pages = Math.ceil(count / 250);
 
     return flatten(await Promise.all(
@@ -181,7 +181,7 @@ class ShopifyWrapper {
 
   @cacheable(86400 * 8)
   // @cacheable(0)
-  collectionGetProducts(id: number | string, params = {}): Promise<App.Product[]> {
+  collectionGetProducts(id: number | string, params = {}, onlyFirstPage: boolean = false): Promise<App.Product[]> {
 
     const _params = omit(params, ['tag']),
       hasTagFilter = params.hasOwnProperty('tag'),
@@ -199,7 +199,7 @@ class ShopifyWrapper {
     }
 
     let promise = getId
-      .then(this.collectionGetCollects)
+      .then(id => this.collectionGetCollects(id, onlyFirstPage))
       .then(collects => collects.map(c => c.product_id))
       .then(ids => this.productList(ids, _params));
 

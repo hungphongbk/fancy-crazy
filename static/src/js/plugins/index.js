@@ -67,7 +67,7 @@ for (const key of Object.keys(filters)) {
 //   title: value
 // });
 
-const Magnifier = () => import(/* webpackChunkName:"desktop" */ '@/js/components/magnifier');
+const Magnifier = () => import(/* webpackChunkName:"desktop" */ '@/js/components/image-zoomer');
 export {Magnifier};
 
 // kick off the polyfill!

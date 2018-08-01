@@ -48,7 +48,7 @@
     .row
       .col-sm-7
         template(v-if="!$mq.phone")
-          magnifier(:thumb-src="SELECTED_IMAGE | shopifyImgUrl('master')", :large-src="SELECTED_IMAGE | shopifyImgUrl('master')")
+          magnifier(:src="SELECTED_IMAGE | shopifyImgUrl('master')")
           fragment-image-list
         .row.pb-3(v-else)
           .col-3

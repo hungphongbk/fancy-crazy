@@ -56,7 +56,7 @@
     .list-group#products
       template(v-for="(col,index) in SIDEBAR_COLLECTIONS")
         template(v-if="col.children")
-          a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="toggleParent=index", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
+          a.list-group-item.list-group-item-action.d-flex.justify-content-between(href="javascript:void(0)", @click="toggleParent=(toggleParent!==index)?index:-1", :class="{ [$bs.listGroupItemPrimary]: toggleParent===index, [$style.active]: toggleParent===index }")
             span {{col.title}}
             fa-icon(:icon="FA_CHEVRON_UP", :rotation="toggle===index?null:180")
           dropdown(:is-open="toggleParent===index")
