@@ -13,7 +13,7 @@ import CollectionsController from './router/collections';
 const app = express();
 // app.use(morgan('combined'));
 app.use(cors({
-  origin: 'https://fancycrazy.com',
+  origin: 'https://welcomenative.com',
   optionsSuccessStatus: 200
 }));
 app.use(cacheControl({

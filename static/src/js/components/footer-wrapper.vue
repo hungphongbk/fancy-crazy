@@ -11,7 +11,7 @@
             component(:is="injections.comp.Dropdown", :is-open="injections.vm.toggle")
               slot(name="info", :toggle="injections.vm.toggle")
           .text-center
-            h6.font-weight-bold.mt-3 GOOD FANCY CRAZY GUARANTEED
+            h6.font-weight-bold.mt-3 WELCOME NATIVE CRAZY GUARANTEED
             div(v-html="injections.text")
             component.mt-2(:is="injections.comp.Contact")
             p.mt-4 <small>© 2018 Copyright FancyCrazy Inc. All Right Reserved.</small>
@@ -26,7 +26,7 @@
               h5.d-inline-block.mb-3.font-weight-bold INFORMATION
               slot(name="info")
             .col-sm-5
-              h5.font-weight-bold GOOD FANCY CRAZY GUARANTEED
+              h5.font-weight-bold WELCOME NATIVE CRAZY GUARANTEED
               div(v-html="injections.text")
             .col-sm-3
               component.mt-5(:is="injections.comp.Contact")
@@ -60,7 +60,7 @@
       text: {
         default: `<p><b><i>Melts in Your Heart, Not in Your Eyes</i></b></p>
 <p>Join more than 70 thousand delighted customers sharing good Fancy in over 130 different countries!<br/>Not fully Fancy Crazy with your products?<br/>No worries! We've got it covered.</p>
-<p><strong>+1 914-598-8976</strong><br/><strong>support@fancycrazy.com</strong></p>`
+<p><strong>+1 914-598-8976</strong><br/><strong>support@welcomenative.com</strong></p>`
       }
     }
   }

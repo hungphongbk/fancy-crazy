@@ -14,8 +14,9 @@
 <template lang="pug">
   .d-flex.flex-wrap
     span.mr-3(:class="$style.label") {{ type | uppercase }}:
-    span(v-for="(item,index) in fullItems")
-      .btn.btn-sm.mr-1.mb-1(:class="[$style.btn, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)") {{COMMON_START_TITLE[index] | uppercase }}
+    span.d-inline-block.mr-1.mb-1(v-for="(item,index) in fullItems" style="width: 75px")
+      .btn.btn-sm.w-100.px-1.py-1.border-0(:class="[$style.btn, item.title===value.title?$bs.btnThemeRed:$bs.btnOutlineSecondary]", @click="$emit('input', item)")
+        img.w-100(:src="item.image | shopifyImgUrl('small')")
 </template>
 <script>
   import mixins from './product__Variants-Multiple-Items-mixins';

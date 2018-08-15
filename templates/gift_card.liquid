@@ -40,7 +40,7 @@
       <div class="h1 header-logo" itemscope itemtype="http://schema.org/Organization">
         {% if settings.logo_use_image %}
           <a href="{{ shop.url }}" itemprop="url">
-            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+            <img src="{{ 'logo-soa.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
           </a>
         {% else %}
           <a href="{{ shop.url }}" itemprop="url">{{ shop.name }}</a>

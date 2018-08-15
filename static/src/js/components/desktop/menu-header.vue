@@ -104,7 +104,7 @@
   header.sticky-top
     nav.navbar.navbar-expand-sm.navbar-light.bg-white(:class="$style.nav", :style="NAVBAR_BOX_SHADOW")
       a.navbar-brand.ml-6(href="/")
-        img.img-fluid(style="height: 70px;", src="@/images/logo-soa.png")
+        img.img-fluid(style="height: 70px;", src="@/images/logo.png")
       .navbar-collapse.collapse.d-flex.justify-content-center
         ul.navbar-nav
           li.nav-item(v-for="menuItem in menuList", :class="{[$bs.active]: menuItem.isActive, [$bs.dropdown]:menuItem.hasDropdown, [$style.dropdown]:menuItem.hasDropdown, [$style.custom]: true, [$style.navItem]: true, [$style.textOnly]: menuItem.isTextOnly}")

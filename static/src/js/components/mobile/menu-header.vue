@@ -80,7 +80,7 @@
             menu-header-dropdown(v-for="item in menuList", :key="item.handle", :item="item")
       .d-flex.justify-content-center(:class="$style.part")
         a.navbar-brand.p-0.m-0(href="/", :class="$style.logo")
-          img.img-fluid(src="@/images/logo-soa.png")
+          img.img-fluid(src="@/images/logo.png")
       .d-flex.justify-content-end(:class="$style.part")
         search.mr-3
         cart

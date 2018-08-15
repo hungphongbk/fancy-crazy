@@ -11,12 +11,12 @@ export default store => {
   moreMenu.isTextOnly = true;
   if (!moreMenu.children) moreMenu.children = [];
   moreMenu.children.push(...[
-    createMenu('Blog', 'https://fancycrazy.com/blogs/news'),
-    createMenu('Size Chart', 'https://fancycrazy.com/blogs/news'),
-    createMenu('Customer Review', 'https://fancycrazy.com/pages/customer-reviews'),
-    createMenu('Help Center', 'https://fancycrazy.com/apps/help-center'),
+    createMenu('Blog', 'https://welcomenative.com/blogs/news'),
+    createMenu('Size Chart', 'https://welcomenative.com/blogs/news'),
+    createMenu('Customer Review', 'https://welcomenative.com/pages/customer-reviews'),
+    createMenu('Help Center', 'https://welcomenative.com/apps/help-center'),
     createMenu('Track your Order', 'http://fancycrazy.aftership.com'),
-    createMenu('About Us', 'https://fancycrazy.com/pages/about-us')
+    createMenu('About Us', 'https://welcomenative.com/pages/about-us')
   ]);
 
   if (w.__state__.pageIndex) {

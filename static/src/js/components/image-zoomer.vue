@@ -24,7 +24,7 @@
     > canvas {
       position: absolute;
       left: -128px;
-      top: -244px;
+      top: -122px;
     }
   }
 </style>
@@ -42,6 +42,10 @@
       src: {
         type: String,
         required: true
+      },
+      radius:{
+        type:Number,
+        default:96
       }
     },
     data: () => ({
@@ -95,11 +99,10 @@
         this.targetZoomed = 0;
       },
       update() {
-        console.log(this.targetBCR);
         const rad = 128,
           ctx = this.ctx,
           TAU = Math.PI * 2,
-          MAX_RADIUS = 96,
+          MAX_RADIUS = this.radius,
           d = rad + MAX_RADIUS,
           radius = this.zoomed * MAX_RADIUS;
 

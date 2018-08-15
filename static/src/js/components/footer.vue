@@ -32,7 +32,7 @@
   .mt-sm-5(:class="$style.footer")
     wrapper
       div(slot="brand")
-        img.img-fluid(:class="$style.logo", src="@/images/logo.png")
+        img.img-fluid(:class="$style.logo", src="@/images/logo-soa.png")
       div(slot="info")
         dl(:class="[$bs.dFlex, $bs.flexWrap, $bs.mt3]")
           dd(:class="$style.info", v-for="{FOOTER_TITLE,FOOTER_URL} in infoList")

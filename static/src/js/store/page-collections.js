@@ -196,7 +196,7 @@ export default {
       if (page === -1) return;
       const isAll = getters.url === 'all',
         prefix = isAll
-          ? 'https://fancycrazy.com'
+          ? 'https://welcomenative.com'
           : 'https://us-central1-fancycrazy-895ba.cloudfunctions.net/s';
 
       if ((!state.__cache__[page]) || state.__cache__[page].length === 0) {

@@ -1,23 +1,23 @@
 // @flow
-import Spreadsheet   from './Spreadsheet';
+import Spreadsheet from './Spreadsheet';
 import ImgCompressor from './ImgCompressor';
-import cache         from './Cache';
-import path          from 'path';
-import fs            from 'fs';
-import groupBy       from 'lodash/groupBy';
-import clone         from 'lodash/clone';
-import omit          from 'lodash/omit';
-import flatten       from 'lodash/flatten';
-import random        from 'lodash/random';
-import range         from 'lodash/range';
-import chunk         from 'lodash/chunk';
-import zip           from 'lodash/zipObject';
-import transform     from 'lodash/transform';
-import Shopify       from 'shopify-api-node';
-import Bluebird      from 'bluebird';
-import database      from '../../functions/firebase/database.babel';
-import csvReader     from 'csv-reader';
-import moment        from 'moment';
+import cache from './Cache';
+import path from 'path';
+import fs from 'fs';
+import groupBy from 'lodash/groupBy';
+import clone from 'lodash/clone';
+import omit from 'lodash/omit';
+import flatten from 'lodash/flatten';
+import random from 'lodash/random';
+import range from 'lodash/range';
+import chunk from 'lodash/chunk';
+import zip from 'lodash/zipObject';
+import transform from 'lodash/transform';
+import Shopify from 'shopify-api-node';
+import Bluebird from 'bluebird';
+import database from '../../functions/firebase/database.babel';
+import csvReader from 'csv-reader';
+import moment from 'moment';
 
 //region Somethings
 const cacheGet = Bluebird.promisify(cache.get, {context: cache}),
@@ -246,12 +246,9 @@ async function task4() {
     }, []),
     tags = transform({
       native: 'Native American',
-      hippie: 'Spiritual Hippie',
       animal: 'Animal Spirit',
-      pet: 'Pets',
       dreamcatcher: 'Dreamcatcher',
-      yoga: 'Yoga',
-      christian: 'Christian'
+      pattern: 'Pattern'
     }, (rs, value, key) => {
       rs.push({
         type: 'tags',
@@ -299,11 +296,11 @@ async function task5() {
     const inputStream = fs.createReadStream(path.resolve(__dirname, 'reviews.csv'), 'utf8'),
       rs = [];
     inputStream.pipe(csvReader({
-      parseNumbers: true,
-      parseBooleans: true,
-      trim: true,
-      skipEmptyLines: true
-    }))
+        parseNumbers: true,
+        parseBooleans: true,
+        trim: true,
+        skipEmptyLines: true
+      }))
       .on('data', row => {
         rs.push(row);
       })
