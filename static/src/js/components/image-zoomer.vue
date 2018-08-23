@@ -43,9 +43,9 @@
         type: String,
         required: true
       },
-      radius:{
-        type:Number,
-        default:96
+      radius: {
+        type: Number,
+        default: 96
       }
     },
     data: () => ({
@@ -54,6 +54,7 @@
       ctx: null,
       size: 256,
       dPR: window.devicePixelRatio || 1,
+      scaled: false,
       targetBCR: null,
       zoomed: 0,
       targetZoomed: 0,
@@ -68,11 +69,16 @@
         this.target = this.$refs.target;
 
         this.ctx = this.$refs.canvas.getContext('2d');
-        this.ctx.scale(this.dPR, this.dPR);
+        if (!this.scaled) {
+          this.scaled = true;
+          this.ctx.scale(this.dPR, this.dPR);
+        }
 
         this.targetBCR = this.target.getBoundingClientRect();
 
         requestAnimationFrame(this.update);
+        console.log('init canvas');
+        console.log(this.targetBCR);
       },
       onStart(evt) {
         if (evt.target !== this.target)
