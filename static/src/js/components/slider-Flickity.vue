@@ -49,29 +49,22 @@
       fill: white;
     }
   }
-
-  .vertical {
-    height: 100%;
-    max-height: 100%;
-    overflow-y: scroll;
-  }
 </style>
 <template lang="pug">
   div(:class="SLIDER_CLASSES")
     flickity(ref="flkty", :options="options", v-show="!ORIENTATION_VERTICAL_SHOW")
       slot
-    vertical-duplicator(v-if="ORIENTATION_VERTICAL_SHOW")
+    vertical-duplicator.mt-4(v-if="ORIENTATION_VERTICAL_SHOW" @next="$emit('next')" @prev="$emit('prev')")
+      slot
 </template>
 <script>
   import Flickity from 'vue-flickity'
+  import VerticalDuplicator from './app__SliderVerticalDuplicator.vue'
 
   export default {
     components: {
       Flickity,
-      VerticalDuplicator: {
-        functional: true,
-        render: (h, {parent}) => h('div', {class: parent.$style.vertical}, parent.$slots.default)
-      }
+      VerticalDuplicator
     },
     props: {
       opts: {

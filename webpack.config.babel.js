@@ -9,6 +9,7 @@ import combine from 'webpack-combine-loaders';
 import regexCombiner from 'regex-combiner';
 import _ from './build/utils';
 import ShopifyPlugin from './build/plugins/shopify';
+import openInEditor from 'launch-editor-middleware';
 
 const src = './static/src',
   dist = './static/dist',
@@ -187,7 +188,10 @@ module.exports = merge(base, {
       'Access-Control-Allow-Origin': '*'
     },
     publicPath: 'https://localhost:8080/',
-    stats: {chunks: false}
+    stats: {chunks: false},
+    before(app) {
+      app.use('/__open-in-editor', openInEditor('code'));
+    }
   }
 });
 

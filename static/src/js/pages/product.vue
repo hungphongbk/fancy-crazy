@@ -50,10 +50,10 @@
         template(v-if="!$mq.phone")
           magnifier(:src="SELECTED_IMAGE | shopifyImgUrl('master')")
           fragment-image-list
-        .row.pb-3(v-else)
+        .row.pb-4(v-else)
           .col-3
             fragment-image-list
-          .col-9.pl-0
+          .col-9.pl-0.pt-4
             .ratio-6-7
               .content
                 img.img-fluid(:src="SELECTED_IMAGE | shopifyImgUrl('grande')")

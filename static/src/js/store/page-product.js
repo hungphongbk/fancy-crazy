@@ -70,6 +70,19 @@ export default {
           index = state.product.images.findIndex(i => i === variantImg);
         commit('selectImage', {index});
       });
+    },
+    nextImage({commit, state, getters}) {
+      let s = state.selectedImage + 1;
+      commit('selectImage', {
+        index: s % getters.images.length
+      });
+    },
+    prevImage({commit, state, getters}) {
+      let s = state.selectedImage - 1;
+      if (s < 0) s += getters.images.length;
+      commit('selectImage', {
+        index: s
+      });
     }
   }
 };

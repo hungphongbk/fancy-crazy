@@ -44,7 +44,7 @@
   }
 </style>
 <template lang="pug">
-  slider(:narrow="true", theme="dark", ref="slider", :orientation="(!$mq.phone)?'horizontal':'vertical'", :class="$style.slider")
+  slider(:narrow="true", theme="dark", ref="slider", :orientation="(!$mq.phone)?'horizontal':'vertical'", :class="$style.slider" @next="next" @prev="prev")
     a(v-for="(image,index) in PRODUCT_IMAGES", :key="image", :class="$style.imgThumbnail")
       .ratio-1-1(:class="{ [$style.inner]:true, [$style.selected]: (SELECTED_IMAGE===image) }", @click="select(index)")
         .content(:class="$style.content")
@@ -78,6 +78,12 @@
     methods: {
       select(index) {
         this.$appStore.commit('pageProduct/selectImage', {index});
+      },
+      next(){
+        return this.$appStore.dispatch('pageProduct/nextImage');
+      },
+      prev(){
+        return this.$appStore.dispatch('pageProduct/prevImage');
       }
     },
     mounted() {

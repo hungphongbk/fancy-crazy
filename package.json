@@ -78,6 +78,7 @@
     "js-cookie": "^2.2.0",
     "js-effect-ripple": "^1.2.1",
     "kebab-case": "^1.0.0",
+    "launch-editor-middleware": "^2.2.1",
     "lazyloadxt": "^1.1.0",
     "loader-utils": "latest",
     "lodash": "^4.17.10",
