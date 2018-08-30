@@ -8,11 +8,11 @@
 ### Mã nguồn frontend
 1. Shopify theme: không render nhiều, chỉ output ra cây trạng thái dùng cho **Vuex**. Chỉnh sửa mã nguồn Shopify theme, truy cập trực tiếp vào trang admin của Shopify
 2. Vue.js theme: trong thư mục `assets-src/src/js`, các thư mục được chia nhỏ rất rõ ràng về chức năng:
-1.1. `pages` các trang chính của web app (index, collection, product, ...). Render page theo biến toàn cục chỉ định rõ trong `theme.liquid` của Shopify theme, chưa có giải pháp sử dụng Vue-router.
-1.2. `fragments` chứa các component thành phần được sử dụng trực tiếp trên các component page
-1.3. `components` chứa các component primitive được sử dụng nhiều lần trong toàn bộ webapp.
-1.4. `store` store và modules của Vuex 
-1.5. `plugins` c
+  * `pages` các trang chính của web app (index, collection, product, ...). Render page theo biến toàn cục chỉ định rõ trong `theme.liquid` của Shopify theme, chưa có giải pháp sử dụng Vue-router.
+  * `fragments` chứa các component thành phần được sử dụng trực tiếp trên các component page
+  * `components` chứa các component primitive được sử dụng nhiều lần trong toàn bộ webapp.
+  * `store` store và modules của Vuex 
+  * `plugins` c
 
 ## Thao tac dev & build
 1. DEV: npm run app:dev
